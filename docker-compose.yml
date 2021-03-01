@@ -1,0 +1,43 @@
+version: '3.7'
+
+services:
+  zookeeper:
+    image: zookeeper:${ZOOKEEPER_VERSION}
+    environment:
+      - TZ=America/Guayaquil
+      - ZOO_MY_ID=1
+      - ZOO_SERVERS=server.1=0.0.0.0:2888:3888
+      - ZOO_LOG4J_PROP=INFO,ROLLINGFILE
+    ports:
+      - 2181:2181
+    volumes:
+      - zookeeper_data:/data
+      - zookeeper_datalog:/datalog
+      - zookeeper_logs:/logs
+
+  kafka:
+    image: kafka:${SCALA_VERSION}-${KAFKA_VERSION}
+    environment:
+      - TZ=America/Guayaquil
+    depends_on:
+      - zookeeper
+    ports:
+      - 9093:9093
+    volumes:
+      - kafka_data:/data
+      - kafka_logs:/kafka/logs
+    command: >
+      --override broker.id=1
+      --override log.dirs=/data
+      --override zookeeper.connect=zookeeper:2181
+      --override listener.security.protocol.map=INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      --override inter.broker.listener.name=INTERNAL
+      --override listeners=INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:9093
+      --override advertised.listeners=INTERNAL://kafka:9092,EXTERNAL://localhost:9093
+
+volumes:
+  kafka_data:
+  kafka_logs:
+  zookeeper_data:
+  zookeeper_logs:
+  zookeeper_datalog:
