@@ -58,6 +58,26 @@ $ make status
 $ make stop
 ```
 
+#### Opens a terminal inside kafka
+```
+$ make bash-kafka
+```
+
+#### Opens a terminal inside zookeeper
+```
+$ make bash-zookeeper
+```
+
+#### Shows kafka's logs
+```
+$ make log-kafka
+```
+
+#### Shows zookeeper's logs
+```
+$ make log-zookeeper
+```
+
 ## Commands for Kafka
 
 #### Creates a topic
@@ -65,7 +85,7 @@ $ make stop
 $ make create-topic topic=test
 ```
 
-#### Muestra la lista de tópicos
+#### Shows the topic list
 ```
 $ make topic-list
 ```

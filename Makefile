@@ -2,7 +2,7 @@
 export
 
 docker-compose=docker-compose -p kafka -f docker-compose.yml
-bash=docker run -it --rm --entrypoint /bin/bash --network kafka_network
+bash=docker run -it --rm --entrypoint /bin/bash --network kafka_kafka_network
 
 topic=default
 group=default
@@ -33,13 +33,13 @@ bash-zookeeper:
 	$(bash) -v zookeeper_data:/data -v zookeeper_datalog:/datalog -v zookeeper_logs:/logs zookeeper:$(ZOOKEEPER_VERSION)
 
 create-topic:
-	$(bash) kafka bin/kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic $(topic)
+	$(bash) kafka:$(SCALA_VERSION)-$(KAFKA_VERSION) bin/kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic $(topic)
 
 topic-list:
-	$(bash) kafka	bin/kafka-topics.sh --list --zookeeper zookeeper:2181
+	$(bash) kafka:$(SCALA_VERSION)-$(KAFKA_VERSION)	bin/kafka-topics.sh --list --zookeeper zookeeper:2181
 
 console-producer:
-	$(bash) kafka bin/kafka-console-producer.sh --broker-list kafka:9093 --topic $(topic)
+	$(bash) kafka:$(SCALA_VERSION)-$(KAFKA_VERSION) bin/kafka-console-producer.sh --broker-list kafka:9092 --topic $(topic)
 
 console-consumer:
-	$(bash) kafka bin/kafka-console-consumer.sh --bootstrap-server kafka:9093 --topic $(topic) --from-beginning
+	$(bash) kafka:$(SCALA_VERSION)-$(KAFKA_VERSION) bin/kafka-console-consumer.sh --bootstrap-server kafka:9092 --topic $(topic) --from-beginning
