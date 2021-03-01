@@ -32,7 +32,7 @@ $ make run
 
 ## Docker CMD
 
-Default: `CMD ["kafka", "config/server.properties"]`
+Default: `CMD ["kafka-server-start", "/kafka/config/server.properties"]`
 
 You could change the properties path adding a volume to `/kafka/config` path.
 
