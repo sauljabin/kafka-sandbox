@@ -17,19 +17,19 @@ services:
     networks:
       - kafka_network
 
-  kafka:
+  kafka1:
     image: kafka:${SCALA_VERSION}-${KAFKA_VERSION}
     environment:
       - TZ=America/Guayaquil
     depends_on:
       - zookeeper
+    networks:
+      - kafka_network
     ports:
       - 9093:9093
     volumes:
-      - kafka_data:/data
-      - kafka_logs:/kafka/logs
-    networks:
-      - kafka_network
+      - kafka1_data:/data
+      - kafka1_logs:/kafka/logs
     command: >
       --override broker.id=1
       --override log.dirs=/data
@@ -37,11 +37,59 @@ services:
       --override listener.security.protocol.map=INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
       --override inter.broker.listener.name=INTERNAL
       --override listeners=INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:9093
-      --override advertised.listeners=INTERNAL://kafka:9092,EXTERNAL://localhost:9093
+      --override advertised.listeners=INTERNAL://kafka1:9092,EXTERNAL://localhost:9093
+
+  kafka2:
+    image: kafka:${SCALA_VERSION}-${KAFKA_VERSION}
+    environment:
+      - TZ=America/Guayaquil
+    depends_on:
+      - zookeeper
+    networks:
+      - kafka_network
+    ports:
+      - 9094:9094
+    volumes:
+      - kafka2_data:/data
+      - kafka2_logs:/kafka/logs
+    command: >
+      --override broker.id=2
+      --override log.dirs=/data
+      --override zookeeper.connect=zookeeper:2181
+      --override listener.security.protocol.map=INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      --override inter.broker.listener.name=INTERNAL
+      --override listeners=INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:9094
+      --override advertised.listeners=INTERNAL://kafka2:9092,EXTERNAL://localhost:9094
+
+  kafka3:
+    image: kafka:${SCALA_VERSION}-${KAFKA_VERSION}
+    environment:
+      - TZ=America/Guayaquil
+    depends_on:
+      - zookeeper
+    networks:
+      - kafka_network
+    ports:
+      - 9095:9095
+    volumes:
+      - kafka3_data:/data
+      - kafka3_logs:/kafka/logs
+    command: >
+      --override broker.id=3
+      --override log.dirs=/data
+      --override zookeeper.connect=zookeeper:2181
+      --override listener.security.protocol.map=INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      --override inter.broker.listener.name=INTERNAL
+      --override listeners=INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:9095
+      --override advertised.listeners=INTERNAL://kafka3:9092,EXTERNAL://localhost:9095
 
 volumes:
-  kafka_data:
-  kafka_logs:
+  kafka1_data:
+  kafka2_data:
+  kafka3_data:
+  kafka1_logs:
+  kafka2_logs:
+  kafka3_logs:
   zookeeper_data:
   zookeeper_logs:
   zookeeper_datalog:

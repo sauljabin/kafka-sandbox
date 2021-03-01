@@ -45,7 +45,7 @@ $ make build
 
 #### Deploys a kafka broker
 ```
-$ make run
+$ make up
 ```
 
 #### Shows the stack status
@@ -55,12 +55,12 @@ $ make status
 
 #### Stops stack
 ```
-$ make stop
+$ make down
 ```
 
 #### Opens a terminal inside kafka
 ```
-$ make bash-kafka
+$ make bash-kafka[123]
 ```
 
 #### Opens a terminal inside zookeeper
@@ -70,7 +70,7 @@ $ make bash-zookeeper
 
 #### Shows kafka's logs
 ```
-$ make log-kafka
+$ make log-kafka[123]
 ```
 
 #### Shows zookeeper's logs

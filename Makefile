@@ -6,30 +6,41 @@ bash=docker run -it --rm --entrypoint /bin/bash --network kafka_kafka_network
 
 topic=default
 group=default
-instance=1
 replication=3
 partitions=3
 
 build:
 	docker build -t kafka:$(SCALA_VERSION)-$(KAFKA_VERSION) --build-arg SCALA_VERSION=$(SCALA_VERSION) --build-arg KAFKA_VERSION=$(KAFKA_VERSION) .
 
-run: build
+up: build
 	$(docker-compose) up -d
 
 status:
 	$(docker-compose) ps
 
-stop:
+down:
 	$(docker-compose) down
 
-log-kafka:
-	$(docker-compose) logs -f kafka
+log-kafka1:
+	$(docker-compose) logs -f kafka1
+
+log-kafka2:
+	$(docker-compose) logs -f kafka2
+
+log-kafka3:
+	$(docker-compose) logs -f kafka3
 
 log-zookeeper:
 	$(docker-compose) logs -f zookeeper
 
-bash-kafka:
-	$(docker-compose) exec kafka bash
+bash-kafka1:
+	$(docker-compose) exec kafka1 bash
+
+bash-kafka2:
+	$(docker-compose) exec kafka2 bash
+
+bash-kafka3:
+	$(docker-compose) exec kafka3 bash
 
 bash-zookeeper:
 	$(docker-compose) exec zookeeper bash
