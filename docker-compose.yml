@@ -14,6 +14,8 @@ services:
       - zookeeper_data:/data
       - zookeeper_datalog:/datalog
       - zookeeper_logs:/logs
+    networks:
+      - kafka
 
   kafka:
     image: kafka:${SCALA_VERSION}-${KAFKA_VERSION}
@@ -26,6 +28,8 @@ services:
     volumes:
       - kafka_data:/data
       - kafka_logs:/kafka/logs
+    networks:
+      - kafka
     command: >
       --override broker.id=1
       --override log.dirs=/data
@@ -41,3 +45,6 @@ volumes:
   zookeeper_data:
   zookeeper_logs:
   zookeeper_datalog:
+
+networks:
+  kafka_network:
