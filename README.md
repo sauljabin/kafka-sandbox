@@ -92,10 +92,10 @@ $ make topic-list
 
 #### Creates a console producer connection
 ```
-$ make console-producer topic=test
+$ make producer topic=test
 ```
 
 #### Creates a console consumer connection
 ```
-$ make console-consumer topic=test
+$ make consumer topic=test
 ```

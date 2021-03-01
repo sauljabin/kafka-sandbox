@@ -3,7 +3,7 @@
 set -Eeo pipefail
 
 if [[ "$1" == "--override" ]]; then
-    exec "kafka" "config/server.properties" "$@"
+    exec "kafka-server-start" "$KAFKA_CONFIG/server.properties" "$@"
 else
     exec "$@"
 fi
