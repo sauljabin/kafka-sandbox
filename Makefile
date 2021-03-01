@@ -52,7 +52,7 @@ topic-list:
 	$(bash) kafka:$(SCALA_VERSION)-$(KAFKA_VERSION)	kafka-topics --list --zookeeper zookeeper:2181
 
 producer:
-	$(bash) kafka:$(SCALA_VERSION)-$(KAFKA_VERSION) kafka-console-producer --broker-list kafka:9092 --topic $(topic)
+	$(bash) kafka:$(SCALA_VERSION)-$(KAFKA_VERSION) kafka-console-producer --broker-list kafka1:9092 --topic $(topic)
 
 consumer:
-	$(bash) kafka:$(SCALA_VERSION)-$(KAFKA_VERSION) kafka-console-consumer --bootstrap-server kafka:9092 --topic $(topic) --consumer-property group.id=$(group) --from-beginning
+	$(bash) kafka:$(SCALA_VERSION)-$(KAFKA_VERSION) kafka-console-consumer --bootstrap-server kafka1:9092 --topic $(topic) --consumer-property group.id=$(group) --from-beginning
