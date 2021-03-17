@@ -52,10 +52,10 @@ bash-zookeeper3:
 	$(docker-compose) exec zookeeper3 bash
 
 create-topic:
-	$(bash) kafka-topics --create --zookeeper zookeeper1:12181 --replication-factor $(replication) --partitions $(partitions) --topic $(topic)
+	$(bash) kafka-topics --create --bootstrap-server kafka1:19092 --replication-factor $(replication) --partitions $(partitions) --topic $(topic)
 
 topic-list:
-	$(bash) kafka-topics --list --zookeeper zookeeper1:12181
+	$(bash) kafka-topics --list --bootstrap-server kafka1:19092
 
 producer:
 	$(bash) kafka-console-producer --broker-list kafka1:19092 --topic $(topic)
