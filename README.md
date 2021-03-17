@@ -88,3 +88,8 @@ $ make producer topic=test
 ```
 $ make consumer topic=test
 ```
+
+#### Describes a topic
+```
+$ make describe topic=test
+```

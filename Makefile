@@ -62,3 +62,6 @@ producer:
 
 consumer:
 	$(bash) kafka-console-consumer --bootstrap-server kafka1:19092 --topic $(topic) --consumer-property group.id=$(group) --from-beginning
+
+describe-topic:
+	$(bash) kafka-topics --describe --topic $(topic) --bootstrap-server kafka1:19092
