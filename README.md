@@ -6,6 +6,7 @@ For development purpose
 
 - [Kafka](https://hub.docker.com/r/confluentinc/cp-kafka)
 - [Zookeeper](https://hub.docker.com/r/confluentinc/cp-zookeeper)
+- [Confluent](https://docs.confluent.io/platform/current/installation/docker/config-reference.html)
 
 ## Getting Started
 
