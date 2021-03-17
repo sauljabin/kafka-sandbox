@@ -1,6 +1,6 @@
-# kafka-docker-on-mac
+# cp-kafka-docker
 
-For development purpose
+Example of kafka cluster using the official image. Thi is for development purpose.
 
 ## Documentation
 
