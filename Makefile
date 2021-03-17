@@ -1,18 +1,12 @@
--include .env
-export
-
 docker-compose=docker-compose -p kafka -f docker-compose.yml
-bash=docker run -it --rm --entrypoint /bin/bash --network kafka_kafka_network
+bash=docker run -it --rm --network kafka_kafka_network confluentinc/cp-kafka:6.1.0
 
 topic=default
 group=default
 replication=3
 partitions=3
 
-build:
-	docker build -t kafka:$(SCALA_VERSION)-$(KAFKA_VERSION) --build-arg SCALA_VERSION=$(SCALA_VERSION) --build-arg KAFKA_VERSION=$(KAFKA_VERSION) .
-
-up: build
+up:
 	$(docker-compose) up -d
 
 status:
@@ -30,8 +24,14 @@ log-kafka2:
 log-kafka3:
 	$(docker-compose) logs -f kafka3
 
-log-zookeeper:
-	$(docker-compose) logs -f zookeeper
+log-zookeeper1:
+	$(docker-compose) logs -f zookeeper1
+
+log-zookeeper2:
+	$(docker-compose) logs -f zookeeper2
+
+log-zookeeper3:
+	$(docker-compose) logs -f zookeeper3
 
 bash-kafka1:
 	$(docker-compose) exec kafka1 bash
@@ -42,17 +42,23 @@ bash-kafka2:
 bash-kafka3:
 	$(docker-compose) exec kafka3 bash
 
-bash-zookeeper:
-	$(docker-compose) exec zookeeper bash
+bash-zookeeper1:
+	$(docker-compose) exec zookeeper1 bash
+
+bash-zookeeper2:
+	$(docker-compose) exec zookeeper2 bash
+
+bash-zookeeper3:
+	$(docker-compose) exec zookeeper3 bash
 
 create-topic:
-	$(bash) kafka:$(SCALA_VERSION)-$(KAFKA_VERSION) kafka-topics --create --zookeeper zookeeper:2181 --replication-factor $(replication) --partitions $(partitions) --topic $(topic)
+	$(bash) kafka-topics --create --zookeeper zookeeper1:12181 --replication-factor $(replication) --partitions $(partitions) --topic $(topic)
 
 topic-list:
-	$(bash) kafka:$(SCALA_VERSION)-$(KAFKA_VERSION)	kafka-topics --list --zookeeper zookeeper:2181
+	$(bash) kafka-topics --list --zookeeper zookeeper1:12181
 
 producer:
-	$(bash) kafka:$(SCALA_VERSION)-$(KAFKA_VERSION) kafka-console-producer --broker-list kafka1:9092 --topic $(topic)
+	$(bash) kafka-console-producer --broker-list kafka1:19092 --topic $(topic)
 
 consumer:
-	$(bash) kafka:$(SCALA_VERSION)-$(KAFKA_VERSION) kafka-console-consumer --bootstrap-server kafka1:9092 --topic $(topic) --consumer-property group.id=$(group) --from-beginning
+	$(bash) kafka-console-consumer --bootstrap-server kafka1:19092 --topic $(topic) --consumer-property group.id=$(group) --from-beginning

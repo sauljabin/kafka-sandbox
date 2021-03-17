@@ -1,98 +1,124 @@
-version: '3.7'
+version: '3.9'
 
 services:
-  zookeeper:
-    image: zookeeper:${ZOOKEEPER_VERSION}
+  zookeeper1:
+    image: confluentinc/cp-zookeeper:6.1.0
     environment:
       - TZ=America/Guayaquil
-      - ZOO_MY_ID=1
-      - ZOO_SERVERS=server.1=0.0.0.0:2888:3888
-      - ZOO_LOG4J_PROP=INFO,ROLLINGFILE
+      - ZOOKEEPER_CLIENT_PORT=12181
+      - ZOOKEEPER_TICK_TIME=2000
+      - ZOOKEEPER_SYNC_LIMIT=2
+      - ZOOKEEPER_SERVER_ID=1
+      - ZOOKEEPER_SERVERS=zookeeper1:2888:3888;zookeeper2:2888:3888;zookeeper3:2888:3888
     ports:
-      - 2181:2181
-    volumes:
-      - zookeeper_data:/data
-      - zookeeper_datalog:/datalog
-      - zookeeper_logs:/logs
+      - 12181:12181
     networks:
       - kafka_network
+    volumes:
+      - zookeeper1_data:/var/lib/zookeeper/data
+      - zookeeper1_datalog:/var/lib/zookeeper/log
+    restart: on-failure
+
+  zookeeper2:
+    image: confluentinc/cp-zookeeper:6.1.0
+    environment:
+      - TZ=America/Guayaquil
+      - ZOOKEEPER_CLIENT_PORT=22181
+      - ZOOKEEPER_TICK_TIME=2000
+      - ZOOKEEPER_SYNC_LIMIT=2
+      - ZOOKEEPER_SERVER_ID=2
+      - ZOOKEEPER_SERVERS=zookeeper1:2888:3888;zookeeper2:2888:3888;zookeeper3:2888:3888
+    ports:
+      - 22181:22181
+    networks:
+      - kafka_network
+    volumes:
+      - zookeeper2_data:/var/lib/zookeeper/data
+      - zookeeper2_datalog:/var/lib/zookeeper/log
+    restart: on-failure
+
+  zookeeper3:
+    image: confluentinc/cp-zookeeper:6.1.0
+    environment:
+      - TZ=America/Guayaquil
+      - ZOOKEEPER_CLIENT_PORT=32181
+      - ZOOKEEPER_TICK_TIME=2000
+      - ZOOKEEPER_SYNC_LIMIT=2
+      - ZOOKEEPER_SERVER_ID=3
+      - ZOOKEEPER_SERVERS=zookeeper1:2888:3888;zookeeper2:2888:3888;zookeeper3:2888:3888
+    ports:
+      - 32181:32181
+    networks:
+      - kafka_network
+    volumes:
+      - zookeeper3_data:/var/lib/zookeeper/data
+      - zookeeper3_datalog:/var/lib/zookeeper/log
+    restart: on-failure
 
   kafka1:
-    image: kafka:${SCALA_VERSION}-${KAFKA_VERSION}
+    image: confluentinc/cp-kafka:6.1.0
     environment:
       - TZ=America/Guayaquil
-    depends_on:
-      - zookeeper
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper1:12181,zookeeper2:22181,zookeeper3:32181
+      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      - KAFKA_INTER_BROKER_LISTENER_NAME=INTERNAL
+      - KAFKA_LISTENERS=INTERNAL://0.0.0.0:19092,EXTERNAL://0.0.0.0:19093
+      - KAFKA_ADVERTISED_LISTENERS=INTERNAL://kafka1:19092,EXTERNAL://localhost:19093
+      - KAFKA_BROKER_ID=1
+    ports:
+      - 19093:19093
     networks:
       - kafka_network
-    ports:
-      - 9093:9093
     volumes:
-      - kafka1_data:/data
-      - kafka1_logs:/kafka/logs
-    command: >
-      --override broker.id=1
-      --override log.dirs=/data
-      --override zookeeper.connect=zookeeper:2181
-      --override listener.security.protocol.map=INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
-      --override inter.broker.listener.name=INTERNAL
-      --override listeners=INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:9093
-      --override advertised.listeners=INTERNAL://kafka1:9092,EXTERNAL://localhost:9093
+      - kafka1_data:/var/lib/kafka/data
+    restart: on-failure
 
   kafka2:
-    image: kafka:${SCALA_VERSION}-${KAFKA_VERSION}
+    image: confluentinc/cp-kafka:6.1.0
     environment:
       - TZ=America/Guayaquil
-    depends_on:
-      - zookeeper
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper1:12181,zookeeper2:22181,zookeeper3:32181
+      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      - KAFKA_INTER_BROKER_LISTENER_NAME=INTERNAL
+      - KAFKA_LISTENERS=INTERNAL://0.0.0.0:29092,EXTERNAL://0.0.0.0:29093
+      - KAFKA_ADVERTISED_LISTENERS=INTERNAL://kafka2:29092,EXTERNAL://localhost:29093
+      - KAFKA_BROKER_ID=2
+    ports:
+      - 29093:29093
     networks:
       - kafka_network
-    ports:
-      - 9094:9094
     volumes:
-      - kafka2_data:/data
-      - kafka2_logs:/kafka/logs
-    command: >
-      --override broker.id=2
-      --override log.dirs=/data
-      --override zookeeper.connect=zookeeper:2181
-      --override listener.security.protocol.map=INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
-      --override inter.broker.listener.name=INTERNAL
-      --override listeners=INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:9094
-      --override advertised.listeners=INTERNAL://kafka2:9092,EXTERNAL://localhost:9094
+      - kafka2_data:/var/lib/kafka/data
+    restart: on-failure
 
   kafka3:
-    image: kafka:${SCALA_VERSION}-${KAFKA_VERSION}
+    image: confluentinc/cp-kafka:6.1.0
     environment:
       - TZ=America/Guayaquil
-    depends_on:
-      - zookeeper
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper1:12181,zookeeper2:22181,zookeeper3:32181
+      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      - KAFKA_INTER_BROKER_LISTENER_NAME=INTERNAL
+      - KAFKA_LISTENERS=INTERNAL://0.0.0.0:39092,EXTERNAL://0.0.0.0:39093
+      - KAFKA_ADVERTISED_LISTENERS=INTERNAL://kafka3:39092,EXTERNAL://localhost:39093
+      - KAFKA_BROKER_ID=3
+    ports:
+      - 39093:39093
     networks:
       - kafka_network
-    ports:
-      - 9095:9095
     volumes:
-      - kafka3_data:/data
-      - kafka3_logs:/kafka/logs
-    command: >
-      --override broker.id=3
-      --override log.dirs=/data
-      --override zookeeper.connect=zookeeper:2181
-      --override listener.security.protocol.map=INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
-      --override inter.broker.listener.name=INTERNAL
-      --override listeners=INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:9095
-      --override advertised.listeners=INTERNAL://kafka3:9092,EXTERNAL://localhost:9095
+      - kafka3_data:/var/lib/kafka/data
+    restart: on-failure
 
 volumes:
+  zookeeper1_data:
+  zookeeper1_datalog:
+  zookeeper2_data:
+  zookeeper2_datalog:
+  zookeeper3_data:
+  zookeeper3_datalog:
   kafka1_data:
   kafka2_data:
   kafka3_data:
-  kafka1_logs:
-  kafka2_logs:
-  kafka3_logs:
-  zookeeper_data:
-  zookeeper_logs:
-  zookeeper_datalog:
 
 networks:
   kafka_network:

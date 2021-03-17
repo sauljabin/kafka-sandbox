@@ -1,40 +1,28 @@
 # kafka-docker-on-mac
 
-For development porpuse
-
-Kafka Tag `2.12-2.2.1`
-
-Zookeeper Tag `3.4`
+For development purpose
 
 ## Documentation
 
-- [Kafka](https://kafka.apache.org)
-- [Zookeeper](https://zookeeper.apache.org)
-- [Zookeeper Docker Hub](https://hub.docker.com/_/zookeeper)
+- [Kafka](https://hub.docker.com/r/confluentinc/cp-kafka)
+- [Zookeeper](https://hub.docker.com/r/confluentinc/cp-zookeeper)
 
 ## Getting Started
 
 ```
-$ make run
+$ make up
 ```
 
 ## Default Ports
 
 | Port | Description |
 | - | - |
-| 2181 | Zookeeper port |
-| 9092 | Internal Kafka port |
-| 9093 | External Kafka port |
+| 12181 | Zookeeper port |
+| 19093 | Kafka port |
 
 ## Docker Stack Examples
 
 - [docker-compose.yml](docker-compose.yml)
-
-## Docker CMD
-
-Default: `CMD ["kafka-server-start", "/kafka/config/server.properties"]`
-
-You could change the properties path adding a volume to `/kafka/config` path.
 
 ## Make Commands
 
@@ -65,7 +53,7 @@ $ make bash-kafka[123]
 
 #### Opens a terminal inside zookeeper
 ```
-$ make bash-zookeeper
+$ make bash-zookeeper[123]
 ```
 
 #### Shows kafka's logs
@@ -75,7 +63,7 @@ $ make log-kafka[123]
 
 #### Shows zookeeper's logs
 ```
-$ make log-zookeeper
+$ make log-zookeeper[123]
 ```
 
 ## Commands for Kafka
