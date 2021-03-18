@@ -71,6 +71,11 @@ $ make log-kafka[123]
 $ make log-zookeeper[123]
 ```
 
+#### Shows schema registry's logs
+```
+$ make log-schema
+```
+
 ## Commands for Kafka
 
 #### Creates a topic

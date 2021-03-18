@@ -33,6 +33,9 @@ log-zookeeper2:
 log-zookeeper3:
 	$(docker-compose) logs -f zookeeper3
 
+log-schema:
+	$(docker-compose) logs -f schema-registry
+
 bash-kafka1:
 	$(docker-compose) exec kafka1 bash
 
