@@ -3,8 +3,8 @@ bash=docker run -it --rm --network kafka_kafka_network confluentinc/cp-kafka:6.1
 
 topic=default
 group=default
-replication=3
-partitions=3
+replication=2
+partitions=6
 
 up:
 	$(docker-compose) up -d
@@ -68,3 +68,9 @@ consumer:
 
 describe-topic:
 	$(bash) kafka-topics --describe --topic $(topic) --bootstrap-server kafka1:19092
+
+build-examples:
+	docker build -t kafka-examples ./examples
+
+bash-examples: build-examples
+	docker run -it --rm --network kafka_kafka_network -e DOCKER=true -v $(shell pwd)/examples:/examples kafka-examples bash

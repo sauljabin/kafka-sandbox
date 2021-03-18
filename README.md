@@ -7,8 +7,11 @@ Example of kafka cluster using the official image. Thi is for development purpos
 - [Kafka](https://hub.docker.com/r/confluentinc/cp-kafka)
 - [Zookeeper](https://hub.docker.com/r/confluentinc/cp-zookeeper)
 - [Schema Registry](https://hub.docker.com/r/confluentinc/cp-schema-registry)
+- [Schema Registry UI](https://hub.docker.com/r/landoop/schema-registry-ui/)
 - [Confluent Documentation](https://docs.confluent.io/platform/current/installation/docker/config-reference.html)
-- [Examples](https://github.com/confluentinc/examples)
+- [Docker Examples](https://github.com/confluentinc/examples)
+- [Python Example](https://github.com/confluentinc/confluent-kafka-python)
+- [Python Documentation](https://docs.confluent.io/platform/current/clients/confluent-kafka-python/html/index.html)
 
 ## Getting Started
 
