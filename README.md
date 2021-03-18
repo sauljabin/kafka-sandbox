@@ -6,7 +6,9 @@ Example of kafka cluster using the official image. Thi is for development purpos
 
 - [Kafka](https://hub.docker.com/r/confluentinc/cp-kafka)
 - [Zookeeper](https://hub.docker.com/r/confluentinc/cp-zookeeper)
-- [Confluent](https://docs.confluent.io/platform/current/installation/docker/config-reference.html)
+- [Schema Registry](https://hub.docker.com/r/confluentinc/cp-schema-registry)
+- [Confluent Documentation](https://docs.confluent.io/platform/current/installation/docker/config-reference.html)
+- [Examples](https://github.com/confluentinc/examples)
 
 ## Getting Started
 
@@ -20,6 +22,8 @@ $ make up
 | - | - |
 | 12181 | Zookeeper port |
 | 19093 | Kafka port |
+| 8081 | Schema Registry |
+| 8000 | Schema Registry UI |
 
 ## Docker Stack Examples
 
