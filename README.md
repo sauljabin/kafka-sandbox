@@ -14,8 +14,9 @@ Example of kafka cluster using the official image. Thi is for development purpos
 
 - [Confluent Documentation](https://docs.confluent.io/platform/current/installation/docker/config-reference.html)
 - [Docker Examples](https://github.com/confluentinc/examples)
-- [Python Example](https://github.com/confluentinc/confluent-kafka-python)
+- [Python Examples](https://github.com/confluentinc/confluent-kafka-python)
 - [Python Documentation](https://docs.confluent.io/platform/current/clients/confluent-kafka-python/html/index.html)
+- [Avro](https://avro.apache.org/docs/current/gettingstartedpython.html)
 
 ## Getting Started
 

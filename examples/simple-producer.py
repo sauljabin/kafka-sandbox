@@ -3,18 +3,10 @@ from confluent_kafka import Producer
 from faker import Faker
 
 is_docker = os.getenv('DOCKER')
-hostnames = ['localhost:{0}9093'.format(n) for n in [1, 2, 3]]
-
-if is_docker:
-    hostnames = ['kafka{0}:{0}9092'.format(n) for n in [1, 2, 3]]
-
-print('bootstrap.servers', hostnames)
-
-fake = Faker()
-producer = Producer({'bootstrap.servers': ','.join(hostnames)})
-
+hosts_inside_docker = ['kafka{0}:{0}9092'.format(n) for n in [1, 2, 3]]
+hosts_outside_docker = ['localhost:{0}9093'.format(n) for n in [1, 2, 3]]
+hostnames = ','.join(hosts_inside_docker) if is_docker else ','.join(hosts_outside_docker)
 topic = 'simple-topic'
-data = [fake.name() for n in range(100)]
 
 
 def delivery_report(err, msg):
@@ -26,7 +18,11 @@ def delivery_report(err, msg):
         print('Message delivered to {} [{}]'.format(msg.topic(), msg.partition()))
 
 
-for data in data:
+producer = Producer({'bootstrap.servers': hostnames})
+fake = Faker()
+data_storage = [fake.name() for n in range(100)]
+
+for data in data_storage:
     # Trigger any available delivery report callbacks from previous produce() calls
     producer.poll(0)
 
