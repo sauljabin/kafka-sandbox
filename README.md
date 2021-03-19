@@ -2,12 +2,16 @@
 
 Example of kafka cluster using the official image. Thi is for development purpose.
 
-## Documentation
+## Components
 
 - [Kafka](https://hub.docker.com/r/confluentinc/cp-kafka)
 - [Zookeeper](https://hub.docker.com/r/confluentinc/cp-zookeeper)
 - [Schema Registry](https://hub.docker.com/r/confluentinc/cp-schema-registry)
 - [Schema Registry UI](https://hub.docker.com/r/landoop/schema-registry-ui/)
+- [AKHQ](https://github.com/tchiotludo/akhq)  
+
+## Documentation
+
 - [Confluent Documentation](https://docs.confluent.io/platform/current/installation/docker/config-reference.html)
 - [Docker Examples](https://github.com/confluentinc/examples)
 - [Python Example](https://github.com/confluentinc/confluent-kafka-python)
@@ -27,6 +31,7 @@ $ make up
 | 19093 | Kafka port |
 | 8081 | Schema Registry |
 | 8000 | Schema Registry UI |
+| 8080 | AKHQ |
 
 ## Docker Stack Examples
 
@@ -77,6 +82,16 @@ $ make log-zookeeper[123]
 #### Shows schema registry's logs
 ```
 $ make log-schema
+```
+
+#### Shows schema registry's logs
+```
+$ make log-schema-ui
+```
+
+#### Shows schema registry's logs
+```
+$ make log-akhq
 ```
 
 ## Commands for Kafka

@@ -36,6 +36,12 @@ log-zookeeper3:
 log-schema:
 	$(docker-compose) logs -f schema-registry
 
+log-schema-ui:
+	$(docker-compose) logs -f schema-registry-ui
+
+log-akhq:
+	$(docker-compose) logs -f akhq
+
 bash-kafka1:
 	$(docker-compose) exec kafka1 bash
 

@@ -137,6 +137,23 @@ services:
       - kafka_network
     restart: on-failure
 
+  akhq:
+    image: tchiotludo/akhq:0.17.0
+    ports:
+      - 8080:8080
+    networks:
+      - kafka_network
+    restart: on-failure
+    environment:
+      AKHQ_CONFIGURATION: |
+        akhq:
+          connections:
+            docker-kafka-server:
+              properties:
+                bootstrap.servers: "kafka1:19092,kafka2:29092,kafka3:39092"
+              schema-registry:
+                url: "http://schema-registry:8081"
+
 volumes:
   zookeeper1_data:
   zookeeper1_datalog:
