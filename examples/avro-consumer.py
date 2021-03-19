@@ -10,17 +10,17 @@ schema_registry = 'http://localhost:8081'
 topic = 'avro-topic'
 group = 'avro-consumer'
 
-consumer = AvroConsumer({
+avroConsumer = AvroConsumer({
     'bootstrap.servers': hostnames,
     'group.id': group,
     'auto.offset.reset': 'earliest',  # 'latest',
     'schema.registry.url': schema_registry})
 
-consumer.subscribe([topic])
+avroConsumer.subscribe([topic])
 
 while True:
     try:
-        msg = consumer.poll(10)
+        msg = avroConsumer.poll(10)
 
     except SerializerError as e:
         print("Message deserialization failed for {}: {}".format(msg, e))
@@ -36,4 +36,4 @@ while True:
     print('Raw:', msg.value())
     print('Name:', msg.value()['name'])
 
-consumer.close()
+avroConsumer.close()

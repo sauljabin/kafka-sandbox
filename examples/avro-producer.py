@@ -10,6 +10,16 @@ hostnames = ','.join(hosts_inside_docker) if is_docker else ','.join(hosts_outsi
 topic = 'avro-topic'
 schema_registry = 'http://localhost:8081'
 
+
+def delivery_report(err, msg):
+    # Called once for each message produced to indicate delivery result.
+    # Triggered by poll() or flush().
+    if err is not None:
+        print('Message delivery failed: {}'.format(err))
+    else:
+        print('Message delivered to {} [{}]'.format(msg.topic(), msg.partition()))
+
+
 value_schema_str = """
 {
    "namespace": "my.test",
@@ -26,23 +36,13 @@ value_schema_str = """
 
 value_schema = avro.loads(value_schema_str)
 
-
-def delivery_report(err, msg):
-    # Called once for each message produced to indicate delivery result.
-    # Triggered by poll() or flush().
-    if err is not None:
-        print('Message delivery failed: {}'.format(err))
-    else:
-        print('Message delivered to {} [{}]'.format(msg.topic(), msg.partition()))
-
-
 avroProducer = AvroProducer({
     'bootstrap.servers': hostnames,
     'on_delivery': delivery_report,
     'schema.registry.url': schema_registry
 }, default_value_schema=value_schema)
 fake = Faker()
-data_storage = [{"name": fake.name()} for n in range(1)]
+data_storage = [{"name": fake.name()} for n in range(10)]
 
 for data in data_storage:
     # Trigger any available delivery report callbacks from previous produce() calls

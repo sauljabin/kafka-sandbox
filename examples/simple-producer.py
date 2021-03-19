@@ -20,7 +20,7 @@ def delivery_report(err, msg):
 
 producer = Producer({'bootstrap.servers': hostnames})
 fake = Faker()
-data_storage = [fake.name() for n in range(100)]
+data_storage = [fake.name() for n in range(10)]
 
 for data in data_storage:
     # Trigger any available delivery report callbacks from previous produce() calls
