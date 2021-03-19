@@ -15,51 +15,6 @@ status:
 down:
 	$(docker-compose) down
 
-log-kafka1:
-	$(docker-compose) logs -f kafka1
-
-log-kafka2:
-	$(docker-compose) logs -f kafka2
-
-log-kafka3:
-	$(docker-compose) logs -f kafka3
-
-log-zookeeper1:
-	$(docker-compose) logs -f zookeeper1
-
-log-zookeeper2:
-	$(docker-compose) logs -f zookeeper2
-
-log-zookeeper3:
-	$(docker-compose) logs -f zookeeper3
-
-log-schema:
-	$(docker-compose) logs -f schema-registry
-
-log-schema-ui:
-	$(docker-compose) logs -f schema-registry-ui
-
-log-akhq:
-	$(docker-compose) logs -f akhq
-
-bash-kafka1:
-	$(docker-compose) exec kafka1 bash
-
-bash-kafka2:
-	$(docker-compose) exec kafka2 bash
-
-bash-kafka3:
-	$(docker-compose) exec kafka3 bash
-
-bash-zookeeper1:
-	$(docker-compose) exec zookeeper1 bash
-
-bash-zookeeper2:
-	$(docker-compose) exec zookeeper2 bash
-
-bash-zookeeper3:
-	$(docker-compose) exec zookeeper3 bash
-
 create-topic:
 	$(bash) kafka-topics --create --bootstrap-server kafka1:19092 --replication-factor $(replication) --partitions $(partitions) --topic $(topic)
 

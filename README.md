@@ -39,11 +39,6 @@ $ make up
 
 ## Make Commands
 
-#### Builds the docker image
-```
-$ make build
-```
-
 #### Deploys a kafka broker
 ```
 $ make up
@@ -57,41 +52,6 @@ $ make status
 #### Stops stack
 ```
 $ make down
-```
-
-#### Opens a terminal inside kafka
-```
-$ make bash-kafka[123]
-```
-
-#### Opens a terminal inside zookeeper
-```
-$ make bash-zookeeper[123]
-```
-
-#### Shows kafka's logs
-```
-$ make log-kafka[123]
-```
-
-#### Shows zookeeper's logs
-```
-$ make log-zookeeper[123]
-```
-
-#### Shows schema registry's logs
-```
-$ make log-schema
-```
-
-#### Shows schema registry's logs
-```
-$ make log-schema-ui
-```
-
-#### Shows schema registry's logs
-```
-$ make log-akhq
 ```
 
 ## Commands for Kafka
@@ -119,4 +79,11 @@ $ make consumer topic=test
 #### Describes a topic
 ```
 $ make describe topic=test
+```
+
+## Running examples using docker
+
+#### Opens a python bash 
+```
+$ make bash-examples
 ```
