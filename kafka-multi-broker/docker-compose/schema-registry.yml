@@ -20,7 +20,6 @@ services:
       - ALLOW_GLOBAL=1
       - ALLOW_TRANSITIVE=1
       - ALLOW_DELETION=1
-      - READONLY_MODE=1
     ports:
       - 8000:8000
     networks:
