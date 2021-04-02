@@ -1,0 +1,28 @@
+services:
+  schema-registry:
+    image: confluentinc/cp-schema-registry:6.1.0
+    environment:
+      - SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS=PLAINTEXT://kafka1:19092,PLAINTEXT://kafka2:29092,PLAINTEXT://kafka3:39092
+      - SCHEMA_REGISTRY_HOST_NAME=localhost
+      - SCHEMA_REGISTRY_DEBUG=true
+      - SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_ORIGIN=*
+      - SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_METHODS=GET,POST,PUT,OPTIONS
+    ports:
+      - 8081:8081
+    networks:
+      - kafka_network
+    restart: on-failure
+
+  schema-registry-ui:
+    image: landoop/schema-registry-ui:0.9.5
+    environment:
+      - SCHEMAREGISTRY_URL=http://localhost:8081
+      - ALLOW_GLOBAL=1
+      - ALLOW_TRANSITIVE=1
+      - ALLOW_DELETION=1
+      - READONLY_MODE=1
+    ports:
+      - 8000:8000
+    networks:
+      - kafka_network
+    restart: on-failure

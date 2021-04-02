@@ -1,0 +1,29 @@
+services:
+  mongo:
+    image: mongo:4
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=notasecret
+    ports:
+      - 27017:27017
+    networks:
+      - kafka_network
+    volumes:
+      - mongo_data:/data/db
+    restart: on-failure
+
+  mongo-express:
+    image: mongo-express:0.54
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=root
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=notasecret
+      - ME_CONFIG_MONGODB_PORT=27017
+      - ME_CONFIG_MONGODB_SERVER=mongo
+    ports:
+      - 7070:8081
+    networks:
+      - kafka_network
+    restart: on-failure
+
+volumes:
+  mongo_data:

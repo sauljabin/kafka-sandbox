@@ -1,0 +1,10 @@
+{
+    "tasks.max": "1",
+    "table.whitelist": "customers",
+    "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+    "connection.url": "jdbc:mysql://mysql:3306/sandbox",
+    "connection.user": "root",
+    "connection.password": "notasecret",
+    "mode": "incrementing",
+    "incrementing.column.name": "id"
+}

@@ -1,0 +1,27 @@
+services:
+  mysql:
+    image: mysql:8
+    environment:
+      - TZ=America/Guayaquil
+      - MYSQL_ROOT_PASSWORD=notasecret
+      - MYSQL_DATABASE=sandbox
+    ports:
+      - 3306:3306
+    networks:
+      - kafka_network
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: on-failure
+
+  adminer:
+    image: adminer:4
+    environment:
+      - TZ=America/Guayaquil
+    ports:
+      - 9090:8080
+    networks:
+      - kafka_network
+    restart: on-failure
+
+volumes:
+  mysql_data:
