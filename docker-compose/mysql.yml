@@ -7,8 +7,6 @@ services:
       - MYSQL_DATABASE=sandbox
     ports:
       - 3306:3306
-    networks:
-      - kafka-sandbox_default
     volumes:
       - mysql_data:/var/lib/mysql
     restart: on-failure
@@ -19,13 +17,7 @@ services:
       - TZ=America/Guayaquil
     ports:
       - 9090:8080
-    networks:
-      -  kafka-sandbox_default
     restart: on-failure
 
 volumes:
   mysql_data:
-
-networks:
-  kafka-sandbox_default:
-    external: true

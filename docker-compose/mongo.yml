@@ -6,8 +6,6 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=notasecret
     ports:
       - 27017:27017
-    networks:
-      - kafka-sandbox_default
     volumes:
       - mongo_data:/data/db
     restart: on-failure
@@ -21,13 +19,7 @@ services:
       - ME_CONFIG_MONGODB_SERVER=mongo
     ports:
       - 7070:8081
-    networks:
-      - kafka-sandbox_default
     restart: on-failure
 
 volumes:
   mongo_data:
-
-networks:
-  kafka-sandbox_default:
-    external: true
