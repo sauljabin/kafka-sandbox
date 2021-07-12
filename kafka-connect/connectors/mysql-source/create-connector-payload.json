@@ -7,7 +7,7 @@
     "connection.url": "jdbc:mysql://mysql:3306/sandbox",
     "connection.user": "root",
     "connection.password": "notasecret",
-    "mode": "incrementing",
-    "incrementing.column.name": "id"
+    "mode": "timestamp",
+    "timestamp.column.name": "created"
   }
 }
