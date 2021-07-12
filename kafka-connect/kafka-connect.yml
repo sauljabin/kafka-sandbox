@@ -21,7 +21,7 @@ services:
     ports:
       - 8082:8082
     volumes:
-      - kafka-connect_plugins:/usr/local/share/kafka/plugins
+      - ./plugins:/usr/local/share/kafka/plugins
     restart: on-failure
 
   kafka-connect-ui:
