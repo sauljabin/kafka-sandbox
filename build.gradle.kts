@@ -29,3 +29,9 @@ task<Exec>("openKafkaConnectUi") {
     group = "Kafka Sandbox"
     commandLine(if (OperatingSystem.current().isLinux) "xdg-open" else "open", "http://localhost:9000")
 }
+
+task<Exec>("createSandboxNetwork") {
+    description = "Creates a Network for the Sandbox"
+    group = "Kafka Sandbox"
+    commandLine("docker", "network", "create", "--attachable", rootProject.name + "_network")
+}

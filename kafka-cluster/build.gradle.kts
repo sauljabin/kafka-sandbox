@@ -5,8 +5,8 @@ plugins {
 }
 
 dockerCompose {
-    useComposeFiles = listOf("kafka.yml", "zookeeper.yml", "akhq.yml", "schema-registry.yml")
-    projectName = rootProject.name
+    useComposeFiles = listOf("kafka.yml", "zookeeper.yml")
+    projectName = project.name
     stopContainers = true
     removeContainers = false
     removeImages = None

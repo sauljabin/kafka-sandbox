@@ -21,3 +21,8 @@ services:
     ports:
       - 8000:8000
     restart: on-failure
+
+networks:
+  default:
+    external: true
+    name: kafka-sandbox_network

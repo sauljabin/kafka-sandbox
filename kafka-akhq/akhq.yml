@@ -13,3 +13,11 @@ services:
                 bootstrap.servers: "kafka1:19092,kafka2:29092,kafka3:39092"
               schema-registry:
                 url: "http://schema-registry:8081"
+              connect:
+                - name: kafka-connect
+                  url: "http://kafka-connect:8082"
+
+networks:
+  default:
+    external: true
+    name: kafka-sandbox_network

@@ -23,3 +23,8 @@ services:
 
 volumes:
   mongo_data:
+
+networks:
+  default:
+    external: true
+    name: kafka-sandbox_network

@@ -54,3 +54,8 @@ volumes:
   zookeeper2_datalog:
   zookeeper3_data:
   zookeeper3_datalog:
+
+networks:
+  default:
+    external: true
+    name: kafka-sandbox_network

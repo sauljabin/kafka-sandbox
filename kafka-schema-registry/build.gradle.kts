@@ -5,7 +5,7 @@ plugins {
 }
 
 dockerCompose {
-    useComposeFiles = listOf("mongo.yml", "mysql.yml", "kafka-connect.yml")
+    useComposeFiles = listOf("schema-registry.yml")
     projectName = project.name
     stopContainers = true
     removeContainers = false

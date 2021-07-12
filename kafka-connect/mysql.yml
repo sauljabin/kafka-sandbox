@@ -21,3 +21,8 @@ services:
 
 volumes:
   mysql_data:
+
+networks:
+  default:
+    external: true
+    name: kafka-sandbox_network

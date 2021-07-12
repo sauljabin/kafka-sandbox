@@ -51,3 +51,8 @@ volumes:
   kafka1_data:
   kafka2_data:
   kafka3_data:
+
+networks:
+  default:
+    external: true
+    name: kafka-sandbox_network

@@ -34,3 +34,8 @@ services:
 
 volumes:
   kafka-connect_plugins:
+
+networks:
+  default:
+    external: true
+    name: kafka-sandbox_network
