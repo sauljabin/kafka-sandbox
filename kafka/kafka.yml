@@ -11,8 +11,6 @@ services:
       - KAFKA_BROKER_ID=1
     ports:
       - 19093:19093
-    networks:
-      - kafka_network
     volumes:
       - kafka1_data:/var/lib/kafka/data
     restart: on-failure
@@ -29,8 +27,6 @@ services:
       - KAFKA_BROKER_ID=2
     ports:
       - 29093:29093
-    networks:
-      - kafka_network
     volumes:
       - kafka2_data:/var/lib/kafka/data
     restart: on-failure
@@ -47,8 +43,6 @@ services:
       - KAFKA_BROKER_ID=3
     ports:
       - 39093:39093
-    networks:
-      - kafka_network
     volumes:
       - kafka3_data:/var/lib/kafka/data
     restart: on-failure
@@ -57,6 +51,3 @@ volumes:
   kafka1_data:
   kafka2_data:
   kafka3_data:
-
-networks:
-  kafka_network:

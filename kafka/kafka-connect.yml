@@ -3,7 +3,7 @@ services:
     image: confluentinc/cp-kafka-connect:6.1.0
     environment:
       - TZ=America/Guayaquil
-      - CONNECT_BOOTSTRAP_SERVERS=kafka:9092
+      - CONNECT_BOOTSTRAP_SERVERS=kafka1:19092,kafka2:29092,kafka3:39092
       - CONNECT_REST_PORT=8082
       - CONNECT_GROUP_ID=kafka-connect-sandbox
       - CONNECT_CONFIG_STORAGE_TOPIC=kafka-connect-sandbox-config
@@ -20,10 +20,8 @@ services:
       - CONNECT_STATUS_STORAGE_REPLICATION_FACTOR=1
     ports:
       - 8082:8082
-    networks:
-      - kafka_network
     volumes:
-      - ./plugins:/usr/local/share/kafka/plugins
+      - kafka-connect_plugins:/usr/local/share/kafka/plugins
     restart: on-failure
 
   kafka-connect-ui:
@@ -32,6 +30,7 @@ services:
       - CONNECT_URL=http://kafka-connect:8082
     ports:
       - 9000:8000
-    networks:
-      - kafka_network
     restart: on-failure
+
+volumes:
+  kafka-connect_plugins:

@@ -3,19 +3,16 @@ services:
     image: tchiotludo/akhq:0.17.0
     ports:
       - 8080:8080
+    restart: on-failure
     environment:
       AKHQ_CONFIGURATION: |
         akhq:
           connections:
             docker-kafka-server:
               properties:
-                bootstrap.servers: "kafka:9092"
+                bootstrap.servers: "kafka1:19092,kafka2:29092,kafka3:39092"
               schema-registry:
                 url: "http://schema-registry:8081"
               connect:
                 - name: kafka-connect
                   url: "http://kafka-connect:8082"
-
-    networks:
-      - kafka_network
-    restart: on-failure

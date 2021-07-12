@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   zookeeper1:
     image: confluentinc/cp-zookeeper:6.1.0
@@ -12,8 +10,6 @@ services:
       - ZOOKEEPER_SERVERS=zookeeper1:2888:3888;zookeeper2:2888:3888;zookeeper3:2888:3888
     ports:
       - 12181:12181
-    networks:
-      - kafka_network
     volumes:
       - zookeeper1_data:/var/lib/zookeeper/data
       - zookeeper1_datalog:/var/lib/zookeeper/log
@@ -30,8 +26,6 @@ services:
       - ZOOKEEPER_SERVERS=zookeeper1:2888:3888;zookeeper2:2888:3888;zookeeper3:2888:3888
     ports:
       - 22181:22181
-    networks:
-      - kafka_network
     volumes:
       - zookeeper2_data:/var/lib/zookeeper/data
       - zookeeper2_datalog:/var/lib/zookeeper/log
@@ -48,8 +42,6 @@ services:
       - ZOOKEEPER_SERVERS=zookeeper1:2888:3888;zookeeper2:2888:3888;zookeeper3:2888:3888
     ports:
       - 32181:32181
-    networks:
-      - kafka_network
     volumes:
       - zookeeper3_data:/var/lib/zookeeper/data
       - zookeeper3_datalog:/var/lib/zookeeper/log
