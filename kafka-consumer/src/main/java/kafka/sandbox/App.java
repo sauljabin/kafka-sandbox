@@ -25,6 +25,8 @@ public class App {
             }
             consumer.commitSync();
         }
+
+        //consumer.close();
     }
 
     private static Properties getProperties() throws IOException {

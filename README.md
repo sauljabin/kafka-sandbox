@@ -4,13 +4,11 @@ Example of kafka cluster using the official image. This is for development purpo
 
 ## TO DO
 
-- [ ] ksqldb
-- [ ] proxy
-- [ ] streams
-- [ ] consumer
-- [ ] ssl
-- [ ] utils
-- [ ] acls
+- ksqldb
+- proxy
+- streams
+- ssl
+- acls
 
 ## Sandbox Commands
 
@@ -150,4 +148,18 @@ curl -s -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json'
 
 ```
 ./gradlew kafka-consumer:run
+```
+
+## Kafka CLI tools
+
+#### Build docker cli tools
+
+```
+docker build ./kafka-cli-tools -t kafka-cli-tools:latest
+```
+
+#### Run docker cli tools
+
+```
+docker run -it --network kafka-sandbox_network kafka-cli-tools:latest
 ```
