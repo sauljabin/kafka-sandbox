@@ -2,14 +2,12 @@
 
 Example of kafka cluster using the official image. This is for development purpose.
 
-
 ## TO DO
 
 - [ ] ksqldb
 - [ ] proxy
 - [ ] streams
 - [ ] consumer
-- [ ] producer
 - [ ] ssl
 - [ ] utils
 - [ ] acls
@@ -19,44 +17,43 @@ Example of kafka cluster using the official image. This is for development purpo
 #### List Tasks
 
 ```
-gradle tasks --all
+./gradlew tasks --all
 ```
-
 
 #### Create Sandbox Network
 
 ```
-gradle createSandboxNetwork
+./gradlew createSandboxNetwork
 ```
 
 #### Run kafka cluster
 
 ```
-gradle kafka-cluster:composeUp
+./gradlew kafka-cluster:composeUp
 ```
 
 #### Run kafka connect tools
 
 ```
-gradle kafka-connect:composeUp
+./gradlew kafka-connect:composeUp
 ```
 
 #### Run kafka AKHQ UI
 
 ```
-gradle kafka-akhq:composeUp
+./gradlew kafka-akhq:composeUp
 ```
 
 #### Run kafka Schema Registry
 
 ```
-gradle kafka-schema-registry:composeUp
+./gradlew kafka-schema-registry:composeUp
 ```
 
 #### Run the whole sandbox
 
 ```
-gradle composeUp
+./gradlew composeUp
 ```
 
 ## Kafka Connect Commands
@@ -64,7 +61,7 @@ gradle composeUp
 #### Populate MySQL DB
 
 ```
-gradle mysql-populate-db:run --args="100"
+./gradlew mysql-populate-db:run --args="100"
 ```
 
 #### List Kafka Connect Plugins
@@ -108,29 +105,43 @@ curl -s -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json'
 #### Opens Adminer
 
 ```
-gradle openAdminer
+./gradlew openAdminer
 ```
 
 #### Opens AKHQ
 
 ```
-gradle openAkhq
+./gradlew openAkhq
 ```
 
 #### Opens Mongo Express
 
 ```
-gradle openMongoExpress
+./gradlew openMongoExpress
 ```
 
 #### Opens Schema Registry UI
 
 ```
-gradle openSchemaRegistryUi
+./gradlew openSchemaRegistryUi
 ```
 
 #### Opens Kafka Connect UI
 
 ```
-gradle openKafkaConnectUi
+./gradlew openKafkaConnectUi
+```
+
+## Producer and Consumer
+
+#### Generate avro schemas
+
+```
+./gradlew kafka-producer:generateAvro
+```
+
+#### Run kafka producer
+
+```
+./gradlew kafka-producer:run
 ```

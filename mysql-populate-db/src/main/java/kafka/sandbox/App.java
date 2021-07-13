@@ -15,30 +15,36 @@ import java.util.UUID;
 
 public class App {
 
+    private static final Faker faker = new Faker();
+    private static final String databaseUrl = "jdbc:mysql://localhost:3306/sandbox";
+    private static final String username = "root";
+    private static final String password = "notasecret";
+
     public static void main(String[] args) throws SQLException, IOException {
         int totalCustomers = getTotalCustomers(args);
-        System.out.println("Total costomers to create: " + totalCustomers);
-        Faker faker = new Faker();
+        System.out.println("Total customers to create: " + totalCustomers);
 
-        String databaseUrl = "jdbc:mysql://localhost:3306/sandbox";
-
-        ConnectionSource connectionSource = new JdbcConnectionSource(databaseUrl, "root", "notasecret");
+        ConnectionSource connectionSource = new JdbcConnectionSource(databaseUrl, username, password);
 
         Dao<Customer, UUID> accountDao = DaoManager.createDao(connectionSource, Customer.class);
 
         TableUtils.createTableIfNotExists(connectionSource, Customer.class);
 
         for (int i = 0; i < totalCustomers; i++) {
-            Customer customer = Customer.builder()
-                    .name(faker.name().fullName())
-                    .address(faker.address().streetAddress())
-                    .created(new Date())
-                    .build();
+            Customer customer = createNewCustomer();
             accountDao.create(customer);
             System.out.println(customer);
         }
 
         connectionSource.close();
+    }
+
+    private static Customer createNewCustomer() {
+        return Customer.builder()
+                .name(faker.name().fullName())
+                .address(faker.address().streetAddress())
+                .created(new Date())
+                .build();
     }
 
     private static int getTotalCustomers(String[] args) {

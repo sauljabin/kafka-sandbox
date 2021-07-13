@@ -9,7 +9,6 @@ repositories {
 dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
 
-    implementation("com.google.guava:guava:30.1-jre")
     implementation("com.j256.ormlite:ormlite-jdbc:5.6")
     implementation("mysql:mysql-connector-java:8.0.25")
     implementation("com.github.javafaker:javafaker:1.0.2")
