@@ -137,11 +137,17 @@ curl -s -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json'
 #### Generate avro schemas
 
 ```
-./gradlew kafka-producer:generateAvro
+./gradlew generateAvro
 ```
 
 #### Run kafka producer
 
 ```
-./gradlew kafka-producer:run
+./gradlew kafka-producer:run --args="100"
+```
+
+#### Run kafka consumer
+
+```
+./gradlew kafka-consumer:run
 ```
