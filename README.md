@@ -1,14 +1,59 @@
-# Collection of kafka examples on local envs
+# Kafka Sandbox
 
-Example of kafka cluster using the official image. This is for development purpose.
+This project helps you to deploy a kafka sandbox locally.
 
-## TO DO
+## Dependencies
 
-- ksqldb
-- proxy
-- streams
-- ssl
-- acls
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
+- [httpie](https://httpie.io/)
+- [jq](https://stedolan.github.io/jq/)
+- [java](https://www.java.com/en/download/)
+
+## Get Started
+
+```bash
+docker network create kafka-sandbox_network
+cd kafka-cluster
+docker-compose up -d
+```
+
+## Components
+
+#### Kafka Cluster:
+
+- proyect location: [kafka-cluster](kafka-cluster)
+- kafka ports: `19093`, `29093`, `39093`
+- zookeeper ports: `12181`, `22181`, `32181`
+
+```bash
+cd kafka-cluster
+docker-compose up -d
+docker-compose down
+```
+
+#### Kafka AKHQ:
+
+- proyect location: [kafka-akhq](kafka-akhq)
+- akhq port: `8080` ([open it in the web browser](http://localhost:8080/))
+
+```bash
+cd kafka-akhq
+docker-compose up -d
+docker-compose down
+```
+
+#### Kafka Schema Registry:
+
+- proyect location: [kafka-schema-registry](kafka-schema-registryq)
+- schema registry port: `8081` ([open it in the web browser](http://localhost:8081/))
+- schema registry ui port: `8000` ([open it in the web browser](http://localhost:8000/))
+
+```bash
+cd kafka-schema-registry
+docker-compose up -d
+docker-compose down
+```
 
 ## Sandbox Commands
 
