@@ -22,7 +22,8 @@ docker-compose up -d
 
 #### Kafka Cluster:
 
-- proyect location: [kafka-cluster](kafka-cluster)
+- [kafka](https://kafka.apache.org/)
+- project location: [kafka-cluster](kafka-cluster)
 - kafka ports: `19093`, `29093`, `39093`
 - zookeeper ports: `12181`, `22181`, `32181`
 
@@ -34,7 +35,8 @@ docker-compose down
 
 #### Kafka AKHQ:
 
-- proyect location: [kafka-akhq](kafka-akhq)
+- [akhq](https://akhq.io/)
+- project location: [kafka-akhq](kafka-akhq)
 - akhq port: `8080` ([open it in the web browser](http://localhost:8080/))
 
 ```bash
@@ -45,7 +47,8 @@ docker-compose down
 
 #### Kafka Schema Registry:
 
-- proyect location: [kafka-schema-registry](kafka-schema-registryq)
+- [schema registry](https://docs.confluent.io/platform/current/schema-registry/index.html)
+- project location: [kafka-schema-registry](kafka-schema-registryq)
 - schema registry port: `8081` ([open it in the web browser](http://localhost:8081/))
 - schema registry ui port: `8000` ([open it in the web browser](http://localhost:8000/))
 
@@ -55,51 +58,22 @@ docker-compose up -d
 docker-compose down
 ```
 
-## Sandbox Commands
+#### Kafka CLI tools:
 
-#### List Tasks
+It is a collection of tool to interact with kafka cluster through the terminal.
 
-```
-./gradlew tasks --all
-```
+- [kafkacat](https://github.com/edenhill/kafkacat)
+- [zoe](https://adevinta.github.io/zoe/)
+- [confluent community tools](https://docs.confluent.io/platform/current/installation/installing_cp/zip-tar.html)
+- project location: [kafka-cli-tools](kafka-cli-tools)
 
-#### Create Sandbox Network
-
-```
-./gradlew createSandboxNetwork
-```
-
-#### Run kafka cluster
-
-```
-./gradlew kafka-cluster:composeUp
+```bash
+cd kafka-cli-tools
+docker build -t kafka-cli-tools:latest .
+docker run -it --network kafka-sandbox_network kafka-cli-tools:latest
 ```
 
-#### Run kafka connect tools
-
-```
-./gradlew kafka-connect:composeUp
-```
-
-#### Run kafka AKHQ UI
-
-```
-./gradlew kafka-akhq:composeUp
-```
-
-#### Run kafka Schema Registry
-
-```
-./gradlew kafka-schema-registry:composeUp
-```
-
-#### Run the whole sandbox
-
-```
-./gradlew composeUp
-```
-
-## Kafka Connect Commands
+#### Kafka Connect:
 
 #### Populate MySQL DB
 
@@ -195,16 +169,3 @@ curl -s -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json'
 ./gradlew kafka-consumer:run
 ```
 
-## Kafka CLI tools
-
-#### Build docker cli tools
-
-```
-docker build ./kafka-cli-tools -t kafka-cli-tools:latest
-```
-
-#### Run docker cli tools
-
-```
-docker run -it --network kafka-sandbox_network kafka-cli-tools:latest
-```
