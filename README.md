@@ -22,7 +22,10 @@ docker-compose up -d
 
 #### Kafka Cluster:
 
+A three node kafka cluster.
+
 - [kafka](https://kafka.apache.org/)
+- [zookeeper](https://zookeeper.apache.org/)
 - project location: [kafka-cluster](kafka-cluster)
 - kafka ports: `19093`, `29093`, `39093`
 - zookeeper ports: `12181`, `22181`, `32181`
@@ -30,10 +33,11 @@ docker-compose up -d
 ```bash
 cd kafka-cluster
 docker-compose up -d
-docker-compose down
 ```
 
 #### Kafka AKHQ:
+
+UI for managing kafka cluster.
 
 - [akhq](https://akhq.io/)
 - project location: [kafka-akhq](kafka-akhq)
@@ -42,25 +46,26 @@ docker-compose down
 ```bash
 cd kafka-akhq
 docker-compose up -d
-docker-compose down
 ```
 
 #### Kafka Schema Registry:
 
+It provides a RESTful interface for storing and retrieving your Avro, JSON Schema, and Protobuf schemas.
+
 - [schema registry](https://docs.confluent.io/platform/current/schema-registry/index.html)
-- project location: [kafka-schema-registry](kafka-schema-registryq)
+- [schema registry ui](https://github.com/lensesio/schema-registry-ui)
+- project location: [kafka-schema-registry](kafka-schema-registry)
 - schema registry port: `8081` ([open it in the web browser](http://localhost:8081/))
 - schema registry ui port: `8000` ([open it in the web browser](http://localhost:8000/))
 
 ```bash
 cd kafka-schema-registry
 docker-compose up -d
-docker-compose down
 ```
 
 #### Kafka CLI tools:
 
-It is a collection of tool to interact with kafka cluster through the terminal.
+It is a collection of tools to interact with kafka cluster through the terminal.
 
 - [kafkacat](https://github.com/edenhill/kafkacat)
 - [zoe](https://adevinta.github.io/zoe/)
@@ -75,65 +80,42 @@ docker run -it --network kafka-sandbox_network kafka-cli-tools:latest
 
 #### Kafka Connect:
 
-#### Populate MySQL DB
+It makes it simple to quickly define connectors that move large data sets into and out of Kafka.
 
-```
+- [connect](https://docs.confluent.io/current/connect/index.html)
+- [connect api reference](https://docs.confluent.io/platform/current/connect/references/restapi.html)
+- [connect ui](https://github.com/lensesio/kafka-connect-ui)
+- [jdbc connector](https://www.confluent.io/hub/confluentinc/kafka-connect-jdbc)
+- [adminer](https://www.adminer.org/)
+- [mongo connector](https://www.confluent.io/hub/mongodb/kafka-connect-mongodb)
+- [mongo express](https://github.com/mongo-express/mongo-express)
+- project location: [kafka-connect](kafka-connect)
+- connect port: `8082` ([open it in the web browser](http://localhost:8082/))
+- connect ui port: `9000` ([open it in the web browser](http://localhost:9000/))
+- mysql port: `3306`
+- adminer port: `9090` ([open it in the web browser](http://localhost:9090/))
+- mongo port: `27017`
+- mongo express port: `7070` ([open it in the web browser](http://localhost:7070/))
+
+```bash
+cd kafka-connect
+docker-compose up -d
+cd ..
 ./gradlew mysql-populate-db:run --args="100"
+curl -s -X POST -H "Content-Type: application/json" -d @./kafka-connect/connectors/mysql-source-create-connector-payload.json http://localhost:8082/connectors | jq
+curl -s -X POST -H "Content-Type: application/json" -d @./kafka-connect/connectors/mongo-sink-create-connector-payload.json http://localhost:8082/connectors | jq
 ```
 
-#### List Kafka Connect Plugins
+#### Kafka Producer and Consumer:
 
-```
-curl -s http://localhost:8082/connector-plugins | jq
-```
+Java examples for producing and consuming messages from Kafka.
 
-#### List Kafka Connect Connectors
-
-```
-curl -s http://localhost:8082/connectors | jq
-```
-
-#### Create mysql-source connector
-
-```
-curl -s -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -d @./kafka-connect/connectors/mysql-source/create-connector-payload.json http://localhost:8082/connectors | jq
-```
-
-#### Update mysql-source connector
-
-```
-curl -s -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -d @./kafka-connect/connectors/mysql-source/update-connector-payload.json http://localhost:8082/connectors/mysql-source/config | jq
-```
-
-#### Create mongodb-sink connector
-
-```
-curl -s -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -d @./kafka-connect/connectors/mongo-sink/create-connector-payload.json http://localhost:8082/connectors | jq
-```
-
-#### Update mongo-sink connector
-
-```
-curl -s -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -d @./kafka-connect/connectors/mongo-sink/update-connector-payload.json http://localhost:8082/connectors/mongo-sink/config | jq
-```
-
-## Producer and Consumer
-
-#### Generate avro schemas
-
-```
-./gradlew generateAvro
-```
-
-#### Run kafka producer
+- [kafka procuducer and consumer example](https://docs.confluent.io/platform/current/schema-registry/serdes-develop/serdes-avro.html)
+- producer project location: [kafka-producer](kafka-producer)
+- consumer project location: [kafka-consumer](kafka-consumer)
 
 ```
 ./gradlew kafka-producer:run --args="100"
-```
-
-#### Run kafka consumer
-
-```
 ./gradlew kafka-consumer:run
 ```
 

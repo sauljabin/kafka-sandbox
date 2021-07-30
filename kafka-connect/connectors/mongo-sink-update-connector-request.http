@@ -1,0 +1,12 @@
+PUT /connectors/mongo-sink/config HTTP/1.1
+Host: localhost:8082
+Content-Type: application/json
+Accept: application/json
+
+{
+    "tasks.max": "1",
+    "topics": "customers",
+    "connector.class": "com.mongodb.kafka.connect.MongoSinkConnector",
+    "connection.uri": "mongodb://root:notasecret@mongo:27017",
+    "database": "sandbox"
+}
