@@ -4,8 +4,8 @@ This project helps you to deploy a kafka sandbox locally.
 
 ## Dependencies
 
-- [Docker](https://www.docker.com/)
-- [Docker Compose](https://docs.docker.com/compose/)
+- [docker](https://www.docker.com/)
+- [docker Compose](https://docs.docker.com/compose/)
 - [httpie](https://httpie.io/)
 - [jq](https://stedolan.github.io/jq/)
 - [java](https://www.java.com/en/download/)
@@ -115,38 +115,6 @@ curl -s -X POST -H 'Content-Type: application/json' -H 'Accept: application/json
 
 ```
 curl -s -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -d @./kafka-connect/connectors/mongo-sink/update-connector-payload.json http://localhost:8082/connectors/mongo-sink/config | jq
-```
-
-## Open UIs commands
-
-#### Opens Adminer
-
-```
-./gradlew openAdminer
-```
-
-#### Opens AKHQ
-
-```
-./gradlew openAkhq
-```
-
-#### Opens Mongo Express
-
-```
-./gradlew openMongoExpress
-```
-
-#### Opens Schema Registry UI
-
-```
-./gradlew openSchemaRegistryUi
-```
-
-#### Opens Kafka Connect UI
-
-```
-./gradlew openKafkaConnectUi
 ```
 
 ## Producer and Consumer

@@ -1,3 +1,5 @@
+version: "3.9"
+
 services:
   kafka-connect:
     image: confluentinc/cp-kafka-connect:6.1.0
@@ -32,8 +34,52 @@ services:
       - 9000:8000
     restart: on-failure
 
+  mongo:
+    image: mongo:4
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=notasecret
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo_data:/data/db
+    restart: on-failure
+
+  mongo-express:
+    image: mongo-express:0.54
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=root
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=notasecret
+      - ME_CONFIG_MONGODB_PORT=27017
+      - ME_CONFIG_MONGODB_SERVER=mongo
+    ports:
+      - 7070:8081
+    restart: on-failure
+    
+  mysql:
+    image: mysql:8
+    environment:
+      - TZ=America/Guayaquil
+      - MYSQL_ROOT_PASSWORD=notasecret
+      - MYSQL_DATABASE=sandbox
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: on-failure
+
+  adminer:
+    image: adminer:4
+    environment:
+      - TZ=America/Guayaquil
+    ports:
+      - 9090:8080
+    restart: on-failure
+
 volumes:
   kafka-connect_plugins:
+  mongo_data:
+  mysql_data:
 
 networks:
   default:
