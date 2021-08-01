@@ -9,9 +9,10 @@ import picocli.CommandLine.Command;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.Properties;
+import java.util.concurrent.Callable;
 
-@Command(name = "consumer", description = "consumes supplier messages from the topic")
-public class Consumer implements Runnable {
+@Command(name = "consumer", description = "Consumes supplier messages from the topic")
+public class Consumer implements Callable<Integer> {
     public static final String TOPIC = "suppliers";
     private final Properties props;
 
@@ -20,7 +21,7 @@ public class Consumer implements Runnable {
     }
 
     @Override
-    public void run() {
+    public Integer call() throws Exception {
         KafkaConsumer<String, Supplier> consumer = new KafkaConsumer<>(props);
         consumer.subscribe(Collections.singleton(TOPIC));
         try {

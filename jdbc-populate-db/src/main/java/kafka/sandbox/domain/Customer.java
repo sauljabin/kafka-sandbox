@@ -1,4 +1,4 @@
-package kafka.sandbox;
+package kafka.sandbox.domain;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;

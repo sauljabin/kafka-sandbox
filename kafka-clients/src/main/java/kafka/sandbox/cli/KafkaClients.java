@@ -8,12 +8,12 @@ import static picocli.CommandLine.Spec;
 
 @Command(
         name = "kafka-clients",
-        description = "allows you either to producer or consume form the supplier topic",
+        description = "Allows you either to producer or consume form the supplier topic",
         synopsisSubcommandLabel = "COMMAND"
 )
 public class KafkaClients implements Runnable {
     @Spec
-    CommandSpec spec;
+    private CommandSpec spec;
 
     @Override
     public void run() {

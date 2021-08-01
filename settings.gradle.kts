@@ -1,3 +1,3 @@
 rootProject.name = "kafka-sandbox"
 include("kafka-clients")
-include("mysql-populate-db")
+include("jdbc-populate-db")

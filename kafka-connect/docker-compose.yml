@@ -29,6 +29,7 @@ services:
   kafka-connect-ui:
     image: landoop/kafka-connect-ui:0.9.7
     environment:
+      - TZ=America/Guayaquil
       - CONNECT_URL=http://kafka-connect:8082
     ports:
       - 9000:8000
@@ -37,6 +38,7 @@ services:
   mongo:
     image: mongo:4
     environment:
+      - TZ=America/Guayaquil
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=notasecret
     ports:
@@ -48,6 +50,7 @@ services:
   mongo-express:
     image: mongo-express:0.54
     environment:
+      - TZ=America/Guayaquil
       - ME_CONFIG_MONGODB_ADMINUSERNAME=root
       - ME_CONFIG_MONGODB_ADMINPASSWORD=notasecret
       - ME_CONFIG_MONGODB_PORT=27017
@@ -68,6 +71,18 @@ services:
       - mysql_data:/var/lib/mysql
     restart: on-failure
 
+  postgres:
+    image: postgres:13
+    environment:
+      - TZ=America/Guayaquil
+      - POSTGRES_PASSWORD=notasecret
+      - POSTGRES_DB=sandbox
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: on-failure
+
   adminer:
     image: adminer:4
     environment:
@@ -80,6 +95,7 @@ volumes:
   kafka-connect_plugins:
   mongo_data:
   mysql_data:
+  postgres_data:
 
 networks:
   default:

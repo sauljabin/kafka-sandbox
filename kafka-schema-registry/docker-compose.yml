@@ -4,6 +4,7 @@ services:
   schema-registry:
     image: confluentinc/cp-schema-registry:6.1.0
     environment:
+      - TZ=America/Guayaquil
       - SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS=PLAINTEXT://kafka1:19092,PLAINTEXT://kafka2:29092,PLAINTEXT://kafka3:39092
       - SCHEMA_REGISTRY_HOST_NAME=localhost
       - SCHEMA_REGISTRY_DEBUG=true
@@ -16,6 +17,7 @@ services:
   schema-registry-ui:
     image: landoop/schema-registry-ui:0.9.5
     environment:
+      - TZ=America/Guayaquil
       - SCHEMAREGISTRY_URL=http://localhost:8081
       - ALLOW_GLOBAL=1
       - ALLOW_TRANSITIVE=1

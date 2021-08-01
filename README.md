@@ -82,9 +82,26 @@ docker build -t kafka-cli-tools:latest .
 docker run -it --network kafka-sandbox_network kafka-cli-tools:latest
 ```
 
+#### JDBC Populate DB
+
+This tool helps to populate either a MySQL or PostgresSQL database with random customers.
+This is an ancillary project that can help us to set different scenarios.
+
+- [mysql](https://hub.docker.com/_/mysql)
+- [postgres](https://hub.docker.com/_/postgres)
+- project location: [jdbc-populate-db](jdbc-populate-db)
+
+```bash
+./gradlew jdbc-populate-db:install
+alias jdbc-populate-db="$PWD/jdbc-populate-db/build/install/jdbc-populate-db/bin/jdbc-populate-db "
+jdbc-populate-db --url "jdbc:mysql://localhost:3306/sandbox" --user "root" --password "notasecret" 100
+jdbc-populate-db --url "jdbc:postgresql://localhost:5432/sandbox" --user "postgres" --password "notasecret" 100
+```
+
 #### Kafka Connect:
 
 It makes it simple to quickly define connectors that move large data sets into and out of Kafka.
+This example uses the [jdbc-populate-db](jdbc-populate-db) tool included.
 
 - [connect](https://docs.confluent.io/current/connect/index.html)
 - [connect api reference](https://docs.confluent.io/platform/current/connect/references/restapi.html)
@@ -105,7 +122,7 @@ It makes it simple to quickly define connectors that move large data sets into a
 cd kafka-connect
 docker-compose up -d
 cd ..
-./gradlew mysql-populate-db:run --args="100"
+jdbc-populate-db --url "jdbc:mysql://localhost:3306/sandbox" --user "root" --password "notasecret" 100
 curl -s -X POST -H "Content-Type: application/json" -d @./kafka-connect/connectors/mysql-source-create-connector-payload.json http://localhost:8082/connectors | jq
 curl -s -X POST -H "Content-Type: application/json" -d @./kafka-connect/connectors/mongo-sink-create-connector-payload.json http://localhost:8082/connectors | jq
 ```
@@ -113,20 +130,21 @@ curl -s -X POST -H "Content-Type: application/json" -d @./kafka-connect/connecto
 #### Kafka Producer and Consumer:
 
 Java examples for producing and consuming messages from Kafka.
-These examples produce and consume messages from the `suplier` topic.
+These examples produce and consume messages from the `supplier` topic.
+The producer example produces random suppliers.
 
 - [kafka producer and consumer example](https://docs.confluent.io/platform/current/schema-registry/serdes-develop/serdes-avro.html)
 - project location: [kafka-clients](kafka-clients)
 
-```
+```bash
 ./gradlew kafka-clients:install
 alias kafka-clients="$PWD/kafka-clients/build/install/kafka-clients/bin/kafka-clients "
 kafka-clients producer 100
 kafka-clients consumer
 ```
 
-For creating a AVRO schema, you can use the following command:
+For creating a AVRO schema, you can use the following command (development purposes):
 
-```
+```bash
 ./gradlew kafka-clients:generateAvro
-
+```

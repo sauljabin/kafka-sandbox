@@ -11,10 +11,14 @@ import java.util.Properties;
 public class App {
 
     public static void main(String[] args) throws IOException {
-        new CommandLine(new KafkaClients())
-                .addSubcommand(new Producer(getProperties("producer.properties")))
-                .addSubcommand(new Consumer(getProperties("consumer.properties")))
-                .execute(args);
+        Properties producerProps = getProperties("producer.properties");
+        Properties consumerProps = getProperties("consumer.properties");
+
+        CommandLine commandLine = new CommandLine(new KafkaClients())
+                .addSubcommand(new Producer(producerProps))
+                .addSubcommand(new Consumer(consumerProps));
+
+        System.exit(commandLine.execute(args));
     }
 
     private static Properties getProperties(String fileName) throws IOException {
@@ -22,4 +26,5 @@ public class App {
         props.load(App.class.getClassLoader().getResourceAsStream(fileName));
         return props;
     }
+
 }
