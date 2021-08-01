@@ -1,4 +1,3 @@
 rootProject.name = "kafka-sandbox"
-include("kafka-producer")
-include("kafka-consumer")
+include("kafka-clients")
 include("mysql-populate-db")

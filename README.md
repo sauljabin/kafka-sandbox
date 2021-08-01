@@ -5,12 +5,16 @@ This project helps you to deploy a kafka sandbox locally.
 ## Dependencies
 
 - [docker](https://www.docker.com/)
-- [docker Compose](https://docs.docker.com/compose/)
+- [docker compose](https://docs.docker.com/compose/)
+- [curl](https://curl.se/)
 - [httpie](https://httpie.io/)
 - [jq](https://stedolan.github.io/jq/)
 - [java](https://www.java.com/en/download/)
+- [plantuml](http://plantuml.com/)
 
 ## Get Started
+
+Creating a network and running the cluster containers:
 
 ```bash
 docker network create kafka-sandbox_network
@@ -109,13 +113,20 @@ curl -s -X POST -H "Content-Type: application/json" -d @./kafka-connect/connecto
 #### Kafka Producer and Consumer:
 
 Java examples for producing and consuming messages from Kafka.
+These examples produce and consume messages from the `suplier` topic.
 
-- [kafka procuducer and consumer example](https://docs.confluent.io/platform/current/schema-registry/serdes-develop/serdes-avro.html)
-- producer project location: [kafka-producer](kafka-producer)
-- consumer project location: [kafka-consumer](kafka-consumer)
+- [kafka producer and consumer example](https://docs.confluent.io/platform/current/schema-registry/serdes-develop/serdes-avro.html)
+- project location: [kafka-clients](kafka-clients)
 
 ```
-./gradlew kafka-producer:run --args="100"
-./gradlew kafka-consumer:run
+./gradlew kafka-clients:install
+alias kafka-clients="$PWD/kafka-clients/build/install/kafka-clients/bin/kafka-clients "
+kafka-clients producer 100
+kafka-clients consumer
 ```
+
+For creating a AVRO schema, you can use the following command:
+
+```
+./gradlew kafka-clients:generateAvro
 
