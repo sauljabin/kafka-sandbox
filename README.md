@@ -101,7 +101,7 @@ jdbc-populate-db --url "jdbc:postgresql://localhost:5432/sandbox" --user "postgr
 #### Kafka Connect:
 
 It makes it simple to quickly define connectors that move large data sets into and out of Kafka.
-This example uses the [jdbc-populate-db](jdbc-populate-db) tool included.
+This example uses the [jdbc-populate-db](jdbc-populate-db) included tool.
 
 - [connect](https://docs.confluent.io/current/connect/index.html)
 - [connect api reference](https://docs.confluent.io/platform/current/connect/references/restapi.html)
@@ -121,13 +121,12 @@ This example uses the [jdbc-populate-db](jdbc-populate-db) tool included.
 ```bash
 cd kafka-connect
 docker-compose up -d
-cd ..
 jdbc-populate-db --url "jdbc:mysql://localhost:3306/sandbox" --user "root" --password "notasecret" 100
-curl -s -X POST -H "Content-Type: application/json" -d @./kafka-connect/connectors/mysql-source-create-connector-payload.json http://localhost:8082/connectors | jq
-curl -s -X POST -H "Content-Type: application/json" -d @./kafka-connect/connectors/mongo-sink-create-connector-payload.json http://localhost:8082/connectors | jq
+http POST http://localhost:8082/connectors < connectors/mysql-source-create-connector-payload.json
+http POST http://localhost:8082/connectors < connectors/mongo-sink-create-connector-payload.json
 ```
 
-#### Kafka Producer and Consumer:
+#### Kafka Clients - Producer and Consumer:
 
 Java examples for producing and consuming messages from Kafka.
 These examples produce and consume messages from the `supplier` topic.
