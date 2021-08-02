@@ -113,10 +113,11 @@ This example uses the [jdbc-populate-db](jdbc-populate-db) included tool.
 - project location: [kafka-connect](kafka-connect)
 - connect port: `8082` ([open it in the web browser](http://localhost:8082/))
 - connect ui port: `9000` ([open it in the web browser](http://localhost:9000/))
-- mysql port: `3306`
 - adminer port: `9090` ([open it in the web browser](http://localhost:9090/))
-- mongo port: `27017`
 - mongo express port: `7070` ([open it in the web browser](http://localhost:7070/))
+- mongo port: `27017`
+- postgres port: `5432`
+- mysql port: `3306`
 
 ```bash
 cd kafka-connect

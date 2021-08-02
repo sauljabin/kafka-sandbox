@@ -19,8 +19,8 @@ public class Producer implements Callable<Integer> {
     private final Properties props;
     private final Faker faker = new Faker();
 
-    @Parameters(index = "0", description = "Total new supplier messages to produce")
-    private int messages;
+    @Parameters(index = "0", description = "Total new supplier messages to produce (default: ${DEFAULT-VALUE})")
+    private int messages = 100;
 
     public Producer(Properties props) {
         this.props = props;
