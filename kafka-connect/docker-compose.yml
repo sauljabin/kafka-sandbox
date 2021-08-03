@@ -1,36 +1,36 @@
-version: "3.9"
+version: '3.9'
 
 services:
   kafka-connect:
     image: confluentinc/cp-kafka-connect:6.1.0
     environment:
-      - TZ=America/Guayaquil
-      - CONNECT_BOOTSTRAP_SERVERS=kafka1:19092,kafka2:29092,kafka3:39092
-      - CONNECT_REST_PORT=8082
-      - CONNECT_GROUP_ID=kafka-connect-sandbox
-      - CONNECT_CONFIG_STORAGE_TOPIC=kafka-connect-sandbox-config
-      - CONNECT_OFFSET_STORAGE_TOPIC=kafka-connect-sandbox-offsets
-      - CONNECT_STATUS_STORAGE_TOPIC=kafka-connect-sandbox-status
-      - CONNECT_VALUE_CONVERTER=io.confluent.connect.avro.AvroConverter
-      - CONNECT_KEY_CONVERTER=io.confluent.connect.avro.AvroConverter
-      - CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL=http://schema-registry:8081
-      - CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL=http://schema-registry:8081
-      - CONNECT_REST_ADVERTISED_HOST_NAME=localhost
-      - CONNECT_PLUGIN_PATH=/usr/local/share/kafka/plugins
-      - CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR=1
-      - CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR=1
-      - CONNECT_STATUS_STORAGE_REPLICATION_FACTOR=1
+      TZ: America/Guayaquil
+      CONNECT_BOOTSTRAP_SERVERS: kafka1:19092,kafka2:29092,kafka3:39092
+      CONNECT_GROUP_ID: kafka-connect-sandbox
+      CONNECT_KEY_CONVERTER: io.confluent.connect.avro.AvroConverter
+      CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+      CONNECT_PLUGIN_PATH: /usr/local/share/kafka/plugins
+      CONNECT_REST_ADVERTISED_HOST_NAME: localhost
+      CONNECT_REST_PORT: '8082'
+      CONNECT_VALUE_CONVERTER: io.confluent.connect.avro.AvroConverter
+      CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+      CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: '1'
+      CONNECT_CONFIG_STORAGE_TOPIC: kafka-connect-sandbox-config
+      CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: '1'
+      CONNECT_OFFSET_STORAGE_TOPIC: kafka-connect-sandbox-offsets
+      CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: '1'
+      CONNECT_STATUS_STORAGE_TOPIC: kafka-connect-sandbox-status
     ports:
       - 8082:8082
-    volumes:
-      - ./plugins:/usr/local/share/kafka/plugins
     restart: on-failure
+    volumes:
+      - ./plugins:/usr/local/share/kafka/plugins:rw
 
   kafka-connect-ui:
     image: landoop/kafka-connect-ui:0.9.7
     environment:
-      - TZ=America/Guayaquil
-      - CONNECT_URL=http://kafka-connect:8082
+      TZ: America/Guayaquil
+      CONNECT_URL: http://kafka-connect:8082
     ports:
       - 9000:8000
     restart: on-failure
@@ -38,61 +38,60 @@ services:
   mongo:
     image: mongo:4
     environment:
-      - TZ=America/Guayaquil
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=notasecret
+      TZ: America/Guayaquil
+      MONGO_INITDB_ROOT_PASSWORD: notasecret
+      MONGO_INITDB_ROOT_USERNAME: root
     ports:
       - 27017:27017
-    volumes:
-      - mongo_data:/data/db
     restart: on-failure
+    volumes:
+      - mongo_data:/data/db:rw
 
   mongo-express:
     image: mongo-express:0.54
     environment:
-      - TZ=America/Guayaquil
-      - ME_CONFIG_MONGODB_ADMINUSERNAME=root
-      - ME_CONFIG_MONGODB_ADMINPASSWORD=notasecret
-      - ME_CONFIG_MONGODB_PORT=27017
-      - ME_CONFIG_MONGODB_SERVER=mongo
+      TZ: America/Guayaquil
+      ME_CONFIG_MONGODB_ADMINPASSWORD: notasecret
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_PORT: '27017'
+      ME_CONFIG_MONGODB_SERVER: mongo
     ports:
       - 7070:8081
     restart: on-failure
-    
+
   mysql:
     image: mysql:8
     environment:
-      - TZ=America/Guayaquil
-      - MYSQL_ROOT_PASSWORD=notasecret
-      - MYSQL_DATABASE=sandbox
+      TZ: America/Guayaquil
+      MYSQL_DATABASE: sandbox
+      MYSQL_ROOT_PASSWORD: notasecret
     ports:
       - 3306:3306
-    volumes:
-      - mysql_data:/var/lib/mysql
     restart: on-failure
+    volumes:
+      - mysql_data:/var/lib/mysql:rw
 
   postgres:
     image: postgres:13
     environment:
-      - TZ=America/Guayaquil
-      - POSTGRES_PASSWORD=notasecret
-      - POSTGRES_DB=sandbox
+      TZ: America/Guayaquil
+      POSTGRES_DB: sandbox
+      POSTGRES_PASSWORD: notasecret
     ports:
       - 5432:5432
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
     restart: on-failure
+    volumes:
+      - postgres_data:/var/lib/postgresql/data:rw
 
   adminer:
     image: adminer:4
     environment:
-      - TZ=America/Guayaquil
+      TZ: America/Guayaquil
     ports:
       - 9090:8080
     restart: on-failure
 
 volumes:
-  kafka-connect_plugins:
   mongo_data:
   mysql_data:
   postgres_data:

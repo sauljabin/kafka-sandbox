@@ -1,4 +1,4 @@
-version: "3.9"
+version: '3.9'
 
 services:
   akhq:
@@ -7,17 +7,18 @@ services:
       - 8080:8080
     restart: on-failure
     environment:
+      TZ: America/Guayaquil
       AKHQ_CONFIGURATION: |
         akhq:
           connections:
             docker-kafka-server:
               properties:
-                bootstrap.servers: "kafka1:19092,kafka2:29092,kafka3:39092"
+                bootstrap.servers: kafka1:19092,kafka2:29092,kafka3:39092
               schema-registry:
-                url: "http://schema-registry:8081"
+                url: http://schema-registry:8081
               connect:
                 - name: kafka-connect
-                  url: "http://kafka-connect:8082"
+                  url: http://kafka-connect:8082
 
 networks:
   default:

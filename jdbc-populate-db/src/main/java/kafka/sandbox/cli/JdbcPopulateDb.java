@@ -30,8 +30,8 @@ public class JdbcPopulateDb implements Callable<Integer> {
     @Option(names = {"--url"}, description = "Connection URL", required = true)
     private String url;
 
-    @Parameters(index = "0", description = "Total new costumer records to insert (default: ${DEFAULT-VALUE})")
-    private int customers = 100;
+    @Parameters(index = "0", description = "Total new costumer records to insert (default: ${DEFAULT-VALUE})", defaultValue = "100")
+    private int customers;
 
     private Customer createNewCustomer() {
         return Customer.builder()
