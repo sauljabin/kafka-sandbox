@@ -1,0 +1,10 @@
+{
+  "value_schema": "{\"type\": \"record\", \"name\": \"User\", \"fields\": [{\"name\": \"name\", \"type\": \"string\"}]}",
+  "records": [
+    {
+      "value": {
+        "name": "John Doe"
+      }
+    }
+  ]
+}

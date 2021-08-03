@@ -1,0 +1,17 @@
+version: '3.9'
+
+services: 
+  kafka-rest:
+    image: confluentinc/cp-kafka-rest:6.1.0
+    environment:
+      TZ: America/Guayaquil
+      KAFKA_REST_BOOTSTRAP_SERVERS: PLAINTEXT://kafka1:19092,PLAINTEXT://kafka2:29092,PLAINTEXT://kafka3:39092
+      KAFKA_REST_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+    ports:
+      - 8083:8082
+    restart: on-failure
+
+networks:
+  default:
+    external: true
+    name: kafka-sandbox_network

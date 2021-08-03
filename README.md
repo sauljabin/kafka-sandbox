@@ -67,7 +67,24 @@ cd kafka-schema-registry
 docker-compose up -d
 ```
 
-#### Kafka CLI tools:
+#### Kafka REST Proxy:
+
+The Kafka REST Proxy provides a RESTful interface to a Kafka cluster.
+
+- [kafka rest](https://docs.confluent.io/platform/current/kafka-rest/index.html)
+- [kafka rest api reference](https://docs.confluent.io/platform/current/kafka-rest/api.html)
+- project location: [kafka-rest](kafka-rest)
+- kafka rest port: `8083` ([open it in the web browser](http://localhost:8083/))
+
+```bash
+cd kafka-rest
+docker-compose up -d
+http :8083/topics
+http :8083/topics/test Content-Type:application/vnd.kafka.json.v2+json records:='[{ "key": "test", "value": "test" }]'
+http :8083/topics/users Content-Type:application/vnd.kafka.avro.v2+json < kafka-rest-produce-message-avro-payload.json
+```
+
+#### Kafka CLI Tools:
 
 It is a collection of tools to interact with kafka cluster through the terminal.
 
@@ -83,7 +100,7 @@ alias kafka-cli-tools='docker run -it --network kafka-sandbox_network kafka-cli-
 kafka-cli-tools
 ```
 
-To permanently add the alias to your shell, add the following to your `~/.bashrc` or `~/.zshrc` file:
+To permanently add the alias to your shell (`~/.bashrc` or `~/.zshrc` file):
 
 ```bash
 echo "alias kafka-cli-tools='docker run -it --network kafka-sandbox_network kafka-cli-tools:latest '" >> ~/.zshrc
@@ -105,10 +122,10 @@ jdbc-populate-db --url "jdbc:mysql://localhost:3306/sandbox" --user "root" --pas
 jdbc-populate-db --url "jdbc:postgresql://localhost:5432/sandbox" --user "postgres" --password "notasecret" 100
 ```
 
-To permanently add the alias to your shell, add the following to your `~/.bashrc` or `~/.zshrc` file:
+To permanently add the alias to your shell (`~/.bashrc` or `~/.zshrc` file):
 
 ```bash
-echo "alias jdbc-populate-db=\"$PWD/jdbc-populate-db/build/install/jdbc-populate-db/bin/jdbc-populate-db \"" >> ~/.zshrc
+echo "alias jdbc-populate-db='$PWD/jdbc-populate-db/build/install/jdbc-populate-db/bin/jdbc-populate-db '" >> ~/.zshrc
 ```
 
 #### Kafka Connect:
@@ -157,10 +174,10 @@ kafka-clients producer 100
 kafka-clients consumer
 ```
 
-To permanently add the alias to your shell, add the following to your `~/.bashrc` or `~/.zshrc` file:
+To permanently add the alias to your shell (`~/.bashrc` or `~/.zshrc` file):
 
 ```bash
-echo "alias kafka-clients=\"$PWD/kafka-clients/build/install/kafka-clients/bin/kafka-clients \"" >> ~/.zshrc
+echo "alias kafka-clients='$PWD/kafka-clients/build/install/kafka-clients/bin/kafka-clients '" >> ~/.zshrc
 ```
 
 For creating a AVRO schema, you can use the following command (development purposes):
