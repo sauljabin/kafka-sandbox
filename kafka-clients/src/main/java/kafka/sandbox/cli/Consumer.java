@@ -28,7 +28,7 @@ public class Consumer implements Callable<Integer> {
             while (true) {
                 ConsumerRecords<String, Supplier> records = consumer.poll(Duration.ofMillis(500));
                 for (ConsumerRecord<String, Supplier> record : records) {
-                    System.out.printf("offset = %d, key = %s, value = %s \n", record.offset(), record.key(), record.value());
+                    System.out.printf("partition = %d, offset = %d, key = %s, value = %s \n", record.partition(), record.offset(), record.key(), record.value());
                 }
                 consumer.commitSync();
             }

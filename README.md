@@ -79,7 +79,8 @@ It is a collection of tools to interact with kafka cluster through the terminal.
 ```bash
 cd kafka-cli-tools
 docker build -t kafka-cli-tools:latest .
-docker run -it --network kafka-sandbox_network kafka-cli-tools:latest
+alias kafka-cli-tools='docker run -it --network kafka-sandbox_network kafka-cli-tools:latest '
+kafka-cli-tools
 ```
 
 #### JDBC Populate DB
@@ -137,6 +138,7 @@ The producer example produces random suppliers.
 - project location: [kafka-clients](kafka-clients)
 
 ```bash
+kafka-cli-tools kafka-topics --create --bootstrap-server kafka1:19092 --replication-factor 3 --partitions 3 --topic suppliers
 ./gradlew kafka-clients:install
 alias kafka-clients="$PWD/kafka-clients/build/install/kafka-clients/bin/kafka-clients "
 kafka-clients producer 100

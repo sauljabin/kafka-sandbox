@@ -6,19 +6,16 @@ services:
     environment:
       TZ: America/Guayaquil
       CONNECT_BOOTSTRAP_SERVERS: kafka1:19092,kafka2:29092,kafka3:39092
-      CONNECT_GROUP_ID: kafka-connect-sandbox
-      CONNECT_KEY_CONVERTER: io.confluent.connect.avro.AvroConverter
-      CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
-      CONNECT_PLUGIN_PATH: /usr/local/share/kafka/plugins
       CONNECT_REST_ADVERTISED_HOST_NAME: localhost
       CONNECT_REST_PORT: '8082'
+      CONNECT_GROUP_ID: kafka-connect-sandbox
+      CONNECT_PLUGIN_PATH: /usr/local/share/kafka/plugins
+      CONNECT_KEY_CONVERTER: io.confluent.connect.avro.AvroConverter
       CONNECT_VALUE_CONVERTER: io.confluent.connect.avro.AvroConverter
+      CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
       CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
-      CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: '1'
       CONNECT_CONFIG_STORAGE_TOPIC: kafka-connect-sandbox-config
-      CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: '1'
       CONNECT_OFFSET_STORAGE_TOPIC: kafka-connect-sandbox-offsets
-      CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: '1'
       CONNECT_STATUS_STORAGE_TOPIC: kafka-connect-sandbox-status
     ports:
       - 8082:8082
