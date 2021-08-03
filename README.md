@@ -83,6 +83,12 @@ alias kafka-cli-tools='docker run -it --network kafka-sandbox_network kafka-cli-
 kafka-cli-tools
 ```
 
+To permanently add the alias to your shell, add the following to your `~/.bashrc` or `~/.zshrc` file:
+
+```bash
+echo "alias kafka-cli-tools='docker run -it --network kafka-sandbox_network kafka-cli-tools:latest '" >> ~/.zshrc
+```
+
 #### JDBC Populate DB
 
 This tool helps to populate either a MySQL or PostgresSQL database with random customers.
@@ -97,6 +103,12 @@ This is an ancillary project that can help us to set different scenarios.
 alias jdbc-populate-db="$PWD/jdbc-populate-db/build/install/jdbc-populate-db/bin/jdbc-populate-db "
 jdbc-populate-db --url "jdbc:mysql://localhost:3306/sandbox" --user "root" --password "notasecret" 100
 jdbc-populate-db --url "jdbc:postgresql://localhost:5432/sandbox" --user "postgres" --password "notasecret" 100
+```
+
+To permanently add the alias to your shell, add the following to your `~/.bashrc` or `~/.zshrc` file:
+
+```bash
+echo "alias jdbc-populate-db=\"$PWD/jdbc-populate-db/build/install/jdbc-populate-db/bin/jdbc-populate-db \"" >> ~/.zshrc
 ```
 
 #### Kafka Connect:
@@ -143,6 +155,12 @@ kafka-cli-tools kafka-topics --create --bootstrap-server kafka1:19092 --replicat
 alias kafka-clients="$PWD/kafka-clients/build/install/kafka-clients/bin/kafka-clients "
 kafka-clients producer 100
 kafka-clients consumer
+```
+
+To permanently add the alias to your shell, add the following to your `~/.bashrc` or `~/.zshrc` file:
+
+```bash
+echo "alias kafka-clients=\"$PWD/kafka-clients/build/install/kafka-clients/bin/kafka-clients \"" >> ~/.zshrc
 ```
 
 For creating a AVRO schema, you can use the following command (development purposes):
