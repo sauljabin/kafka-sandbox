@@ -106,7 +106,7 @@ To permanently add the alias to your shell (`~/.bashrc` or `~/.zshrc` file):
 echo "alias kafka-cli-tools='docker run -it --network kafka-sandbox_network kafka-cli-tools:latest '" >> ~/.zshrc
 ```
 
-#### JDBC Populate DB
+#### JDBC Populate DB:
 
 This tool helps to populate either a MySQL or PostgresSQL database with random customers.
 This is an ancillary project that can help us to set different scenarios.
@@ -153,8 +153,8 @@ This example uses the [jdbc-populate-db](jdbc-populate-db) included tool.
 cd kafka-connect
 docker-compose up -d
 jdbc-populate-db --url "jdbc:mysql://localhost:3306/sandbox" --user "root" --password "notasecret" 100
-http POST http://localhost:8082/connectors < connectors/mysql-source-create-connector-payload.json
-http POST http://localhost:8082/connectors < connectors/mongo-sink-create-connector-payload.json
+http POST :8082/connectors < connectors/mysql-source-create-connector-payload.json
+http POST :8082/connectors < connectors/mongo-sink-create-connector-payload.json
 ```
 
 #### Kafka Clients - Producer and Consumer:
