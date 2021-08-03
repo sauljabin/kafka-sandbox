@@ -24,6 +24,8 @@ RUN apt-get update \
     unzip \
     kafkacat \
     openjdk-11-jdk \
+    jq \
+    httpie \
     && rm -rf /var/lib/apt/lists/*
 
 RUN wget -q "${ZOE_URL}" -O /tmp/zoe.tar \
