@@ -16,8 +16,8 @@ import java.util.Date;
 import java.util.UUID;
 import java.util.concurrent.Callable;
 
-@Command(name = "jdbc-populate-db", description = "Easy way of creating customers to a sql db")
-public class JdbcPopulateDb implements Callable<Integer> {
+@Command(name = "sql-populate", description = "Easy way of creating customers to a sql db")
+public class SqlPopulate implements Callable<Integer> {
 
     private final Faker faker = new Faker();
 

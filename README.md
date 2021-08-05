@@ -12,6 +12,11 @@ This project helps you to deploy a kafka sandbox locally.
 - [java](https://www.java.com/en/download/)
 - [plantuml](http://plantuml.com/)
 
+## Interesting Links
+
+- [confluent docker images references](https://docs.confluent.io/platform/current/installation/docker/image-reference.html)
+- [confluent versions interoperability](https://docs.confluent.io/platform/current/installation/versions-interoperability.html)
+
 ## Get Started
 
 Creating a network and running the cluster containers:
@@ -22,7 +27,102 @@ cd kafka-cluster
 docker-compose up -d
 ```
 
-## Components
+## Tools
+
+#### Kafka CLI Tools:
+
+It is a collection of tools to interact with kafka cluster through the terminal.
+
+- [kafkacat](https://github.com/edenhill/kafkacat)
+- [zoe](https://adevinta.github.io/zoe/)
+- [confluent community tools](https://docs.confluent.io/platform/current/installation/installing_cp/zip-tar.html)
+- project location: [kafka-cli-tools](kafka-cli-tools)
+
+```bash
+cd kafka-cli-tools
+docker build -t kafka-cli-tools:latest .
+alias kafka-cli-tools='docker run -it --network kafka-sandbox_network kafka-cli-tools:latest '
+kafka-cli-tools
+```
+
+To permanently add the alias to your shell (`~/.bashrc` or `~/.zshrc` file):
+
+```bash
+echo "alias kafka-cli-tools='docker run -it --network kafka-sandbox_network kafka-cli-tools:latest '" >> ~/.zshrc
+```
+
+#### SQL Server:
+
+Create a SQL (mysql or postgres) server instance and a database.
+
+- [mysql](https://hub.docker.com/_/mysql)
+- [postgres](https://hub.docker.com/_/postgres)
+- [adminer](https://www.adminer.org/)
+- project location: [sql-server](sql-server)
+- postgres port: `5432`
+- mysql port: `3306`
+- adminer port: `9090` ([open it in the web browser](http://localhost:9090/))
+
+```bash
+cd sql-server
+docker-compose up -d
+```
+
+#### SQL Populate DB:
+
+This tool helps to populate either a MySQL or PostgresSQL database with random customers.
+This is an ancillary project that can help us to set different scenarios.
+
+- project location: [sql-populate](sql-populate)
+
+```bash
+./gradlew sql-populate:install
+alias sql-populate="$PWD/sql-populate/build/install/sql-populate/bin/sql-populate "
+sql-populate --url "jdbc:mysql://localhost:3306/sandbox" --user "root" --password "notasecret" 100
+sql-populate --url "jdbc:postgresql://localhost:5432/sandbox" --user "postgres" --password "notasecret" 100
+```
+
+To permanently add the alias to your shell (`~/.bashrc` or `~/.zshrc` file):
+
+```bash
+echo "alias sql-populate='$PWD/sql-populate/build/install/sql-populate/bin/sql-populate '" >> ~/.zshrc
+```
+
+#### NoSQL Server:
+
+Create a NoSQL (mongodb) server instance and a database.
+
+- [mongo](https://hub.docker.com/_/mongo)
+- [mongo express](https://github.com/mongo-express/mongo-express)
+- project location: [nosql-server](nosql-server)
+- mongo port: `27017`
+- mongo express port: `7070` ([open it in the web browser](http://localhost:7070/))
+
+```bash
+cd nosql-server
+docker-compose up -d
+```
+
+#### NoSQL Populate DB:
+
+This tool helps to populate MongoDB with random customers.
+This is an ancillary project that can help us to set different scenarios.
+
+- project location: [nosql-populate](nosql-populate)
+
+```bash
+./gradlew nosql-populate:install
+alias nosql-populate="$PWD/nosql-populate/build/install/nosql-populate/bin/nosql-populate "
+nosql-populate --url "mongodb://localhost:27017" --user "root" --password "notasecret" 100
+```
+
+To permanently add the alias to your shell (`~/.bashrc` or `~/.zshrc` file):
+
+```bash
+echo "alias nosql-populate='$PWD/nosql-populate/build/install/nosql-populate/bin/nosql-populate '" >> ~/.zshrc
+```
+
+## Kafka Components
 
 #### Kafka Cluster:
 
@@ -83,73 +183,22 @@ http :8083/topics/test Content-Type:application/vnd.kafka.json.v2+json records:=
 http :8083/topics/users Content-Type:application/vnd.kafka.avro.v2+json < kafka-rest-produce-message-avro-payload.json
 ```
 
-#### Kafka CLI Tools:
-
-It is a collection of tools to interact with kafka cluster through the terminal.
-
-- [kafkacat](https://github.com/edenhill/kafkacat)
-- [zoe](https://adevinta.github.io/zoe/)
-- [confluent community tools](https://docs.confluent.io/platform/current/installation/installing_cp/zip-tar.html)
-- project location: [kafka-cli-tools](kafka-cli-tools)
-
-```bash
-cd kafka-cli-tools
-docker build -t kafka-cli-tools:latest .
-alias kafka-cli-tools='docker run -it --network kafka-sandbox_network kafka-cli-tools:latest '
-kafka-cli-tools
-```
-
-To permanently add the alias to your shell (`~/.bashrc` or `~/.zshrc` file):
-
-```bash
-echo "alias kafka-cli-tools='docker run -it --network kafka-sandbox_network kafka-cli-tools:latest '" >> ~/.zshrc
-```
-
-#### JDBC Populate DB:
-
-This tool helps to populate either a MySQL or PostgresSQL database with random customers.
-This is an ancillary project that can help us to set different scenarios.
-
-- [mysql](https://hub.docker.com/_/mysql)
-- [postgres](https://hub.docker.com/_/postgres)
-- project location: [jdbc-populate-db](jdbc-populate-db)
-
-```bash
-./gradlew jdbc-populate-db:install
-alias jdbc-populate-db="$PWD/jdbc-populate-db/build/install/jdbc-populate-db/bin/jdbc-populate-db "
-jdbc-populate-db --url "jdbc:mysql://localhost:3306/sandbox" --user "root" --password "notasecret" 100
-jdbc-populate-db --url "jdbc:postgresql://localhost:5432/sandbox" --user "postgres" --password "notasecret" 100
-```
-
-To permanently add the alias to your shell (`~/.bashrc` or `~/.zshrc` file):
-
-```bash
-echo "alias jdbc-populate-db='$PWD/jdbc-populate-db/build/install/jdbc-populate-db/bin/jdbc-populate-db '" >> ~/.zshrc
-```
-
 #### Kafka Connect:
 
 It makes it simple to quickly define connectors that move large data sets into and out of Kafka.
-This example uses the [jdbc-populate-db](jdbc-populate-db) included tool.
+This example uses the [sql-populate](sql-populate) included tool.
 
 - [connect](https://docs.confluent.io/current/connect/index.html)
 - [connect api reference](https://docs.confluent.io/platform/current/connect/references/restapi.html)
-- [jdbc connector](https://www.confluent.io/hub/confluentinc/kafka-connect-jdbc)
-- [mongo connector](https://www.confluent.io/hub/mongodb/kafka-connect-mongodb)
-- [adminer](https://www.adminer.org/)
-- [mongo express](https://github.com/mongo-express/mongo-express)
+- [jdbc connector plugin](https://www.confluent.io/hub/confluentinc/kafka-connect-jdbc)
+- [mongo connector plugin](https://www.confluent.io/hub/mongodb/kafka-connect-mongodb)
 - project location: [kafka-connect](kafka-connect)
 - connect port: `8082` ([open it in the web browser](http://localhost:8082/))
-- adminer port: `9090` ([open it in the web browser](http://localhost:9090/))
-- mongo express port: `7070` ([open it in the web browser](http://localhost:7070/))
-- mongo port: `27017`
-- postgres port: `5432`
-- mysql port: `3306`
 
 ```bash
 cd kafka-connect
 docker-compose up -d
-jdbc-populate-db --url "jdbc:mysql://localhost:3306/sandbox" --user "root" --password "notasecret" 100
+sql-populate --url "jdbc:mysql://localhost:3306/sandbox" --user "root" --password "notasecret" 100
 http POST :8082/connectors < connectors/mysql-source-create-connector-payload.json
 http POST :8082/connectors < connectors/mongo-sink-create-connector-payload.json
 ```
