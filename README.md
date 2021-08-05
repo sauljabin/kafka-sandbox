@@ -10,12 +10,12 @@ This project helps you to deploy a kafka sandbox locally.
 - [httpie](https://httpie.io/)
 - [jq](https://stedolan.github.io/jq/)
 - [java](https://www.java.com/en/download/)
-- [plantuml](http://plantuml.com/)
 
 ## Interesting Links
 
 - [confluent docker images references](https://docs.confluent.io/platform/current/installation/docker/image-reference.html)
 - [confluent versions interoperability](https://docs.confluent.io/platform/current/installation/versions-interoperability.html)
+- [confluent free courses](https://developer.confluent.io/learn-kafka/)
 
 ## Get Started
 
