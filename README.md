@@ -213,7 +213,6 @@ INSERT INTO riderLocations (profileId, latitude, longitude) VALUES ('4ddad000', 
 #### Kafka Connect:
 
 It makes it simple to quickly define connectors that move large data sets into and out of Kafka.
-This example uses the [sql-populate](sql-populate) included tool.
 
 - [connect](https://docs.confluent.io/current/connect/index.html)
 - [connect api reference](https://docs.confluent.io/platform/current/connect/references/restapi.html)
