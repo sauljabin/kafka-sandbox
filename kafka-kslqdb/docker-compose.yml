@@ -1,0 +1,5 @@
+version: '3.9'
+
+services:
+  ksqldb:
+    image: confluentinc/cp-ksqldb-server:6.2.0

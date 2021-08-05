@@ -33,6 +33,7 @@ A three node kafka cluster.
 - project location: [kafka-cluster](kafka-cluster)
 - kafka ports: `19093`, `29093`, `39093`
 - zookeeper ports: `12181`, `22181`, `32181`
+- kafka version: [2.8](https://docs.confluent.io/platform/current/installation/versions-interoperability.html) (confluent platform 6.2.0)
 
 ```bash
 cd kafka-cluster
@@ -57,10 +58,8 @@ docker-compose up -d
 It provides a RESTful interface for storing and retrieving your Avro, JSON Schema, and Protobuf schemas.
 
 - [schema registry](https://docs.confluent.io/platform/current/schema-registry/index.html)
-- [schema registry ui](https://github.com/lensesio/schema-registry-ui)
 - project location: [kafka-schema-registry](kafka-schema-registry)
 - schema registry port: `8081` ([open it in the web browser](http://localhost:8081/))
-- schema registry ui port: `8000` ([open it in the web browser](http://localhost:8000/))
 
 ```bash
 cd kafka-schema-registry
@@ -135,14 +134,12 @@ This example uses the [jdbc-populate-db](jdbc-populate-db) included tool.
 
 - [connect](https://docs.confluent.io/current/connect/index.html)
 - [connect api reference](https://docs.confluent.io/platform/current/connect/references/restapi.html)
-- [connect ui](https://github.com/lensesio/kafka-connect-ui)
 - [jdbc connector](https://www.confluent.io/hub/confluentinc/kafka-connect-jdbc)
-- [adminer](https://www.adminer.org/)
 - [mongo connector](https://www.confluent.io/hub/mongodb/kafka-connect-mongodb)
+- [adminer](https://www.adminer.org/)
 - [mongo express](https://github.com/mongo-express/mongo-express)
 - project location: [kafka-connect](kafka-connect)
 - connect port: `8082` ([open it in the web browser](http://localhost:8082/))
-- connect ui port: `9000` ([open it in the web browser](http://localhost:9000/))
 - adminer port: `9090` ([open it in the web browser](http://localhost:9090/))
 - mongo express port: `7070` ([open it in the web browser](http://localhost:7070/))
 - mongo port: `27017`

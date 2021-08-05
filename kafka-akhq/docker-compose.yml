@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   akhq:
-    image: tchiotludo/akhq:0.17.0
+    image: tchiotludo/akhq:0.18.0
     ports:
       - 8080:8080
     restart: on-failure
