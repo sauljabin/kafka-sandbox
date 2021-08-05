@@ -183,6 +183,33 @@ http :8083/topics/test Content-Type:application/vnd.kafka.json.v2+json records:=
 http :8083/topics/users Content-Type:application/vnd.kafka.avro.v2+json < kafka-rest-produce-message-avro-payload.json
 ```
 
+#### Kafka ksqlDB:
+
+ksqlDB is a database that's purpose-built for stream processing applications.
+
+- [ksqldb](https://ksqldb.io/)
+- project location: [kafka-ksqldb](kafka-ksqldb)
+
+```bash
+cd kafka-ksqldb
+docker-compose up -d
+kafka-cli-tools ksql http://ksqldb:8088
+CREATE STREAM riderLocations (profileId VARCHAR, latitude DOUBLE, longitude DOUBLE) WITH (kafka_topic='locations', value_format='json', partitions=1);
+SELECT * FROM riderLocations WHERE GEO_DISTANCE(latitude, longitude, 37.4133, -122.1162) <= 5 EMIT CHANGES;
+```
+
+In another terminal:
+
+```bash
+kafka-cli-tools ksql http://ksqldb:8088
+INSERT INTO riderLocations (profileId, latitude, longitude) VALUES ('c2309eec', 37.7877, -122.4205);
+INSERT INTO riderLocations (profileId, latitude, longitude) VALUES ('18f4ea86', 37.3903, -122.0643);
+INSERT INTO riderLocations (profileId, latitude, longitude) VALUES ('4ab5cbad', 37.3952, -122.0813);
+INSERT INTO riderLocations (profileId, latitude, longitude) VALUES ('8b6eae59', 37.3944, -122.0813);
+INSERT INTO riderLocations (profileId, latitude, longitude) VALUES ('4a7c7b41', 37.4049, -122.0822);
+INSERT INTO riderLocations (profileId, latitude, longitude) VALUES ('4ddad000', 37.7857, -122.4011);
+```
+
 #### Kafka Connect:
 
 It makes it simple to quickly define connectors that move large data sets into and out of Kafka.
@@ -203,7 +230,7 @@ http POST :8082/connectors < connectors/mysql-source-create-connector-payload.js
 http POST :8082/connectors < connectors/mongo-sink-create-connector-payload.json
 ```
 
-#### Kafka Clients - Producer and Consumer:
+#### Kafka Clients - Avro Producer and Consumer:
 
 Java examples for producing and consuming messages from Kafka.
 These examples produce and consume messages from the `supplier` topic.
@@ -231,3 +258,7 @@ For creating a AVRO schema, you can use the following command (development purpo
 ```bash
 ./gradlew kafka-clients:generateAvro
 ```
+
+#### Kafka Clients - Spring Boot:
+
+WIP
