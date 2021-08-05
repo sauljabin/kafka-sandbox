@@ -53,7 +53,7 @@ echo "alias kafka-cli-tools='docker run -it --network kafka-sandbox_network kafk
 
 #### SQL Server:
 
-Create a SQL (mysql or postgres) server instance and a database.
+Create a SQL (MySQL or PostgresSQL) server instance and a database.
 
 - [mysql](https://hub.docker.com/_/mysql)
 - [postgres](https://hub.docker.com/_/postgres)
@@ -90,7 +90,7 @@ echo "alias sql-populate='$PWD/sql-populate/build/install/sql-populate/bin/sql-p
 
 #### NoSQL Server:
 
-Create a NoSQL (mongodb) server instance and a database.
+Create a NoSQL (MongoDB) server instance and a database.
 
 - [mongo](https://hub.docker.com/_/mongo)
 - [mongo express](https://github.com/mongo-express/mongo-express)
@@ -113,7 +113,7 @@ This is an ancillary project that can help us to set different scenarios.
 ```bash
 ./gradlew nosql-populate:install
 alias nosql-populate="$PWD/nosql-populate/build/install/nosql-populate/bin/nosql-populate "
-nosql-populate --url "mongodb://localhost:27017" --user "root" --password "notasecret" 100
+nosql-populate --url "mongodb://root:notasecret@localhost:27017" -d "sandbox" 100
 ```
 
 To permanently add the alias to your shell (`~/.bashrc` or `~/.zshrc` file):
