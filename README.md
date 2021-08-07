@@ -140,6 +140,7 @@ A three node kafka cluster.
 ```bash
 cd kafka-cluster
 docker-compose up -d
+kafka-cli kafka-topics --bootstrap-server kafka1:19092 --list
 ```
 
 #### Kafka AKHQ:
