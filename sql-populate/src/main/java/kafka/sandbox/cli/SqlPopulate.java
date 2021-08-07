@@ -54,6 +54,7 @@ public class SqlPopulate implements Callable<Integer> {
         }
 
         connectionSource.close();
+
         return CommandLine.ExitCode.OK;
     }
 }

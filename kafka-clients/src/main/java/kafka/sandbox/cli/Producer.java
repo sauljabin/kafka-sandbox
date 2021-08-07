@@ -38,6 +38,7 @@ public class Producer implements Callable<Integer> {
 
         producer.flush();
         producer.close();
+
         return CommandLine.ExitCode.OK;
     }
 

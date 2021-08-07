@@ -65,6 +65,8 @@ public class NoSqlPopulate implements Callable<Integer> {
             System.out.println(customer);
         }
 
+        mongoClient.close();
+
         return CommandLine.ExitCode.OK;
     }
 }
