@@ -36,19 +36,19 @@ It is a collection of tools to interact with kafka cluster through the terminal.
 - [kafkacat](https://github.com/edenhill/kafkacat)
 - [zoe](https://adevinta.github.io/zoe/)
 - [confluent community tools](https://docs.confluent.io/platform/current/installation/installing_cp/zip-tar.html)
-- project location: [kafka-cli-tools](kafka-cli-tools)
+- project location: [kafka-cli](kafka-cli)
 
 ```bash
-cd kafka-cli-tools
-docker build -t kafka-cli-tools:latest .
-alias kafka-cli-tools='docker run -it --network kafka-sandbox_network kafka-cli-tools:latest '
-kafka-cli-tools
+cd kafka-cli
+docker build -t kafka-cli:latest .
+alias kafka-cli='docker run -it --network kafka-sandbox_network kafka-cli:latest '
+kafka-cli
 ```
 
 To permanently add the alias to your shell (`~/.bashrc` or `~/.zshrc` file):
 
 ```bash
-echo "alias kafka-cli-tools='docker run -it --network kafka-sandbox_network kafka-cli-tools:latest '" >> ~/.zshrc
+echo "alias kafka-cli='docker run -it --network kafka-sandbox_network kafka-cli:latest '" >> ~/.zshrc
 ```
 
 #### SQL Server:
@@ -193,7 +193,7 @@ ksqlDB is a database that's purpose-built for stream processing applications.
 ```bash
 cd kafka-ksqldb
 docker-compose up -d
-kafka-cli-tools ksql http://ksqldb:8088
+kafka-cli ksql http://ksqldb:8088
 CREATE STREAM riderLocations (profileId VARCHAR, latitude DOUBLE, longitude DOUBLE) WITH (kafka_topic='locations', value_format='json', partitions=1);
 SELECT * FROM riderLocations WHERE GEO_DISTANCE(latitude, longitude, 37.4133, -122.1162) <= 5 EMIT CHANGES;
 ```
@@ -201,7 +201,7 @@ SELECT * FROM riderLocations WHERE GEO_DISTANCE(latitude, longitude, 37.4133, -1
 In another terminal:
 
 ```bash
-kafka-cli-tools ksql http://ksqldb:8088
+kafka-cli ksql http://ksqldb:8088
 INSERT INTO riderLocations (profileId, latitude, longitude) VALUES ('c2309eec', 37.7877, -122.4205);
 INSERT INTO riderLocations (profileId, latitude, longitude) VALUES ('18f4ea86', 37.3903, -122.0643);
 INSERT INTO riderLocations (profileId, latitude, longitude) VALUES ('4ab5cbad', 37.3952, -122.0813);
@@ -239,7 +239,7 @@ The producer example produces random suppliers.
 - project location: [kafka-clients](kafka-clients)
 
 ```bash
-kafka-cli-tools kafka-topics --create --bootstrap-server kafka1:19092 --replication-factor 3 --partitions 3 --topic suppliers
+kafka-cli kafka-topics --create --bootstrap-server kafka1:19092 --replication-factor 3 --partitions 3 --topic suppliers
 ./gradlew kafka-clients:install
 alias kafka-clients="$PWD/kafka-clients/build/install/kafka-clients/bin/kafka-clients "
 kafka-clients producer 100
