@@ -5,6 +5,7 @@ services:
     image: confluentinc/cp-ksqldb-server:6.2.0
     environment:
       TZ: America/Guayaquil
+      KSQL_KSQL_SERVICE_ID: kafka-ksqldb.
       KSQL_LISTENERS: http://0.0.0.0:8088
       KSQL_BOOTSTRAP_SERVERS: PLAINTEXT://kafka1:19092,PLAINTEXT://kafka2:29092,PLAINTEXT://kafka3:39092
       KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE: 'true'

@@ -8,6 +8,7 @@
     "connection.user": "root",
     "connection.password": "notasecret",
     "mode": "timestamp",
-    "timestamp.column.name": "created"
+    "timestamp.column.name": "created",
+    "topic.prefix": "kafka-connect."
   }
 }

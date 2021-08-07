@@ -14,9 +14,9 @@ services:
       CONNECT_VALUE_CONVERTER: io.confluent.connect.avro.AvroConverter
       CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
       CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
-      CONNECT_CONFIG_STORAGE_TOPIC: kafka-connect-sandbox-config
-      CONNECT_OFFSET_STORAGE_TOPIC: kafka-connect-sandbox-offsets
-      CONNECT_STATUS_STORAGE_TOPIC: kafka-connect-sandbox-status
+      CONNECT_CONFIG_STORAGE_TOPIC: kafka-connect.config
+      CONNECT_OFFSET_STORAGE_TOPIC: kafka-connect.offsets
+      CONNECT_STATUS_STORAGE_TOPIC: kafka-connect.status
     ports:
       - 8082:8082
     restart: on-failure

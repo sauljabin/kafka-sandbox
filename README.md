@@ -19,7 +19,7 @@ This project helps you to deploy a kafka sandbox locally.
 
 ## Get Started
 
-Creating a network and running the cluster containers:
+Creating a network and running the kafka cluster:
 
 ```bash
 docker network create kafka-sandbox_network
@@ -57,7 +57,7 @@ Create a SQL (MySQL or PostgresSQL) server instance and a database.
 
 - [mysql](https://hub.docker.com/_/mysql)
 - [postgres](https://hub.docker.com/_/postgres)
-- [adminer](https://www.adminer.org/)
+- [adminer](https://hub.docker.com/_/adminer)
 - project location: [sql-server](sql-server)
 - postgres port: `5432`
 - mysql port: `3306`
@@ -93,7 +93,7 @@ echo "alias sql-populate='$PWD/sql-populate/build/install/sql-populate/bin/sql-p
 Create a NoSQL (MongoDB) server instance and a database.
 
 - [mongo](https://hub.docker.com/_/mongo)
-- [mongo express](https://github.com/mongo-express/mongo-express)
+- [mongo express](https://hub.docker.com/_/mongo-express)
 - project location: [nosql-server](nosql-server)
 - mongo port: `27017`
 - mongo express port: `7070` ([open it in the web browser](http://localhost:7070/))
@@ -129,7 +129,9 @@ echo "alias nosql-populate='$PWD/nosql-populate/build/install/nosql-populate/bin
 A three node kafka cluster.
 
 - [kafka](https://kafka.apache.org/)
+- [kafka settings](https://docs.confluent.io/platform/current/installation/configuration/broker-configs.html)
 - [zookeeper](https://zookeeper.apache.org/)
+- [zookeeper settings](https://docs.confluent.io/platform/current/zookeeper/deployment.html)
 - project location: [kafka-cluster](kafka-cluster)
 - kafka ports: `19093`, `29093`, `39093`
 - zookeeper ports: `12181`, `22181`, `32181`
@@ -145,6 +147,7 @@ docker-compose up -d
 UI for managing kafka cluster.
 
 - [akhq](https://akhq.io/)
+- [akhq settings](https://github.com/tchiotludo/akhq#kafka-cluster-configuration)
 - project location: [kafka-akhq](kafka-akhq)
 - akhq port: `8080` ([open it in the web browser](http://localhost:8080/))
 
@@ -158,6 +161,7 @@ docker-compose up -d
 It provides a RESTful interface for storing and retrieving your Avro, JSON Schema, and Protobuf schemas.
 
 - [schema registry](https://docs.confluent.io/platform/current/schema-registry/index.html)
+- [schema registry settings](https://docs.confluent.io/platform/current/schema-registry/installation/config.html)
 - project location: [kafka-schema-registry](kafka-schema-registry)
 - schema registry port: `8081` ([open it in the web browser](http://localhost:8081/))
 
@@ -171,6 +175,7 @@ docker-compose up -d
 The Kafka REST Proxy provides a RESTful interface to a Kafka cluster.
 
 - [kafka rest](https://docs.confluent.io/platform/current/kafka-rest/index.html)
+- [kafka rest settings](https://docs.confluent.io/platform/current/kafka-rest/production-deployment/rest-proxy/config.html)
 - [kafka rest api reference](https://docs.confluent.io/platform/current/kafka-rest/api.html)
 - project location: [kafka-rest](kafka-rest)
 - kafka rest port: `8083` ([open it in the web browser](http://localhost:8083/))
@@ -179,8 +184,8 @@ The Kafka REST Proxy provides a RESTful interface to a Kafka cluster.
 cd kafka-rest
 docker-compose up -d
 http -b :8083/topics
-http -b :8083/topics/test Content-Type:application/vnd.kafka.json.v2+json records:='[{ "key": "test", "value": "test" }]'
-http -b :8083/topics/users Content-Type:application/vnd.kafka.avro.v2+json < kafka-rest-produce-message-avro-payload.json
+http -b :8083/topics/kafka-rest.test Content-Type:application/vnd.kafka.json.v2+json records:='[{ "key": "test", "value": "test" }]'
+http -b :8083/topics/kafka-rest.users Content-Type:application/vnd.kafka.avro.v2+json < kafka-rest-produce-message-avro-payload.json
 ```
 
 #### Kafka ksqlDB:
@@ -188,13 +193,14 @@ http -b :8083/topics/users Content-Type:application/vnd.kafka.avro.v2+json < kaf
 ksqlDB is a database that's purpose-built for stream processing applications.
 
 - [ksqldb](https://ksqldb.io/)
+- [ksqldb settings](https://docs.ksqldb.io/en/latest/reference/server-configuration/)
 - project location: [kafka-ksqldb](kafka-ksqldb)
 
 ```bash
 cd kafka-ksqldb
 docker-compose up -d
 kafka-cli ksql http://ksqldb:8088
-CREATE STREAM riderLocations (profileId VARCHAR, latitude DOUBLE, longitude DOUBLE) WITH (kafka_topic='locations', value_format='json', partitions=1);
+CREATE STREAM riderLocations (profileId VARCHAR, latitude DOUBLE, longitude DOUBLE) WITH (kafka_topic='kafka-ksqldb.locations', value_format='json', partitions=1);
 SELECT * FROM riderLocations WHERE GEO_DISTANCE(latitude, longitude, 37.4133, -122.1162) <= 5 EMIT CHANGES;
 ```
 
@@ -215,6 +221,7 @@ INSERT INTO riderLocations (profileId, latitude, longitude) VALUES ('4ddad000', 
 It makes it simple to quickly define connectors that move large data sets into and out of Kafka.
 
 - [connect](https://docs.confluent.io/current/connect/index.html)
+- [connect settings](https://docs.confluent.io/platform/current/installation/configuration/connect/index.html)
 - [connect api reference](https://docs.confluent.io/platform/current/connect/references/restapi.html)
 - [jdbc connector plugin](https://www.confluent.io/hub/confluentinc/kafka-connect-jdbc)
 - [mongo connector plugin](https://www.confluent.io/hub/mongodb/kafka-connect-mongodb)
@@ -236,10 +243,12 @@ These examples produce and consume messages from the `supplier` topic.
 The producer example produces random suppliers.
 
 - [kafka producer and consumer example](https://docs.confluent.io/platform/current/schema-registry/serdes-develop/serdes-avro.html)
+- [kafka consumer settings](https://docs.confluent.io/platform/current/installation/configuration/consumer-configs.html)
+- [kafka producer settings](https://docs.confluent.io/platform/current/installation/configuration/producer-configs.html)
 - project location: [kafka-clients](kafka-clients)
 
 ```bash
-kafka-cli kafka-topics --create --bootstrap-server kafka1:19092 --replication-factor 3 --partitions 3 --topic suppliers
+kafka-cli kafka-topics --create --bootstrap-server kafka1:19092 --replication-factor 3 --partitions 3 --topic kafka-clients.suppliers
 ./gradlew kafka-clients:install
 alias kafka-clients="$PWD/kafka-clients/build/install/kafka-clients/bin/kafka-clients "
 kafka-clients producer 100
@@ -260,11 +269,12 @@ For creating a AVRO schema, you can use the following command (development purpo
 
 #### Kafka Clients - Spring Boot:
 
-Spring Boot + Spring Kafka producer and consumer example.
+Spring Boot + Spring Kafka producer and consumer examples.
 
-- [spring kafka examples](https://spring.io/projects/spring-kafka)
+- [confluent spring kafka examples](https://www.confluent.io/blog/apache-kafka-spring-boot-application/)
+- [spring kafka settings](https://docs.spring.io/spring-kafka/reference/html/)
 - project location: [kafka-spring-boot](kafka-spring-boot)
-- spring port: `8585` ([open it in the web browser](http://localhost:8585/actuator))
+- spring port: `8585` ([open it in the web browser](http://localhost:8585/actuator/health))
 
 ```bash
 ./gradlew kafka-spring-boot:bootRun
@@ -276,4 +286,3 @@ In another terminal:
 http -b :8585/actuator/health
 http -b :8585/produce messages==10
 ```
-
