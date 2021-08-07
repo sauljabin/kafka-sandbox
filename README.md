@@ -260,4 +260,20 @@ For creating a AVRO schema, you can use the following command (development purpo
 
 #### Kafka Clients - Spring Boot:
 
-WIP
+Spring Boot + Spring Kafka producer and consumer example.
+
+- [spring kafka examples](https://spring.io/projects/spring-kafka)
+- project location: [kafka-spring-boot](kafka-spring-boot)
+- spring port: `8585` ([open it in the web browser](http://localhost:8585/actuator))
+
+```bash
+./gradlew kafka-spring-boot:bootRun
+```
+
+In another terminal:
+
+```bash
+http :8585/actuator/health
+http :8585/produce messages==10
+```
+

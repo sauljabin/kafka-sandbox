@@ -1,2 +1,12 @@
 server:
   port: 8585
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: mappings, health
+
+kafka:
+  bootstrap-servers: localhost:19093,localhost:29093,localhost:39093
+
