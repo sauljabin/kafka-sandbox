@@ -21,6 +21,9 @@ dependencies {
     implementation("org.slf4j:slf4j-simple:1.7.30")
     implementation("org.apache.avro:avro:1.10.2")
     implementation("io.confluent:kafka-avro-serializer:5.3.0")
+
+    compileOnly("org.projectlombok:lombok:1.18.20")
+    annotationProcessor("org.projectlombok:lombok:1.18.20")
 }
 
 application {

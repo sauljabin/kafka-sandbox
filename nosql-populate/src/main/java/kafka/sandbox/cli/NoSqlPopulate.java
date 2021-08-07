@@ -8,6 +8,7 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import kafka.sandbox.domain.Customer;
+import lombok.extern.slf4j.Slf4j;
 import org.bson.codecs.configuration.CodecRegistries;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
@@ -19,7 +20,7 @@ import picocli.CommandLine.Parameters;
 import java.util.Date;
 import java.util.concurrent.Callable;
 
-
+@Slf4j
 @Command(name = "nosql-populate", description = "Easy way of creating customers to a sql db")
 public class NoSqlPopulate implements Callable<Integer> {
 
@@ -62,7 +63,7 @@ public class NoSqlPopulate implements Callable<Integer> {
         for (int i = 0; i < customers; i++) {
             Customer customer = createNewCustomer();
             customersCollection.insertOne(customer);
-            System.out.println(customer);
+            log.info("Inserted record: {}", customer);
         }
 
         mongoClient.close();

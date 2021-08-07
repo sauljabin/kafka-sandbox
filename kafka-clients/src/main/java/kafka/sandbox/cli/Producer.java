@@ -2,6 +2,7 @@ package kafka.sandbox.cli;
 
 import com.github.javafaker.Faker;
 import kafka.sandbox.avro.Supplier;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import picocli.CommandLine;
@@ -12,10 +13,10 @@ import java.util.Properties;
 import java.util.UUID;
 import java.util.concurrent.Callable;
 
+@Slf4j
 @Command(name = "producer", description = "Produces supplier messages to the topic")
 public class Producer implements Callable<Integer> {
 
-    public static final String TOPIC = "suppliers";
     private final Properties props;
     private final Faker faker = new Faker();
 
@@ -32,8 +33,8 @@ public class Producer implements Callable<Integer> {
 
         for (int i = 0; i < messages; i++) {
             Supplier supplier = createNewCustomer();
-            ProducerRecord<String, Supplier> record = new ProducerRecord<>(TOPIC, supplier);
-            producer.send(record, (metadata, exception) -> System.out.println(supplier));
+            ProducerRecord<String, Supplier> record = new ProducerRecord<>(props.getProperty("topic"), supplier);
+            producer.send(record, (metadata, exception) -> log.info("Producing message: {}", supplier));
         }
 
         producer.flush();

@@ -7,6 +7,7 @@ import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import kafka.sandbox.domain.Customer;
+import lombok.extern.slf4j.Slf4j;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -16,6 +17,7 @@ import java.util.Date;
 import java.util.UUID;
 import java.util.concurrent.Callable;
 
+@Slf4j
 @Command(name = "sql-populate", description = "Easy way of creating customers to a sql db")
 public class SqlPopulate implements Callable<Integer> {
 
@@ -50,7 +52,7 @@ public class SqlPopulate implements Callable<Integer> {
         for (int i = 0; i < customers; i++) {
             Customer customer = createNewCustomer();
             accountDao.create(customer);
-            System.out.println(customer);
+            log.info("Inserted record: {}", customer);
         }
 
         connectionSource.close();
