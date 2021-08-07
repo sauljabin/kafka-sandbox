@@ -2,6 +2,7 @@ package kafka.sandbox.controller;
 
 import com.github.javafaker.Faker;
 import kafka.sandbox.domain.Customer;
+import kafka.sandbox.service.ProducerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,10 +17,12 @@ import java.util.UUID;
 public class ProducerController {
 
     private Faker faker;
+    private ProducerService producerService;
 
     @Autowired
-    public ProducerController(Faker faker) {
+    public ProducerController(Faker faker, ProducerService producerService) {
         this.faker = faker;
+        this.producerService = producerService;
     }
 
     @GetMapping("/produce")
@@ -27,13 +30,15 @@ public class ProducerController {
         List<Customer> customers = new LinkedList<>();
 
         for (int i = 0; i < messages; i++) {
-            customers.add(newProduct());
+            Customer customer = newCustomer();
+            customers.add(customer);
+            producerService.sendCustomer(customer);
         }
 
         return customers;
     }
 
-    private Customer newProduct() {
+    private Customer newCustomer() {
         return Customer.builder()
                 .id(UUID.randomUUID())
                 .name(faker.name().fullName())

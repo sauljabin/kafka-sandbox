@@ -178,9 +178,9 @@ The Kafka REST Proxy provides a RESTful interface to a Kafka cluster.
 ```bash
 cd kafka-rest
 docker-compose up -d
-http :8083/topics
-http :8083/topics/test Content-Type:application/vnd.kafka.json.v2+json records:='[{ "key": "test", "value": "test" }]'
-http :8083/topics/users Content-Type:application/vnd.kafka.avro.v2+json < kafka-rest-produce-message-avro-payload.json
+http -b :8083/topics
+http -b :8083/topics/test Content-Type:application/vnd.kafka.json.v2+json records:='[{ "key": "test", "value": "test" }]'
+http -b :8083/topics/users Content-Type:application/vnd.kafka.avro.v2+json < kafka-rest-produce-message-avro-payload.json
 ```
 
 #### Kafka ksqlDB:
@@ -225,8 +225,8 @@ It makes it simple to quickly define connectors that move large data sets into a
 cd kafka-connect
 docker-compose up -d
 sql-populate --url "jdbc:mysql://localhost:3306/sandbox" --user "root" --password "notasecret" 100
-http POST :8082/connectors < connectors/mysql-source-create-connector-payload.json
-http POST :8082/connectors < connectors/mongo-sink-create-connector-payload.json
+http -b POST :8082/connectors < connectors/mysql-source-create-connector-payload.json
+http -b POST :8082/connectors < connectors/mongo-sink-create-connector-payload.json
 ```
 
 #### Kafka Clients - Avro Producer and Consumer:
@@ -273,7 +273,7 @@ Spring Boot + Spring Kafka producer and consumer example.
 In another terminal:
 
 ```bash
-http :8585/actuator/health
-http :8585/produce messages==10
+http -b :8585/actuator/health
+http -b :8585/produce messages==10
 ```
 
