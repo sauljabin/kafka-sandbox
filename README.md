@@ -39,9 +39,10 @@ It is a collection of tools to interact with kafka cluster through the terminal.
 - project location: [kafka-cli](kafka-cli)
 
 ```bash
+alias kafka-cli='docker run -it --network kafka-sandbox_network kafka-cli:latest '
+
 cd kafka-cli
 docker build -t kafka-cli:latest .
-alias kafka-cli='docker run -it --network kafka-sandbox_network kafka-cli:latest '
 kafka-cli
 ```
 
@@ -76,8 +77,9 @@ This is an ancillary project that can help us to set different scenarios.
 - project location: [sql-populate](sql-populate)
 
 ```bash
-./gradlew sql-populate:install
 alias sql-populate="$PWD/sql-populate/build/install/sql-populate/bin/sql-populate "
+
+./gradlew sql-populate:install
 sql-populate --url "jdbc:mysql://localhost:3306/sandbox" --user "root" --password "notasecret" 100
 sql-populate --url "jdbc:postgresql://localhost:5432/sandbox" --user "postgres" --password "notasecret" 100
 ```
@@ -111,8 +113,9 @@ This is an ancillary project that can help us to set different scenarios.
 - project location: [nosql-populate](nosql-populate)
 
 ```bash
-./gradlew nosql-populate:install
 alias nosql-populate="$PWD/nosql-populate/build/install/nosql-populate/bin/nosql-populate "
+
+./gradlew nosql-populate:install
 nosql-populate --url "mongodb://root:notasecret@localhost:27017" -d "sandbox" 100
 ```
 
@@ -249,9 +252,10 @@ The producer example produces random suppliers.
 - project location: [kafka-clients](kafka-clients)
 
 ```bash
+alias kafka-clients="$PWD/kafka-clients/build/install/kafka-clients/bin/kafka-clients "
+
 kafka-cli kafka-topics --create --bootstrap-server kafka1:19092 --replication-factor 3 --partitions 3 --topic kafka-clients.suppliers
 ./gradlew kafka-clients:install
-alias kafka-clients="$PWD/kafka-clients/build/install/kafka-clients/bin/kafka-clients "
 kafka-clients producer 100
 kafka-clients consumer
 ```
