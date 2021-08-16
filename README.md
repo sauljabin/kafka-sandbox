@@ -202,7 +202,7 @@ ksqlDB is a database that's purpose-built for stream processing applications.
 - project location: [kafka-ksqldb](kafka-ksqldb)
 
 ```bash
-alias ksqldb-cli="docker run -it --network kafka-sandbox_network --workdir /ksqldb -v $PWD/kafka-ksqldb/tests:/ksqldb/tests kafka-cli:latest "
+alias ksqldb-cli="docker run -it --network kafka-sandbox_network --workdir /ksqldb -v $PWD/kafka-ksqldb/tests:/ksqldb/tests -v $PWD/kafka-ksqldb/statements:/ksqldb/statements kafka-cli:latest "
 
 cd kafka-ksqldb
 docker-compose up -d
@@ -219,14 +219,21 @@ SHOW STREAMS;
 To permanently add the alias to your shell (`~/.bashrc` or `~/.zshrc` file):
 
 ```bash
-echo "alias ksqldb-cli='docker run -it --network kafka-sandbox_network --workdir /ksqldb -v $PWD/kafka-ksqldb/tests:/ksqldb/tests kafka-cli:latest '" >> ~/.zshrc
+echo "alias ksqldb-cli='docker run -it --network kafka-sandbox_network --workdir /ksqldb -v $PWD/kafka-ksqldb/tests:/ksqldb/tests -v $PWD/kafka-ksqldb/statements:/ksqldb/statements kafka-cli:latest '" >> ~/.zshrc
 ```
 
 Test runner:
 
 ```bash
-ksqldb-cli ksql-test-runner -s tests/statements.ksql -i tests/input.json -o tests/output.json | grep '>>>'
+ksqldb-cli ksql-test-runner -s statements/create-orders.ksql -i tests/orders-input.json -o tests/orders-output.json | grep '>>>'
 ```
+
+Execute statements:
+
+```bash
+ksqldb-cli ksql -f statements/create-orders.ksql -- http://ksqldb:8088
+ksqldb-cli ksql -f statements/insert-orders.ksql -- http://ksqldb:8088
+````
 
 #### Kafka Connect:
 

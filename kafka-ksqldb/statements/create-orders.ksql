@@ -1,0 +1,6 @@
+CREATE STREAM orders (ORDERID INT KEY, ORDERUNITS double) 
+  WITH (kafka_topic='kafka-ksqldb.orders', value_format='json', partitions=10, replicas=3);
+CREATE STREAM orderSizes 
+  WITH (kafka_topic='kafka-ksqldb.order_sizes', value_format='json', partitions=10, replicas=3)
+  AS SELECT ORDERID, ORDERUNITS, 
+    CASE WHEN orderunits < 2.0 THEN 'small' WHEN orderunits < 4.0 THEN 'medium' ELSE 'large' END AS orderSize FROM orders EMIT CHANGES;
