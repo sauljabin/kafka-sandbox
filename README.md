@@ -198,26 +198,34 @@ ksqlDB is a database that's purpose-built for stream processing applications.
 
 - [ksqldb](https://ksqldb.io/)
 - [ksqldb settings](https://docs.ksqldb.io/en/latest/reference/server-configuration/)
+- [ksqldb test runner](https://docs.ksqldb.io/en/latest/how-to-guides/test-an-app/)
 - project location: [kafka-ksqldb](kafka-ksqldb)
 
 ```bash
+alias ksqldb-cli="docker run -it --network kafka-sandbox_network --workdir /ksqldb -v $PWD/kafka-ksqldb/tests:/ksqldb/tests kafka-cli:latest "
+
 cd kafka-ksqldb
 docker-compose up -d
-kafka-cli ksql http://ksqldb:8088
-CREATE STREAM riderLocations (profileId VARCHAR, latitude DOUBLE, longitude DOUBLE) WITH (kafka_topic='kafka-ksqldb.locations', value_format='json', partitions=1);
-SELECT * FROM riderLocations WHERE GEO_DISTANCE(latitude, longitude, 37.4133, -122.1162) <= 5 EMIT CHANGES;
+ksqldb-cli ksql --execute "SHOW STREAMS;" -- http://ksqldb:8088
 ```
 
-In another terminal:
+Interactive ksqlDB shell:
 
 ```bash
-kafka-cli ksql http://ksqldb:8088
-INSERT INTO riderLocations (profileId, latitude, longitude) VALUES ('c2309eec', 37.7877, -122.4205);
-INSERT INTO riderLocations (profileId, latitude, longitude) VALUES ('18f4ea86', 37.3903, -122.0643);
-INSERT INTO riderLocations (profileId, latitude, longitude) VALUES ('4ab5cbad', 37.3952, -122.0813);
-INSERT INTO riderLocations (profileId, latitude, longitude) VALUES ('8b6eae59', 37.3944, -122.0813);
-INSERT INTO riderLocations (profileId, latitude, longitude) VALUES ('4a7c7b41', 37.4049, -122.0822);
-INSERT INTO riderLocations (profileId, latitude, longitude) VALUES ('4ddad000', 37.7857, -122.4011);
+ksqldb-cli ksql http://ksqldb:8088
+SHOW STREAMS;
+```
+
+To permanently add the alias to your shell (`~/.bashrc` or `~/.zshrc` file):
+
+```bash
+echo "alias ksqldb-cli='docker run -it --network kafka-sandbox_network --workdir /ksqldb -v $PWD/kafka-ksqldb/tests:/ksqldb/tests kafka-cli:latest '" >> ~/.zshrc
+```
+
+Test runner:
+
+```bash
+ksqldb-cli ksql-test-runner -s tests/statements.ksql -i tests/input.json -o tests/output.json | grep '>>>'
 ```
 
 #### Kafka Connect:
@@ -291,3 +299,12 @@ In another terminal:
 http -b :8585/actuator/health
 http -b :8585/produce messages==10
 ```
+
+#### Kafka Streams
+
+Kafka Streams is a client library providing organizations with a particularly efficient framework for processing streaming data. 
+It offers a streamlined method for creating applications and microservices that must process data in real-time to be effective.
+
+- [kafka streams](https://kafka.apache.org/documentation/streams/)
+- [kafka streams examples](https://github.com/confluentinc/kafka-streams-examples)
+- - project location: [kafka-streams](kafka-streams)
