@@ -206,7 +206,7 @@ alias ksqldb-cli="docker run -it --network kafka-sandbox_network --workdir /ksql
 
 cd kafka-ksqldb
 docker-compose up -d
-ksqldb-cli ksql --execute "SHOW STREAMS;" -- http://ksqldb:8088
+ksqldb-cli ksql -e "SHOW STREAMS;" -- http://ksqldb:8088
 ```
 
 Interactive ksqlDB shell:
@@ -228,7 +228,7 @@ Test runner:
 ksqldb-cli ksql-test-runner -s statements/create-orders.ksql -i tests/orders-input.json -o tests/orders-output.json | grep '>>>'
 ```
 
-Execute statements:
+Execute statement files:
 
 ```bash
 ksqldb-cli ksql -f statements/create-orders.ksql -- http://ksqldb:8088
