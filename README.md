@@ -201,7 +201,7 @@ ksqlDB is a database that's purpose-built for stream processing applications.
 - [ksqldb test runner](https://docs.ksqldb.io/en/latest/how-to-guides/test-an-app/)
 - project location: [kafka-ksqldb](kafka-ksqldb)
 - statements location: [kafka-ksqldb/statements](kafka-ksqldb/statements)
-- test location: [kafka-ksqldb/test](kafka-ksqldb/test)
+- test location: [kafka-ksqldb/tests](kafka-ksqldb/tests)
 - extensions location: [kafka-ksqldb-extensions/extensions](kafka-ksqldb-extensions/extensions)
 
 ```bash

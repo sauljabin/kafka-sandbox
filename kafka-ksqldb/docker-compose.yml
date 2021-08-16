@@ -11,6 +11,7 @@ services:
       KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE: 'true'
       KSQL_KSQL_LOGGING_PROCESSING_TOPIC_AUTO_CREATE: 'true'
       KSQL_KSQL_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+      KSQL_KSQL_CONNECT_URL: http://kafka-connect:8082
       KSQL_KSQL_EXTENSION_DIR: /ksqldb/extensions
     ports:
       - 8088:8088
