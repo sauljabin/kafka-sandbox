@@ -200,6 +200,9 @@ ksqlDB is a database that's purpose-built for stream processing applications.
 - [ksqldb settings](https://docs.ksqldb.io/en/latest/reference/server-configuration/)
 - [ksqldb test runner](https://docs.ksqldb.io/en/latest/how-to-guides/test-an-app/)
 - project location: [kafka-ksqldb](kafka-ksqldb)
+- statements location: [kafka-ksqldb/statements](kafka-ksqldb/statements)
+- test location: [kafka-ksqldb/test](kafka-ksqldb/test)
+- extensions location: [kafka-ksqldb-extensions/extensions](kafka-ksqldb-extensions/extensions)
 
 ```bash
 alias ksqldb-cli="docker run -it --network kafka-sandbox_network --workdir /ksqldb -v $PWD/kafka-ksqldb/tests:/ksqldb/tests -v $PWD/kafka-ksqldb/statements:/ksqldb/statements -v $PWD/kafka-ksqldb-extensions/extensions:/ksqldb/extensions kafka-cli:latest "
