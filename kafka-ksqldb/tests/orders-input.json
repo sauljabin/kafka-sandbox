@@ -1,9 +1,9 @@
 {
   "inputs": [
-    {"topic": "kafka-ksqldb.orders", "timestamp": 0, "key": 1000000, "value": {"ORDERUNITS": 2.0}},
-    {"topic": "kafka-ksqldb.orders", "timestamp": 0, "key": 1000001, "value": {"ORDERUNITS": 4.0}},
-    {"topic": "kafka-ksqldb.orders", "timestamp": 0, "key": 1000002, "value": {"ORDERUNITS": 6.0}},
-    {"topic": "kafka-ksqldb.orders", "timestamp": 0, "key": 1000003, "value": {"ORDERUNITS": 3.0}},
-    {"topic": "kafka-ksqldb.orders", "timestamp": 0, "key": 1000004, "value": {"ORDERUNITS": 1.0}}
+    {"topic": "kafka-ksqldb.orders", "timestamp": 0, "key": 1000000, "value": {"orderUnits": 2, "totalAmount": 100.0}},
+    {"topic": "kafka-ksqldb.orders", "timestamp": 0, "key": 1000001, "value": {"orderUnits": 4, "totalAmount": 200.0}},
+    {"topic": "kafka-ksqldb.orders", "timestamp": 0, "key": 1000002, "value": {"orderUnits": 6, "totalAmount": 300.0}},
+    {"topic": "kafka-ksqldb.orders", "timestamp": 0, "key": 1000003, "value": {"orderUnits": 3, "totalAmount": 150.0}},
+    {"topic": "kafka-ksqldb.orders", "timestamp": 0, "key": 1000004, "value": {"orderUnits": 1, "totalAmount": 50.0}}
   ]
 }

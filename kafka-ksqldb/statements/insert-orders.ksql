@@ -1,5 +1,5 @@
-INSERT INTO orders (orderid, orderunits) VALUES (1000000, 2.0);
-INSERT INTO orders (orderid, orderunits) VALUES (1000001, 4.0);
-INSERT INTO orders (orderid, orderunits) VALUES (1000002, 6.0);
-INSERT INTO orders (orderid, orderunits) VALUES (1000003, 3.0);
-INSERT INTO orders (orderid, orderunits) VALUES (1000004, 1.0);
+INSERT INTO orders (orderId, orderUnits, totalAmount) VALUES (1000000, 2, 100.0);
+INSERT INTO orders (orderId, orderUnits, totalAmount) VALUES (1000001, 4, 200.0);
+INSERT INTO orders (orderId, orderUnits, totalAmount) VALUES (1000002, 6, 300.0);
+INSERT INTO orders (orderId, orderUnits, totalAmount) VALUES (1000003, 3, 150.0);
+INSERT INTO orders (orderId, orderUnits, totalAmount) VALUES (1000004, 1, 50.0);
