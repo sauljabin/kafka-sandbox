@@ -139,6 +139,7 @@ It's a docker web UI that allows you to manage your docker containers.
 
 - [portainer](https://documentation.portainer.io/v2.0/deploy/ceinstalldocker/)
 - project location: [docker-portainer](docker-portainer)
+- portainer port: `9000` ([open it in the web browser](http://localhost:9000/))
 
 ```bash
 cd docker-portainer
@@ -156,9 +157,9 @@ A three node kafka cluster.
 - [zookeeper](https://zookeeper.apache.org/)
 - [zookeeper settings](https://docs.confluent.io/platform/current/zookeeper/deployment.html)
 - project location: [kafka-cluster](kafka-cluster)
+- kafka version: [2.8](https://docs.confluent.io/platform/current/installation/versions-interoperability.html) (confluent platform 6.2.0)
 - kafka ports: `19093`, `29093`, `39093`
 - zookeeper ports: `12181`, `22181`, `32181`
-- kafka version: [2.8](https://docs.confluent.io/platform/current/installation/versions-interoperability.html) (confluent platform 6.2.0)
 
 ```bash
 cd kafka-cluster
@@ -187,11 +188,12 @@ It provides a RESTful interface for storing and retrieving your Avro, JSON Schem
 - [schema registry](https://docs.confluent.io/platform/current/schema-registry/index.html)
 - [schema registry settings](https://docs.confluent.io/platform/current/schema-registry/installation/config.html)
 - project location: [kafka-schema-registry](kafka-schema-registry)
-- schema registry port: `8081` ([open it in the web browser](http://localhost:8081/))
+- schema registry port: `8081`
 
 ```bash
 cd kafka-schema-registry
 docker-compose up -d
+http :8081
 ```
 
 #### Kafka REST Proxy:
@@ -202,12 +204,12 @@ The Kafka REST Proxy provides a RESTful interface to a Kafka cluster.
 - [kafka rest settings](https://docs.confluent.io/platform/current/kafka-rest/production-deployment/rest-proxy/config.html)
 - [kafka rest api reference](https://docs.confluent.io/platform/current/kafka-rest/api.html)
 - project location: [kafka-rest](kafka-rest)
-- kafka rest port: `8083` ([open it in the web browser](http://localhost:8083/))
+- kafka rest port: `8083`
 
 ```bash
 cd kafka-rest
 docker-compose up -d
-http :8083/topics
+http :8083
 http :8083/topics/kafka-rest.test Content-Type:application/vnd.kafka.json.v2+json records:='[{ "key": "test", "value": "test" }]'
 http :8083/topics/kafka-rest.users Content-Type:application/vnd.kafka.avro.v2+json < kafka-rest-produce-message-avro-payload.json
 ```
@@ -223,12 +225,14 @@ ksqlDB is a database that's purpose-built for stream processing applications.
 - statements location: [kafka-ksqldb/statements](kafka-ksqldb/statements)
 - test location: [kafka-ksqldb/tests](kafka-ksqldb/tests)
 - extensions location: [kafka-ksqldb-extensions/extensions](kafka-ksqldb-extensions/extensions)
+- ksqldb port: `8088`
 
 ```bash
 alias ksqldb-cli="docker run --rm -it --network kafka-sandbox_network --workdir /ksqldb -v $PWD/kafka-ksqldb/tests:/ksqldb/tests -v $PWD/kafka-ksqldb/statements:/ksqldb/statements -v $PWD/kafka-ksqldb-extensions/extensions:/ksqldb/extensions kafka-cli:latest "
 
 cd kafka-ksqldb
 docker-compose up -d
+http :8088/info
 ksqldb-cli ksql -e "SHOW STREAMS;" http://ksqldb:8088
 ```
 
@@ -287,14 +291,22 @@ It makes it simple to quickly define connectors that move large data sets into a
 - [jdbc connector plugin](https://www.confluent.io/hub/confluentinc/kafka-connect-jdbc)
 - [mongo connector plugin](https://www.confluent.io/hub/mongodb/kafka-connect-mongodb)
 - project location: [kafka-connect](kafka-connect)
-- connect port: `8082` ([open it in the web browser](http://localhost:8082/))
+- connect port: `8082`
 
 ```bash
 cd kafka-connect
 docker-compose up -d
-sql-populate --url "jdbc:mysql://localhost:3306/sandbox" --user "root" --password "notasecret" 100
+http :8082
 http :8082/connectors < connectors/mysql-source-create-connector-payload.json
 http :8082/connectors < connectors/mongo-sink-create-connector-payload.json
+```
+
+Populate the databases:
+
+```bash
+sql-populate --url "jdbc:mysql://localhost:3306/sandbox" --user "root" --password "notasecret" 100
+sql-populate --url "jdbc:postgresql://localhost:5432/sandbox" --user "postgres" --password "notasecret" 100
+nosql-populate --url "mongodb://root:notasecret@localhost:27017" -d "sandbox" 100
 ```
 
 #### Kafka Clients - Avro Producer and Consumer:
@@ -336,7 +348,7 @@ Spring Boot + Spring Kafka producer and consumer examples.
 - [confluent spring kafka examples](https://www.confluent.io/blog/apache-kafka-spring-boot-application/)
 - [spring kafka settings](https://docs.spring.io/spring-kafka/reference/html/)
 - project location: [kafka-spring-boot](kafka-spring-boot)
-- spring port: `8585` ([open it in the web browser](http://localhost:8585/actuator/health))
+- spring port: `8585`
 
 ```bash
 ./gradlew kafka-spring-boot:bootRun
