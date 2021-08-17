@@ -260,6 +260,7 @@ The Kafka REST Proxy provides a RESTful interface to a Kafka cluster.
 - [kafka rest settings](https://docs.confluent.io/platform/current/kafka-rest/production-deployment/rest-proxy/config.html)
 - [kafka rest api reference](https://docs.confluent.io/platform/current/kafka-rest/api.html)
 - project location: [kafka-rest](kafka-rest)
+- requests location: [kafka-rest/requests](kafka-rest/requests)
 - kafka rest port: `8083`
 
 Run Kafka REST Proxy:
@@ -273,8 +274,9 @@ http :8083
 Create topics:
 
 ```bash
+cd kafka-rest
 http :8083/topics/kafka-rest.test Content-Type:application/vnd.kafka.json.v2+json records:='[{ "key": "test", "value": "test" }]'
-http :8083/topics/kafka-rest.users Content-Type:application/vnd.kafka.avro.v2+json < kafka-rest-produce-message-avro-payload.json
+http :8083/topics/kafka-rest.users Content-Type:application/vnd.kafka.avro.v2+json < requests/kafka-rest-produce-message-avro-payload.json
 ```
 
 #### Kafka Connect:
@@ -287,6 +289,8 @@ It makes it simple to quickly define connectors that move large data sets into a
 - [jdbc connector plugin](https://www.confluent.io/hub/confluentinc/kafka-connect-jdbc)
 - [mongo connector plugin](https://www.confluent.io/hub/mongodb/kafka-connect-mongodb)
 - project location: [kafka-connect](kafka-connect)
+- plugins location: [kafka-connect/plugins](kafka-connect/plugins)
+- requests location: [kafka-connect/requests](kafka-connect/requests)
 - connect port: `8082`
 
 Run Kafka Connect:
@@ -300,8 +304,9 @@ http :8082
 Create connectors:
 
 ```bash
-http :8082/connectors < connectors/mysql-source-create-connector-payload.json
-http :8082/connectors < connectors/mongo-sink-create-connector-payload.json
+cd kafka-connect
+http :8082/connectors < requests/mysql-source-create-connector-payload.json
+http :8082/connectors < requests/mongo-sink-create-connector-payload.json
 ```
 
 Populate the databases:
