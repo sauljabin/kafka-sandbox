@@ -19,6 +19,7 @@ import java.util.concurrent.CountDownLatch;
 @Command(name = "consumer", description = "Consumes supplier messages from the topic")
 public class Consumer implements Callable<Integer> {
 
+    public static final String TOPIC_FROM = "kafka-clients.suppliers";
     private final Properties props;
 
     public Consumer(Properties props) {
@@ -28,7 +29,7 @@ public class Consumer implements Callable<Integer> {
     @Override
     public Integer call() throws Exception {
         KafkaConsumer<String, Supplier> consumer = new KafkaConsumer<>(props);
-        consumer.subscribe(Collections.singleton(props.getProperty("topic")));
+        consumer.subscribe(Collections.singleton(TOPIC_FROM));
 
         // attach shutdown handler to catch control-c and creating a latch
         CountDownLatch latch = new CountDownLatch(1);
@@ -56,13 +57,13 @@ public class Consumer implements Callable<Integer> {
                     consumer.commitSync();
                 }
             } catch (WakeupException e) {
-                e.printStackTrace();
+                log.info("Shutdown gracefully");
             } finally {
                 consumer.close();
             }
         }, "consumer-thread");
-        infiniteLoop.start();
 
+        infiniteLoop.start();
         latch.await();
 
         return CommandLine.ExitCode.OK;

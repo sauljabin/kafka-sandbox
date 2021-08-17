@@ -17,6 +17,7 @@ import java.util.concurrent.Callable;
 @Command(name = "producer", description = "Produces supplier messages to the topic")
 public class Producer implements Callable<Integer> {
 
+    public static final String TOPIC_TO = "kafka-clients.suppliers";
     private final Properties props;
     private final Faker faker = new Faker();
 
@@ -33,7 +34,7 @@ public class Producer implements Callable<Integer> {
 
         for (int i = 0; i < messages; i++) {
             Supplier supplier = createNewCustomer();
-            ProducerRecord<String, Supplier> record = new ProducerRecord<>(props.getProperty("topic"), supplier);
+            ProducerRecord<String, Supplier> record = new ProducerRecord<>(TOPIC_TO, supplier.getId(), supplier);
             producer.send(record, (metadata, exception) -> log.info("Producing message: {}", supplier));
         }
 
@@ -48,6 +49,7 @@ public class Producer implements Callable<Integer> {
                 .setId(UUID.randomUUID().toString())
                 .setName(faker.name().fullName())
                 .setAddress(faker.address().streetAddress())
+                .setCountry(faker.country().name())
                 .build();
     }
 }

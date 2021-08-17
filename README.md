@@ -433,6 +433,30 @@ For creating a AVRO schema, you can use the following command (development purpo
 ./gradlew kafka-clients:generateAvro
 ```
 
+#### Kafka Clients - Streams:
+
+Kafka Streams is a client library providing organizations with a particularly efficient framework for processing streaming data.
+It offers a streamlined method for creating applications and microservices that must process data in real-time to be effective.
+
+- [kafka streams](https://kafka.apache.org/documentation/streams/)
+- [kafka streams examples](https://github.com/confluentinc/kafka-streams-examples)
+- project location: [kafka-clients](kafka-clients)
+
+Run streams:
+
+```bash
+kafka-clients streams
+```
+
+Print results:
+
+```bash
+kafka-cli kafka-console-consumer --topic kafka-streams.supplier_counts_by_country --from-beginning \
+                                 --bootstrap-server kafka1:19092 \
+                                 --property print.key=true \
+                                 --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
+```
+
 #### Kafka Clients - Spring Boot:
 
 Spring Boot + Spring Kafka producer and consumer examples.
@@ -453,20 +477,11 @@ http :8585/actuator/health
 http :8585/produce messages==10
 ```
 
-#### Kafka Clients - Streams:
-
-Kafka Streams is a client library providing organizations with a particularly efficient framework for processing streaming data. 
-It offers a streamlined method for creating applications and microservices that must process data in real-time to be effective.
-
-- [kafka streams](https://kafka.apache.org/documentation/streams/)
-- [kafka streams examples](https://github.com/confluentinc/kafka-streams-examples)
-- project location: [kafka-streams](kafka-streams)
-
 ## Ports Table
 
 | Service | Dns | Port |
 | - | - | - |
-| AKKQ | localhost | [8080](http://localhost:8080/) |
+| AKHQ | localhost | [8080](http://localhost:8080/) |
 | Adminer | localhost | [9090](http://localhost:9090/) |
 | Mongo Express | localhost | [7070](http://localhost:7070/) |
 | Portainer | localhost | [9000](http://localhost:9000/) |

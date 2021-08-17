@@ -14,8 +14,8 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class Supplier extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -7070956463866746060L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Supplier\",\"namespace\":\"kafka.sandbox.avro\",\"fields\":[{\"name\":\"id\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"name\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"address\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}}],\"version\":\"1\"}");
+  private static final long serialVersionUID = -3086848642350596506L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Supplier\",\"namespace\":\"kafka.sandbox.avro\",\"fields\":[{\"name\":\"id\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"name\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"address\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"country\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}}],\"version\":\"1\"}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -74,6 +74,7 @@ public class Supplier extends org.apache.avro.specific.SpecificRecordBase implem
   @Deprecated public java.lang.String id;
   @Deprecated public java.lang.String name;
   @Deprecated public java.lang.String address;
+  @Deprecated public java.lang.String country;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -87,11 +88,13 @@ public class Supplier extends org.apache.avro.specific.SpecificRecordBase implem
    * @param id The new value for id
    * @param name The new value for name
    * @param address The new value for address
+   * @param country The new value for country
    */
-  public Supplier(java.lang.String id, java.lang.String name, java.lang.String address) {
+  public Supplier(java.lang.String id, java.lang.String name, java.lang.String address, java.lang.String country) {
     this.id = id;
     this.name = name;
     this.address = address;
+    this.country = country;
   }
 
   public org.apache.avro.specific.SpecificData getSpecificData() { return MODEL$; }
@@ -102,6 +105,7 @@ public class Supplier extends org.apache.avro.specific.SpecificRecordBase implem
     case 0: return id;
     case 1: return name;
     case 2: return address;
+    case 3: return country;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -113,6 +117,7 @@ public class Supplier extends org.apache.avro.specific.SpecificRecordBase implem
     case 0: id = value$ != null ? value$.toString() : null; break;
     case 1: name = value$ != null ? value$.toString() : null; break;
     case 2: address = value$ != null ? value$.toString() : null; break;
+    case 3: country = value$ != null ? value$.toString() : null; break;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -169,6 +174,23 @@ public class Supplier extends org.apache.avro.specific.SpecificRecordBase implem
   }
 
   /**
+   * Gets the value of the 'country' field.
+   * @return The value of the 'country' field.
+   */
+  public java.lang.String getCountry() {
+    return country;
+  }
+
+
+  /**
+   * Sets the value of the 'country' field.
+   * @param value the value to set.
+   */
+  public void setCountry(java.lang.String value) {
+    this.country = value;
+  }
+
+  /**
    * Creates a new Supplier RecordBuilder.
    * @return A new Supplier RecordBuilder
    */
@@ -212,6 +234,7 @@ public class Supplier extends org.apache.avro.specific.SpecificRecordBase implem
     private java.lang.String id;
     private java.lang.String name;
     private java.lang.String address;
+    private java.lang.String country;
 
     /** Creates a new Builder */
     private Builder() {
@@ -236,6 +259,10 @@ public class Supplier extends org.apache.avro.specific.SpecificRecordBase implem
         this.address = data().deepCopy(fields()[2].schema(), other.address);
         fieldSetFlags()[2] = other.fieldSetFlags()[2];
       }
+      if (isValidValue(fields()[3], other.country)) {
+        this.country = data().deepCopy(fields()[3].schema(), other.country);
+        fieldSetFlags()[3] = other.fieldSetFlags()[3];
+      }
     }
 
     /**
@@ -255,6 +282,10 @@ public class Supplier extends org.apache.avro.specific.SpecificRecordBase implem
       if (isValidValue(fields()[2], other.address)) {
         this.address = data().deepCopy(fields()[2].schema(), other.address);
         fieldSetFlags()[2] = true;
+      }
+      if (isValidValue(fields()[3], other.country)) {
+        this.country = data().deepCopy(fields()[3].schema(), other.country);
+        fieldSetFlags()[3] = true;
       }
     }
 
@@ -378,6 +409,46 @@ public class Supplier extends org.apache.avro.specific.SpecificRecordBase implem
       return this;
     }
 
+    /**
+      * Gets the value of the 'country' field.
+      * @return The value.
+      */
+    public java.lang.String getCountry() {
+      return country;
+    }
+
+
+    /**
+      * Sets the value of the 'country' field.
+      * @param value The value of 'country'.
+      * @return This builder.
+      */
+    public kafka.sandbox.avro.Supplier.Builder setCountry(java.lang.String value) {
+      validate(fields()[3], value);
+      this.country = value;
+      fieldSetFlags()[3] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'country' field has been set.
+      * @return True if the 'country' field has been set, false otherwise.
+      */
+    public boolean hasCountry() {
+      return fieldSetFlags()[3];
+    }
+
+
+    /**
+      * Clears the value of the 'country' field.
+      * @return This builder.
+      */
+    public kafka.sandbox.avro.Supplier.Builder clearCountry() {
+      country = null;
+      fieldSetFlags()[3] = false;
+      return this;
+    }
+
     @Override
     @SuppressWarnings("unchecked")
     public Supplier build() {
@@ -386,6 +457,7 @@ public class Supplier extends org.apache.avro.specific.SpecificRecordBase implem
         record.id = fieldSetFlags()[0] ? this.id : (java.lang.String) defaultValue(fields()[0]);
         record.name = fieldSetFlags()[1] ? this.name : (java.lang.String) defaultValue(fields()[1]);
         record.address = fieldSetFlags()[2] ? this.address : (java.lang.String) defaultValue(fields()[2]);
+        record.country = fieldSetFlags()[3] ? this.country : (java.lang.String) defaultValue(fields()[3]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
@@ -424,6 +496,8 @@ public class Supplier extends org.apache.avro.specific.SpecificRecordBase implem
 
     out.writeString(this.address);
 
+    out.writeString(this.country);
+
   }
 
   @Override public void customDecode(org.apache.avro.io.ResolvingDecoder in)
@@ -437,8 +511,10 @@ public class Supplier extends org.apache.avro.specific.SpecificRecordBase implem
 
       this.address = in.readString();
 
+      this.country = in.readString();
+
     } else {
-      for (int i = 0; i < 3; i++) {
+      for (int i = 0; i < 4; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
           this.id = in.readString();
@@ -450,6 +526,10 @@ public class Supplier extends org.apache.avro.specific.SpecificRecordBase implem
 
         case 2:
           this.address = in.readString();
+          break;
+
+        case 3:
+          this.country = in.readString();
           break;
 
         default:
