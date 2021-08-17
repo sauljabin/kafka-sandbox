@@ -46,18 +46,24 @@ It is a collection of tools to interact with kafka cluster through the terminal.
 - [confluent community tools](https://docs.confluent.io/platform/current/installation/installing_cp/zip-tar.html)
 - project location: [kafka-cli](kafka-cli)
 
+**Create a alias for `kafka-cli`:**
+
 ```bash
 alias kafka-cli='docker run --rm -it --network kafka-sandbox_network kafka-cli:latest '
-
-cd kafka-cli
-docker build -t kafka-cli:latest .
-kafka-cli
 ```
 
-To permanently add the alias to your shell (`~/.bashrc` or `~/.zshrc` file):
+**To permanently add the alias to your shell (`~/.bashrc` or `~/.zshrc` file):**
 
 ```bash
 echo "alias kafka-cli='docker run --rm -it --network kafka-sandbox_network kafka-cli:latest '" >> ~/.zshrc
+```
+
+**Create the docker image:**
+
+```bash
+cd kafka-cli
+docker build -t kafka-cli:latest .
+kafka-cli
 ```
 
 #### SQL Database:
