@@ -47,7 +47,7 @@ It is a collection of tools to interact with kafka cluster through the terminal.
 - project location: [kafka-cli](kafka-cli)
 
 ```bash
-alias kafka-cli='docker run -it --network kafka-sandbox_network kafka-cli:latest '
+alias kafka-cli='docker run --rm -it --network kafka-sandbox_network kafka-cli:latest '
 
 cd kafka-cli
 docker build -t kafka-cli:latest .
@@ -57,7 +57,7 @@ kafka-cli
 To permanently add the alias to your shell (`~/.bashrc` or `~/.zshrc` file):
 
 ```bash
-echo "alias kafka-cli='docker run -it --network kafka-sandbox_network kafka-cli:latest '" >> ~/.zshrc
+echo "alias kafka-cli='docker run --rm -it --network kafka-sandbox_network kafka-cli:latest '" >> ~/.zshrc
 ```
 
 #### SQL Database:
@@ -225,17 +225,17 @@ ksqlDB is a database that's purpose-built for stream processing applications.
 - extensions location: [kafka-ksqldb-extensions/extensions](kafka-ksqldb-extensions/extensions)
 
 ```bash
-alias ksqldb-cli="docker run -it --network kafka-sandbox_network --workdir /ksqldb -v $PWD/kafka-ksqldb/tests:/ksqldb/tests -v $PWD/kafka-ksqldb/statements:/ksqldb/statements -v $PWD/kafka-ksqldb-extensions/extensions:/ksqldb/extensions kafka-cli:latest "
+alias ksqldb-cli="docker run --rm -it --network kafka-sandbox_network --workdir /ksqldb -v $PWD/kafka-ksqldb/tests:/ksqldb/tests -v $PWD/kafka-ksqldb/statements:/ksqldb/statements -v $PWD/kafka-ksqldb-extensions/extensions:/ksqldb/extensions kafka-cli:latest "
 
 cd kafka-ksqldb
 docker-compose up -d
-ksqldb-cli ksql -e "SHOW STREAMS;" -- http://ksqldb:8088
+ksqldb-cli ksql -e "SHOW STREAMS;" http://ksqldb:8088
 ```
 
 To permanently add the alias to your shell (`~/.bashrc` or `~/.zshrc` file):
 
 ```bash
-echo "alias ksqldb-cli='docker run -it --network kafka-sandbox_network --workdir /ksqldb -v $PWD/kafka-ksqldb/tests:/ksqldb/tests -v $PWD/kafka-ksqldb/statements:/ksqldb/statements -v $PWD/kafka-ksqldb-extensions/extensions:/ksqldb/extensions kafka-cli:latest '" >> ~/.zshrc
+echo "alias ksqldb-cli='docker run --rm -it --network kafka-sandbox_network --workdir /ksqldb -v $PWD/kafka-ksqldb/tests:/ksqldb/tests -v $PWD/kafka-ksqldb/statements:/ksqldb/statements -v $PWD/kafka-ksqldb-extensions/extensions:/ksqldb/extensions kafka-cli:latest '" >> ~/.zshrc
 ```
 
 Test runner:
@@ -247,14 +247,14 @@ ksqldb-cli ksql-test-runner -e extensions/ -s statements/create-orders.ksql -i t
 Execute statement files:
 
 ```bash
-ksqldb-cli ksql -f statements/create-orders.ksql -- http://ksqldb:8088
-ksqldb-cli ksql -f statements/insert-orders.ksql -- http://ksqldb:8088
+ksqldb-cli ksql -f statements/create-orders.ksql http://ksqldb:8088
+ksqldb-cli ksql -f statements/insert-orders.ksql http://ksqldb:8088
 ```
 
 Deleting all orders:
 
 ```bash
-ksqldb-cli ksql -e "DROP STREAM ORDERSIZES DELETE TOPIC; DROP STREAM ORDERS DELETE TOPIC;" -- http://ksqldb:8088
+ksqldb-cli ksql -e "DROP STREAM ORDERSIZES DELETE TOPIC; DROP STREAM ORDERS DELETE TOPIC;" http://ksqldb:8088
 ```
 
 Interactive ksqlDB shell:
