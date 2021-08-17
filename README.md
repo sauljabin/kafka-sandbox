@@ -1,21 +1,29 @@
 # Kafka Sandbox
 
 This project helps you to deploy a kafka sandbox locally.
+It intends to be a simple way to get started with kafka and help you on your learning path.
+It provides you with a wide variety of tools from the kafka ecosystem and a simple way to run them all.
+It also includes a set of tools and tips to make it easier for you to use kafka.
+It does not include security since it is not a production system.
 
-## Dependencies
+#### Interesting Links
+
+- [confluent free courses](https://developer.confluent.io/learn-kafka/)
+- [confluent docker images references](https://docs.confluent.io/platform/current/installation/docker/image-reference.html)
+- [confluent versions interoperability](https://docs.confluent.io/platform/current/installation/versions-interoperability.html)
+
+#### Dependencies
 
 - [docker](https://www.docker.com/)
 - [docker compose](https://docs.docker.com/compose/)
-- [curl](https://curl.se/)
 - [httpie](https://httpie.io/)
-- [jq](https://stedolan.github.io/jq/)
 - [java](https://www.java.com/en/download/)
 
-## Interesting Links
+#### Other Utilities
 
-- [confluent docker images references](https://docs.confluent.io/platform/current/installation/docker/image-reference.html)
-- [confluent versions interoperability](https://docs.confluent.io/platform/current/installation/versions-interoperability.html)
-- [confluent free courses](https://developer.confluent.io/learn-kafka/)
+- [curl](https://curl.se/)
+- [jq](https://stedolan.github.io/jq/)
+- [lazydocker](https://github.com/jesseduffield/lazydocker#installation)
 
 ## Get Started
 
@@ -123,6 +131,18 @@ To permanently add the alias to your shell (`~/.bashrc` or `~/.zshrc` file):
 
 ```bash
 echo "alias nosql-populate='$PWD/nosql-populate/build/install/nosql-populate/bin/nosql-populate '" >> ~/.zshrc
+```
+
+#### Portainer
+
+It's a docker web UI that allows you to manage your docker containers.
+
+- [portainer](https://documentation.portainer.io/v2.0/deploy/ceinstalldocker/)
+- project location: [docker-portainer](docker-portainer)
+
+```bash
+cd docker-portainer
+docker-compose up -d
 ```
 
 ## Kafka Components
