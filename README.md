@@ -364,16 +364,17 @@ It offers a streamlined method for creating applications and microservices that 
 | - | - | - |
 | AKKQ | localhost | [8080](http://localhost:8080/) |
 | Adminer | localhost | [9090](http://localhost:9090/) |
+| Mongo Express | localhost | [7070](http://localhost:7070/) |
 | Portainer | localhost | [9000](http://localhost:9000/) |
 | - | - | - |
 | Portainer Tunnel | portainer | 8000 |
 | Portainer Agent | portainer-agent | 9001 |
 | - | - | - |
 | MySQL | mysql | 3306 |
-| MySQL | localhost | 3306 |
 | PostgreSQL | postgres | 5432 |
-| PostgreSQL | localhost | 5432 |
 | MongoDB | mongo | 27017 |
+| MySQL | localhost | 3306 |
+| PostgreSQL | localhost | 5432 |
 | MongoDB | localhost | 27017 |
 | - | - | - |
 | Kafka 1 | kafka1 | 19092 |
