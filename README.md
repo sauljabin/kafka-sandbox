@@ -46,19 +46,19 @@ It is a collection of tools to interact with kafka cluster through the terminal.
 - [confluent community tools](https://docs.confluent.io/platform/current/installation/installing_cp/zip-tar.html)
 - project location: [kafka-cli](kafka-cli)
 
-**Create a alias for `kafka-cli`:**
+Create an alias for `kafka-cli`:
 
 ```bash
 alias kafka-cli='docker run --rm -it --network kafka-sandbox_network kafka-cli:latest '
 ```
 
-**To permanently add the alias to your shell (`~/.bashrc` or `~/.zshrc` file):**
+To permanently add the alias to your shell (`~/.bashrc` or `~/.zshrc` file):
 
 ```bash
 echo "alias kafka-cli='docker run --rm -it --network kafka-sandbox_network kafka-cli:latest '" >> ~/.zshrc
 ```
 
-**Create the docker image:**
+Create the docker image:
 
 ```bash
 cd kafka-cli
@@ -78,30 +78,44 @@ Create a MySQL and PostgresSQL instance and a database.
 - mysql port: `3306`
 - adminer port: `9090` ([open it in the web browser](http://localhost:9090/))
 
+Run MySQL, PostgresSQL and Adminer:
+
 ```bash
 cd sql-database
 docker-compose up -d
 ```
 
-#### SQL Populate DB:
+#### SQL Populate Database:
 
 This tool helps to populate either a MySQL or PostgresSQL database with random customers.
 This is an ancillary project that can help us to set different scenarios.
 
 - project location: [sql-populate](sql-populate)
 
+Create an alias for `sql-populate`:
+
 ```bash
 alias sql-populate="$PWD/sql-populate/build/install/sql-populate/bin/sql-populate "
-
-./gradlew sql-populate:install
-sql-populate --url "jdbc:mysql://localhost:3306/sandbox" --user "root" --password "notasecret" 100
-sql-populate --url "jdbc:postgresql://localhost:5432/sandbox" --user "postgres" --password "notasecret" 100
 ```
 
 To permanently add the alias to your shell (`~/.bashrc` or `~/.zshrc` file):
 
 ```bash
 echo "alias sql-populate='$PWD/sql-populate/build/install/sql-populate/bin/sql-populate '" >> ~/.zshrc
+```
+
+Install the app:
+
+```bash
+./gradlew sql-populate:install
+sql-populate
+```
+
+Examples:
+
+```bash
+sql-populate --url "jdbc:mysql://localhost:3306/sandbox" --user "root" --password "notasecret" 100
+sql-populate --url "jdbc:postgresql://localhost:5432/sandbox" --user "postgres" --password "notasecret" 100
 ```
 
 #### NoSQL Database:
@@ -114,29 +128,43 @@ Create a MongoDB instance and a database.
 - mongo port: `27017`
 - mongo express port: `7070` ([open it in the web browser](http://localhost:7070/))
 
+Run MongoDB and Mongo Express:
+
 ```bash
 cd nosql-database
 docker-compose up -d
 ```
 
-#### NoSQL Populate DB:
+#### NoSQL Populate Database:
 
 This tool helps to populate MongoDB with random customers.
 This is an ancillary project that can help us to set different scenarios.
 
 - project location: [nosql-populate](nosql-populate)
 
+Create an alias for `nosql-populate`:
+
 ```bash
 alias nosql-populate="$PWD/nosql-populate/build/install/nosql-populate/bin/nosql-populate "
-
-./gradlew nosql-populate:install
-nosql-populate --url "mongodb://root:notasecret@localhost:27017" -d "sandbox" 100
 ```
 
 To permanently add the alias to your shell (`~/.bashrc` or `~/.zshrc` file):
 
 ```bash
 echo "alias nosql-populate='$PWD/nosql-populate/build/install/nosql-populate/bin/nosql-populate '" >> ~/.zshrc
+```
+
+Install the app:
+
+```bash
+./gradlew nosql-populate:install
+nosql-populate
+```
+
+Example:
+
+```bash
+nosql-populate --url "mongodb://root:notasecret@localhost:27017" -d "sandbox" 100
 ```
 
 #### Portainer
@@ -146,6 +174,8 @@ It's a docker web UI that allows you to manage your docker containers.
 - [portainer](https://documentation.portainer.io/v2.0/deploy/ceinstalldocker/)
 - project location: [docker-portainer](docker-portainer)
 - portainer port: `9000` ([open it in the web browser](http://localhost:9000/))
+
+Run Portainer:
 
 ```bash
 cd docker-portainer
@@ -167,6 +197,8 @@ A three node kafka cluster.
 - kafka ports: `19093`, `29093`, `39093`
 - zookeeper ports: `12181`, `22181`, `32181`
 
+Run Kafka and Zookeeper:
+
 ```bash
 cd kafka-cluster
 docker-compose up -d
@@ -182,6 +214,8 @@ UI for managing kafka cluster.
 - project location: [kafka-akhq](kafka-akhq)
 - akhq port: `8080` ([open it in the web browser](http://localhost:8080/))
 
+Run AKHQ:
+
 ```bash
 cd kafka-akhq
 docker-compose up -d
@@ -195,6 +229,8 @@ It provides a RESTful interface for storing and retrieving your Avro, JSON Schem
 - [schema registry settings](https://docs.confluent.io/platform/current/schema-registry/installation/config.html)
 - project location: [kafka-schema-registry](kafka-schema-registry)
 - schema registry port: `8081`
+
+Run Schema Registry:
 
 ```bash
 cd kafka-schema-registry
@@ -212,12 +248,54 @@ The Kafka REST Proxy provides a RESTful interface to a Kafka cluster.
 - project location: [kafka-rest](kafka-rest)
 - kafka rest port: `8083`
 
+Run Kafka REST Proxy:
+
 ```bash
 cd kafka-rest
 docker-compose up -d
 http :8083
+```
+
+Create topics:
+
+```bash
 http :8083/topics/kafka-rest.test Content-Type:application/vnd.kafka.json.v2+json records:='[{ "key": "test", "value": "test" }]'
 http :8083/topics/kafka-rest.users Content-Type:application/vnd.kafka.avro.v2+json < kafka-rest-produce-message-avro-payload.json
+```
+
+#### Kafka Connect:
+
+It makes it simple to quickly define connectors that move large data sets into and out of Kafka.
+
+- [connect](https://docs.confluent.io/current/connect/index.html)
+- [connect settings](https://docs.confluent.io/platform/current/installation/configuration/connect/index.html)
+- [connect api reference](https://docs.confluent.io/platform/current/connect/references/restapi.html)
+- [jdbc connector plugin](https://www.confluent.io/hub/confluentinc/kafka-connect-jdbc)
+- [mongo connector plugin](https://www.confluent.io/hub/mongodb/kafka-connect-mongodb)
+- project location: [kafka-connect](kafka-connect)
+- connect port: `8082`
+
+Run Kafka Connect:
+
+```bash
+cd kafka-connect
+docker-compose up -d
+http :8082
+```
+
+Create connectors:
+
+```bash
+http :8082/connectors < connectors/mysql-source-create-connector-payload.json
+http :8082/connectors < connectors/mongo-sink-create-connector-payload.json
+```
+
+Populate the databases:
+
+```bash
+sql-populate --url "jdbc:mysql://localhost:3306/sandbox" --user "root" --password "notasecret" 100
+sql-populate --url "jdbc:postgresql://localhost:5432/sandbox" --user "postgres" --password "notasecret" 100
+nosql-populate --url "mongodb://root:notasecret@localhost:27017" -d "sandbox" 100
 ```
 
 #### Kafka ksqlDB:
@@ -233,19 +311,25 @@ ksqlDB is a database that's purpose-built for stream processing applications.
 - extensions location: [kafka-ksqldb-extensions/extensions](kafka-ksqldb-extensions/extensions)
 - ksqldb port: `8088`
 
+Create an alias for `ksqldb-cli`:
+
 ```bash
 alias ksqldb-cli="docker run --rm -it --network kafka-sandbox_network --workdir /ksqldb -v $PWD/kafka-ksqldb/tests:/ksqldb/tests -v $PWD/kafka-ksqldb/statements:/ksqldb/statements -v $PWD/kafka-ksqldb-extensions/extensions:/ksqldb/extensions kafka-cli:latest "
-
-cd kafka-ksqldb
-docker-compose up -d
-http :8088/info
-ksqldb-cli ksql -e "SHOW STREAMS;" http://ksqldb:8088
 ```
 
 To permanently add the alias to your shell (`~/.bashrc` or `~/.zshrc` file):
 
 ```bash
 echo "alias ksqldb-cli='docker run --rm -it --network kafka-sandbox_network --workdir /ksqldb -v $PWD/kafka-ksqldb/tests:/ksqldb/tests -v $PWD/kafka-ksqldb/statements:/ksqldb/statements -v $PWD/kafka-ksqldb-extensions/extensions:/ksqldb/extensions kafka-cli:latest '" >> ~/.zshrc
+```
+
+Run ksqlDB:
+
+```bash
+cd kafka-ksqldb
+docker-compose up -d
+http :8088/info
+ksqldb-cli ksql -e "SHOW STREAMS;" http://ksqldb:8088
 ```
 
 Test runner:
@@ -287,34 +371,6 @@ For creating the `jar` extension, you can use the following command (development
 ./gradlew kafka-ksqldb-extensions:shadowJar
 ```
 
-#### Kafka Connect:
-
-It makes it simple to quickly define connectors that move large data sets into and out of Kafka.
-
-- [connect](https://docs.confluent.io/current/connect/index.html)
-- [connect settings](https://docs.confluent.io/platform/current/installation/configuration/connect/index.html)
-- [connect api reference](https://docs.confluent.io/platform/current/connect/references/restapi.html)
-- [jdbc connector plugin](https://www.confluent.io/hub/confluentinc/kafka-connect-jdbc)
-- [mongo connector plugin](https://www.confluent.io/hub/mongodb/kafka-connect-mongodb)
-- project location: [kafka-connect](kafka-connect)
-- connect port: `8082`
-
-```bash
-cd kafka-connect
-docker-compose up -d
-http :8082
-http :8082/connectors < connectors/mysql-source-create-connector-payload.json
-http :8082/connectors < connectors/mongo-sink-create-connector-payload.json
-```
-
-Populate the databases:
-
-```bash
-sql-populate --url "jdbc:mysql://localhost:3306/sandbox" --user "root" --password "notasecret" 100
-sql-populate --url "jdbc:postgresql://localhost:5432/sandbox" --user "postgres" --password "notasecret" 100
-nosql-populate --url "mongodb://root:notasecret@localhost:27017" -d "sandbox" 100
-```
-
 #### Kafka Clients - Avro Producer and Consumer:
 
 Java examples for producing and consuming messages from Kafka.
@@ -326,19 +382,30 @@ The producer example produces random suppliers.
 - [kafka producer settings](https://docs.confluent.io/platform/current/installation/configuration/producer-configs.html)
 - project location: [kafka-clients](kafka-clients)
 
+Create an alias for `kafka-clients`:
+
 ```bash
 alias kafka-clients="$PWD/kafka-clients/build/install/kafka-clients/bin/kafka-clients "
-
-kafka-cli kafka-topics --create --bootstrap-server kafka1:19092 --replication-factor 3 --partitions 3 --topic kafka-clients.suppliers
-./gradlew kafka-clients:install
-kafka-clients producer 100
-kafka-clients consumer
 ```
 
 To permanently add the alias to your shell (`~/.bashrc` or `~/.zshrc` file):
 
 ```bash
 echo "alias kafka-clients='$PWD/kafka-clients/build/install/kafka-clients/bin/kafka-clients '" >> ~/.zshrc
+```
+
+Install the app:
+
+```bash
+kafka-cli kafka-topics --create --bootstrap-server kafka1:19092 --replication-factor 3 --partitions 3 --topic kafka-clients.suppliers
+./gradlew kafka-clients:install
+```
+
+Run clients:
+
+```bash
+kafka-clients producer 100
+kafka-clients consumer
 ```
 
 For creating a AVRO schema, you can use the following command (development purposes):
@@ -367,14 +434,14 @@ http :8585/actuator/health
 http :8585/produce messages==10
 ```
 
-#### Kafka Streams
+#### Kafka Clients - Streams:
 
 Kafka Streams is a client library providing organizations with a particularly efficient framework for processing streaming data. 
 It offers a streamlined method for creating applications and microservices that must process data in real-time to be effective.
 
 - [kafka streams](https://kafka.apache.org/documentation/streams/)
 - [kafka streams examples](https://github.com/confluentinc/kafka-streams-examples)
-- - project location: [kafka-streams](kafka-streams)
+- project location: [kafka-streams](kafka-streams)
 
 ## Ports Table
 
