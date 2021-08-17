@@ -60,20 +60,20 @@ To permanently add the alias to your shell (`~/.bashrc` or `~/.zshrc` file):
 echo "alias kafka-cli='docker run -it --network kafka-sandbox_network kafka-cli:latest '" >> ~/.zshrc
 ```
 
-#### SQL Server:
+#### SQL Database:
 
-Create a SQL (MySQL or PostgresSQL) server instance and a database.
+Create a MySQL and PostgresSQL instance and a database.
 
 - [mysql](https://hub.docker.com/_/mysql)
 - [postgres](https://hub.docker.com/_/postgres)
 - [adminer](https://hub.docker.com/_/adminer)
-- project location: [sql-server](sql-server)
+- project location: [sql-database](sql-database)
 - postgres port: `5432`
 - mysql port: `3306`
 - adminer port: `9090` ([open it in the web browser](http://localhost:9090/))
 
 ```bash
-cd sql-server
+cd sql-database
 docker-compose up -d
 ```
 
@@ -98,18 +98,18 @@ To permanently add the alias to your shell (`~/.bashrc` or `~/.zshrc` file):
 echo "alias sql-populate='$PWD/sql-populate/build/install/sql-populate/bin/sql-populate '" >> ~/.zshrc
 ```
 
-#### NoSQL Server:
+#### NoSQL Database:
 
-Create a NoSQL (MongoDB) server instance and a database.
+Create a MongoDB instance and a database.
 
 - [mongo](https://hub.docker.com/_/mongo)
 - [mongo express](https://hub.docker.com/_/mongo-express)
-- project location: [nosql-server](nosql-server)
+- project location: [nosql-database](nosql-database)
 - mongo port: `27017`
 - mongo express port: `7070` ([open it in the web browser](http://localhost:7070/))
 
 ```bash
-cd nosql-server
+cd nosql-database
 docker-compose up -d
 ```
 
