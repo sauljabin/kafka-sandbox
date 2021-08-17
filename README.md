@@ -27,8 +27,6 @@ It does not include security since it is not a production system.
 
 ## Get Started
 
-You can start by cloning the repository and running the following commands:
-
 Create a docker network:
 
 ```bash
