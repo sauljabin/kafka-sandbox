@@ -27,13 +27,29 @@ It does not include security since it is not a production system.
 
 ## Get Started
 
-Creating a network and running the kafka cluster:
+You can start by cloning the repository and running the following commands:
+
+Create a docker network:
 
 ```bash
 docker network create kafka-sandbox_network
+```
+
+Run the kafka cluster:
+
+```bash
 cd kafka-cluster
 docker-compose up -d
 ```
+
+Run AKHQ:
+
+```bash
+cd kafka-akhq
+docker-compose up -d
+```
+
+Open AKHQ at [http://localhost:8080/](http://localhost:8080/)
 
 ## Tools
 
