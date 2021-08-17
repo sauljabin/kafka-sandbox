@@ -438,6 +438,8 @@ For creating a AVRO schema, you can use the following command (development purpo
 Kafka Streams is a client library providing organizations with a particularly efficient framework for processing streaming data.
 It offers a streamlined method for creating applications and microservices that must process data in real-time to be effective.
 
+Check the [Kafka Clients - Avro Producer and Consumer](#kafka-clients---avro-producer-and-consumer)
+
 - [kafka streams](https://kafka.apache.org/documentation/streams/)
 - [kafka streams examples](https://github.com/confluentinc/kafka-streams-examples)
 - project location: [kafka-clients](kafka-clients)
