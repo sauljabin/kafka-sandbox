@@ -6,7 +6,7 @@
     "connection.url": "jdbc:postgresql://postgres:5432/sandbox",
     "connection.user": "postgres",
     "connection.password": "notasecret",
-    "delete.enabled": true,
+    "delete.enabled": false,
     "pk.mode": "record_key",
     "pk.key": "id",
     "insert.mode": "upsert",
