@@ -465,7 +465,8 @@ kafka-clients streams
 Print results:
 
 ```bash
-kafka-cli kafka-console-consumer --topic kafka-streams.supplier_counts_by_country --from-beginning \
+kafka-cli kafka-console-consumer --from-beginning --group kafka-streams.consumer \
+                                 --topic kafka-streams.supplier_counts_by_country  \
                                  --bootstrap-server kafka1:9092 \
                                  --property print.key=true \
                                  --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
