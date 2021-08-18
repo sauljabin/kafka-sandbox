@@ -508,24 +508,24 @@ http :8585/produce messages==10
 | Portainer Agent | portainer-agent | 9001 |
 | - | - | - |
 | MySQL | mysql | 3306 |
-| PostgreSQL | postgres | 5432 |
-| MongoDB | mongo | 27017 |
 | MySQL | localhost | 3306 |
+| PostgreSQL | postgres | 5432 |
 | PostgreSQL | localhost | 5432 |
+| MongoDB | mongo | 27017 |
 | MongoDB | localhost | 27017 |
 | - | - | - |
 | Kafka 1 | kafka1 | 9092 |
-| Kafka 2 | kafka2 | 9092 |
-| Kafka 3 | kafka3 | 9092 |
 | Kafka 1 | localhost | 19093 |
+| Kafka 2 | kafka2 | 9092 |
 | Kafka 2 | localhost | 29093 |
+| Kafka 3 | kafka3 | 9092 |
 | Kafka 3 | localhost | 39093 |
 | - | - | - |
 | Zookeeper 1 | zookeeper1 | 2181 |
-| Zookeeper 2 | zookeeper2 | 2181 |
-| Zookeeper 3 | zookeeper3 | 2181 |
 | Zookeeper 1 | localhost | 12181 |
+| Zookeeper 2 | zookeeper2 | 2181 |
 | Zookeeper 2 | localhost | 22181 |
+| Zookeeper 3 | zookeeper3 | 2181 |
 | Zookeeper 3 | localhost | 32181 |
 | - | - | - |
 | Schema Registry | schema-registry | 8081 |
