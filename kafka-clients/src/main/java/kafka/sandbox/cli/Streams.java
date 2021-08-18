@@ -39,7 +39,7 @@ public class Streams implements Callable<Integer> {
         // read from suppliers topic
         KStream<String, Supplier> suppliers = builder.stream(TOPIC_FROM);
 
-        // aggregate the new supplier counts of by country
+        // aggregate the new supplier counts by country
         KTable<String, Long> aggregated = suppliers
                 // map the country as key
                 .map((key, value) -> new KeyValue<>(value.getCountry(), value))
@@ -51,7 +51,7 @@ public class Streams implements Callable<Integer> {
                 (key, value) -> log.info("Country = {}, Total supplier counts = {}", key, value)
         );
 
-        // write to the result topic, need to override serdes
+        // write the results to a topic
         aggregated.toStream().to(TOPIC_TO, Produced.with(stringSerde, longSerde));
 
         KafkaStreams streams = new KafkaStreams(builder.build(), props);
