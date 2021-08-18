@@ -5,7 +5,7 @@ services:
     image: confluentinc/cp-kafka-rest:6.2.0
     environment:
       TZ: America/Guayaquil
-      KAFKA_REST_BOOTSTRAP_SERVERS: PLAINTEXT://kafka1:19092,PLAINTEXT://kafka2:29092,PLAINTEXT://kafka3:39092
+      KAFKA_REST_BOOTSTRAP_SERVERS: PLAINTEXT://kafka1:9092,PLAINTEXT://kafka2:9092,PLAINTEXT://kafka3:9092
       KAFKA_REST_SCHEMA_REGISTRY_URL: http://schema-registry:8081
     ports:
       - 8083:8082

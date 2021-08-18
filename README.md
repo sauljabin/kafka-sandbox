@@ -216,7 +216,7 @@ Run Kafka and Zookeeper:
 ```bash
 cd kafka-cluster
 docker-compose up -d
-kafka-cli kafka-topics --bootstrap-server kafka1:19092 --list
+kafka-cli kafka-topics --bootstrap-server kafka1:9092 --list
 ```
 
 #### Kafka AKHQ:
@@ -354,7 +354,10 @@ ksqldb-cli ksql -e "SHOW STREAMS;" http://ksqldb:8088
 Test runner:
 
 ```bash
-ksqldb-cli ksql-test-runner -e extensions/ -s statements/create-orders.ksql -i tests/orders-input.json -o tests/orders-output.json | grep '>>>'
+ksqldb-cli ksql-test-runner -e extensions/ \
+                            -s statements/create-orders.ksql \
+                            -i tests/orders-input.json \
+                            -o tests/orders-output.json | grep '>>>'
 ```
 
 Execute statement files:
@@ -413,11 +416,20 @@ To permanently add the alias to your shell (`~/.bashrc` or `~/.zshrc` file):
 echo "alias kafka-clients='$PWD/kafka-clients/build/install/kafka-clients/bin/kafka-clients '" >> ~/.zshrc
 ```
 
+Create a topic:
+
+```bash
+kafka-cli kafka-topics --create --bootstrap-server kafka1:9092 \
+                       --replication-factor 3 \
+                       --partitions 3 \
+                       --topic kafka-clients.suppliers
+```
+
 Install the app:
 
 ```bash
-kafka-cli kafka-topics --create --bootstrap-server kafka1:19092 --replication-factor 3 --partitions 3 --topic kafka-clients.suppliers
 ./gradlew kafka-clients:install
+kafka-clients
 ```
 
 Run clients:
@@ -454,7 +466,7 @@ Print results:
 
 ```bash
 kafka-cli kafka-console-consumer --topic kafka-streams.supplier_counts_by_country --from-beginning \
-                                 --bootstrap-server kafka1:19092 \
+                                 --bootstrap-server kafka1:9092 \
                                  --property print.key=true \
                                  --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
 ```
@@ -498,16 +510,16 @@ http :8585/produce messages==10
 | PostgreSQL | localhost | 5432 |
 | MongoDB | localhost | 27017 |
 | - | - | - |
-| Kafka 1 | kafka1 | 19092 |
-| Kafka 2 | kafka2 | 29092 |
-| Kafka 3 | kafka3 | 39092 |
+| Kafka 1 | kafka1 | 9092 |
+| Kafka 2 | kafka2 | 9092 |
+| Kafka 3 | kafka3 | 9092 |
 | Kafka 1 | localhost | 19093 |
 | Kafka 2 | localhost | 29093 |
 | Kafka 3 | localhost | 39093 |
 | - | - | - |
-| Zookeeper 1 | zookeeper1 | 12181 |
-| Zookeeper 2 | zookeeper2 | 22181 |
-| Zookeeper 3 | zookeeper3 | 32181 |
+| Zookeeper 1 | zookeeper1 | 2181 |
+| Zookeeper 2 | zookeeper2 | 2181 |
+| Zookeeper 3 | zookeeper3 | 2181 |
 | Zookeeper 1 | localhost | 12181 |
 | Zookeeper 2 | localhost | 22181 |
 | Zookeeper 3 | localhost | 32181 |
