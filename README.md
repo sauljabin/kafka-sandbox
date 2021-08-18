@@ -288,7 +288,6 @@ It makes it simple to quickly define connectors that move large data sets into a
 - [connect api reference](https://docs.confluent.io/platform/current/connect/references/restapi.html)
 - [jdbc connector plugin](https://www.confluent.io/hub/confluentinc/kafka-connect-jdbc)
 - [mongo connector plugin](https://www.confluent.io/hub/mongodb/kafka-connect-mongodb)
-- [debezium connector postgresql plugin](https://www.confluent.io/hub/debezium/debezium-connector-postgresql)
 - project location: [kafka-connect](kafka-connect)
 - plugins location: [kafka-connect/plugins](kafka-connect/plugins)
 - requests location: [kafka-connect/requests](kafka-connect/requests)
