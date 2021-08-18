@@ -1,0 +1,20 @@
+{
+  "name": "postgres-sink",
+  "config": {
+    "tasks.max": "1",
+    "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+    "connection.url": "jdbc:postgresql://postgres:5432/sandbox",
+    "connection.user": "postgres",
+    "connection.password": "notasecret",
+    "delete.enabled": true,
+    "pk.mode": "record_key",
+    "pk.key": "id",
+    "insert.mode": "upsert",
+    "auto.create": true,
+    "topics": "kafka-connect.customers",
+    "transforms": "dropPrefix",
+    "transforms.dropPrefix.type": "org.apache.kafka.connect.transforms.RegexRouter",
+    "transforms.dropPrefix.regex": "kafka-connect\\.(.*)",
+    "transforms.dropPrefix.replacement": "$1"
+  }
+}

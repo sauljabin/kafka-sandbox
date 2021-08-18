@@ -9,6 +9,9 @@
     "connection.password": "notasecret",
     "mode": "timestamp",
     "timestamp.column.name": "created",
-    "topic.prefix": "kafka-connect."
+    "topic.prefix": "kafka-connect.",
+    "transforms": "createKey",
+    "transforms.createKey.type": "org.apache.kafka.connect.transforms.ValueToKey",
+    "transforms.createKey.fields": "id"
   }
 }
