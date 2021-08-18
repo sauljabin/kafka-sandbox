@@ -249,7 +249,7 @@ Run Schema Registry:
 ```bash
 cd kafka-schema-registry
 docker-compose up -d
-http :8081
+http :8081/config
 ```
 
 #### Kafka REST Proxy:
@@ -268,7 +268,7 @@ Run Kafka REST Proxy:
 ```bash
 cd kafka-rest
 docker-compose up -d
-http :8083
+http :8083/brokers
 ```
 
 Create topics:
@@ -387,6 +387,8 @@ ksqlDB is a database that's purpose-built for stream processing applications.
 
 - [ksqldb extensions (udf, udtf, udaf)](https://docs.ksqldb.io/en/latest/how-to-guides/create-a-user-defined-function)
 - project location: [kafka-ksqldb-extensions](kafka-ksqldb-extensions)
+
+Check the [Kafka ksqlDB](#kafka-ksqldb) section.
 
 For creating the `jar` extension, you can use the following command (development purposes):
 
