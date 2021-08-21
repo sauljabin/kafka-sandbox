@@ -389,7 +389,7 @@ SHOW STREAMS;
 
 #### Kafka ksqlDB - Extensions:
 
-ksqlDB is a database that's purpose-built for stream processing applications.
+ksqlDB extensions are pieces of logic for transforming or aggregating events that ksqlDB can't currently express.
 
 - [ksqldb extensions (udf, udtf, udaf)](https://docs.ksqldb.io/en/latest/how-to-guides/create-a-user-defined-function)
 - project location: [kafka-ksqldb-extensions](kafka-ksqldb-extensions)
