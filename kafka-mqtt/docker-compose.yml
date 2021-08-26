@@ -1,0 +1,17 @@
+version: '3.9'
+
+services: 
+  kafka-mqtt:
+    image: confluentinc/cp-kafka-mqtt:6.2.0
+    environment:
+      TZ: America/Guayaquil
+      KAFKA_MQTT_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092,kafka3:9092
+      KAFKA_MQTT_TOPIC_REGEX_LIST: kafka-mqtt.temperature:.*temperature
+    ports:
+      - 1883:1883
+    restart: on-failure
+
+networks:
+  default:
+    external: true
+    name: kafka-sandbox_network

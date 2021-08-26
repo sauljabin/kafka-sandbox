@@ -256,6 +256,8 @@ http :8081/config
 
 The Kafka REST Proxy provides a RESTful interface to a Kafka cluster.
 
+> Careful. Use this when you really need a rest interface since it is usually more complex than using conventional kafka clients.
+
 - [kafka rest](https://docs.confluent.io/platform/current/kafka-rest/index.html)
 - [kafka rest settings](https://docs.confluent.io/platform/current/kafka-rest/production-deployment/rest-proxy/config.html)
 - [kafka rest api reference](https://docs.confluent.io/platform/current/kafka-rest/api.html)
@@ -277,6 +279,51 @@ Create topics:
 cd kafka-rest
 http :8083/topics/kafka-rest.test Content-Type:application/vnd.kafka.json.v2+json records:='[{ "key": "test", "value": "test" }]'
 http :8083/topics/kafka-rest.users Content-Type:application/vnd.kafka.avro.v2+json < requests/produce-avro-message.json
+```
+
+#### Kafka MQTT Proxy:
+
+MQTT Proxy enables MQTT clients to use the MQTT 3.1.1 protocol to publish data directly to Apache Kafka.
+
+> Careful. This does not convert kafka into a MQTT broker, this aims to provide a simple way to publish/persist IoT data to Kafka.
+
+- [kafka mqtt](https://docs.confluent.io/platform/current/kafka-mqtt/intro.html)
+- [kafka mqtt settings](https://docs.confluent.io/platform/current/kafka-mqtt/configuration_options.html)
+- project location: [kafka-mqtt](kafka-mqtt)
+- kafka mqtt tcp port: `1883`
+
+Create an alias for `mqtt-cli`:
+
+```bash
+alias mqtt-cli='docker run --rm -it --network kafka-sandbox_network hivemq/mqtt-cli:latest '
+```
+
+To permanently add the alias to your shell (`~/.bashrc` or `~/.zshrc` file):
+
+```bash
+echo "alias mqtt-cli='docker run --rm -it --network kafka-sandbox_network hivemq/mqtt-cli:latest '" >> ~/.zshrc
+```
+
+Run Kafka MQTT Proxy:
+
+```bash
+cd kafka-mqtt
+docker-compose up -d
+```
+
+Publish a message:
+
+```bash
+mqtt-cli pub -h kafka-mqtt -t 'house/room/temperature' -m '20C'
+```
+
+Cosuming the data:
+
+```bash
+kafka-cli kafka-console-consumer --from-beginning --group kafka-mqtt.consumer \
+                                 --topic kafka-mqtt.temperature  \
+                                 --bootstrap-server kafka1:9092 \
+                                 --property print.key=true
 ```
 
 #### Kafka Connect:
@@ -327,6 +374,8 @@ http DELETE :8082/connectors/mysql-source
 #### Kafka ksqlDB:
 
 ksqlDB is a database that's purpose-built for stream processing applications.
+
+> Careful. ksqlDB is not a database. It's a tool for stream processing applications.
 
 - [ksqldb](https://ksqldb.io/)
 - [ksqldb settings](https://docs.ksqldb.io/en/latest/reference/server-configuration/)
@@ -542,6 +591,9 @@ http :8585/produce messages==10
 | - | - | - |
 | Kafka REST | kafka-rest | 8083 |
 | Kafka REST | localhost | 8083 |
+| - | - | - |
+| Kafka MQTT | kafka-mqtt | 1883 |
+| Kafka MQTT | localhost | 1883 |
 | - | - | - |
 | ksqlDB | ksqldb | 8088 |
 | ksqlDB | localhost | 8088 |
