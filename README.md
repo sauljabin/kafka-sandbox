@@ -181,6 +181,46 @@ Example:
 nosql-populate --url "mongodb://root:notasecret@localhost:27017" -d "sandbox" 100
 ```
 
+#### MQTT Client
+
+MQTT collection of tools to interact with MQTT broker.
+
+- [mqtt-cli](https://hivemq.github.io/mqtt-cli/)
+
+Create an alias for `mqtt-cli`:
+
+```bash
+alias mqtt-cli='docker run --rm -it --network kafka-sandbox_network hivemq/mqtt-cli:latest '
+```
+
+To permanently add the alias to your shell (`~/.bashrc` or `~/.zshrc` file):
+
+```bash
+echo "alias mqtt-cli='docker run --rm -it --network kafka-sandbox_network hivemq/mqtt-cli:latest '" >> ~/.zshrc
+```
+
+Test the cli:
+
+```bash
+mqtt-cli
+```
+
+#### MQTT Broker
+
+Eclipse Mosquitto is an open source (EPL/EDL licensed) message broker that implements the MQTT protocol versions 5.0, 3.1.1 and 3.1. Mosquitto is lightweight and is suitable for use on all devices from low power single board computers to full servers.
+
+- [mosquitto](https://mosquitto.org/)
+- project location: [mqtt-broker](mqtt-broker)
+- mosquitto port: `1883`
+
+Run Mosquitto:
+
+```bash
+cd mqtt-broker
+docker-compose up -d
+mqtt-cli test -h mosquitto -p 1883
+```
+
 #### Portainer
 
 It's a docker web UI that allows you to manage your docker containers.
@@ -293,18 +333,6 @@ MQTT Proxy enables MQTT clients to use the MQTT 3.1.1 protocol to publish data d
 - [kafka mqtt settings](https://docs.confluent.io/platform/current/kafka-mqtt/configuration_options.html)
 - project location: [kafka-mqtt](kafka-mqtt)
 - kafka mqtt tcp port: `1884`
-
-Create an alias for `mqtt-cli`:
-
-```bash
-alias mqtt-cli='docker run --rm -it --network kafka-sandbox_network hivemq/mqtt-cli:latest '
-```
-
-To permanently add the alias to your shell (`~/.bashrc` or `~/.zshrc` file):
-
-```bash
-echo "alias mqtt-cli='docker run --rm -it --network kafka-sandbox_network hivemq/mqtt-cli:latest '" >> ~/.zshrc
-```
 
 Run Kafka MQTT Proxy:
 
