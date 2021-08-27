@@ -11,7 +11,7 @@ services:
       - 3306:3306
     restart: on-failure
     volumes:
-      - mysql_data:/var/lib/mysql:rw
+      - mysql_data:/var/lib/mysql
 
   postgres:
     image: postgres:13
@@ -23,7 +23,7 @@ services:
       - 5432:5432
     restart: on-failure
     volumes:
-      - postgres_data:/var/lib/postgresql/data:rw
+      - postgres_data:/var/lib/postgresql/data
 
   adminer:
     image: adminer:4

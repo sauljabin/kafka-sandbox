@@ -189,6 +189,8 @@ It's a docker web UI that allows you to manage your docker containers.
 - project location: [docker-portainer](docker-portainer)
 - portainer port: `9000` ([open it in the web browser](http://localhost:9000/))
 
+> User: `admin` and password: `notasecret`.
+
 Run Portainer:
 
 ```bash
@@ -290,7 +292,7 @@ MQTT Proxy enables MQTT clients to use the MQTT 3.1.1 protocol to publish data d
 - [kafka mqtt](https://docs.confluent.io/platform/current/kafka-mqtt/intro.html)
 - [kafka mqtt settings](https://docs.confluent.io/platform/current/kafka-mqtt/configuration_options.html)
 - project location: [kafka-mqtt](kafka-mqtt)
-- kafka mqtt tcp port: `1883`
+- kafka mqtt tcp port: `1884`
 
 Create an alias for `mqtt-cli`:
 
@@ -314,7 +316,7 @@ docker-compose up -d
 Publish a message:
 
 ```bash
-mqtt-cli pub -h kafka-mqtt -t 'house/room/temperature' -m '20C'
+mqtt-cli pub -h kafka-mqtt -p 1884 -t 'house/room/temperature' -m '20C'
 ```
 
 Cosuming the data:
@@ -592,8 +594,8 @@ http :8585/produce messages==10
 | Kafka REST | kafka-rest | 8083 |
 | Kafka REST | localhost | 8083 |
 | - | - | - |
-| Kafka MQTT | kafka-mqtt | 1883 |
-| Kafka MQTT | localhost | 1883 |
+| Kafka MQTT | kafka-mqtt | 1884 |
+| Kafka MQTT | localhost | 1884 |
 | - | - | - |
 | ksqlDB | ksqldb | 8088 |
 | ksqlDB | localhost | 8088 |

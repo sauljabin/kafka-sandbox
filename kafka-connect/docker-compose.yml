@@ -21,7 +21,7 @@ services:
       - 8082:8082
     restart: on-failure
     volumes:
-      - ./plugins:/usr/local/share/kafka/plugins:rw
+      - ./plugins:/usr/local/share/kafka/plugins
 
 networks:
   default:
