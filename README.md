@@ -298,7 +298,7 @@ http :8081/config
 
 The Kafka REST Proxy provides a RESTful interface to a Kafka cluster.
 
-> Careful. Use this when you really need a rest interface since it is usually more complex than using conventional kafka clients.
+> Use this when you really need a rest interface since it is usually more complex than using conventional kafka clients.
 
 - [kafka rest](https://docs.confluent.io/platform/current/kafka-rest/index.html)
 - [kafka rest settings](https://docs.confluent.io/platform/current/kafka-rest/production-deployment/rest-proxy/config.html)
@@ -327,7 +327,7 @@ http :8083/topics/kafka-rest.users Content-Type:application/vnd.kafka.avro.v2+js
 
 MQTT Proxy enables MQTT clients to use the MQTT 3.1.1 protocol to publish data directly to Apache Kafka.
 
-> Careful. This does not convert kafka into a MQTT broker, this aims to provide a simple way to publish/persist IoT data to Kafka.
+> This does not convert kafka into a MQTT broker, this aims to provide a simple way to publish/persist IoT data to Kafka.
 
 - [kafka mqtt](https://docs.confluent.io/platform/current/kafka-mqtt/intro.html)
 - [kafka mqtt settings](https://docs.confluent.io/platform/current/kafka-mqtt/configuration_options.html)
@@ -435,7 +435,7 @@ http DELETE :8082/connectors/mqtt-source
 
 ksqlDB is a database that's purpose-built for stream processing applications.
 
-> Careful. ksqlDB is not a database. It's a tool for stream processing applications.
+> ksqlDB is not a database. It's a tool for stream processing applications.
 
 - [ksqldb](https://ksqldb.io/)
 - [ksqldb settings](https://docs.ksqldb.io/en/latest/reference/server-configuration/)
