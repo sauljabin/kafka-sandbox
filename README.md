@@ -380,6 +380,8 @@ http :8082/connector-plugins
 
 #### Database example:
 
+> This example does not support deletion, for that you have to implement tombstone events at the [source](https://debezium.io/documentation/reference/connectors/postgresql.html#postgresql-tombstone-events) and [sink](https://docs.confluent.io/kafka-connect-jdbc/current/sink-connector/index.html#jdbc-sink-delete-mode).
+
 Populate the databases:
 
 ```bash
@@ -425,6 +427,15 @@ mqtt-cli pub -h mosquitto -t 'house/room/brightness' -m '800LM'
 mqtt-cli pub -h mosquitto -t 'house/kitchen/brightness' -m '1000LM'
 ```
 
+Consuming the data:
+
+```bash
+kafka-cli kafka-console-consumer --from-beginning --group kafka-connect.brightness_consumer \
+                                 --topic kafka-connect.brightness  \
+                                 --bootstrap-server kafka1:9092 \
+                                 --property print.key=true
+```
+
 For deleting the connector:
 
 ```bash
@@ -435,7 +446,7 @@ http DELETE :8082/connectors/mqtt-source
 
 ksqlDB is a database that's purpose-built for stream processing applications.
 
-> ksqlDB is not a database. It's a tool for stream processing applications.
+> ksqlDB it is not a SQL database, it provides an extra layer for implementing kstream, ktable and connectors through a language (ksql) based on sql.
 
 - [ksqldb](https://ksqldb.io/)
 - [ksqldb settings](https://docs.ksqldb.io/en/latest/reference/server-configuration/)
