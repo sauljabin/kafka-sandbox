@@ -1,6 +1,6 @@
 version: '3.9'
 
-services: 
+services:
   kafka-rest:
     image: confluentinc/cp-kafka-rest:6.2.0
     environment:

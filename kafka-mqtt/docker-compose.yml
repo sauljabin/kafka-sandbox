@@ -1,6 +1,6 @@
 version: '3.9'
 
-services: 
+services:
   kafka-mqtt:
     image: confluentinc/cp-kafka-mqtt:6.2.0
     environment:
