@@ -181,7 +181,7 @@ Example:
 nosql-populate --url "mongodb://root:notasecret@localhost:27017" -d "sandbox" 100
 ```
 
-#### MQTT Client
+#### MQTT CLI Tools:
 
 MQTT collection of tools to interact with MQTT broker.
 
@@ -205,7 +205,7 @@ Test the cli:
 mqtt-cli
 ```
 
-#### MQTT Broker
+#### MQTT Broker:
 
 Eclipse Mosquitto is an open source (EPL/EDL licensed) message broker that implements the MQTT protocol versions 5.0, 3.1.1 and 3.1. Mosquitto is lightweight and is suitable for use on all devices from low power single board computers to full servers.
 
@@ -218,10 +218,10 @@ Run Mosquitto:
 ```bash
 cd mqtt-broker
 docker-compose up -d
-mqtt-cli test -h mosquitto -p 1883
+mqtt-cli test -h mosquitto
 ```
 
-#### Portainer
+#### Portainer:
 
 It's a docker web UI that allows you to manage your docker containers.
 
@@ -378,7 +378,7 @@ docker-compose up -d
 http :8082/connector-plugins
 ```
 
-##### Databases example:
+**Databases example:**
 
 Populate the databases:
 
@@ -403,12 +403,12 @@ http DELETE :8082/connectors/mongo-sink
 http DELETE :8082/connectors/mysql-source
 ```
 
-##### MQTT example:
+**MQTT example:**
 
 Subscribe messages (for debugging purposes):
 
 ```bash
-mqtt-cli sub -h mosquitto -p 1883 -t 'house/+/brightness'
+mqtt-cli sub -h mosquitto -t 'house/+/brightness'
 ```
 
 Create connector using the API:
@@ -421,8 +421,8 @@ http :8082/connectors < requests/create-connector-mqtt-source.json
 Publish messages:
 
 ```bash
-mqtt-cli pub -h mosquitto -p 1883 -t 'house/room/brightness' -m '800LM'
-mqtt-cli pub -h mosquitto -p 1883 -t 'house/kitchen/brightness' -m '1000LM'
+mqtt-cli pub -h mosquitto -t 'house/room/brightness' -m '800LM'
+mqtt-cli pub -h mosquitto -t 'house/kitchen/brightness' -m '1000LM'
 ```
 
 For deleting the connector:
