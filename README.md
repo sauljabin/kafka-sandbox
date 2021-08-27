@@ -378,6 +378,8 @@ docker-compose up -d
 http :8082/connector-plugins
 ```
 
+##### Databases example:
+
 Populate the databases:
 
 ```bash
@@ -399,6 +401,34 @@ For deleting the connectors:
 http DELETE :8082/connectors/postgres-sink
 http DELETE :8082/connectors/mongo-sink
 http DELETE :8082/connectors/mysql-source
+```
+
+##### MQTT example:
+
+Subscribe messages (for debugging purposes):
+
+```bash
+mqtt-cli sub -h mosquitto -p 1883 -t 'house/+/brightness'
+```
+
+Create connector using the API:
+
+```bash
+cd kafka-connect
+http :8082/connectors < requests/create-connector-mqtt-source.json
+```
+
+Publish messages:
+
+```bash
+mqtt-cli pub -h mosquitto -p 1883 -t 'house/room/brightness' -m '800LM'
+mqtt-cli pub -h mosquitto -p 1883 -t 'house/kitchen/brightness' -m '1000LM'
+```
+
+For deleting the connector:
+
+```bash
+http DELETE :8082/connectors/mqtt-source
 ```
 
 #### Kafka ksqlDB:
@@ -598,6 +628,9 @@ http :8585/produce messages==10
 | PostgreSQL | localhost | 5432 |
 | MongoDB | mongo | 27017 |
 | MongoDB | localhost | 27017 |
+| - | - | - |
+| Mosquitto | mosquitto | 1883 |
+| Mosquitto | localhost | 1883 |
 | - | - | - |
 | Kafka 1 | kafka1 | 9092 |
 | Kafka 1 | localhost | 19093 |
