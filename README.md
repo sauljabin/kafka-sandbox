@@ -183,7 +183,7 @@ nosql-populate --url "mongodb://root:notasecret@localhost:27017" -d "sandbox" 10
 
 ### MQTT CLI Tools:
 
-MQTT collection of tools to interact with MQTT broker.
+MQTT collection of tools to interact with a MQTT broker.
 
 - [mqtt-cli](https://hivemq.github.io/mqtt-cli/)
 
@@ -378,7 +378,7 @@ docker-compose up -d
 http :8082/connector-plugins
 ```
 
-#### Databases example:
+#### Database example:
 
 Populate the databases:
 
@@ -386,7 +386,7 @@ Populate the databases:
 sql-populate --url "jdbc:mysql://localhost:3306/sandbox" --user "root" --password "notasecret" 100
 ```
 
-Create connector using the API:
+Create the connectors using the API:
 
 ```bash
 cd kafka-connect
@@ -405,13 +405,13 @@ http DELETE :8082/connectors/mysql-source
 
 #### MQTT example:
 
-Subscribe messages (for debugging purposes):
+Subscribe to topics (for debugging purposes):
 
 ```bash
 mqtt-cli sub -h mosquitto -t 'house/+/brightness'
 ```
 
-Create connector using the API:
+Create a connector using the API:
 
 ```bash
 cd kafka-connect
