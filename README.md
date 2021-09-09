@@ -15,7 +15,6 @@ It does not include security since it is not a production system.
 ### Dependencies
 
 - [docker](https://www.docker.com/)
-- [docker compose](https://docs.docker.com/compose/)
 - [httpie](https://httpie.io/)
 - [java](https://www.java.com/en/download/)
 
@@ -37,14 +36,14 @@ Run the kafka cluster:
 
 ```bash
 cd kafka-cluster
-docker-compose up -d
+docker compose up -d
 ```
 
 Run AKHQ:
 
 ```bash
 cd kafka-akhq
-docker-compose up -d
+docker compose up -d
 ```
 
 Open AKHQ at [http://localhost:8080/](http://localhost:8080/)
@@ -96,7 +95,7 @@ Run MySQL, PostgresSQL and Adminer:
 
 ```bash
 cd sql-database
-docker-compose up -d
+docker compose up -d
 ```
 
 ### SQL Populate Database:
@@ -146,7 +145,7 @@ Run MongoDB and Mongo Express:
 
 ```bash
 cd nosql-database
-docker-compose up -d
+docker compose up -d
 ```
 
 ### NoSQL Populate Database:
@@ -217,7 +216,7 @@ Run Mosquitto:
 
 ```bash
 cd mqtt-broker
-docker-compose up -d
+docker compose up -d
 mqtt-cli test -h mosquitto
 ```
 
@@ -235,7 +234,7 @@ Run Portainer:
 
 ```bash
 cd docker-portainer
-docker-compose up -d
+docker compose up -d
 ```
 
 ## Kafka Components
@@ -257,7 +256,7 @@ Run Kafka and Zookeeper:
 
 ```bash
 cd kafka-cluster
-docker-compose up -d
+docker compose up -d
 kafka-cli kafka-topics --bootstrap-server kafka1:9092 --list
 ```
 
@@ -274,7 +273,7 @@ Run AKHQ:
 
 ```bash
 cd kafka-akhq
-docker-compose up -d
+docker compose up -d
 ```
 
 ### Kafka Schema Registry:
@@ -290,7 +289,7 @@ Run Schema Registry:
 
 ```bash
 cd kafka-schema-registry
-docker-compose up -d
+docker compose up -d
 http :8081/config
 ```
 
@@ -311,7 +310,7 @@ Run Kafka REST Proxy:
 
 ```bash
 cd kafka-rest
-docker-compose up -d
+docker compose up -d
 http :8083/brokers
 ```
 
@@ -338,7 +337,7 @@ Run Kafka MQTT Proxy:
 
 ```bash
 cd kafka-mqtt
-docker-compose up -d
+docker compose up -d
 ```
 
 Publish a message:
@@ -374,7 +373,7 @@ Run Kafka Connect:
 
 ```bash
 cd kafka-connect
-docker-compose up -d
+docker compose up -d
 http :8082/connector-plugins
 ```
 
@@ -473,7 +472,7 @@ Run ksqlDB:
 
 ```bash
 cd kafka-ksqldb
-docker-compose up -d
+docker compose up -d
 http :8088/info
 ksqldb-cli ksql -e "SHOW STREAMS;" http://ksqldb:8088
 ```
