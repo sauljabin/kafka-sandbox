@@ -15,14 +15,14 @@ It does not include security since it is not a production system.
 ### Dependencies
 
 - [docker](https://www.docker.com/)
-- [httpie](https://httpie.io/)
 - [java](https://www.java.com/en/download/)
+- [httpie](https://httpie.io/)
+- [jq](https://stedolan.github.io/jq/)
 
 ### Other Utilities
 
-- [curl](https://curl.se/)
-- [jq](https://stedolan.github.io/jq/)
 - [lazydocker](https://github.com/jesseduffield/lazydocker#installation)
+- [curl](https://curl.se/)
 
 ## Get Started
 
@@ -504,6 +504,12 @@ Interactive ksqlDB shell:
 ```bash
 ksqldb-cli ksql http://ksqldb:8088
 SHOW STREAMS;
+```
+
+Using the ksqlDB API, list of streams:
+
+```bash
+http :8088/ksql ksql="list streams;" | jq '.[].streams[] | [{name: .name, topic: .topic}]'
 ```
 
 ### Kafka ksqlDB - Extensions:
