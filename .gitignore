@@ -1,17 +1,8 @@
-# Created by .ignore support plugin (hsz.mobi)
-### Example user template template
-### Example user template
-
-# IntelliJ project files
-.idea
-*.iml
-out
-gen
-
-# VS Code
+.idea/
+.gradle/
+.settings/
+build/
+bin/
 .vscode
-# Ignore Gradle project-specific cache directory
-.gradle
-
-# Ignore Gradle build output directory
-build
+.project
+.classpath
