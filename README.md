@@ -1,27 +1,57 @@
-# Kafka Sandbox
-
-This project helps you to deploy a kafka sandbox locally. It intends to be a simple way to get started with kafka and
+**Kafka Sandbox** helps you to deploy a kafka sandbox locally. It intends to be a simple way to get started with kafka and
 help you on your learning path. It provides you with a wide variety of tools from the kafka ecosystem and a simple way
 to run them all. It also includes a set of tools and tips to make it easier for you to use kafka. It does not include
 security since it is not a production system.
 
-### Interesting Links
+## Table of Contents
+
+   * [Interesting Links](#interesting-links)
+   * [Dependencies](#dependencies)
+   * [Other Utilities](#other-utilities)
+   * [Get Started](#get-started)
+   * [Tools](#tools)
+      * [Kafka CLI Tools](#kafka-cli-tools)
+      * [SQL Database](#sql-database)
+      * [SQL Populate Database](#sql-populate-database)
+      * [NoSQL Database](#nosql-database)
+      * [NoSQL Populate Database](#nosql-populate-database)
+      * [MQTT CLI Tools](#mqtt-cli-tools)
+      * [MQTT Broker](#mqtt-broker)
+      * [Portainer](#portainer)
+   * [Kafka Components](#kafka-components)
+      * [Kafka Cluster](#kafka-cluster)
+      * [Kafka AKHQ](#kafka-akhq)
+      * [Kafka Schema Registry](#kafka-schema-registry)
+      * [Kafka REST Proxy](#kafka-rest-proxy)
+      * [Kafka MQTT Proxy](#kafka-mqtt-proxy)
+      * [Kafka Connect](#kafka-connect)
+         * [Database example](#database-example)
+         * [MQTT example](#mqtt-example)
+      * [Kafka ksqlDB](#kafka-ksqldb)
+      * [Kafka ksqlDB - Extensions](#kafka-ksqldb---extensions)
+      * [Kafka Clients - Avro Producer and Consumer](#kafka-clients---avro-producer-and-consumer)
+      * [Kafka Clients - Streams](#kafka-clients---streams)
+      * [Kafka Clients - Spring Boot](#kafka-clients---spring-boot)
+   * [Ports Table](#ports-table)
+
+## Interesting Links
 
 - [confluent free courses](https://developer.confluent.io/learn-kafka/)
 - [confluent docker images references](https://docs.confluent.io/platform/current/installation/docker/image-reference.html)
 - [confluent versions interoperability](https://docs.confluent.io/platform/current/installation/versions-interoperability.html)
 
-### Dependencies
+## Dependencies
 
-- [docker](https://www.docker.com/)
-- [java](https://www.java.com/en/download/)
-- [httpie](https://httpie.io/)
-- [jq](https://stedolan.github.io/jq/)
+- [docker](https://www.docker.com/) - version 20 or higher
+- [java](https://www.java.com/en/download/) - version 11 or higher
+- [httpie](https://httpie.io/) - rest client
+- [jq](https://stedolan.github.io/jq/) - json parser
 
-### Other Utilities
+## Other Utilities
 
-- [lazydocker](https://github.com/jesseduffield/lazydocker#installation)
-- [curl](https://curl.se/)
+- [curl](https://curl.se/) - command line http client
+- [lazydocker](https://github.com/jesseduffield/lazydocker#installation) - docker text user interface
+- [kaskade](https://github.com/sauljabin/kaskade#installation-and-usage) - kafka text user interface
 
 ## Get Started
 
@@ -49,7 +79,7 @@ Open AKHQ at [http://localhost:8080/](http://localhost:8080/)
 
 ## Tools
 
-### Kafka CLI Tools:
+### Kafka CLI Tools
 
 It is a collection of tools to interact with kafka cluster through the terminal.
 
@@ -80,7 +110,7 @@ docker build -t kafka-cli:latest .
 kafka-cli
 ```
 
-### SQL Database:
+### SQL Database
 
 Create a MySQL and PostgresSQL instance and a database.
 
@@ -99,7 +129,7 @@ cd sql-database
 docker compose up -d
 ```
 
-### SQL Populate Database:
+### SQL Populate Database
 
 This tool helps to populate either a MySQL or PostgresSQL database with random customers. This is an ancillary project
 that can help us to set different scenarios.
@@ -134,7 +164,7 @@ sql-populate --url "jdbc:mysql://localhost:3306/sandbox" --user "root" --passwor
 sql-populate --url "jdbc:postgresql://localhost:5432/sandbox" --user "postgres" --password "notasecret" 100
 ```
 
-### NoSQL Database:
+### NoSQL Database
 
 Create a MongoDB instance and a database.
 
@@ -151,7 +181,7 @@ cd nosql-database
 docker compose up -d
 ```
 
-### NoSQL Populate Database:
+### NoSQL Populate Database
 
 This tool helps to populate MongoDB with random customers. This is an ancillary project that can help us to set
 different scenarios.
@@ -185,7 +215,7 @@ Example:
 nosql-populate --url "mongodb://root:notasecret@localhost:27017" -d "sandbox" 100
 ```
 
-### MQTT CLI Tools:
+### MQTT CLI Tools
 
 MQTT collection of tools to interact with a MQTT broker.
 
@@ -211,7 +241,7 @@ Test the cli:
 mqtt-cli
 ```
 
-### MQTT Broker:
+### MQTT Broker
 
 Eclipse Mosquitto is an open source (EPL/EDL licensed) message broker that implements the MQTT protocol versions 5.0,
 3.1.1 and 3.1. Mosquitto is lightweight and is suitable for use on all devices from low power single board computers to
@@ -229,7 +259,7 @@ docker compose up -d
 mqtt-cli test -h mosquitto
 ```
 
-### Portainer:
+### Portainer
 
 It's a docker web UI that allows you to manage your docker containers.
 
@@ -250,7 +280,7 @@ Open Portainer at [http://localhost:9000/](http://localhost:9000/)
 
 ## Kafka Components
 
-### Kafka Cluster:
+### Kafka Cluster
 
 A three node kafka cluster.
 
@@ -271,7 +301,7 @@ docker compose up -d
 kafka-cli kafka-topics --bootstrap-server kafka1:9092 --list
 ```
 
-### Kafka AKHQ:
+### Kafka AKHQ
 
 UI for managing kafka cluster.
 
@@ -287,7 +317,7 @@ cd kafka-akhq
 docker compose up -d
 ```
 
-### Kafka Schema Registry:
+### Kafka Schema Registry
 
 It provides a RESTful interface for storing and retrieving your Avro, JSON Schema, and Protobuf schemas.
 
@@ -304,7 +334,7 @@ docker compose up -d
 http :8081/config
 ```
 
-### Kafka REST Proxy:
+### Kafka REST Proxy
 
 The Kafka REST Proxy provides a RESTful interface to a Kafka cluster.
 
@@ -333,7 +363,7 @@ http :8083/topics/kafka-rest.test Content-Type:application/vnd.kafka.json.v2+jso
 http :8083/topics/kafka-rest.users Content-Type:application/vnd.kafka.avro.v2+json < requests/produce-avro-message.json
 ```
 
-### Kafka MQTT Proxy:
+### Kafka MQTT Proxy
 
 MQTT Proxy enables MQTT clients to use the MQTT 3.1.1 protocol to publish data directly to Apache Kafka.
 
@@ -366,7 +396,7 @@ kafka-cli kafka-console-consumer --from-beginning --group kafka-mqtt.consumer \
                                  --property print.key=true
 ```
 
-### Kafka Connect:
+### Kafka Connect
 
 It makes it simple to quickly define connectors that move large data sets into and out of Kafka.
 
@@ -388,7 +418,7 @@ docker compose up -d
 http :8082/connector-plugins
 ```
 
-#### Database example:
+#### Database example
 
 > &#x26a0; This example does not support deletion, for that you have to implement tombstone events at the [source](https://debezium.io/documentation/reference/connectors/postgresql.html#postgresql-tombstone-events) and [sink](https://docs.confluent.io/kafka-connect-jdbc/current/sink-connector/index.html#jdbc-sink-delete-mode).
 
@@ -415,7 +445,7 @@ http DELETE :8082/connectors/mongo-sink
 http DELETE :8082/connectors/mysql-source
 ```
 
-#### MQTT example:
+#### MQTT example
 
 Subscribe to topics (for debugging purposes):
 
@@ -452,7 +482,7 @@ For deleting the connector:
 http DELETE :8082/connectors/mqtt-source
 ```
 
-### Kafka ksqlDB:
+### Kafka ksqlDB
 
 ksqlDB is a database that's purpose-built for stream processing applications.
 
@@ -525,7 +555,7 @@ Using the ksqlDB API, list of streams:
 http :8088/ksql ksql="list streams;" | jq '.[].streams[] | [{name: .name, topic: .topic}]'
 ```
 
-### Kafka ksqlDB - Extensions:
+### Kafka ksqlDB - Extensions
 
 ksqlDB extensions are pieces of logic for transforming or aggregating events that ksqlDB can't currently express.
 
@@ -540,7 +570,7 @@ For creating the `jar` extension, you can use the following command (development
 ./gradlew kafka-ksqldb-extensions:shadowJar
 ```
 
-### Kafka Clients - Avro Producer and Consumer:
+### Kafka Clients - Avro Producer and Consumer
 
 Java examples for producing and consuming messages from Kafka. These examples produce and consume messages from
 the `supplier` topic. The producer example produces random suppliers.
@@ -593,7 +623,7 @@ For creating a AVRO schema, you can use the following command (development purpo
 ./gradlew kafka-clients:generateAvro
 ```
 
-### Kafka Clients - Streams:
+### Kafka Clients - Streams
 
 Kafka Streams is a client library providing organizations with a particularly efficient framework for processing
 streaming data. It offers a streamlined method for creating applications and microservices that must process data in
@@ -621,7 +651,7 @@ kafka-cli kafka-console-consumer --from-beginning --group kafka-streams.consumer
                                  --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
 ```
 
-### Kafka Clients - Spring Boot:
+### Kafka Clients - Spring Boot
 
 Spring Boot + Spring Kafka producer and consumer examples.
 
