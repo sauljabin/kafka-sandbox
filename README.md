@@ -28,10 +28,11 @@ security since it is not a production system.
          * [Database example](#database-example)
          * [MQTT example](#mqtt-example)
       * [Kafka ksqlDB](#kafka-ksqldb)
-      * [Kafka ksqlDB - Extensions](#kafka-ksqldb---extensions)
-      * [Kafka Clients - Avro Producer and Consumer](#kafka-clients---avro-producer-and-consumer)
-      * [Kafka Clients - Streams](#kafka-clients---streams)
-      * [Kafka Clients - Spring Boot](#kafka-clients---spring-boot)
+         * [Extensions](#extensions)
+      * [Kafka Clients](#kafka-clients)
+         * [Avro Producer and Consumer](#avro-producer-and-consumer)
+         * [Streams](#streams)
+         * [Spring Boot](#spring-boot)
    * [Ports Table](#ports-table)
 
 ## Interesting Links
@@ -555,7 +556,7 @@ Using the ksqlDB API, list of streams:
 http :8088/ksql ksql="list streams;" | jq '.[].streams[] | [{name: .name, topic: .topic}]'
 ```
 
-### Kafka ksqlDB - Extensions
+#### Extensions
 
 ksqlDB extensions are pieces of logic for transforming or aggregating events that ksqlDB can't currently express.
 
@@ -570,10 +571,15 @@ For creating the `jar` extension, you can use the following command (development
 ./gradlew kafka-ksqldb-extensions:shadowJar
 ```
 
-### Kafka Clients - Avro Producer and Consumer
+### Kafka Clients
 
-Java examples for producing and consuming messages from Kafka. These examples produce and consume messages from
-the `supplier` topic. The producer example produces random suppliers.
+Java examples for producing and consuming messages from Kafka using the
+[java kafka client](https://docs.confluent.io/clients-kafka-java/current/overview.html) lib.
+
+
+#### Avro Producer and Consumer
+
+These examples produce and consume messages from the `supplier` topic. The producer example produces random suppliers.
 
 - [kafka producer and consumer example](https://docs.confluent.io/platform/current/schema-registry/serdes-develop/serdes-avro.html)
 - [kafka consumer settings](https://docs.confluent.io/platform/current/installation/configuration/consumer-configs.html)
@@ -623,7 +629,7 @@ For creating a AVRO schema, you can use the following command (development purpo
 ./gradlew kafka-clients:generateAvro
 ```
 
-### Kafka Clients - Streams
+#### Streams
 
 Kafka Streams is a client library providing organizations with a particularly efficient framework for processing
 streaming data. It offers a streamlined method for creating applications and microservices that must process data in
@@ -651,7 +657,7 @@ kafka-cli kafka-console-consumer --from-beginning --group kafka-streams.consumer
                                  --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
 ```
 
-### Kafka Clients - Spring Boot
+#### Spring Boot
 
 Spring Boot + Spring Kafka producer and consumer examples.
 
