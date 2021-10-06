@@ -1,10 +1,9 @@
 # Kafka Sandbox
 
-This project helps you to deploy a kafka sandbox locally.
-It intends to be a simple way to get started with kafka and help you on your learning path.
-It provides you with a wide variety of tools from the kafka ecosystem and a simple way to run them all.
-It also includes a set of tools and tips to make it easier for you to use kafka.
-It does not include security since it is not a production system.
+This project helps you to deploy a kafka sandbox locally. It intends to be a simple way to get started with kafka and
+help you on your learning path. It provides you with a wide variety of tools from the kafka ecosystem and a simple way
+to run them all. It also includes a set of tools and tips to make it easier for you to use kafka. It does not include
+security since it is not a production system.
 
 ### Interesting Links
 
@@ -59,6 +58,8 @@ It is a collection of tools to interact with kafka cluster through the terminal.
 - [confluent community tools](https://docs.confluent.io/platform/current/installation/installing_cp/zip-tar.html)
 - project location: [kafka-cli](kafka-cli)
 
+> &#x26a0; Run these commands inside the root folder.
+
 Create an alias for `kafka-cli`:
 
 ```bash
@@ -100,10 +101,12 @@ docker compose up -d
 
 ### SQL Populate Database:
 
-This tool helps to populate either a MySQL or PostgresSQL database with random customers.
-This is an ancillary project that can help us to set different scenarios.
+This tool helps to populate either a MySQL or PostgresSQL database with random customers. This is an ancillary project
+that can help us to set different scenarios.
 
 - project location: [sql-populate](sql-populate)
+
+> &#x26a0; Run these commands inside the root folder.
 
 Create an alias for `sql-populate`:
 
@@ -150,10 +153,12 @@ docker compose up -d
 
 ### NoSQL Populate Database:
 
-This tool helps to populate MongoDB with random customers.
-This is an ancillary project that can help us to set different scenarios.
+This tool helps to populate MongoDB with random customers. This is an ancillary project that can help us to set
+different scenarios.
 
 - project location: [nosql-populate](nosql-populate)
+
+> &#x26a0; Run these commands inside the root folder.
 
 Create an alias for `nosql-populate`:
 
@@ -186,6 +191,8 @@ MQTT collection of tools to interact with a MQTT broker.
 
 - [mqtt-cli](https://hivemq.github.io/mqtt-cli/)
 
+> &#x26a0; Run these commands inside the root folder.
+
 Create an alias for `mqtt-cli`:
 
 ```bash
@@ -206,7 +213,9 @@ mqtt-cli
 
 ### MQTT Broker:
 
-Eclipse Mosquitto is an open source (EPL/EDL licensed) message broker that implements the MQTT protocol versions 5.0, 3.1.1 and 3.1. Mosquitto is lightweight and is suitable for use on all devices from low power single board computers to full servers.
+Eclipse Mosquitto is an open source (EPL/EDL licensed) message broker that implements the MQTT protocol versions 5.0,
+3.1.1 and 3.1. Mosquitto is lightweight and is suitable for use on all devices from low power single board computers to
+full servers.
 
 - [mosquitto](https://mosquitto.org/)
 - project location: [mqtt-broker](mqtt-broker)
@@ -228,14 +237,16 @@ It's a docker web UI that allows you to manage your docker containers.
 - project location: [docker-portainer](docker-portainer)
 - portainer port: `9000` ([open it in the web browser](http://localhost:9000/))
 
-> User: `admin` and password: `notasecret`.
-
 Run Portainer:
 
 ```bash
 cd docker-portainer
 docker compose up -d
 ```
+
+Open Portainer at [http://localhost:9000/](http://localhost:9000/)
+
+> &#x26a0; User: `admin` and password: `notasecret`.
 
 ## Kafka Components
 
@@ -248,7 +259,7 @@ A three node kafka cluster.
 - [zookeeper](https://zookeeper.apache.org/)
 - [zookeeper settings](https://docs.confluent.io/platform/current/zookeeper/deployment.html)
 - project location: [kafka-cluster](kafka-cluster)
-- kafka version: [2.8](https://docs.confluent.io/platform/current/installation/versions-interoperability.html) (confluent platform 6.2.0)
+- kafka version: [2.8 (cp 6.2.0)](https://docs.confluent.io/platform/current/installation/versions-interoperability.html)
 - kafka ports: `19093`, `29093`, `39093`
 - zookeeper ports: `12181`, `22181`, `32181`
 
@@ -297,7 +308,7 @@ http :8081/config
 
 The Kafka REST Proxy provides a RESTful interface to a Kafka cluster.
 
-> Use this when you really need a rest interface since it is usually more complex than using conventional kafka clients.
+> &#x26a0; Use this when you really need a rest interface since it is usually more complex than using conventional kafka clients.
 
 - [kafka rest](https://docs.confluent.io/platform/current/kafka-rest/index.html)
 - [kafka rest settings](https://docs.confluent.io/platform/current/kafka-rest/production-deployment/rest-proxy/config.html)
@@ -326,7 +337,7 @@ http :8083/topics/kafka-rest.users Content-Type:application/vnd.kafka.avro.v2+js
 
 MQTT Proxy enables MQTT clients to use the MQTT 3.1.1 protocol to publish data directly to Apache Kafka.
 
-> This does not convert kafka into a MQTT broker, this aims to provide a simple way to publish/persist IoT data to Kafka.
+> &#x26a0; This does not convert kafka into a MQTT broker, this aims to provide a simple way to publish/persist IoT data to Kafka.
 
 - [kafka mqtt](https://docs.confluent.io/platform/current/kafka-mqtt/intro.html)
 - [kafka mqtt settings](https://docs.confluent.io/platform/current/kafka-mqtt/configuration_options.html)
@@ -379,7 +390,7 @@ http :8082/connector-plugins
 
 #### Database example:
 
-> This example does not support deletion, for that you have to implement tombstone events at the [source](https://debezium.io/documentation/reference/connectors/postgresql.html#postgresql-tombstone-events) and [sink](https://docs.confluent.io/kafka-connect-jdbc/current/sink-connector/index.html#jdbc-sink-delete-mode).
+> &#x26a0; This example does not support deletion, for that you have to implement tombstone events at the [source](https://debezium.io/documentation/reference/connectors/postgresql.html#postgresql-tombstone-events) and [sink](https://docs.confluent.io/kafka-connect-jdbc/current/sink-connector/index.html#jdbc-sink-delete-mode).
 
 Populate the databases:
 
@@ -445,7 +456,7 @@ http DELETE :8082/connectors/mqtt-source
 
 ksqlDB is a database that's purpose-built for stream processing applications.
 
-> ksqlDB it is not a SQL database, it provides an extra layer for implementing kstream, ktable and connectors through a language (ksql) based on sql.
+> &#x26a0; ksqlDB it is not a SQL database, it provides an extra layer for implementing kstream, ktable and connectors through a language (ksql) based on sql.
 
 - [ksqldb](https://ksqldb.io/)
 - [ksqldb settings](https://docs.ksqldb.io/en/latest/reference/server-configuration/)
@@ -457,6 +468,8 @@ ksqlDB is a database that's purpose-built for stream processing applications.
 - ksqldb port: `8088`
 
 Create an alias for `ksqldb-cli`:
+
+> &#x26a0; Run alias commands inside the root folder.
 
 ```bash
 alias ksqldb-cli="docker run --rm -it --network kafka-sandbox_network --workdir /ksqldb -v $PWD/kafka-ksqldb/tests:/ksqldb/tests -v $PWD/kafka-ksqldb/statements:/ksqldb/statements -v $PWD/kafka-ksqldb-extensions/extensions:/ksqldb/extensions kafka-cli:latest "
@@ -529,14 +542,15 @@ For creating the `jar` extension, you can use the following command (development
 
 ### Kafka Clients - Avro Producer and Consumer:
 
-Java examples for producing and consuming messages from Kafka.
-These examples produce and consume messages from the `supplier` topic.
-The producer example produces random suppliers.
+Java examples for producing and consuming messages from Kafka. These examples produce and consume messages from
+the `supplier` topic. The producer example produces random suppliers.
 
 - [kafka producer and consumer example](https://docs.confluent.io/platform/current/schema-registry/serdes-develop/serdes-avro.html)
 - [kafka consumer settings](https://docs.confluent.io/platform/current/installation/configuration/consumer-configs.html)
 - [kafka producer settings](https://docs.confluent.io/platform/current/installation/configuration/producer-configs.html)
 - project location: [kafka-clients](kafka-clients)
+
+> &#x26a0; Run these commands inside the root folder.
 
 Create an alias for `kafka-clients`:
 
@@ -581,8 +595,9 @@ For creating a AVRO schema, you can use the following command (development purpo
 
 ### Kafka Clients - Streams:
 
-Kafka Streams is a client library providing organizations with a particularly efficient framework for processing streaming data.
-It offers a streamlined method for creating applications and microservices that must process data in real-time to be effective.
+Kafka Streams is a client library providing organizations with a particularly efficient framework for processing
+streaming data. It offers a streamlined method for creating applications and microservices that must process data in
+real-time to be effective.
 
 Check the [Kafka Clients - Avro Producer and Consumer](#kafka-clients---avro-producer-and-consumer) section.
 
@@ -614,6 +629,10 @@ Spring Boot + Spring Kafka producer and consumer examples.
 - [spring kafka settings](https://docs.spring.io/spring-kafka/reference/html/)
 - project location: [kafka-spring-boot](kafka-spring-boot)
 - spring port: `8585`
+
+> &#x26a0; Run these commands inside the root folder.
+
+Run spring boot:
 
 ```bash
 ./gradlew kafka-spring-boot:bootRun
