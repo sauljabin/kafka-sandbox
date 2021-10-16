@@ -303,6 +303,29 @@ docker compose up -d
 kafka-cli kafka-topics --bootstrap-server kafka1:9092 --list
 ```
 
+Create a topic:
+
+```bash
+kafka-cli kafka-topics --create --bootstrap-server kafka1:9092 \
+                       --replication-factor 3 \
+                       --partitions 3 \
+                       --topic kafka-cluster.test
+```
+
+Produce a message:
+
+```bash
+kafka-cli kafka-console-producer --broker-list kafka1:9092 --topic kafka-cluster.test
+```
+
+Consume messages:
+
+```bash
+kafka-cli kafka-console-consumer --from-beginning --group kafka-cluster.test \
+                                 --topic kafka-cluster.test  \
+                                 --bootstrap-server kafka1:9092
+```
+
 ### Kafka AKHQ
 
 UI for managing kafka cluster.
@@ -389,7 +412,7 @@ Publish a message:
 mqtt-cli pub -h kafka-mqtt -p 1884 -t 'house/room/temperature' -m '20C'
 ```
 
-Cosuming the data:
+Consuming the data:
 
 ```bash
 kafka-cli kafka-console-consumer --from-beginning --group kafka-mqtt.consumer \
