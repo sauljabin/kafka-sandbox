@@ -5,35 +5,37 @@ security since it is not a production system.
 
 ## Table of Contents
 
-* [Interesting Links](#interesting-links)
-* [Dependencies](#dependencies)
-* [Other Utilities](#other-utilities)
-* [Get Started](#get-started)
-* [Tools](#tools)
-  * [Kafka CLI Tools](#kafka-cli-tools)
-  * [SQL Database](#sql-database)
-  * [SQL Populate Database](#sql-populate-database)
-  * [NoSQL Database](#nosql-database)
-  * [NoSQL Populate Database](#nosql-populate-database)
-  * [MQTT CLI Tools](#mqtt-cli-tools)
-  * [MQTT Broker](#mqtt-broker)
-  * [Portainer](#portainer)
-* [Kafka Components](#kafka-components)
-  * [Kafka Cluster](#kafka-cluster)
-  * [Kafka AKHQ](#kafka-akhq)
-  * [Kafka Schema Registry](#kafka-schema-registry)
-  * [Kafka REST Proxy](#kafka-rest-proxy)
-  * [Kafka MQTT Proxy](#kafka-mqtt-proxy)
-  * [Kafka Connect](#kafka-connect)
-    * [Database example](#database-example)
-    * [MQTT example](#mqtt-example)
-  * [Kafka ksqlDB](#kafka-ksqldb)
-    * [Extensions](#extensions)
-  * [Kafka Clients](#kafka-clients)
-    * [Avro Producer and Consumer](#avro-producer-and-consumer)
-    * [Streams](#streams)
-    * [Spring Boot](#spring-boot)
-* [Ports Table](#ports-table)
+- [Table of Contents](#table-of-contents)
+- [Interesting Links](#interesting-links)
+- [Dependencies](#dependencies)
+- [Other Utilities](#other-utilities)
+- [Get Started](#get-started)
+- [Tools](#tools)
+  - [Kafka CLI Tools](#kafka-cli-tools)
+  - [SQL Database](#sql-database)
+  - [SQL Populate Database](#sql-populate-database)
+  - [NoSQL Database](#nosql-database)
+  - [NoSQL Populate Database](#nosql-populate-database)
+  - [MQTT CLI Tools](#mqtt-cli-tools)
+  - [MQTT Broker](#mqtt-broker)
+  - [Portainer](#portainer)
+- [Kafka Components](#kafka-components)
+  - [Kafka Cluster](#kafka-cluster)
+  - [Kafka AKHQ](#kafka-akhq)
+  - [Kafka Schema Registry](#kafka-schema-registry)
+  - [Kafka REST Proxy](#kafka-rest-proxy)
+  - [Kafka MQTT Proxy](#kafka-mqtt-proxy)
+  - [Kafka Connect](#kafka-connect)
+    - [Database example](#database-example)
+    - [MQTT example](#mqtt-example)
+  - [Kafka ksqlDB](#kafka-ksqldb)
+    - [Extensions](#extensions)
+  - [Kafka Clients](#kafka-clients)
+    - [Avro Producer and Consumer](#avro-producer-and-consumer)
+    - [Streams](#streams)
+    - [Spring Boot](#spring-boot)
+- [Kafka Performance Tools](#kafka-performance-tools)
+- [Ports Table](#ports-table)
 
 ## Interesting Links
 
@@ -705,6 +707,24 @@ http :8585/actuator/health
 http :8585/produce messages==10
 ```
 
+## Kafka Performance Tools
+
+Run help:
+
+```bash
+kafka-cli kafka-producer-perf-test --help
+kafka-cli kafka-consumer-perf-test --help
+```
+
+Create a topic:
+
+```bash
+kafka-cli kafka-topics --create --bootstrap-server kafka1:9092 \
+                       --replication-factor 3 \
+                       --partitions 3 \
+                       --topic kafka-cluster.performance-test
+```
+
 ## Ports Table
 
 | Service | Dns | Port |
@@ -713,47 +733,36 @@ http :8585/produce messages==10
 | Adminer | localhost | [9090](http://localhost:9090/) |
 | Mongo Express | localhost | [7070](http://localhost:7070/) |
 | Portainer | localhost | [9000](http://localhost:9000/) |
-| - | - | - |
 | Portainer Tunnel | portainer | 8000 |
 | Portainer Agent | portainer-agent | 9001 |
-| - | - | - |
 | MySQL | mysql | 3306 |
 | MySQL | localhost | 3306 |
 | PostgreSQL | postgres | 5432 |
 | PostgreSQL | localhost | 5432 |
 | MongoDB | mongo | 27017 |
 | MongoDB | localhost | 27017 |
-| - | - | - |
 | Mosquitto | mosquitto | 1883 |
 | Mosquitto | localhost | 1883 |
-| - | - | - |
 | Kafka 1 | kafka1 | 9092 |
 | Kafka 1 | localhost | 19093 |
 | Kafka 2 | kafka2 | 9092 |
 | Kafka 2 | localhost | 29093 |
 | Kafka 3 | kafka3 | 9092 |
 | Kafka 3 | localhost | 39093 |
-| - | - | - |
 | Zookeeper 1 | zookeeper1 | 2181 |
 | Zookeeper 1 | localhost | 12181 |
 | Zookeeper 2 | zookeeper2 | 2181 |
 | Zookeeper 2 | localhost | 22181 |
 | Zookeeper 3 | zookeeper3 | 2181 |
 | Zookeeper 3 | localhost | 32181 |
-| - | - | - |
 | Schema Registry | schema-registry | 8081 |
 | Schema Registry | localhost | 8081 |
-| - | - | - |
 | Kafka Connect | kafka-connect | 8082 |
 | Kafka Connect | localhost | 8082 |
-| - | - | - |
 | Kafka REST | kafka-rest | 8083 |
 | Kafka REST | localhost | 8083 |
-| - | - | - |
 | Kafka MQTT | kafka-mqtt | 1884 |
 | Kafka MQTT | localhost | 1884 |
-| - | - | - |
 | ksqlDB | ksqldb | 8088 |
 | ksqlDB | localhost | 8088 |
-| - | - | - |
 | Kafka Clients Spring Boot | localhost | 8585 |
