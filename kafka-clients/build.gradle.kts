@@ -15,11 +15,12 @@ repositories {
 dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
 
-    implementation("org.apache.kafka:kafka-clients:2.8.0")
-    implementation("org.apache.kafka:kafka-streams:2.8.0")
-    implementation("org.apache.avro:avro:1.10.2")
-    implementation("io.confluent:kafka-avro-serializer:6.2.0")
-    implementation("io.confluent:kafka-streams-avro-serde:6.2.0")
+    implementation("org.apache.kafka:kafka-clients:3.1.0")
+    implementation("org.apache.kafka:kafka-streams:3.1.0")
+    implementation("org.apache.avro:avro:1.11.0")
+    implementation("io.confluent:kafka-avro-serializer:7.1.1")
+    implementation("io.confluent:kafka-streams-avro-serde:7.1.1")
+    implementation("org.rocksdb:rocksdbjni:7.1.2")
 
     implementation("info.picocli:picocli:4.6.1")
     implementation("com.github.javafaker:javafaker:1.0.2")
