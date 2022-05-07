@@ -7,10 +7,10 @@ ksqlDB is a database that's purpose-built for stream processing applications.
 - [ksqldb](https://ksqldb.io/)
 - [ksqldb settings](https://docs.ksqldb.io/en/latest/reference/server-configuration/)
 - [ksqldb test runner](https://docs.ksqldb.io/en/latest/how-to-guides/test-an-app/)
-- project location: [kafka-ksqldb](kafka-ksqldb)
-- statements location: [kafka-ksqldb/statements](kafka-ksqldb/statements)
-- test location: [kafka-ksqldb/tests](kafka-ksqldb/tests)
-- extensions location: [kafka-ksqldb-extensions/extensions](kafka-ksqldb-extensions/extensions)
+- project location: [kafka-ksqldb](https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-ksqldb)
+- statements location: [kafka-ksqldb/statements](https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-ksqldb/statements)
+- test location: [kafka-ksqldb/tests](https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-ksqldb/tests)
+- extensions location: [kafka-ksqldb-extensions/extensions](https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-ksqldb-extensions/extensions)
 - ksqldb port: `8088`
 
 Create an alias for `ksqldb-cli`:

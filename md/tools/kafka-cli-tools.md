@@ -5,7 +5,7 @@ It is a collection of tools to interact with kafka cluster through the terminal.
 - [kafkacat](https://github.com/edenhill/kafkacat)
 - [zoe](https://adevinta.github.io/zoe/)
 - [confluent community tools](https://docs.confluent.io/platform/current/installation/installing_cp/zip-tar.html)
-- project location: [kafka-cli](kafka-cli)
+- project location: [kafka-cli](https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-cli)
 
 > &#x26a0; Run these commands inside the root folder.
 

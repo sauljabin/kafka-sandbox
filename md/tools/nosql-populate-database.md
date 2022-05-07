@@ -3,7 +3,7 @@
 This tool helps to populate MongoDB with random customers. This is an ancillary project that can help us to set
 different scenarios.
 
-- project location: [nosql-populate](nosql-populate)
+- project location: [nosql-populate](https://github.com/sauljabin/kafka-sandbox/tree/main/nosql-populate)
 
 > &#x26a0; Run these commands inside the root folder.
 

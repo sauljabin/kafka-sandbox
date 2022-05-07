@@ -4,7 +4,7 @@ Spring Boot + Spring Kafka producer and consumer examples.
 
 - [confluent spring kafka examples](https://www.confluent.io/blog/apache-kafka-spring-boot-application/)
 - [spring kafka settings](https://docs.spring.io/spring-kafka/reference/html/)
-- project location: [kafka-spring-boot](kafka-spring-boot)
+- project location: [kafka-spring-boot](https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-spring-boot)
 - spring port: `8585`
 
 > &#x26a0; Run these commands inside the root folder.

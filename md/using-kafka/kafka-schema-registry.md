@@ -4,7 +4,7 @@ It provides a RESTful interface for storing and retrieving your Avro, JSON Schem
 
 - [schema registry](https://docs.confluent.io/platform/current/schema-registry/index.html)
 - [schema registry settings](https://docs.confluent.io/platform/current/schema-registry/installation/config.html)
-- project location: [kafka-schema-registry](kafka-schema-registry)
+- project location: [kafka-schema-registry](https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-schema-registry)
 - schema registry port: `8081`
 
 Run Schema Registry:

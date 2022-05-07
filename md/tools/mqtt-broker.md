@@ -5,7 +5,7 @@ Eclipse Mosquitto is an open source (EPL/EDL licensed) message broker that imple
 full servers.
 
 - [mosquitto](https://mosquitto.org/)
-- project location: [mqtt-broker](mqtt-broker)
+- project location: [mqtt-broker](https://github.com/sauljabin/kafka-sandbox/tree/main/mqtt-broker)
 - mosquitto port: `1883`
 
 Run Mosquitto:

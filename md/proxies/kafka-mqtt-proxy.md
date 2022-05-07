@@ -6,7 +6,7 @@ MQTT Proxy enables MQTT clients to use the MQTT 3.1.1 protocol to publish data d
 
 - [kafka mqtt](https://docs.confluent.io/platform/current/kafka-mqtt/intro.html)
 - [kafka mqtt settings](https://docs.confluent.io/platform/current/kafka-mqtt/configuration_options.html)
-- project location: [kafka-mqtt](kafka-mqtt)
+- project location: [kafka-mqtt](https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-mqtt)
 - kafka mqtt tcp port: `1884`
 
 Run Kafka MQTT Proxy:

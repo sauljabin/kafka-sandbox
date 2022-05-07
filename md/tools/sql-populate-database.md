@@ -3,7 +3,7 @@
 This tool helps to populate either a MySQL or PostgresSQL database with random customers. This is an ancillary project
 that can help us to set different scenarios.
 
-- project location: [sql-populate](sql-populate)
+- project location: [sql-populate](https://github.com/sauljabin/kafka-sandbox/tree/main/sql-populate)
 
 > &#x26a0; Run these commands inside the root folder.
 

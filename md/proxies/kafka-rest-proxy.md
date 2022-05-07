@@ -7,8 +7,8 @@ The Kafka REST Proxy provides a RESTful interface to a Kafka cluster.
 - [kafka rest](https://docs.confluent.io/platform/current/kafka-rest/index.html)
 - [kafka rest settings](https://docs.confluent.io/platform/current/kafka-rest/production-deployment/rest-proxy/config.html)
 - [kafka rest api reference](https://docs.confluent.io/platform/current/kafka-rest/api.html)
-- project location: [kafka-rest](kafka-rest)
-- requests location: [kafka-rest/requests](kafka-rest/requests)
+- project location: [kafka-rest](https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-rest)
+- requests location: [kafka-rest/requests](https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-rest/requests)
 - kafka rest port: `8083`
 
 Run Kafka REST Proxy:

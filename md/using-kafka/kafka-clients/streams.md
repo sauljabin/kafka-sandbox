@@ -8,7 +8,7 @@ Check the [Kafka Clients - Avro Producer and Consumer](#kafka-clients---avro-pro
 
 - [kafka streams](https://kafka.apache.org/documentation/streams/)
 - [kafka streams examples](https://github.com/confluentinc/kafka-streams-examples)
-- project location: [kafka-clients](kafka-clients)
+- project location: [kafka-clients](https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-clients)
 
 Run streams:
 

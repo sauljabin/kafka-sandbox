@@ -5,7 +5,7 @@ These examples produce and consume messages from the `supplier` topic. The produ
 - [kafka producer and consumer example](https://docs.confluent.io/platform/current/schema-registry/serdes-develop/serdes-avro.html)
 - [kafka consumer settings](https://docs.confluent.io/platform/current/installation/configuration/consumer-configs.html)
 - [kafka producer settings](https://docs.confluent.io/platform/current/installation/configuration/producer-configs.html)
-- project location: [kafka-clients](kafka-clients)
+- project location: [kafka-clients](https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-clients)
 
 > &#x26a0; Run these commands inside the root folder.
 

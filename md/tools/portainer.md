@@ -3,7 +3,7 @@
 It's a docker web UI that allows you to manage your docker containers.
 
 - [portainer](https://documentation.portainer.io/v2.0/deploy/ceinstalldocker/)
-- project location: [docker-portainer](docker-portainer)
+- project location: [docker-portainer](https://github.com/sauljabin/kafka-sandbox/tree/main/docker-portainer)
 - portainer port: `9000` ([open it in the web browser](http://localhost:9000/))
 
 Run Portainer:
