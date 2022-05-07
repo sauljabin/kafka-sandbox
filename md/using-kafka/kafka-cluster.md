@@ -1,0 +1,43 @@
+# Kafka Cluster
+
+A three node kafka cluster.
+
+- [kafka](https://kafka.apache.org/)
+- [kafka settings](https://docs.confluent.io/platform/current/installation/configuration/broker-configs.html)
+- [zookeeper](https://zookeeper.apache.org/)
+- [zookeeper settings](https://docs.confluent.io/platform/current/zookeeper/deployment.html)
+- project location: [kafka-cluster](kafka-cluster)
+- kafka version: [2.8 (cp 6.2.0)](https://docs.confluent.io/platform/current/installation/versions-interoperability.html)
+- kafka ports: `19093`, `29093`, `39093`
+- zookeeper ports: `12181`, `22181`, `32181`
+
+Run Kafka and Zookeeper:
+
+```bash
+cd kafka-cluster
+docker compose up -d
+kafka-cli kafka-topics --bootstrap-server kafka1:9092 --list
+```
+
+Create a topic:
+
+```bash
+kafka-cli kafka-topics --create --bootstrap-server kafka1:9092 \
+                       --replication-factor 3 \
+                       --partitions 3 \
+                       --topic kafka-cluster.test
+```
+
+Produce a message:
+
+```bash
+kafka-cli kafka-console-producer --broker-list kafka1:9092 --topic kafka-cluster.test
+```
+
+Consume messages:
+
+```bash
+kafka-cli kafka-console-consumer --from-beginning --group kafka-cluster.test \
+                                 --topic kafka-cluster.test  \
+                                 --bootstrap-server kafka1:9092
+```

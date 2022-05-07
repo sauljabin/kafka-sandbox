@@ -3,6 +3,8 @@
 .settings/
 build/
 bin/
+book/
 .vscode
 .project
 .classpath
+.DS_Store
