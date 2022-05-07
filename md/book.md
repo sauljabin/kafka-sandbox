@@ -32,7 +32,7 @@ Create docker image:
 docker build -t sauljabin/kafka-sandbox-book:latest -f docker/Dockerfile .
 ```
 
-Running the book ([open it in the web browser](http://localhost:8080/)):
+Running the book ([open it in the web browser](http://localhost)):
 
 ```bash
 docker run --name kafka-sandbox-book -d -p 80:80 sauljabin/kafka-sandbox-book:latest
