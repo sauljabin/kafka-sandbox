@@ -186,7 +186,7 @@ docker compose up -d
 <li><a href="https://github.com/edenhill/kafkacat">kafkacat</a></li>
 <li><a href="https://adevinta.github.io/zoe/">zoe</a></li>
 <li><a href="https://docs.confluent.io/platform/current/installation/installing_cp/zip-tar.html">confluent community tools</a></li>
-<li>project location: <a href="tools/kafka-cli">kafka-cli</a></li>
+<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-cli">kafka-cli</a></li>
 </ul>
 <blockquote>
 <p>⚠ Run these commands inside the root folder.</p>
@@ -208,7 +208,7 @@ kafka-cli
 <li><a href="https://hub.docker.com/_/mysql">mysql</a></li>
 <li><a href="https://hub.docker.com/_/postgres">postgres</a></li>
 <li><a href="https://hub.docker.com/_/adminer">adminer</a></li>
-<li>project location: <a href="tools/sql-database">sql-database</a></li>
+<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/sql-database">sql-database</a></li>
 <li>postgres port: <code>5432</code></li>
 <li>mysql port: <code>3306</code></li>
 <li>adminer port: <code>9090</code> (<a href="http://localhost:9090/">open it in the web browser</a>)</li>
@@ -221,7 +221,7 @@ docker compose up -d
 <p>This tool helps to populate either a MySQL or PostgresSQL database with random customers. This is an ancillary project
 that can help us to set different scenarios.</p>
 <ul>
-<li>project location: <a href="tools/sql-populate">sql-populate</a></li>
+<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/sql-populate">sql-populate</a></li>
 </ul>
 <blockquote>
 <p>⚠ Run these commands inside the root folder.</p>
@@ -245,7 +245,7 @@ sql-populate --url &quot;jdbc:postgresql://localhost:5432/sandbox&quot; --user &
 <ul>
 <li><a href="https://hub.docker.com/_/mongo">mongo</a></li>
 <li><a href="https://hub.docker.com/_/mongo-express">mongo express</a></li>
-<li>project location: <a href="tools/nosql-database">nosql-database</a></li>
+<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/nosql-database">nosql-database</a></li>
 <li>mongo port: <code>27017</code></li>
 <li>mongo express port: <code>7070</code> (<a href="http://localhost:7070/">open it in the web browser</a>)</li>
 </ul>
@@ -257,7 +257,7 @@ docker compose up -d
 <p>This tool helps to populate MongoDB with random customers. This is an ancillary project that can help us to set
 different scenarios.</p>
 <ul>
-<li>project location: <a href="tools/nosql-populate">nosql-populate</a></li>
+<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/nosql-populate">nosql-populate</a></li>
 </ul>
 <blockquote>
 <p>⚠ Run these commands inside the root folder.</p>
@@ -298,7 +298,7 @@ nosql-populate
 full servers.</p>
 <ul>
 <li><a href="https://mosquitto.org/">mosquitto</a></li>
-<li>project location: <a href="tools/mqtt-broker">mqtt-broker</a></li>
+<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/mqtt-broker">mqtt-broker</a></li>
 <li>mosquitto port: <code>1883</code></li>
 </ul>
 <p>Run Mosquitto:</p>
@@ -310,7 +310,7 @@ mqtt-cli test -h mosquitto
 <p>It's a docker web UI that allows you to manage your docker containers.</p>
 <ul>
 <li><a href="https://documentation.portainer.io/v2.0/deploy/ceinstalldocker/">portainer</a></li>
-<li>project location: <a href="tools/docker-portainer">docker-portainer</a></li>
+<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/docker-portainer">docker-portainer</a></li>
 <li>portainer port: <code>9000</code> (<a href="http://localhost:9000/">open it in the web browser</a>)</li>
 </ul>
 <p>Run Portainer:</p>
@@ -328,7 +328,7 @@ docker compose up -d
 <li><a href="https://docs.confluent.io/platform/current/installation/configuration/broker-configs.html">kafka settings</a></li>
 <li><a href="https://zookeeper.apache.org/">zookeeper</a></li>
 <li><a href="https://docs.confluent.io/platform/current/zookeeper/deployment.html">zookeeper settings</a></li>
-<li>project location: <a href="using-kafka/kafka-cluster">kafka-cluster</a></li>
+<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-cluster">kafka-cluster</a></li>
 <li>kafka version: <a href="https://docs.confluent.io/platform/current/installation/versions-interoperability.html">2.8 (cp 6.2.0)</a></li>
 <li>kafka ports: <code>19093</code>, <code>29093</code>, <code>39093</code></li>
 <li>zookeeper ports: <code>12181</code>, <code>22181</code>, <code>32181</code></li>
@@ -357,7 +357,7 @@ kafka-cli kafka-topics --bootstrap-server kafka1:9092 --list
 <ul>
 <li><a href="https://akhq.io/">akhq</a></li>
 <li><a href="https://github.com/tchiotludo/akhq#kafka-cluster-configuration">akhq settings</a></li>
-<li>project location: <a href="using-kafka/kafka-akhq">kafka-akhq</a></li>
+<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-akhq">kafka-akhq</a></li>
 <li>akhq port: <code>8080</code> (<a href="http://localhost:8080/">open it in the web browser</a>)</li>
 </ul>
 <p>Run AKHQ:</p>
@@ -369,7 +369,7 @@ docker compose up -d
 <ul>
 <li><a href="https://docs.confluent.io/platform/current/schema-registry/index.html">schema registry</a></li>
 <li><a href="https://docs.confluent.io/platform/current/schema-registry/installation/config.html">schema registry settings</a></li>
-<li>project location: <a href="using-kafka/kafka-schema-registry">kafka-schema-registry</a></li>
+<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-schema-registry">kafka-schema-registry</a></li>
 <li>schema registry port: <code>8081</code></li>
 </ul>
 <p>Run Schema Registry:</p>
@@ -385,9 +385,9 @@ http :8081/config
 <li><a href="https://docs.confluent.io/platform/current/connect/references/restapi.html">connect api reference</a></li>
 <li><a href="https://www.confluent.io/hub/confluentinc/kafka-connect-jdbc">jdbc connector plugin</a></li>
 <li><a href="https://www.confluent.io/hub/mongodb/kafka-connect-mongodb">mongo connector plugin</a></li>
-<li>project location: <a href="using-kafka/kafka-connect/kafka-connect">kafka-connect</a></li>
-<li>plugins location: <a href="using-kafka/kafka-connect/kafka-connect/plugins">kafka-connect/plugins</a></li>
-<li>requests location: <a href="using-kafka/kafka-connect/kafka-connect/requests">kafka-connect/requests</a></li>
+<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-connect">kafka-connect</a></li>
+<li>plugins location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-connect/plugins">kafka-connect/plugins</a></li>
+<li>requests location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-connect/requests">kafka-connect/requests</a></li>
 <li>connect port: <code>8082</code></li>
 </ul>
 <p>Run Kafka Connect:</p>
@@ -443,10 +443,10 @@ mqtt-cli pub -h mosquitto -t 'house/kitchen/brightness' -m '1000LM'
 <li><a href="https://ksqldb.io/">ksqldb</a></li>
 <li><a href="https://docs.ksqldb.io/en/latest/reference/server-configuration/">ksqldb settings</a></li>
 <li><a href="https://docs.ksqldb.io/en/latest/how-to-guides/test-an-app/">ksqldb test runner</a></li>
-<li>project location: <a href="using-kafka/kafka-ksqldb/kafka-ksqldb">kafka-ksqldb</a></li>
-<li>statements location: <a href="using-kafka/kafka-ksqldb/kafka-ksqldb/statements">kafka-ksqldb/statements</a></li>
-<li>test location: <a href="using-kafka/kafka-ksqldb/kafka-ksqldb/tests">kafka-ksqldb/tests</a></li>
-<li>extensions location: <a href="using-kafka/kafka-ksqldb/kafka-ksqldb-extensions/extensions">kafka-ksqldb-extensions/extensions</a></li>
+<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-ksqldb">kafka-ksqldb</a></li>
+<li>statements location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-ksqldb/statements">kafka-ksqldb/statements</a></li>
+<li>test location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-ksqldb/tests">kafka-ksqldb/tests</a></li>
+<li>extensions location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-ksqldb-extensions/extensions">kafka-ksqldb-extensions/extensions</a></li>
 <li>ksqldb port: <code>8088</code></li>
 </ul>
 <p>Create an alias for <code>ksqldb-cli</code>:</p>
@@ -488,7 +488,7 @@ SHOW STREAMS;
 <p>ksqlDB extensions are pieces of logic for transforming or aggregating events that ksqlDB can't currently express.</p>
 <ul>
 <li><a href="https://docs.ksqldb.io/en/latest/how-to-guides/create-a-user-defined-function">ksqldb extensions (udf, udtf, udaf)</a></li>
-<li>project location: <a href="using-kafka/kafka-ksqldb/kafka-ksqldb-extensions">kafka-ksqldb-extensions</a></li>
+<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-ksqldb-extensions">kafka-ksqldb-extensions</a></li>
 </ul>
 <p>Check the <a href="using-kafka/kafka-ksqldb/extensions.html#kafka-ksqldb">Kafka ksqlDB</a> section.</p>
 <p>For creating the <code>jar</code> extension, you can use the following command (development purposes):</p>
@@ -503,7 +503,7 @@ SHOW STREAMS;
 <li><a href="https://docs.confluent.io/platform/current/schema-registry/serdes-develop/serdes-avro.html">kafka producer and consumer example</a></li>
 <li><a href="https://docs.confluent.io/platform/current/installation/configuration/consumer-configs.html">kafka consumer settings</a></li>
 <li><a href="https://docs.confluent.io/platform/current/installation/configuration/producer-configs.html">kafka producer settings</a></li>
-<li>project location: <a href="using-kafka/kafka-clients/kafka-clients">kafka-clients</a></li>
+<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-clients">kafka-clients</a></li>
 </ul>
 <blockquote>
 <p>⚠ Run these commands inside the root folder.</p>
@@ -539,7 +539,7 @@ real-time to be effective.</p>
 <ul>
 <li><a href="https://kafka.apache.org/documentation/streams/">kafka streams</a></li>
 <li><a href="https://github.com/confluentinc/kafka-streams-examples">kafka streams examples</a></li>
-<li>project location: <a href="using-kafka/kafka-clients/kafka-clients">kafka-clients</a></li>
+<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-clients">kafka-clients</a></li>
 </ul>
 <p>Run streams:</p>
 <pre><code class="language-bash">kafka-clients streams
@@ -556,7 +556,7 @@ real-time to be effective.</p>
 <ul>
 <li><a href="https://www.confluent.io/blog/apache-kafka-spring-boot-application/">confluent spring kafka examples</a></li>
 <li><a href="https://docs.spring.io/spring-kafka/reference/html/">spring kafka settings</a></li>
-<li>project location: <a href="using-kafka/kafka-clients/kafka-spring-boot">kafka-spring-boot</a></li>
+<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-spring-boot">kafka-spring-boot</a></li>
 <li>spring port: <code>8585</code></li>
 </ul>
 <blockquote>
@@ -604,8 +604,8 @@ kafka-cli kafka-consumer-perf-test --help
 <li><a href="https://docs.confluent.io/platform/current/kafka-rest/index.html">kafka rest</a></li>
 <li><a href="https://docs.confluent.io/platform/current/kafka-rest/production-deployment/rest-proxy/config.html">kafka rest settings</a></li>
 <li><a href="https://docs.confluent.io/platform/current/kafka-rest/api.html">kafka rest api reference</a></li>
-<li>project location: <a href="proxies/kafka-rest">kafka-rest</a></li>
-<li>requests location: <a href="proxies/kafka-rest/requests">kafka-rest/requests</a></li>
+<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-rest">kafka-rest</a></li>
+<li>requests location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-rest/requests">kafka-rest/requests</a></li>
 <li>kafka rest port: <code>8083</code></li>
 </ul>
 <p>Run Kafka REST Proxy:</p>
@@ -626,7 +626,7 @@ http :8083/topics/kafka-rest.users Content-Type:application/vnd.kafka.avro.v2+js
 <ul>
 <li><a href="https://docs.confluent.io/platform/current/kafka-mqtt/intro.html">kafka mqtt</a></li>
 <li><a href="https://docs.confluent.io/platform/current/kafka-mqtt/configuration_options.html">kafka mqtt settings</a></li>
-<li>project location: <a href="proxies/kafka-mqtt">kafka-mqtt</a></li>
+<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-mqtt">kafka-mqtt</a></li>
 <li>kafka mqtt tcp port: <code>1884</code></li>
 </ul>
 <p>Run Kafka MQTT Proxy:</p>
