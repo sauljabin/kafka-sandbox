@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   kafka-rest:
-    image: confluentinc/cp-kafka-rest:7.1.1.amd64
+    image: confluentinc/cp-kafka-rest:7.1.1
     environment:
       TZ: America/Guayaquil
       KAFKA_REST_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092,kafka3:9092

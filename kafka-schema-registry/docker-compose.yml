@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   schema-registry:
-    image: confluentinc/cp-schema-registry:7.1.1.amd64
+    image: confluentinc/cp-schema-registry:7.1.1
     environment:
       TZ: America/Guayaquil
       SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_METHODS: GET,POST,PUT,OPTIONS

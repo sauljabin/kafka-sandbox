@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   kafka1:
-    image: confluentinc/cp-kafka:7.1.1.amd64
+    image: confluentinc/cp-kafka:7.1.1
     environment:
       TZ: America/Guayaquil
       KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka1:9092,EXTERNAL://localhost:19093
@@ -18,7 +18,7 @@ services:
       - kafka1_data:/var/lib/kafka/data
 
   kafka2:
-    image: confluentinc/cp-kafka:7.1.1.amd64
+    image: confluentinc/cp-kafka:7.1.1
     environment:
       TZ: America/Guayaquil
       KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka2:9092,EXTERNAL://localhost:29093
@@ -34,7 +34,7 @@ services:
       - kafka2_data:/var/lib/kafka/data
 
   kafka3:
-    image: confluentinc/cp-kafka:7.1.1.amd64
+    image: confluentinc/cp-kafka:7.1.1
     environment:
       TZ: America/Guayaquil
       KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka3:9092,EXTERNAL://localhost:39093
@@ -50,7 +50,7 @@ services:
       - kafka3_data:/var/lib/kafka/data
 
   zookeeper:
-    image: confluentinc/cp-zookeeper:7.1.1.amd64
+    image: confluentinc/cp-zookeeper:7.1.1
     environment:
       TZ: America/Guayaquil
       ZOOKEEPER_CLIENT_PORT: '2181'
