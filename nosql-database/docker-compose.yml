@@ -14,7 +14,7 @@ services:
       - mongo_data:/data/db
 
   mongo-express:
-    image: mongo-express:0.54
+    image: mongo-express:latest
     environment:
       TZ: America/Guayaquil
       ME_CONFIG_MONGODB_ADMINPASSWORD: notasecret

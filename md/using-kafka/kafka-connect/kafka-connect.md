@@ -10,12 +10,12 @@ It makes it simple to quickly define connectors that move large data sets into a
 - project location: [kafka-connect](https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-connect)
 - plugins location: [kafka-connect/plugins](https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-connect/plugins)
 - requests location: [kafka-connect/requests](https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-connect/requests)
-- connect port: `8082`
+- connect port: `8083`
 
 Run Kafka Connect:
 
 ```bash
 cd kafka-connect
 docker compose up -d
-http :8082/connector-plugins
+http :8083/connector-plugins
 ```

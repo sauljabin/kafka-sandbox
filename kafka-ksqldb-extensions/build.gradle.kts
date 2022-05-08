@@ -15,7 +15,7 @@ repositories {
 dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
 
-    implementation("io.confluent.ksql:ksqldb-udf:6.2.0")
+    implementation("io.confluent.ksql:ksqldb-udf:7.1.1")
     implementation("org.apache.kafka:connect-api:2.8.0")
     implementation("org.apache.kafka:kafka_2.13:2.8.0")
 

@@ -8,8 +8,8 @@ ENV ZOE_URL "https://github.com/adevinta/zoe/releases/download/v${ZOE_VERSION}/z
 ENV ZOE_HOME "/opt/zoe"
 ENV ZOE_BIN "${ZOE_HOME}/bin"
 
-ENV CONFLUENT_VERSION "6.2"
-ENV CONFLUENT_FULL_VERSION "6.2.0"
+ENV CONFLUENT_VERSION "7.1"
+ENV CONFLUENT_FULL_VERSION "7.1.1"
 ENV CONFLUENT_URL "http://packages.confluent.io/archive/${CONFLUENT_VERSION}/confluent-community-${CONFLUENT_FULL_VERSION}.zip"
 ENV CONFLUENT_HOME "/opt/confluent"
 ENV CONFLUENT_BIN "${CONFLUENT_HOME}/bin"

@@ -2,12 +2,11 @@ version: '3.9'
 
 services:
   kafka-connect:
-    image: confluentinc/cp-kafka-connect:6.2.0
+    image: confluentinc/cp-kafka-connect:7.1.1.amd64
     environment:
       TZ: America/Guayaquil
       CONNECT_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092,kafka3:9092
       CONNECT_REST_ADVERTISED_HOST_NAME: localhost
-      CONNECT_REST_PORT: '8082'
       CONNECT_GROUP_ID: kafka-connect-sandbox
       CONNECT_PLUGIN_PATH: /usr/local/share/kafka/plugins
       CONNECT_KEY_CONVERTER: io.confluent.connect.avro.AvroConverter
@@ -18,7 +17,7 @@ services:
       CONNECT_OFFSET_STORAGE_TOPIC: kafka-connect.offsets
       CONNECT_STATUS_STORAGE_TOPIC: kafka-connect.status
     ports:
-      - 8082:8082
+      - 8083:8083
     restart: on-failure
     volumes:
       - ./plugins:/usr/local/share/kafka/plugins

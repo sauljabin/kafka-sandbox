@@ -1,5 +1,10 @@
 # Kafka Performance Tools
 
+Performance tuning involves two important metrics:
+
+- Latency measures how long it takes to process one event.
+- Throughput measures how many events arrive within a specific amount of time.
+
 Run help:
 
 ```bash
@@ -16,6 +21,8 @@ kafka-cli kafka-topics --create --bootstrap-server kafka1:9092 \
                        --topic kafka-cluster.performance-test
 ```
 
+## Performance Tests
+
 Test producer:
 
 ```bash
@@ -26,6 +33,9 @@ kafka-cli kafka-producer-perf-test --topic kafka-cluster.performance-test \
                                    --producer-props acks=all bootstrap.servers=kafka1:9092,kafka2:9092,kafka3:9092
 ```
 
+- Throughput in MB/sec.
+- Latency in miliseconds.
+
 Test consumer:
 
 ```bash
@@ -34,8 +44,17 @@ kafka-cli kafka-consumer-perf-test --topic kafka-cluster.performance-test \
                                    --messages 3000000
 ```
 
-Test latency:
+- `start.time, end.time`: shows test start and end time.
+- `data.consumed.in.MB`: shows the size of all messages consumed.
+- `MB.sec`: shows how much data transferred in megabytes per second (Throughput on size).
+- `data.consumed.in.nMsg`: shows the count of the total messages consumed during this test.
+- `nMsg.sec`: shows how many messages were consumed in a second (Throughput on the count of messages).
+
+Test end to end latency:
 
 ```bash
 kafka-cli kafka-run-class kafka.tools.EndToEndLatency kafka1:9092,kafka2:9092,kafka3:9092 kafka-cluster.performance-test 10000 1 1024
 ```
+
+- This class records the average end to end latency for a single message to travel through Kafka.
+- Latency in miliseconds.

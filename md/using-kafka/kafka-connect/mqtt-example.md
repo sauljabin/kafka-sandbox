@@ -10,7 +10,7 @@ Create a connector using the API:
 
 ```bash
 cd kafka-connect
-http :8082/connectors < requests/create-connector-mqtt-source.json
+http :8083/connectors < requests/create-connector-mqtt-source.json
 ```
 
 Publish messages:
@@ -32,5 +32,5 @@ kafka-cli kafka-console-consumer --from-beginning --group kafka-connect.brightne
 For deleting the connector:
 
 ```bash
-http DELETE :8082/connectors/mqtt-source
+http DELETE :8083/connectors/mqtt-source
 ```

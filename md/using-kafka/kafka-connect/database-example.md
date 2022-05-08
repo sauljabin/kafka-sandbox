@@ -12,15 +12,15 @@ Create the connectors using the API:
 
 ```bash
 cd kafka-connect
-http :8082/connectors < requests/create-connector-mysql-source.json
-http :8082/connectors < requests/create-connector-mongo-sink.json
-http :8082/connectors < requests/create-connector-postgres-sink.json
+http :8083/connectors < requests/create-connector-mysql-source.json
+http :8083/connectors < requests/create-connector-mongo-sink.json
+http :8083/connectors < requests/create-connector-postgres-sink.json
 ```
 
 For deleting the connectors:
 
 ```bash
-http DELETE :8082/connectors/postgres-sink
-http DELETE :8082/connectors/mongo-sink
-http DELETE :8082/connectors/mysql-source
+http DELETE :8083/connectors/postgres-sink
+http DELETE :8083/connectors/mongo-sink
+http DELETE :8083/connectors/mysql-source
 ```

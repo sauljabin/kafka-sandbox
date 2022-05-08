@@ -30,10 +30,10 @@
 | Zookeeper 3 | localhost | 32181 |
 | Schema Registry | schema-registry | 8081 |
 | Schema Registry | localhost | 8081 |
-| Kafka Connect | kafka-connect | 8082 |
-| Kafka Connect | localhost | 8082 |
-| Kafka REST | kafka-rest | 8083 |
-| Kafka REST | localhost | 8083 |
+| Kafka REST | kafka-rest | 8082 |
+| Kafka REST | localhost | 8082 |
+| Kafka Connect | kafka-connect | 8083 |
+| Kafka Connect | localhost | 8083 |
 | Kafka MQTT | kafka-mqtt | 1884 |
 | Kafka MQTT | localhost | 1884 |
 | ksqlDB | ksqldb | 8088 |

@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   ksqldb:
-    image: confluentinc/cp-ksqldb-server:6.2.0
+    image: confluentinc/cp-ksqldb-server:7.1.1.amd64
     environment:
       TZ: America/Guayaquil
       KSQL_KSQL_SERVICE_ID: kafka-ksqldb.

@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   akhq:
-    image: tchiotludo/akhq:0.18.0
+    image: tchiotludo/akhq:latest
     ports:
       - 8080:8080
     restart: on-failure
@@ -18,7 +18,7 @@ services:
                 url: http://schema-registry:8081
               connect:
                 - name: kafka-connect
-                  url: http://kafka-connect:8082
+                  url: http://kafka-connect:8083
 
 networks:
   default:
