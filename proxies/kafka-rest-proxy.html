@@ -148,17 +148,17 @@
 <li><a href="https://docs.confluent.io/platform/current/kafka-rest/api.html">kafka rest api reference</a></li>
 <li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-rest">kafka-rest</a></li>
 <li>requests location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-rest/requests">kafka-rest/requests</a></li>
-<li>kafka rest port: <code>8083</code></li>
+<li>kafka rest port: <code>8082</code></li>
 </ul>
 <p>Run Kafka REST Proxy:</p>
 <pre><code class="language-bash">cd kafka-rest
 docker compose up -d
-http :8083/brokers
+http :8082/brokers
 </code></pre>
 <p>Create topics:</p>
 <pre><code class="language-bash">cd kafka-rest
-http :8083/topics/kafka-rest.test Content-Type:application/vnd.kafka.json.v2+json records:='[{ &quot;key&quot;: &quot;test&quot;, &quot;value&quot;: &quot;test&quot; }]'
-http :8083/topics/kafka-rest.users Content-Type:application/vnd.kafka.avro.v2+json &lt; requests/produce-avro-message.json
+http :8082/topics/kafka-rest.test Content-Type:application/vnd.kafka.json.v2+json records:='[{ &quot;key&quot;: &quot;test&quot;, &quot;value&quot;: &quot;test&quot; }]'
+http :8082/topics/kafka-rest.users Content-Type:application/vnd.kafka.avro.v2+json &lt; requests/produce-avro-message.json
 </code></pre>
 
                     </main>

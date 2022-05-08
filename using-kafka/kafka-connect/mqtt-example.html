@@ -143,7 +143,7 @@
 </code></pre>
 <p>Create a connector using the API:</p>
 <pre><code class="language-bash">cd kafka-connect
-http :8082/connectors &lt; requests/create-connector-mqtt-source.json
+http :8083/connectors &lt; requests/create-connector-mqtt-source.json
 </code></pre>
 <p>Publish messages:</p>
 <pre><code class="language-bash">mqtt-cli pub -h mosquitto -t 'house/room/brightness' -m '800LM'
@@ -156,7 +156,7 @@ mqtt-cli pub -h mosquitto -t 'house/kitchen/brightness' -m '1000LM'
                                  --property print.key=true
 </code></pre>
 <p>For deleting the connector:</p>
-<pre><code class="language-bash">http DELETE :8082/connectors/mqtt-source
+<pre><code class="language-bash">http DELETE :8083/connectors/mqtt-source
 </code></pre>
 
                     </main>

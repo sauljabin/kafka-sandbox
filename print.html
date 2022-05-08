@@ -329,7 +329,7 @@ docker compose up -d
 <li><a href="https://zookeeper.apache.org/">zookeeper</a></li>
 <li><a href="https://docs.confluent.io/platform/current/zookeeper/deployment.html">zookeeper settings</a></li>
 <li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-cluster">kafka-cluster</a></li>
-<li>kafka version: <a href="https://docs.confluent.io/platform/current/installation/versions-interoperability.html">2.8 (cp 6.2.0)</a></li>
+<li>kafka version: <a href="https://docs.confluent.io/platform/current/installation/versions-interoperability.html">cp 7.1.1</a></li>
 <li>kafka ports: <code>19093</code>, <code>29093</code>, <code>39093</code></li>
 <li>zookeeper ports: <code>12181</code>, <code>22181</code>, <code>32181</code></li>
 </ul>
@@ -388,12 +388,12 @@ http :8081/config
 <li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-connect">kafka-connect</a></li>
 <li>plugins location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-connect/plugins">kafka-connect/plugins</a></li>
 <li>requests location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-connect/requests">kafka-connect/requests</a></li>
-<li>connect port: <code>8082</code></li>
+<li>connect port: <code>8083</code></li>
 </ul>
 <p>Run Kafka Connect:</p>
 <pre><code class="language-bash">cd kafka-connect
 docker compose up -d
-http :8082/connector-plugins
+http :8083/connector-plugins
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="kafka-connect-database-example"><a class="header" href="#kafka-connect-database-example">Kafka Connect Database Example</a></h1>
 <blockquote>
@@ -404,14 +404,14 @@ http :8082/connector-plugins
 </code></pre>
 <p>Create the connectors using the API:</p>
 <pre><code class="language-bash">cd kafka-connect
-http :8082/connectors &lt; requests/create-connector-mysql-source.json
-http :8082/connectors &lt; requests/create-connector-mongo-sink.json
-http :8082/connectors &lt; requests/create-connector-postgres-sink.json
+http :8083/connectors &lt; requests/create-connector-mysql-source.json
+http :8083/connectors &lt; requests/create-connector-mongo-sink.json
+http :8083/connectors &lt; requests/create-connector-postgres-sink.json
 </code></pre>
 <p>For deleting the connectors:</p>
-<pre><code class="language-bash">http DELETE :8082/connectors/postgres-sink
-http DELETE :8082/connectors/mongo-sink
-http DELETE :8082/connectors/mysql-source
+<pre><code class="language-bash">http DELETE :8083/connectors/postgres-sink
+http DELETE :8083/connectors/mongo-sink
+http DELETE :8083/connectors/mysql-source
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="kafka-connect-mqtt-example"><a class="header" href="#kafka-connect-mqtt-example">Kafka Connect MQTT Example</a></h1>
 <p>Subscribe to topics (for debugging purposes):</p>
@@ -419,7 +419,7 @@ http DELETE :8082/connectors/mysql-source
 </code></pre>
 <p>Create a connector using the API:</p>
 <pre><code class="language-bash">cd kafka-connect
-http :8082/connectors &lt; requests/create-connector-mqtt-source.json
+http :8083/connectors &lt; requests/create-connector-mqtt-source.json
 </code></pre>
 <p>Publish messages:</p>
 <pre><code class="language-bash">mqtt-cli pub -h mosquitto -t 'house/room/brightness' -m '800LM'
@@ -432,7 +432,7 @@ mqtt-cli pub -h mosquitto -t 'house/kitchen/brightness' -m '1000LM'
                                  --property print.key=true
 </code></pre>
 <p>For deleting the connector:</p>
-<pre><code class="language-bash">http DELETE :8082/connectors/mqtt-source
+<pre><code class="language-bash">http DELETE :8083/connectors/mqtt-source
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="kafka-ksqldb"><a class="header" href="#kafka-ksqldb">Kafka ksqlDB</a></h1>
 <p>ksqlDB is a database that's purpose-built for stream processing applications.</p>
@@ -570,6 +570,11 @@ real-time to be effective.</p>
 http :8585/produce messages==10
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="kafka-performance-tools"><a class="header" href="#kafka-performance-tools">Kafka Performance Tools</a></h1>
+<p>Performance tuning involves two important metrics:</p>
+<ul>
+<li>Latency measures how long it takes to process one event.</li>
+<li>Throughput measures how many events arrive within a specific amount of time.</li>
+</ul>
 <p>Run help:</p>
 <pre><code class="language-bash">kafka-cli kafka-producer-perf-test --help
 kafka-cli kafka-consumer-perf-test --help
@@ -580,6 +585,7 @@ kafka-cli kafka-consumer-perf-test --help
                        --partitions 3 \
                        --topic kafka-cluster.performance-test
 </code></pre>
+<h2 id="performance-tests"><a class="header" href="#performance-tests">Performance Tests</a></h2>
 <p>Test producer:</p>
 <pre><code class="language-bash">kafka-cli kafka-producer-perf-test --topic kafka-cluster.performance-test \
                                    --throughput -1 \
@@ -587,14 +593,29 @@ kafka-cli kafka-consumer-perf-test --help
                                    --record-size 1024 \
                                    --producer-props acks=all bootstrap.servers=kafka1:9092,kafka2:9092,kafka3:9092
 </code></pre>
+<ul>
+<li>Throughput in MB/sec.</li>
+<li>Latency in miliseconds.</li>
+</ul>
 <p>Test consumer:</p>
 <pre><code class="language-bash">kafka-cli kafka-consumer-perf-test --topic kafka-cluster.performance-test \
                                    --broker-list kafka1:9092,kafka2:9092,kafka3:9092 \
                                    --messages 3000000
 </code></pre>
-<p>Test latency:</p>
+<ul>
+<li><code>start.time, end.time</code>: shows test start and end time.</li>
+<li><code>data.consumed.in.MB</code>: shows the size of all messages consumed.</li>
+<li><code>MB.sec</code>: shows how much data transferred in megabytes per second (Throughput on size).</li>
+<li><code>data.consumed.in.nMsg</code>: shows the count of the total messages consumed during this test.</li>
+<li><code>nMsg.sec</code>: shows how many messages were consumed in a second (Throughput on the count of messages).</li>
+</ul>
+<p>Test end to end latency:</p>
 <pre><code class="language-bash">kafka-cli kafka-run-class kafka.tools.EndToEndLatency kafka1:9092,kafka2:9092,kafka3:9092 kafka-cluster.performance-test 10000 1 1024
 </code></pre>
+<ul>
+<li>This class records the average end to end latency for a single message to travel through Kafka.</li>
+<li>Latency in miliseconds.</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="kafka-rest-proxy"><a class="header" href="#kafka-rest-proxy">Kafka REST Proxy</a></h1>
 <p>The Kafka REST Proxy provides a RESTful interface to a Kafka cluster.</p>
 <blockquote>
@@ -606,17 +627,17 @@ kafka-cli kafka-consumer-perf-test --help
 <li><a href="https://docs.confluent.io/platform/current/kafka-rest/api.html">kafka rest api reference</a></li>
 <li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-rest">kafka-rest</a></li>
 <li>requests location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-rest/requests">kafka-rest/requests</a></li>
-<li>kafka rest port: <code>8083</code></li>
+<li>kafka rest port: <code>8082</code></li>
 </ul>
 <p>Run Kafka REST Proxy:</p>
 <pre><code class="language-bash">cd kafka-rest
 docker compose up -d
-http :8083/brokers
+http :8082/brokers
 </code></pre>
 <p>Create topics:</p>
 <pre><code class="language-bash">cd kafka-rest
-http :8083/topics/kafka-rest.test Content-Type:application/vnd.kafka.json.v2+json records:='[{ &quot;key&quot;: &quot;test&quot;, &quot;value&quot;: &quot;test&quot; }]'
-http :8083/topics/kafka-rest.users Content-Type:application/vnd.kafka.avro.v2+json &lt; requests/produce-avro-message.json
+http :8082/topics/kafka-rest.test Content-Type:application/vnd.kafka.json.v2+json records:='[{ &quot;key&quot;: &quot;test&quot;, &quot;value&quot;: &quot;test&quot; }]'
+http :8082/topics/kafka-rest.users Content-Type:application/vnd.kafka.avro.v2+json &lt; requests/produce-avro-message.json
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="kafka-mqtt-proxy"><a class="header" href="#kafka-mqtt-proxy">Kafka MQTT Proxy</a></h1>
 <p>MQTT Proxy enables MQTT clients to use the MQTT 3.1.1 protocol to publish data directly to Apache Kafka.</p>
@@ -672,10 +693,10 @@ docker compose up -d
 <tr><td>Zookeeper 3</td><td>localhost</td><td>32181</td></tr>
 <tr><td>Schema Registry</td><td>schema-registry</td><td>8081</td></tr>
 <tr><td>Schema Registry</td><td>localhost</td><td>8081</td></tr>
-<tr><td>Kafka Connect</td><td>kafka-connect</td><td>8082</td></tr>
-<tr><td>Kafka Connect</td><td>localhost</td><td>8082</td></tr>
-<tr><td>Kafka REST</td><td>kafka-rest</td><td>8083</td></tr>
-<tr><td>Kafka REST</td><td>localhost</td><td>8083</td></tr>
+<tr><td>Kafka REST</td><td>kafka-rest</td><td>8082</td></tr>
+<tr><td>Kafka REST</td><td>localhost</td><td>8082</td></tr>
+<tr><td>Kafka Connect</td><td>kafka-connect</td><td>8083</td></tr>
+<tr><td>Kafka Connect</td><td>localhost</td><td>8083</td></tr>
 <tr><td>Kafka MQTT</td><td>kafka-mqtt</td><td>1884</td></tr>
 <tr><td>Kafka MQTT</td><td>localhost</td><td>1884</td></tr>
 <tr><td>ksqlDB</td><td>ksqldb</td><td>8088</td></tr>
