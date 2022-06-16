@@ -47,7 +47,8 @@ public class Consumer implements Callable<Integer> {
                 while (true) {
                     ConsumerRecords<String, Supplier> records = consumer.poll(Duration.ofMillis(500));
                     for (ConsumerRecord<String, Supplier> record : records) {
-                        log.info("Consumed message: partition = {}, offset = {}, key = {}, value = {}",
+                        log.info("Consumed message: topic = {}, partition = {}, offset = {}, key = {}, value = {}",
+                                record.topic(),
                                 record.partition(),
                                 record.offset(),
                                 record.key(),
