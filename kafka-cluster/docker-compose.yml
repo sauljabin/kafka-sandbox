@@ -16,6 +16,16 @@ services:
     restart: on-failure
     volumes:
       - kafka1_data:/var/lib/kafka/data
+    depends_on:
+      zookeeper:
+        condition:
+          service_healthy
+    healthcheck:
+      test: kafka-topics --bootstrap-server localhost:9092 --list > /dev/null 2>&1
+      interval: 30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
 
   kafka2:
     image: confluentinc/cp-kafka:7.1.1
@@ -32,6 +42,16 @@ services:
     restart: on-failure
     volumes:
       - kafka2_data:/var/lib/kafka/data
+    depends_on:
+      zookeeper:
+        condition:
+          service_healthy
+    healthcheck:
+      test: kafka-topics --bootstrap-server localhost:9092 --list > /dev/null 2>&1
+      interval: 30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
 
   kafka3:
     image: confluentinc/cp-kafka:7.1.1
@@ -48,6 +68,16 @@ services:
     restart: on-failure
     volumes:
       - kafka3_data:/var/lib/kafka/data
+    depends_on:
+      zookeeper:
+        condition:
+          service_healthy
+    healthcheck:
+      test: kafka-topics --bootstrap-server localhost:9092 --list > /dev/null 2>&1
+      interval: 30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
 
   zookeeper:
     image: confluentinc/cp-zookeeper:7.1.1
@@ -64,6 +94,12 @@ services:
     volumes:
       - zookeeper_data:/var/lib/zookeeper/data
       - zookeeper_datalog:/var/lib/zookeeper/log
+    healthcheck:
+      test: nc -z localhost 2181
+      interval: 30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
 
 volumes:
   kafka1_data:
