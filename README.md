@@ -3,7 +3,7 @@ help you on your learning path. It provides you with a wide variety of tools fro
 to run them all. It also includes a set of tools and tips to make it easier for you to use kafka. It does not include
 security since it is not a production system. You can access it at https://sauljabin.github.io/kafka-sandbox/.
 
-This book is power by [mdBook](https://rust-lang.github.io/mdBook/index.html).
+> This repository is for educational purposes. This book is power by [mdBook](https://rust-lang.github.io/mdBook/index.html).
 
 ## Developing Commands
 
