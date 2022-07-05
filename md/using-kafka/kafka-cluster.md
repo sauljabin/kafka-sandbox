@@ -49,7 +49,7 @@ kafka-cli kafka-console-consumer --from-beginning --group kafka-cluster.test \
                                  --bootstrap-server kafka1:9092
 ```
 
-> &#x26a0; The `JMX` ports were open to monitor kafka using `jconsole`.
+> &#x26a0; The `JMX` ports were opened to monitor kafka using `jconsole`.
 
 Run `jconsole`:
 
