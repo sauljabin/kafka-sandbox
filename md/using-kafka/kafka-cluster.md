@@ -9,6 +9,7 @@ A three node kafka cluster.
 - project location: [kafka-cluster](https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-cluster)
 - kafka version: [cp 7.1.2](https://docs.confluent.io/platform/current/installation/versions-interoperability.html)
 - kafka ports: `19093`, `29093`, `39093`
+- kafka jmx ports: `19999`, `29999`, `39999`
 - zookeeper ports: `12181`, `22181`, `32181`
 
 Run zookeeper and kafka:
@@ -48,15 +49,7 @@ kafka-cli kafka-console-consumer --from-beginning --group kafka-cluster.test \
                                  --bootstrap-server kafka1:9092
 ```
 
-## Using Jconsole
-
-The `JMX` ports were enabling to monitor using `jconsole`.
-
-| Service | Port |
-| - | - |
-| Kafka 1 JMX | 19999 |
-| Kafka 2 JMX | 29999 |
-| Kafka 3 JMX | 39999 |
+> &#x26a0; The `JMX` ports were open to monitor kafka using `jconsole`.
 
 Run `jconsole`:
 
