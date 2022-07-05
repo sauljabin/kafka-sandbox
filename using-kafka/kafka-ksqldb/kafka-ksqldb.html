@@ -187,6 +187,33 @@ SHOW STREAMS;
 <p>Using the ksqlDB API, list of streams:</p>
 <pre><code class="language-bash">http :8088/ksql ksql=&quot;list streams;&quot; | jq '.[].streams[] | [{name: .name, topic: .topic}]'
 </code></pre>
+<h2 id="docker-compose"><a class="header" href="#docker-compose">Docker Compose</a></h2>
+<pre><code class="language-yaml">version: '3.9'
+
+services:
+  ksqldb:
+    image: confluentinc/cp-ksqldb-server:7.1.2
+    environment:
+      TZ: America/Guayaquil
+      KSQL_KSQL_SERVICE_ID: kafka-ksqldb.
+      KSQL_LISTENERS: http://0.0.0.0:8088
+      KSQL_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092,kafka3:9092
+      KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE: 'true'
+      KSQL_KSQL_LOGGING_PROCESSING_TOPIC_AUTO_CREATE: 'true'
+      KSQL_KSQL_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+      KSQL_KSQL_CONNECT_URL: http://kafka-connect:8083
+      KSQL_KSQL_EXTENSION_DIR: /ksqldb/extensions
+    ports:
+      - 8088:8088
+    restart: on-failure
+    volumes:
+      - ../kafka-ksqldb-extensions/extensions:/ksqldb/extensions
+
+networks:
+  default:
+    external: true
+    name: kafka-sandbox_network
+</code></pre>
 
                     </main>
 

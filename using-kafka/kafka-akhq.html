@@ -149,6 +149,34 @@
 <pre><code class="language-bash">cd kafka-akhq
 docker compose up -d
 </code></pre>
+<h2 id="docker-compose"><a class="header" href="#docker-compose">Docker Compose</a></h2>
+<pre><code class="language-yaml">version: '3.9'
+
+services:
+  akhq:
+    image: tchiotludo/akhq:latest
+    ports:
+      - 8080:8080
+    restart: on-failure
+    environment:
+      TZ: America/Guayaquil
+      AKHQ_CONFIGURATION: |
+        akhq:
+          connections:
+            docker-kafka-server:
+              properties:
+                bootstrap.servers: kafka1:9092,kafka2:9092,kafka3:9092
+              schema-registry:
+                url: http://schema-registry:8081
+              connect:
+                - name: kafka-connect
+                  url: http://kafka-connect:8083
+
+networks:
+  default:
+    external: true
+    name: kafka-sandbox_network
+</code></pre>
 
                     </main>
 

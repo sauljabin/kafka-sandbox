@@ -155,6 +155,36 @@
 docker compose up -d
 http :8083/connector-plugins
 </code></pre>
+<h2 id="docker-compose"><a class="header" href="#docker-compose">Docker Compose</a></h2>
+<pre><code class="language-yaml">version: '3.9'
+
+services:
+  kafka-connect:
+    image: confluentinc/cp-kafka-connect:7.1.2
+    environment:
+      TZ: America/Guayaquil
+      CONNECT_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092,kafka3:9092
+      CONNECT_REST_ADVERTISED_HOST_NAME: localhost
+      CONNECT_GROUP_ID: kafka-connect-sandbox
+      CONNECT_PLUGIN_PATH: /usr/local/share/kafka/plugins
+      CONNECT_KEY_CONVERTER: io.confluent.connect.avro.AvroConverter
+      CONNECT_VALUE_CONVERTER: io.confluent.connect.avro.AvroConverter
+      CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+      CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+      CONNECT_CONFIG_STORAGE_TOPIC: kafka-connect.config
+      CONNECT_OFFSET_STORAGE_TOPIC: kafka-connect.offsets
+      CONNECT_STATUS_STORAGE_TOPIC: kafka-connect.status
+    ports:
+      - 8083:8083
+    restart: on-failure
+    volumes:
+      - ./plugins:/usr/local/share/kafka/plugins
+
+networks:
+  default:
+    external: true
+    name: kafka-sandbox_network
+</code></pre>
 
                     </main>
 

@@ -161,6 +161,26 @@ docker compose up -d
                                  --bootstrap-server kafka1:9092 \
                                  --property print.key=true
 </code></pre>
+<h2 id="docker-compose"><a class="header" href="#docker-compose">Docker Compose</a></h2>
+<pre><code class="language-yaml">version: '3.9'
+
+services:
+  kafka-mqtt:
+    image: confluentinc/cp-kafka-mqtt:7.1.2
+    environment:
+      TZ: America/Guayaquil
+      KAFKA_MQTT_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092,kafka3:9092
+      KAFKA_MQTT_TOPIC_REGEX_LIST: kafka-mqtt.temperature:.*temperature
+      KAFKA_MQTT_LISTENERS: 0.0.0.0:1884
+    ports:
+      - 1884:1884
+    restart: on-failure
+
+networks:
+  default:
+    external: true
+    name: kafka-sandbox_network
+</code></pre>
 
                     </main>
 

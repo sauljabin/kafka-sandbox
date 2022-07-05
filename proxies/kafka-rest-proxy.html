@@ -160,6 +160,25 @@ http :8082/brokers
 http :8082/topics/kafka-rest.test Content-Type:application/vnd.kafka.json.v2+json records:='[{ &quot;key&quot;: &quot;test&quot;, &quot;value&quot;: &quot;test&quot; }]'
 http :8082/topics/kafka-rest.users Content-Type:application/vnd.kafka.avro.v2+json &lt; requests/produce-avro-message.json
 </code></pre>
+<h2 id="docker-compose"><a class="header" href="#docker-compose">Docker Compose</a></h2>
+<pre><code class="language-yaml">version: '3.9'
+
+services:
+  kafka-rest:
+    image: confluentinc/cp-kafka-rest:7.1.2
+    environment:
+      TZ: America/Guayaquil
+      KAFKA_REST_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092,kafka3:9092
+      KAFKA_REST_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+    ports:
+      - 8082:8082
+    restart: on-failure
+
+networks:
+  default:
+    external: true
+    name: kafka-sandbox_network
+</code></pre>
 
                     </main>
 

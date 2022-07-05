@@ -152,6 +152,37 @@ docker compose up -d
 <blockquote>
 <p>⚠ User: <code>admin</code> and password: <code>notasecret</code>.</p>
 </blockquote>
+<h2 id="docker-compose"><a class="header" href="#docker-compose">Docker Compose</a></h2>
+<pre><code class="language-yaml">version: '3.9'
+
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    command: --admin-password='$$2y$$05$$fgscPLqjwVbI275cmcbWiuIkghu6BEWorqn63vCzTY0P6BhsgIq/q'
+    environment:
+      TZ: America/Guayaquil
+    ports:
+      - 9000:9000
+      - 8000:8000
+    restart: on-failure
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+
+  portainer-agent:
+    image: portainer/agent:latest
+    environment:
+      TZ: America/Guayaquil
+    ports:
+      - 9001:9001
+    restart: on-failure
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/volumes:/var/lib/docker/volumes
+
+volumes:
+  portainer_data:
+</code></pre>
 
                     </main>
 
