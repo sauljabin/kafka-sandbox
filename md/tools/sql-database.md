@@ -16,3 +16,9 @@ Run MySQL, PostgresSQL and Adminer:
 cd sql-database
 docker compose up -d
 ```
+
+## Docker Compose
+
+```yaml
+{{#include ../../sql-database/docker-compose.yml}}
+```

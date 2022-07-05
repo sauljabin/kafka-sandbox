@@ -13,3 +13,9 @@ Run AKHQ:
 cd kafka-akhq
 docker compose up -d
 ```
+
+## Docker Compose
+
+```yaml
+{{#include ../../kafka-akhq/docker-compose.yml}}
+```

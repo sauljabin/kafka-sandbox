@@ -70,3 +70,9 @@ Using the ksqlDB API, list of streams:
 ```bash
 http :8088/ksql ksql="list streams;" | jq '.[].streams[] | [{name: .name, topic: .topic}]'
 ```
+
+## Docker Compose
+
+```yaml
+{{#include ../../../kafka-ksqldb/docker-compose.yml}}
+```

@@ -30,3 +30,9 @@ kafka-cli kafka-console-consumer --from-beginning --group kafka-mqtt.consumer \
                                  --bootstrap-server kafka1:9092 \
                                  --property print.key=true
 ```
+
+## Docker Compose
+
+```yaml
+{{#include ../../kafka-mqtt/docker-compose.yml}}
+```

@@ -56,3 +56,9 @@ Run `jconsole`:
 ```bash
 jconsole localhost:19999
 ```
+
+## Docker Compose
+
+```yaml
+{{#include ../../kafka-cluster/docker-compose.yml}}
+```

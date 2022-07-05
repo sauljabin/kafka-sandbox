@@ -14,3 +14,9 @@ cd kafka-schema-registry
 docker compose up -d
 http :8081/config
 ```
+
+## Docker Compose
+
+```yaml
+{{#include ../../kafka-schema-registry/docker-compose.yml}}
+```

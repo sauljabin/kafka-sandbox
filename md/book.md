@@ -2,6 +2,8 @@
 
 This book is power by [mdBook](https://rust-lang.github.io/mdBook/index.html).
 
+GitHub [Repository](https://github.com/sauljabin/kafka-sandbox).
+
 ## Developing Commands
 
 > You must to install [rust](https://www.rust-lang.org/tools/install) first.

@@ -14,3 +14,9 @@ Run MongoDB and Mongo Express:
 cd nosql-database
 docker compose up -d
 ```
+
+## Docker Compose
+
+```yaml
+{{#include ../../nosql-database/docker-compose.yml}}
+```

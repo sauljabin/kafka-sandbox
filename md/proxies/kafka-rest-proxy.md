@@ -26,3 +26,9 @@ cd kafka-rest
 http :8082/topics/kafka-rest.test Content-Type:application/vnd.kafka.json.v2+json records:='[{ "key": "test", "value": "test" }]'
 http :8082/topics/kafka-rest.users Content-Type:application/vnd.kafka.avro.v2+json < requests/produce-avro-message.json
 ```
+
+## Docker Compose
+
+```yaml
+{{#include ../../kafka-rest/docker-compose.yml}}
+```

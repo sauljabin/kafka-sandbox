@@ -19,3 +19,9 @@ cd kafka-connect
 docker compose up -d
 http :8083/connector-plugins
 ```
+
+## Docker Compose
+
+```yaml
+{{#include ../../../kafka-connect/docker-compose.yml}}
+```

@@ -15,3 +15,9 @@ cd mqtt-broker
 docker compose up -d
 mqtt-cli test -h mosquitto
 ```
+
+## Docker Compose
+
+```yaml
+{{#include ../../mqtt-broker/docker-compose.yml}}
+```
