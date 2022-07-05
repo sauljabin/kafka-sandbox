@@ -147,6 +147,7 @@
 <li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-cluster">kafka-cluster</a></li>
 <li>kafka version: <a href="https://docs.confluent.io/platform/current/installation/versions-interoperability.html">cp 7.1.2</a></li>
 <li>kafka ports: <code>19093</code>, <code>29093</code>, <code>39093</code></li>
+<li>kafka jmx ports: <code>19999</code>, <code>29999</code>, <code>39999</code></li>
 <li>zookeeper ports: <code>12181</code>, <code>22181</code>, <code>32181</code></li>
 </ul>
 <p>Run zookeeper and kafka:</p>
@@ -171,14 +172,9 @@ kafka-cli kafka-topics --bootstrap-server kafka1:9092 --list
                                  --topic kafka-cluster.test  \
                                  --bootstrap-server kafka1:9092
 </code></pre>
-<h2 id="using-jconsole"><a class="header" href="#using-jconsole">Using Jconsole</a></h2>
-<p>The <code>JMX</code> ports were enabling to monitor using <code>jconsole</code>.</p>
-<div class="table-wrapper"><table><thead><tr><th>Service</th><th>Port</th></tr></thead><tbody>
-<tr><td>Kafka 1 JMX</td><td>19999</td></tr>
-<tr><td>Kafka 2 JMX</td><td>29999</td></tr>
-<tr><td>Kafka 3 JMX</td><td>39999</td></tr>
-</tbody></table>
-</div>
+<blockquote>
+<p>⚠ The <code>JMX</code> ports were open to monitor kafka using <code>jconsole</code>.</p>
+</blockquote>
 <p>Run <code>jconsole</code>:</p>
 <pre><code class="language-bash">jconsole localhost:19999
 </code></pre>
