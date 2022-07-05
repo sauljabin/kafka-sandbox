@@ -7,16 +7,21 @@ A three node kafka cluster.
 - [zookeeper](https://zookeeper.apache.org/)
 - [zookeeper settings](https://docs.confluent.io/platform/current/zookeeper/deployment.html)
 - project location: [kafka-cluster](https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-cluster)
-- kafka version: [cp 7.1.1](https://docs.confluent.io/platform/current/installation/versions-interoperability.html)
+- kafka version: [cp 7.1.2](https://docs.confluent.io/platform/current/installation/versions-interoperability.html)
 - kafka ports: `19093`, `29093`, `39093`
 - zookeeper ports: `12181`, `22181`, `32181`
 
-Run Kafka and Zookeeper:
+Run zookeeper and kafka:
 
 ```bash
 cd kafka-cluster
 docker compose up -d
-kafka-cli kafka-topics --bootstrap-server kafka1:9092 --list
+```
+
+Test zookeeper and kafka (shows the broker ids):
+
+```bash
+kafka-cli zookeeper-shell zookeeper1:2181 ls /brokers/ids
 ```
 
 Create a topic:
@@ -26,6 +31,7 @@ kafka-cli kafka-topics --create --bootstrap-server kafka1:9092 \
                        --replication-factor 3 \
                        --partitions 3 \
                        --topic kafka-cluster.test
+kafka-cli kafka-topics --bootstrap-server kafka1:9092 --list
 ```
 
 Produce a message:
@@ -40,4 +46,20 @@ Consume messages:
 kafka-cli kafka-console-consumer --from-beginning --group kafka-cluster.test \
                                  --topic kafka-cluster.test  \
                                  --bootstrap-server kafka1:9092
+```
+
+## Using Jconsole
+
+The `JMX` ports were enabling to monitor using `jconsole`.
+
+| Service | Port |
+| - | - |
+| Kafka 1 JMX | 19999 |
+| Kafka 2 JMX | 29999 |
+| Kafka 3 JMX | 39999 |
+
+Run `jconsole`:
+
+```bash
+jconsole localhost:19999
 ```

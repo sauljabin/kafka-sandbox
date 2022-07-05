@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   kafka1:
-    image: confluentinc/cp-kafka:7.1.1
+    image: confluentinc/cp-kafka:7.1.2
     environment:
       TZ: America/Guayaquil
       KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka1:9092,EXTERNAL://localhost:19093
@@ -11,13 +11,21 @@ services:
       KAFKA_LISTENERS: INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:19093
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
       KAFKA_ZOOKEEPER_CONNECT: zookeeper1:2181,zookeeper2:2181,zookeeper3:2181
+      KAFKA_JMX_PORT: '19999'
     ports:
       - 19093:19093
+      - 19999:19999
     restart: on-failure
     volumes:
       - kafka1_data:/var/lib/kafka/data
     depends_on:
-      zookeeper:
+      zookeeper1:
+        condition:
+          service_healthy
+      zookeeper2:
+        condition:
+          service_healthy
+      zookeeper3:
         condition:
           service_healthy
     healthcheck:
@@ -28,7 +36,7 @@ services:
       start_period: 30s
 
   kafka2:
-    image: confluentinc/cp-kafka:7.1.1
+    image: confluentinc/cp-kafka:7.1.2
     environment:
       TZ: America/Guayaquil
       KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka2:9092,EXTERNAL://localhost:29093
@@ -37,13 +45,21 @@ services:
       KAFKA_LISTENERS: INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:29093
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
       KAFKA_ZOOKEEPER_CONNECT: zookeeper1:2181,zookeeper2:2181,zookeeper3:2181
+      KAFKA_JMX_PORT: '29999'
     ports:
       - 29093:29093
+      - 29999:29999
     restart: on-failure
     volumes:
       - kafka2_data:/var/lib/kafka/data
     depends_on:
-      zookeeper:
+      zookeeper1:
+        condition:
+          service_healthy
+      zookeeper2:
+        condition:
+          service_healthy
+      zookeeper3:
         condition:
           service_healthy
     healthcheck:
@@ -54,7 +70,7 @@ services:
       start_period: 30s
 
   kafka3:
-    image: confluentinc/cp-kafka:7.1.1
+    image: confluentinc/cp-kafka:7.1.2
     environment:
       TZ: America/Guayaquil
       KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka3:9092,EXTERNAL://localhost:39093
@@ -63,13 +79,21 @@ services:
       KAFKA_LISTENERS: INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:39093
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
       KAFKA_ZOOKEEPER_CONNECT: zookeeper1:2181,zookeeper2:2181,zookeeper3:2181
+      KAFKA_JMX_PORT: '39999'
     ports:
       - 39093:39093
+      - 39999:39999
     restart: on-failure
     volumes:
       - kafka3_data:/var/lib/kafka/data
     depends_on:
-      zookeeper:
+      zookeeper1:
+        condition:
+          service_healthy
+      zookeeper2:
+        condition:
+          service_healthy
+      zookeeper3:
         condition:
           service_healthy
     healthcheck:
@@ -80,7 +104,7 @@ services:
       start_period: 30s
 
   zookeeper1:
-    image: confluentinc/cp-zookeeper:7.1.1
+    image: confluentinc/cp-zookeeper:7.1.2
     environment:
       TZ: America/Guayaquil
       ZOOKEEPER_CLIENT_PORT: '2181'
@@ -102,7 +126,7 @@ services:
       start_period: 30s
 
   zookeeper2:
-    image: confluentinc/cp-zookeeper:7.1.1
+    image: confluentinc/cp-zookeeper:7.1.2
     environment:
       TZ: America/Guayaquil
       ZOOKEEPER_CLIENT_PORT: '2181'
@@ -124,7 +148,7 @@ services:
       start_period: 30s
 
   zookeeper3:
-    image: confluentinc/cp-zookeeper:7.1.1
+    image: confluentinc/cp-zookeeper:7.1.2
     environment:
       TZ: America/Guayaquil
       ZOOKEEPER_CLIENT_PORT: '2181'

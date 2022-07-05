@@ -1,11 +1,16 @@
-# Ports Table
+# UI Ports Table
 
-| Service | Dns | Port |
+| Service | Host | Port |
 | - | - | - |
 | AKHQ | localhost | [8080](http://localhost:8080/) |
 | Adminer | localhost | [9090](http://localhost:9090/) |
 | Mongo Express | localhost | [7070](http://localhost:7070/) |
 | Portainer | localhost | [9000](http://localhost:9000/) |
+
+# Component Ports Table
+
+| Service | Host | Port |
+| - | - | - |
 | Portainer Tunnel | portainer | 8000 |
 | Portainer Agent | portainer-agent | 9001 |
 | MySQL | mysql | 3306 |
@@ -22,6 +27,12 @@
 | Kafka 2 | localhost | 29093 |
 | Kafka 3 | kafka3 | 9092 |
 | Kafka 3 | localhost | 39093 |
+| Kafka 1 JMX | kafka1 | 19999 |
+| Kafka 1 JMX | localhost | 19999 |
+| Kafka 2 JMX | kafka2 | 29999 |
+| Kafka 2 JMX | localhost | 29999 |
+| Kafka 3 JMX | kafka3 | 39999 |
+| Kafka 3 JMX | localhost | 39999 |
 | Zookeeper 1 | zookeeper1 | 2181 |
 | Zookeeper 1 | localhost | 12181 |
 | Zookeeper 2 | zookeeper2 | 2181 |
