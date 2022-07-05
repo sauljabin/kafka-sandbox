@@ -22,8 +22,12 @@
 | Kafka 2 | localhost | 29093 |
 | Kafka 3 | kafka3 | 9092 |
 | Kafka 3 | localhost | 39093 |
-| Zookeeper | zookeeper | 2181 |
-| Zookeeper | localhost | 12181 |
+| Zookeeper 1 | zookeeper1 | 2181 |
+| Zookeeper 1 | localhost | 12181 |
+| Zookeeper 2 | zookeeper2 | 2181 |
+| Zookeeper 2 | localhost | 22181 |
+| Zookeeper 3 | zookeeper3 | 2181 |
+| Zookeeper 3 | localhost | 32181 |
 | Schema Registry | schema-registry | 8081 |
 | Schema Registry | localhost | 8081 |
 | Kafka REST | kafka-rest | 8082 |

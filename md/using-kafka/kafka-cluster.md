@@ -9,7 +9,7 @@ A three node kafka cluster.
 - project location: [kafka-cluster](https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-cluster)
 - kafka version: [cp 7.1.1](https://docs.confluent.io/platform/current/installation/versions-interoperability.html)
 - kafka ports: `19093`, `29093`, `39093`
-- zookeeper ports: `12181`
+- zookeeper ports: `12181`, `22181`, `32181`
 
 Run Kafka and Zookeeper:
 

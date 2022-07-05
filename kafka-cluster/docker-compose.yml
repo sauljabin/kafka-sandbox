@@ -10,7 +10,7 @@ services:
       KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
       KAFKA_LISTENERS: INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:19093
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper1:2181,zookeeper2:2181,zookeeper3:2181
     ports:
       - 19093:19093
     restart: on-failure
@@ -36,7 +36,7 @@ services:
       KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
       KAFKA_LISTENERS: INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:29093
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper1:2181,zookeeper2:2181,zookeeper3:2181
     ports:
       - 29093:29093
     restart: on-failure
@@ -62,7 +62,7 @@ services:
       KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
       KAFKA_LISTENERS: INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:39093
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper1:2181,zookeeper2:2181,zookeeper3:2181
     ports:
       - 39093:39093
     restart: on-failure
@@ -79,12 +79,12 @@ services:
       retries: 5
       start_period: 30s
 
-  zookeeper:
+  zookeeper1:
     image: confluentinc/cp-zookeeper:7.1.1
     environment:
       TZ: America/Guayaquil
       ZOOKEEPER_CLIENT_PORT: '2181'
-      ZOOKEEPER_SERVERS: zookeeper:2888:3888
+      ZOOKEEPER_SERVERS: zookeeper1:2888:3888;zookeeper2:2888:3888;zookeeper3:2888:3888
       ZOOKEEPER_SERVER_ID: '1'
       ZOOKEEPER_SYNC_LIMIT: '2'
       ZOOKEEPER_TICK_TIME: '2000'
@@ -92,8 +92,52 @@ services:
       - 12181:2181
     restart: on-failure
     volumes:
-      - zookeeper_data:/var/lib/zookeeper/data
-      - zookeeper_datalog:/var/lib/zookeeper/log
+      - zookeeper1_data:/var/lib/zookeeper/data
+      - zookeeper1_datalog:/var/lib/zookeeper/log
+    healthcheck:
+      test: nc -z localhost 2181
+      interval: 30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+
+  zookeeper2:
+    image: confluentinc/cp-zookeeper:7.1.1
+    environment:
+      TZ: America/Guayaquil
+      ZOOKEEPER_CLIENT_PORT: '2181'
+      ZOOKEEPER_SERVERS: zookeeper1:2888:3888;zookeeper2:2888:3888;zookeeper3:2888:3888
+      ZOOKEEPER_SERVER_ID: '2'
+      ZOOKEEPER_SYNC_LIMIT: '2'
+      ZOOKEEPER_TICK_TIME: '2000'
+    ports:
+      - 22181:2181
+    restart: on-failure
+    volumes:
+      - zookeeper2_data:/var/lib/zookeeper/data
+      - zookeeper2_datalog:/var/lib/zookeeper/log
+    healthcheck:
+      test: nc -z localhost 2181
+      interval: 30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+
+  zookeeper3:
+    image: confluentinc/cp-zookeeper:7.1.1
+    environment:
+      TZ: America/Guayaquil
+      ZOOKEEPER_CLIENT_PORT: '2181'
+      ZOOKEEPER_SERVERS: zookeeper1:2888:3888;zookeeper2:2888:3888;zookeeper3:2888:3888
+      ZOOKEEPER_SERVER_ID: '3'
+      ZOOKEEPER_SYNC_LIMIT: '2'
+      ZOOKEEPER_TICK_TIME: '2000'
+    ports:
+      - 32181:2181
+    restart: on-failure
+    volumes:
+      - zookeeper3_data:/var/lib/zookeeper/data
+      - zookeeper3_datalog:/var/lib/zookeeper/log
     healthcheck:
       test: nc -z localhost 2181
       interval: 30s
@@ -105,8 +149,12 @@ volumes:
   kafka1_data:
   kafka2_data:
   kafka3_data:
-  zookeeper_data:
-  zookeeper_datalog:
+  zookeeper1_data:
+  zookeeper1_datalog:
+  zookeeper2_data:
+  zookeeper2_datalog:
+  zookeeper3_data:
+  zookeeper3_datalog:
 
 networks:
   default:
