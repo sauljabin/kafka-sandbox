@@ -145,20 +145,23 @@
 <li><a href="https://zookeeper.apache.org/">zookeeper</a></li>
 <li><a href="https://docs.confluent.io/platform/current/zookeeper/deployment.html">zookeeper settings</a></li>
 <li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-cluster">kafka-cluster</a></li>
-<li>kafka version: <a href="https://docs.confluent.io/platform/current/installation/versions-interoperability.html">cp 7.1.1</a></li>
+<li>kafka version: <a href="https://docs.confluent.io/platform/current/installation/versions-interoperability.html">cp 7.1.2</a></li>
 <li>kafka ports: <code>19093</code>, <code>29093</code>, <code>39093</code></li>
-<li>zookeeper ports: <code>12181</code></li>
+<li>zookeeper ports: <code>12181</code>, <code>22181</code>, <code>32181</code></li>
 </ul>
-<p>Run Kafka and Zookeeper:</p>
+<p>Run zookeeper and kafka:</p>
 <pre><code class="language-bash">cd kafka-cluster
 docker compose up -d
-kafka-cli kafka-topics --bootstrap-server kafka1:9092 --list
+</code></pre>
+<p>Test zookeeper and kafka (shows the broker ids):</p>
+<pre><code class="language-bash">kafka-cli zookeeper-shell zookeeper1:2181 ls /brokers/ids
 </code></pre>
 <p>Create a topic:</p>
 <pre><code class="language-bash">kafka-cli kafka-topics --create --bootstrap-server kafka1:9092 \
                        --replication-factor 3 \
                        --partitions 3 \
                        --topic kafka-cluster.test
+kafka-cli kafka-topics --bootstrap-server kafka1:9092 --list
 </code></pre>
 <p>Produce a message:</p>
 <pre><code class="language-bash">kafka-cli kafka-console-producer --broker-list kafka1:9092 --topic kafka-cluster.test
@@ -167,6 +170,17 @@ kafka-cli kafka-topics --bootstrap-server kafka1:9092 --list
 <pre><code class="language-bash">kafka-cli kafka-console-consumer --from-beginning --group kafka-cluster.test \
                                  --topic kafka-cluster.test  \
                                  --bootstrap-server kafka1:9092
+</code></pre>
+<h2 id="using-jconsole"><a class="header" href="#using-jconsole">Using Jconsole</a></h2>
+<p>The <code>JMX</code> ports were enabling to monitor using <code>jconsole</code>.</p>
+<div class="table-wrapper"><table><thead><tr><th>Service</th><th>Port</th></tr></thead><tbody>
+<tr><td>Kafka 1 JMX</td><td>19999</td></tr>
+<tr><td>Kafka 2 JMX</td><td>29999</td></tr>
+<tr><td>Kafka 3 JMX</td><td>39999</td></tr>
+</tbody></table>
+</div>
+<p>Run <code>jconsole</code>:</p>
+<pre><code class="language-bash">jconsole localhost:19999
 </code></pre>
 
                     </main>

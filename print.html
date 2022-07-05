@@ -329,20 +329,23 @@ docker compose up -d
 <li><a href="https://zookeeper.apache.org/">zookeeper</a></li>
 <li><a href="https://docs.confluent.io/platform/current/zookeeper/deployment.html">zookeeper settings</a></li>
 <li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-cluster">kafka-cluster</a></li>
-<li>kafka version: <a href="https://docs.confluent.io/platform/current/installation/versions-interoperability.html">cp 7.1.1</a></li>
+<li>kafka version: <a href="https://docs.confluent.io/platform/current/installation/versions-interoperability.html">cp 7.1.2</a></li>
 <li>kafka ports: <code>19093</code>, <code>29093</code>, <code>39093</code></li>
-<li>zookeeper ports: <code>12181</code></li>
+<li>zookeeper ports: <code>12181</code>, <code>22181</code>, <code>32181</code></li>
 </ul>
-<p>Run Kafka and Zookeeper:</p>
+<p>Run zookeeper and kafka:</p>
 <pre><code class="language-bash">cd kafka-cluster
 docker compose up -d
-kafka-cli kafka-topics --bootstrap-server kafka1:9092 --list
+</code></pre>
+<p>Test zookeeper and kafka (shows the broker ids):</p>
+<pre><code class="language-bash">kafka-cli zookeeper-shell zookeeper1:2181 ls /brokers/ids
 </code></pre>
 <p>Create a topic:</p>
 <pre><code class="language-bash">kafka-cli kafka-topics --create --bootstrap-server kafka1:9092 \
                        --replication-factor 3 \
                        --partitions 3 \
                        --topic kafka-cluster.test
+kafka-cli kafka-topics --bootstrap-server kafka1:9092 --list
 </code></pre>
 <p>Produce a message:</p>
 <pre><code class="language-bash">kafka-cli kafka-console-producer --broker-list kafka1:9092 --topic kafka-cluster.test
@@ -351,6 +354,17 @@ kafka-cli kafka-topics --bootstrap-server kafka1:9092 --list
 <pre><code class="language-bash">kafka-cli kafka-console-consumer --from-beginning --group kafka-cluster.test \
                                  --topic kafka-cluster.test  \
                                  --bootstrap-server kafka1:9092
+</code></pre>
+<h2 id="using-jconsole"><a class="header" href="#using-jconsole">Using Jconsole</a></h2>
+<p>The <code>JMX</code> ports were enabling to monitor using <code>jconsole</code>.</p>
+<div class="table-wrapper"><table><thead><tr><th>Service</th><th>Port</th></tr></thead><tbody>
+<tr><td>Kafka 1 JMX</td><td>19999</td></tr>
+<tr><td>Kafka 2 JMX</td><td>29999</td></tr>
+<tr><td>Kafka 3 JMX</td><td>39999</td></tr>
+</tbody></table>
+</div>
+<p>Run <code>jconsole</code>:</p>
+<pre><code class="language-bash">jconsole localhost:19999
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="kafka-akhq"><a class="header" href="#kafka-akhq">Kafka AKHQ</a></h1>
 <p>UI for managing kafka cluster.</p>
@@ -663,12 +677,16 @@ docker compose up -d
                                  --bootstrap-server kafka1:9092 \
                                  --property print.key=true
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="ports-table"><a class="header" href="#ports-table">Ports Table</a></h1>
-<table><thead><tr><th>Service</th><th>Dns</th><th>Port</th></tr></thead><tbody>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ui-ports-table"><a class="header" href="#ui-ports-table">UI Ports Table</a></h1>
+<div class="table-wrapper"><table><thead><tr><th>Service</th><th>Host</th><th>Port</th></tr></thead><tbody>
 <tr><td>AKHQ</td><td>localhost</td><td><a href="http://localhost:8080/">8080</a></td></tr>
 <tr><td>Adminer</td><td>localhost</td><td><a href="http://localhost:9090/">9090</a></td></tr>
 <tr><td>Mongo Express</td><td>localhost</td><td><a href="http://localhost:7070/">7070</a></td></tr>
 <tr><td>Portainer</td><td>localhost</td><td><a href="http://localhost:9000/">9000</a></td></tr>
+</tbody></table>
+</div>
+<h1 id="component-ports-table"><a class="header" href="#component-ports-table">Component Ports Table</a></h1>
+<div class="table-wrapper"><table><thead><tr><th>Service</th><th>Host</th><th>Port</th></tr></thead><tbody>
 <tr><td>Portainer Tunnel</td><td>portainer</td><td>8000</td></tr>
 <tr><td>Portainer Agent</td><td>portainer-agent</td><td>9001</td></tr>
 <tr><td>MySQL</td><td>mysql</td><td>3306</td></tr>
@@ -685,8 +703,18 @@ docker compose up -d
 <tr><td>Kafka 2</td><td>localhost</td><td>29093</td></tr>
 <tr><td>Kafka 3</td><td>kafka3</td><td>9092</td></tr>
 <tr><td>Kafka 3</td><td>localhost</td><td>39093</td></tr>
-<tr><td>Zookeeper</td><td>zookeeper</td><td>2181</td></tr>
-<tr><td>Zookeeper</td><td>localhost</td><td>12181</td></tr>
+<tr><td>Kafka 1 JMX</td><td>kafka1</td><td>19999</td></tr>
+<tr><td>Kafka 1 JMX</td><td>localhost</td><td>19999</td></tr>
+<tr><td>Kafka 2 JMX</td><td>kafka2</td><td>29999</td></tr>
+<tr><td>Kafka 2 JMX</td><td>localhost</td><td>29999</td></tr>
+<tr><td>Kafka 3 JMX</td><td>kafka3</td><td>39999</td></tr>
+<tr><td>Kafka 3 JMX</td><td>localhost</td><td>39999</td></tr>
+<tr><td>Zookeeper 1</td><td>zookeeper1</td><td>2181</td></tr>
+<tr><td>Zookeeper 1</td><td>localhost</td><td>12181</td></tr>
+<tr><td>Zookeeper 2</td><td>zookeeper2</td><td>2181</td></tr>
+<tr><td>Zookeeper 2</td><td>localhost</td><td>22181</td></tr>
+<tr><td>Zookeeper 3</td><td>zookeeper3</td><td>2181</td></tr>
+<tr><td>Zookeeper 3</td><td>localhost</td><td>32181</td></tr>
 <tr><td>Schema Registry</td><td>schema-registry</td><td>8081</td></tr>
 <tr><td>Schema Registry</td><td>localhost</td><td>8081</td></tr>
 <tr><td>Kafka REST</td><td>kafka-rest</td><td>8082</td></tr>
@@ -699,7 +727,7 @@ docker compose up -d
 <tr><td>ksqlDB</td><td>localhost</td><td>8088</td></tr>
 <tr><td>Kafka Clients Spring Boot</td><td>localhost</td><td>8585</td></tr>
 </tbody></table>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="about-this-book"><a class="header" href="#about-this-book">About This Book</a></h1>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="about-this-book"><a class="header" href="#about-this-book">About This Book</a></h1>
 <p>This book is power by <a href="https://rust-lang.github.io/mdBook/index.html">mdBook</a>.</p>
 <h2 id="developing-commands"><a class="header" href="#developing-commands">Developing Commands</a></h2>
 <blockquote>

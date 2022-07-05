@@ -137,12 +137,16 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="ports-table"><a class="header" href="#ports-table">Ports Table</a></h1>
-<table><thead><tr><th>Service</th><th>Dns</th><th>Port</th></tr></thead><tbody>
+                        <h1 id="ui-ports-table"><a class="header" href="#ui-ports-table">UI Ports Table</a></h1>
+<div class="table-wrapper"><table><thead><tr><th>Service</th><th>Host</th><th>Port</th></tr></thead><tbody>
 <tr><td>AKHQ</td><td>localhost</td><td><a href="http://localhost:8080/">8080</a></td></tr>
 <tr><td>Adminer</td><td>localhost</td><td><a href="http://localhost:9090/">9090</a></td></tr>
 <tr><td>Mongo Express</td><td>localhost</td><td><a href="http://localhost:7070/">7070</a></td></tr>
 <tr><td>Portainer</td><td>localhost</td><td><a href="http://localhost:9000/">9000</a></td></tr>
+</tbody></table>
+</div>
+<h1 id="component-ports-table"><a class="header" href="#component-ports-table">Component Ports Table</a></h1>
+<div class="table-wrapper"><table><thead><tr><th>Service</th><th>Host</th><th>Port</th></tr></thead><tbody>
 <tr><td>Portainer Tunnel</td><td>portainer</td><td>8000</td></tr>
 <tr><td>Portainer Agent</td><td>portainer-agent</td><td>9001</td></tr>
 <tr><td>MySQL</td><td>mysql</td><td>3306</td></tr>
@@ -159,8 +163,18 @@
 <tr><td>Kafka 2</td><td>localhost</td><td>29093</td></tr>
 <tr><td>Kafka 3</td><td>kafka3</td><td>9092</td></tr>
 <tr><td>Kafka 3</td><td>localhost</td><td>39093</td></tr>
-<tr><td>Zookeeper</td><td>zookeeper</td><td>2181</td></tr>
-<tr><td>Zookeeper</td><td>localhost</td><td>12181</td></tr>
+<tr><td>Kafka 1 JMX</td><td>kafka1</td><td>19999</td></tr>
+<tr><td>Kafka 1 JMX</td><td>localhost</td><td>19999</td></tr>
+<tr><td>Kafka 2 JMX</td><td>kafka2</td><td>29999</td></tr>
+<tr><td>Kafka 2 JMX</td><td>localhost</td><td>29999</td></tr>
+<tr><td>Kafka 3 JMX</td><td>kafka3</td><td>39999</td></tr>
+<tr><td>Kafka 3 JMX</td><td>localhost</td><td>39999</td></tr>
+<tr><td>Zookeeper 1</td><td>zookeeper1</td><td>2181</td></tr>
+<tr><td>Zookeeper 1</td><td>localhost</td><td>12181</td></tr>
+<tr><td>Zookeeper 2</td><td>zookeeper2</td><td>2181</td></tr>
+<tr><td>Zookeeper 2</td><td>localhost</td><td>22181</td></tr>
+<tr><td>Zookeeper 3</td><td>zookeeper3</td><td>2181</td></tr>
+<tr><td>Zookeeper 3</td><td>localhost</td><td>32181</td></tr>
 <tr><td>Schema Registry</td><td>schema-registry</td><td>8081</td></tr>
 <tr><td>Schema Registry</td><td>localhost</td><td>8081</td></tr>
 <tr><td>Kafka REST</td><td>kafka-rest</td><td>8082</td></tr>
@@ -173,7 +187,7 @@
 <tr><td>ksqlDB</td><td>localhost</td><td>8088</td></tr>
 <tr><td>Kafka Clients Spring Boot</td><td>localhost</td><td>8585</td></tr>
 </tbody></table>
-
+</div>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
