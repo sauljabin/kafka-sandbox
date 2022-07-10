@@ -189,7 +189,7 @@ docker compose up -d
 <li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-cli">kafka-cli</a></li>
 </ul>
 <blockquote>
-<p>⚠ Run these commands inside the root folder.</p>
+<p>⚠️ Run these commands inside the root folder.</p>
 </blockquote>
 <p>Create an alias for <code>kafka-cli</code>:</p>
 <pre><code class="language-bash">alias kafka-cli='docker run --rm -it --network kafka-sandbox_network kafka-cli:latest '
@@ -269,7 +269,7 @@ that can help us to set different scenarios.</p>
 <li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/sql-populate">sql-populate</a></li>
 </ul>
 <blockquote>
-<p>⚠ Run these commands inside the root folder.</p>
+<p>⚠️ Run these commands inside the root folder.</p>
 </blockquote>
 <p>Create an alias for <code>sql-populate</code>:</p>
 <pre><code class="language-bash">alias sql-populate=&quot;$PWD/sql-populate/build/install/sql-populate/bin/sql-populate &quot;
@@ -341,7 +341,7 @@ different scenarios.</p>
 <li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/nosql-populate">nosql-populate</a></li>
 </ul>
 <blockquote>
-<p>⚠ Run these commands inside the root folder.</p>
+<p>⚠️ Run these commands inside the root folder.</p>
 </blockquote>
 <p>Create an alias for <code>nosql-populate</code>:</p>
 <pre><code class="language-bash">alias nosql-populate=&quot;$PWD/nosql-populate/build/install/nosql-populate/bin/nosql-populate &quot;
@@ -362,7 +362,7 @@ nosql-populate
 <li><a href="https://hivemq.github.io/mqtt-cli/">mqtt-cli</a></li>
 </ul>
 <blockquote>
-<p>⚠ Run these commands inside the root folder.</p>
+<p>⚠️ Run these commands inside the root folder.</p>
 </blockquote>
 <p>Create an alias for <code>mqtt-cli</code>:</p>
 <pre><code class="language-bash">alias mqtt-cli='docker run --rm -it --network kafka-sandbox_network hivemq/mqtt-cli:latest '
@@ -423,7 +423,7 @@ docker compose up -d
 </code></pre>
 <p>Open Portainer at <a href="http://localhost:9000/">http://localhost:9000/</a></p>
 <blockquote>
-<p>⚠ User: <code>admin</code> and password: <code>notasecret</code>.</p>
+<p>⚠️ User: <code>admin</code> and password: <code>notasecret</code>.</p>
 </blockquote>
 <h2 id="docker-compose-3"><a class="header" href="#docker-compose-3">Docker Compose</a></h2>
 <pre><code class="language-yaml">version: '3.9'
@@ -492,7 +492,7 @@ kafka-cli kafka-topics --bootstrap-server kafka1:9092 --list
                                  --bootstrap-server kafka1:9092
 </code></pre>
 <blockquote>
-<p>⚠ The <code>JMX</code> ports were opened to monitor kafka using <code>jconsole</code>.</p>
+<p>⚠️ The <code>JMX</code> ports were opened to monitor kafka using <code>jconsole</code>.</p>
 </blockquote>
 <p>Run <code>jconsole</code>:</p>
 <pre><code class="language-bash">jconsole localhost:19999
@@ -811,7 +811,7 @@ networks:
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="kafka-connect-database-example"><a class="header" href="#kafka-connect-database-example">Kafka Connect Database Example</a></h1>
 <blockquote>
-<p>⚠ This example does not support deletion, for that you have to implement tombstone events at the <a href="https://debezium.io/documentation/reference/connectors/postgresql.html#postgresql-tombstone-events">source</a> and <a href="https://docs.confluent.io/kafka-connect-jdbc/current/sink-connector/index.html#jdbc-sink-delete-mode">sink</a>.</p>
+<p>⚠️ This example does not support deletion, for that you have to implement tombstone events at the <a href="https://debezium.io/documentation/reference/connectors/postgresql.html#postgresql-tombstone-events">source</a> and <a href="https://docs.confluent.io/kafka-connect-jdbc/current/sink-connector/index.html#jdbc-sink-delete-mode">sink</a>.</p>
 </blockquote>
 <p>Populate the databases:</p>
 <pre><code class="language-bash">sql-populate --url &quot;jdbc:mysql://localhost:3306/sandbox&quot; --user &quot;root&quot; --password &quot;notasecret&quot; 100
@@ -851,7 +851,7 @@ mqtt-cli pub -h mosquitto -t 'house/kitchen/brightness' -m '1000LM'
 <div style="break-before: page; page-break-before: always;"></div><h1 id="kafka-ksqldb"><a class="header" href="#kafka-ksqldb">Kafka ksqlDB</a></h1>
 <p>ksqlDB is a database that's purpose-built for stream processing applications.</p>
 <blockquote>
-<p>⚠ ksqlDB it is not a SQL database, it provides an extra layer for implementing kstream, ktable and connectors through a language (ksql) based on sql.</p>
+<p>⚠️ ksqlDB it is not a SQL database, it provides an extra layer for implementing kstream, ktable and connectors through a language (ksql) based on sql.</p>
 </blockquote>
 <ul>
 <li><a href="https://ksqldb.io/">ksqldb</a></li>
@@ -865,7 +865,7 @@ mqtt-cli pub -h mosquitto -t 'house/kitchen/brightness' -m '1000LM'
 </ul>
 <p>Create an alias for <code>ksqldb-cli</code>:</p>
 <blockquote>
-<p>⚠ Run alias commands inside the root folder.</p>
+<p>⚠️ Run alias commands inside the root folder.</p>
 </blockquote>
 <pre><code class="language-bash">alias ksqldb-cli=&quot;docker run --rm -it --network kafka-sandbox_network --workdir /ksqldb -v $PWD/kafka-ksqldb/tests:/ksqldb/tests -v $PWD/kafka-ksqldb/statements:/ksqldb/statements -v $PWD/kafka-ksqldb-extensions/extensions:/ksqldb/extensions kafka-cli:latest &quot;
 </code></pre>
@@ -947,7 +947,7 @@ networks:
 <li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-clients">kafka-clients</a></li>
 </ul>
 <blockquote>
-<p>⚠ Run these commands inside the root folder.</p>
+<p>⚠️ Run these commands inside the root folder.</p>
 </blockquote>
 <p>Create an alias for <code>kafka-clients</code>:</p>
 <pre><code class="language-bash">alias kafka-clients=&quot;$PWD/kafka-clients/build/install/kafka-clients/bin/kafka-clients &quot;
@@ -1001,7 +1001,7 @@ real-time to be effective.</p>
 <li>spring port: <code>8585</code></li>
 </ul>
 <blockquote>
-<p>⚠ Run these commands inside the root folder.</p>
+<p>⚠️ Run these commands inside the root folder.</p>
 </blockquote>
 <p>Run spring boot:</p>
 <pre><code class="language-bash">./gradlew kafka-spring-boot:bootRun
@@ -1060,7 +1060,7 @@ kafka-cli kafka-consumer-perf-test --help
 <div style="break-before: page; page-break-before: always;"></div><h1 id="kafka-rest-proxy"><a class="header" href="#kafka-rest-proxy">Kafka REST Proxy</a></h1>
 <p>The Kafka REST Proxy provides a RESTful interface to a Kafka cluster.</p>
 <blockquote>
-<p>⚠ Use this when you really need a rest interface since it is usually more complex than using conventional kafka clients.</p>
+<p>⚠️ Use this when you really need a rest interface since it is usually more complex than using conventional kafka clients.</p>
 </blockquote>
 <ul>
 <li><a href="https://docs.confluent.io/platform/current/kafka-rest/index.html">kafka rest</a></li>
@@ -1102,7 +1102,7 @@ networks:
 <div style="break-before: page; page-break-before: always;"></div><h1 id="kafka-mqtt-proxy"><a class="header" href="#kafka-mqtt-proxy">Kafka MQTT Proxy</a></h1>
 <p>MQTT Proxy enables MQTT clients to use the MQTT 3.1.1 protocol to publish data directly to Apache Kafka.</p>
 <blockquote>
-<p>⚠ This does not convert kafka into a MQTT broker, this aims to provide a simple way to publish/persist IoT data to Kafka.</p>
+<p>⚠️ This does not convert kafka into a MQTT broker, this aims to provide a simple way to publish/persist IoT data to Kafka.</p>
 </blockquote>
 <ul>
 <li><a href="https://docs.confluent.io/platform/current/kafka-mqtt/intro.html">kafka mqtt</a></li>

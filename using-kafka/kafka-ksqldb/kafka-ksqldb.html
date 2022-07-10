@@ -140,7 +140,7 @@
                         <h1 id="kafka-ksqldb"><a class="header" href="#kafka-ksqldb">Kafka ksqlDB</a></h1>
 <p>ksqlDB is a database that's purpose-built for stream processing applications.</p>
 <blockquote>
-<p>⚠ ksqlDB it is not a SQL database, it provides an extra layer for implementing kstream, ktable and connectors through a language (ksql) based on sql.</p>
+<p>⚠️ ksqlDB it is not a SQL database, it provides an extra layer for implementing kstream, ktable and connectors through a language (ksql) based on sql.</p>
 </blockquote>
 <ul>
 <li><a href="https://ksqldb.io/">ksqldb</a></li>
@@ -154,7 +154,7 @@
 </ul>
 <p>Create an alias for <code>ksqldb-cli</code>:</p>
 <blockquote>
-<p>⚠ Run alias commands inside the root folder.</p>
+<p>⚠️ Run alias commands inside the root folder.</p>
 </blockquote>
 <pre><code class="language-bash">alias ksqldb-cli=&quot;docker run --rm -it --network kafka-sandbox_network --workdir /ksqldb -v $PWD/kafka-ksqldb/tests:/ksqldb/tests -v $PWD/kafka-ksqldb/statements:/ksqldb/statements -v $PWD/kafka-ksqldb-extensions/extensions:/ksqldb/extensions kafka-cli:latest &quot;
 </code></pre>

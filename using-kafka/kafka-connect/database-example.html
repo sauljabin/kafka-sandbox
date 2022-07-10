@@ -139,7 +139,7 @@
                     <main>
                         <h1 id="kafka-connect-database-example"><a class="header" href="#kafka-connect-database-example">Kafka Connect Database Example</a></h1>
 <blockquote>
-<p>⚠ This example does not support deletion, for that you have to implement tombstone events at the <a href="https://debezium.io/documentation/reference/connectors/postgresql.html#postgresql-tombstone-events">source</a> and <a href="https://docs.confluent.io/kafka-connect-jdbc/current/sink-connector/index.html#jdbc-sink-delete-mode">sink</a>.</p>
+<p>⚠️ This example does not support deletion, for that you have to implement tombstone events at the <a href="https://debezium.io/documentation/reference/connectors/postgresql.html#postgresql-tombstone-events">source</a> and <a href="https://docs.confluent.io/kafka-connect-jdbc/current/sink-connector/index.html#jdbc-sink-delete-mode">sink</a>.</p>
 </blockquote>
 <p>Populate the databases:</p>
 <pre><code class="language-bash">sql-populate --url &quot;jdbc:mysql://localhost:3306/sandbox&quot; --user &quot;root&quot; --password &quot;notasecret&quot; 100
