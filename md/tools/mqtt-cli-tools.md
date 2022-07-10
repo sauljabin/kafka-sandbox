@@ -4,7 +4,7 @@ MQTT collection of tools to interact with a MQTT broker.
 
 - [mqtt-cli](https://hivemq.github.io/mqtt-cli/)
 
-> &#x26a0; Run these commands inside the root folder.
+> ⚠️ Run these commands inside the root folder.
 
 Create an alias for `mqtt-cli`:
 

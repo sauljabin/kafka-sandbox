@@ -7,7 +7,7 @@ It is a collection of tools to interact with kafka cluster through the terminal.
 - [confluent community tools](https://docs.confluent.io/platform/current/installation/installing_cp/zip-tar.html)
 - project location: [kafka-cli](https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-cli)
 
-> &#x26a0; Run these commands inside the root folder.
+> ⚠️ Run these commands inside the root folder.
 
 Create an alias for `kafka-cli`:
 

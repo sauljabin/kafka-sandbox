@@ -7,7 +7,7 @@ Spring Boot + Spring Kafka producer and consumer examples.
 - project location: [kafka-spring-boot](https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-spring-boot)
 - spring port: `8585`
 
-> &#x26a0; Run these commands inside the root folder.
+> ⚠️ Run these commands inside the root folder.
 
 Run spring boot:
 

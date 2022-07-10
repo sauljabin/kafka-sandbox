@@ -7,7 +7,7 @@ These examples produce and consume messages from the `supplier` topic. The produ
 - [kafka producer settings](https://docs.confluent.io/platform/current/installation/configuration/producer-configs.html)
 - project location: [kafka-clients](https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-clients)
 
-> &#x26a0; Run these commands inside the root folder.
+> ⚠️ Run these commands inside the root folder.
 
 Create an alias for `kafka-clients`:
 

@@ -5,7 +5,7 @@ different scenarios.
 
 - project location: [nosql-populate](https://github.com/sauljabin/kafka-sandbox/tree/main/nosql-populate)
 
-> &#x26a0; Run these commands inside the root folder.
+> ⚠️ Run these commands inside the root folder.
 
 Create an alias for `nosql-populate`:
 

@@ -2,7 +2,7 @@
 
 ksqlDB is a database that's purpose-built for stream processing applications.
 
-> &#x26a0; ksqlDB it is not a SQL database, it provides an extra layer for implementing kstream, ktable and connectors through a language (ksql) based on sql.
+> ⚠️ ksqlDB it is not a SQL database, it provides an extra layer for implementing kstream, ktable and connectors through a language (ksql) based on sql.
 
 - [ksqldb](https://ksqldb.io/)
 - [ksqldb settings](https://docs.ksqldb.io/en/latest/reference/server-configuration/)
@@ -15,7 +15,7 @@ ksqlDB is a database that's purpose-built for stream processing applications.
 
 Create an alias for `ksqldb-cli`:
 
-> &#x26a0; Run alias commands inside the root folder.
+> ⚠️ Run alias commands inside the root folder.
 
 ```bash
 alias ksqldb-cli="docker run --rm -it --network kafka-sandbox_network --workdir /ksqldb -v $PWD/kafka-ksqldb/tests:/ksqldb/tests -v $PWD/kafka-ksqldb/statements:/ksqldb/statements -v $PWD/kafka-ksqldb-extensions/extensions:/ksqldb/extensions kafka-cli:latest "

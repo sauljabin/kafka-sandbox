@@ -15,7 +15,7 @@ docker compose up -d
 
 Open Portainer at [http://localhost:9000/](http://localhost:9000/)
 
-> &#x26a0; User: `admin` and password: `notasecret`.
+> ⚠️ User: `admin` and password: `notasecret`.
 
 ## Docker Compose
 

@@ -2,7 +2,7 @@
 
 The Kafka REST Proxy provides a RESTful interface to a Kafka cluster.
 
-> &#x26a0; Use this when you really need a rest interface since it is usually more complex than using conventional kafka clients.
+> ⚠️ Use this when you really need a rest interface since it is usually more complex than using conventional kafka clients.
 
 - [kafka rest](https://docs.confluent.io/platform/current/kafka-rest/index.html)
 - [kafka rest settings](https://docs.confluent.io/platform/current/kafka-rest/production-deployment/rest-proxy/config.html)

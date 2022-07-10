@@ -5,7 +5,7 @@ that can help us to set different scenarios.
 
 - project location: [sql-populate](https://github.com/sauljabin/kafka-sandbox/tree/main/sql-populate)
 
-> &#x26a0; Run these commands inside the root folder.
+> ⚠️ Run these commands inside the root folder.
 
 Create an alias for `sql-populate`:
 
