@@ -6,7 +6,7 @@ GitHub [Repository](https://github.com/sauljabin/kafka-sandbox).
 
 ## Developing Commands
 
-> You must to install [rust](https://www.rust-lang.org/tools/install) first.
+> You must install [rust](https://www.rust-lang.org/tools/install) first.
 
 Install `mdbook`:
 
