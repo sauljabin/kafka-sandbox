@@ -8,9 +8,6 @@ ksqlDB is a database that's purpose-built for stream processing applications.
 - [ksqldb settings](https://docs.ksqldb.io/en/latest/reference/server-configuration/)
 - [ksqldb test runner](https://docs.ksqldb.io/en/latest/how-to-guides/test-an-app/)
 - project location: [kafka-ksqldb](https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-ksqldb)
-- statements location: [kafka-ksqldb/statements](https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-ksqldb/statements)
-- test location: [kafka-ksqldb/tests](https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-ksqldb/tests)
-- extensions location: [kafka-ksqldb-extensions/extensions](https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-ksqldb-extensions/extensions)
 - ksqldb port: `8088`
 
 Create an alias for `ksqldb-cli`:
@@ -33,29 +30,12 @@ Run ksqlDB:
 cd kafka-ksqldb
 docker compose up -d
 http :8088/info
+```
+
+One line shell interaction:
+
+```bash
 ksqldb-cli ksql -e "SHOW STREAMS;" http://ksqldb:8088
-```
-
-Test runner:
-
-```bash
-ksqldb-cli ksql-test-runner -e extensions/ \
-                            -s statements/create-orders.ksql \
-                            -i tests/orders-input.json \
-                            -o tests/orders-output.json | grep '>>>'
-```
-
-Execute statement files:
-
-```bash
-ksqldb-cli ksql -f statements/create-orders.ksql http://ksqldb:8088
-ksqldb-cli ksql -f statements/insert-orders.ksql http://ksqldb:8088
-```
-
-Deleting all orders:
-
-```bash
-ksqldb-cli ksql -e "DROP STREAM ORDERSIZES DELETE TOPIC; DROP STREAM ORDERS DELETE TOPIC;" http://ksqldb:8088
 ```
 
 Interactive ksqlDB shell:
@@ -65,42 +45,8 @@ ksqldb-cli ksql http://ksqldb:8088
 SHOW STREAMS;
 ```
 
-Using the ksqlDB API, list of streams:
-
-```bash
-http :8088/ksql ksql="list streams;" | jq '.[].streams[] | [{name: .name, topic: .topic}]'
-```
-
 ## Docker Compose
 
 ```yaml
 {{#include ../../../kafka-ksqldb/docker-compose.yml}}
-```
-
-## Statements
-
-#### statements/create-orders.ksql
-
-```sql
-{{#include ../../../kafka-ksqldb/statements/create-orders.ksql}}
-```
-
-#### statements/insert-orders.ksql
-
-```sql
-{{#include ../../../kafka-ksqldb/statements/insert-orders.ksql}}
-```
-
-## Tests
-
-#### tests/orders-input.json
-
-```json
-{{#include ../../../kafka-ksqldb/tests/orders-input.json}}
-```
-
-#### tests/orders-output.json
-
-```json
-{{#include ../../../kafka-ksqldb/tests/orders-output.json}}
 ```

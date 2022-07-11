@@ -27,6 +27,7 @@
   - [Database Example](./using-kafka/kafka-connect/database-example.md)
   - [MQTT Example](./using-kafka/kafka-connect/mqtt-example.md)
 - [Kafka ksqlDB](./using-kafka/kafka-ksqldb/kafka-ksqldb.md)
+  - [ksqlDB Streams Example](./using-kafka/kafka-ksqldb/streams-example.md)
   - [Extensions](./using-kafka/kafka-ksqldb/extensions.md)
 - [Kafka Clients](./using-kafka/kafka-clients/kafka-clients.md)
   - [Avro Producer and Consumer](./using-kafka/kafka-clients/avro-producer-and-consumer.md)
