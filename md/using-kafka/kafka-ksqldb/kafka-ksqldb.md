@@ -76,3 +76,31 @@ http :8088/ksql ksql="list streams;" | jq '.[].streams[] | [{name: .name, topic:
 ```yaml
 {{#include ../../../kafka-ksqldb/docker-compose.yml}}
 ```
+
+## Statements
+
+#### statements/create-orders.ksql
+
+```sql
+{{#include ../../../kafka-ksqldb/statements/create-orders.ksql}}
+```
+
+#### statements/insert-orders.ksql
+
+```sql
+{{#include ../../../kafka-ksqldb/statements/insert-orders.ksql}}
+```
+
+## Tests
+
+#### tests/orders-input.json
+
+```json
+{{#include ../../../kafka-ksqldb/tests/orders-input.json}}
+```
+
+#### tests/orders-output.json
+
+```json
+{{#include ../../../kafka-ksqldb/tests/orders-output.json}}
+```

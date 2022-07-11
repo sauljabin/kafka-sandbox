@@ -32,3 +32,11 @@ http :8082/topics/kafka-rest.users Content-Type:application/vnd.kafka.avro.v2+js
 ```yaml
 {{#include ../../kafka-rest/docker-compose.yml}}
 ```
+
+## Requests
+
+#### requests/produce-avro-message.json
+
+```json
+{{#include ../../kafka-rest/requests/produce-avro-message.json}}
+```

@@ -34,3 +34,11 @@ For deleting the connector:
 ```bash
 http DELETE :8083/connectors/mqtt-source
 ```
+
+## Requests
+
+#### requests/create-connector-mqtt-source.json
+
+```json
+{{#include ../../../kafka-connect/requests/create-connector-mqtt-source.json}}
+```

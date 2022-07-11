@@ -24,3 +24,23 @@ http DELETE :8083/connectors/postgres-sink
 http DELETE :8083/connectors/mongo-sink
 http DELETE :8083/connectors/mysql-source
 ```
+
+## Requests
+
+#### requests/create-connector-mysql-source.json
+
+```json
+{{#include ../../../kafka-connect/requests/create-connector-mysql-source.json}}
+```
+
+#### requests/create-connector-mongo-sink.json:
+
+```json
+{{#include ../../../kafka-connect/requests/create-connector-mongo-sink.json}}
+```
+
+#### requests/create-connector-postgres-sink.json:
+
+```json
+{{#include ../../../kafka-connect/requests/create-connector-postgres-sink.json}}
+```
