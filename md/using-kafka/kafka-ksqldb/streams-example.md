@@ -25,6 +25,12 @@ List of streams:
 http :8088/ksql ksql="list streams;" | jq '.[].streams[] | [{name: .name, topic: .topic}]'
 ```
 
+Show content:
+
+```bash
+ksqldb-cli ksql -e "PRINT 'kafka-ksqldb.order_sizes' FROM BEGINNING;" http://ksqldb:8088
+```
+
 Deleting all orders:
 
 ```bash

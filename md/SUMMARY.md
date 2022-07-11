@@ -16,7 +16,6 @@
 - [NoSQL Populate Database](./tools/nosql-populate-database.md)
 - [MQTT CLI Tools](./tools/mqtt-cli-tools.md)
 - [MQTT Broker](./tools/mqtt-broker.md)
-- [Portainer](./tools/portainer.md)
 
 # Using Kafka
 

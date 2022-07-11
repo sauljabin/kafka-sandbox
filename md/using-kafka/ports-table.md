@@ -5,14 +5,11 @@
 | AKHQ | localhost | [8080](http://localhost:8080/) |
 | Adminer | localhost | [9090](http://localhost:9090/) |
 | Mongo Express | localhost | [7070](http://localhost:7070/) |
-| Portainer | localhost | [9000](http://localhost:9000/) |
 
 # Component Ports Table
 
 | Service | Host | Port |
 | - | - | - |
-| Portainer Tunnel | portainer | 8000 |
-| Portainer Agent | portainer-agent | 9001 |
 | MySQL | mysql | 3306 |
 | MySQL | localhost | 3306 |
 | PostgreSQL | postgres | 5432 |

@@ -12,6 +12,12 @@ services:
     restart: on-failure
     volumes:
       - mongo_data:/data/db
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongo mongo:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
 
   mongo-express:
     image: mongo-express:latest
@@ -24,6 +30,10 @@ services:
     ports:
       - 7070:8081
     restart: on-failure
+    depends_on:
+      mongo:
+        condition:
+          service_healthy
 
 volumes:
   mongo_data:

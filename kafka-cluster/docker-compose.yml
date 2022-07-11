@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   kafka1:
-    image: confluentinc/cp-kafka:7.1.2
+    image: confluentinc/cp-kafka:7.2.0
     environment:
       TZ: America/Guayaquil
       KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka1:9092,EXTERNAL://localhost:19093
@@ -36,7 +36,7 @@ services:
       start_period: 30s
 
   kafka2:
-    image: confluentinc/cp-kafka:7.1.2
+    image: confluentinc/cp-kafka:7.2.0
     environment:
       TZ: America/Guayaquil
       KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka2:9092,EXTERNAL://localhost:29093
@@ -70,7 +70,7 @@ services:
       start_period: 30s
 
   kafka3:
-    image: confluentinc/cp-kafka:7.1.2
+    image: confluentinc/cp-kafka:7.2.0
     environment:
       TZ: America/Guayaquil
       KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka3:9092,EXTERNAL://localhost:39093
@@ -104,7 +104,7 @@ services:
       start_period: 30s
 
   zookeeper1:
-    image: confluentinc/cp-zookeeper:7.1.2
+    image: confluentinc/cp-zookeeper:7.2.0
     environment:
       TZ: America/Guayaquil
       ZOOKEEPER_CLIENT_PORT: '2181'
@@ -126,7 +126,7 @@ services:
       start_period: 30s
 
   zookeeper2:
-    image: confluentinc/cp-zookeeper:7.1.2
+    image: confluentinc/cp-zookeeper:7.2.0
     environment:
       TZ: America/Guayaquil
       ZOOKEEPER_CLIENT_PORT: '2181'
@@ -148,7 +148,7 @@ services:
       start_period: 30s
 
   zookeeper3:
-    image: confluentinc/cp-zookeeper:7.1.2
+    image: confluentinc/cp-zookeeper:7.2.0
     environment:
       TZ: America/Guayaquil
       ZOOKEEPER_CLIENT_PORT: '2181'
