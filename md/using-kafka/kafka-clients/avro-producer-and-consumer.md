@@ -49,3 +49,11 @@ For creating a AVRO schema, you can use the following command (development purpo
 ```bash
 ./gradlew kafka-clients:generateAvro
 ```
+
+## Avro Schema
+
+#### suppliers-v1.avsc
+
+```json
+{{#include ../../../kafka-clients/src/main/avro/suppliers-v1.avsc}}
+```
