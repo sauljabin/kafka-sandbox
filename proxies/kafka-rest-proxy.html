@@ -179,6 +179,19 @@ networks:
     external: true
     name: kafka-sandbox_network
 </code></pre>
+<h2 id="requests"><a class="header" href="#requests">Requests</a></h2>
+<h4 id="requestsproduce-avro-messagejson"><a class="header" href="#requestsproduce-avro-messagejson">requests/produce-avro-message.json</a></h4>
+<pre><code class="language-json">{
+  &quot;value_schema&quot;: &quot;{\&quot;type\&quot;: \&quot;record\&quot;, \&quot;name\&quot;: \&quot;User\&quot;, \&quot;fields\&quot;: [{\&quot;name\&quot;: \&quot;name\&quot;, \&quot;type\&quot;: \&quot;string\&quot;}]}&quot;,
+  &quot;records&quot;: [
+    {
+      &quot;value&quot;: {
+        &quot;name&quot;: &quot;John Doe&quot;
+      }
+    }
+  ]
+}
+</code></pre>
 
                     </main>
 

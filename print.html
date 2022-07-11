@@ -827,6 +827,61 @@ http :8083/connectors &lt; requests/create-connector-postgres-sink.json
 http DELETE :8083/connectors/mongo-sink
 http DELETE :8083/connectors/mysql-source
 </code></pre>
+<h2 id="requests"><a class="header" href="#requests">Requests</a></h2>
+<h4 id="requestscreate-connector-mysql-sourcejson"><a class="header" href="#requestscreate-connector-mysql-sourcejson">requests/create-connector-mysql-source.json</a></h4>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;mysql-source&quot;,
+  &quot;config&quot;: {
+    &quot;tasks.max&quot;: &quot;1&quot;,
+    &quot;table.whitelist&quot;: &quot;customers&quot;,
+    &quot;connector.class&quot;: &quot;io.confluent.connect.jdbc.JdbcSourceConnector&quot;,
+    &quot;connection.url&quot;: &quot;jdbc:mysql://mysql:3306/sandbox&quot;,
+    &quot;connection.user&quot;: &quot;root&quot;,
+    &quot;connection.password&quot;: &quot;notasecret&quot;,
+    &quot;mode&quot;: &quot;timestamp&quot;,
+    &quot;timestamp.column.name&quot;: &quot;created&quot;,
+    &quot;topic.prefix&quot;: &quot;kafka-connect.&quot;,
+    &quot;transforms&quot;: &quot;createKey&quot;,
+    &quot;transforms.createKey.type&quot;: &quot;org.apache.kafka.connect.transforms.ValueToKey&quot;,
+    &quot;transforms.createKey.fields&quot;: &quot;id&quot;
+  }
+}
+</code></pre>
+<h4 id="requestscreate-connector-mongo-sinkjson"><a class="header" href="#requestscreate-connector-mongo-sinkjson">requests/create-connector-mongo-sink.json:</a></h4>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;mongo-sink&quot;,
+  &quot;config&quot;: {
+    &quot;tasks.max&quot;: &quot;1&quot;,
+    &quot;topics&quot;: &quot;kafka-connect.customers&quot;,
+    &quot;collection&quot;: &quot;customers&quot;,
+    &quot;connector.class&quot;: &quot;com.mongodb.kafka.connect.MongoSinkConnector&quot;,
+    &quot;connection.uri&quot;: &quot;mongodb://root:notasecret@mongo:27017&quot;,
+    &quot;database&quot;: &quot;sandbox&quot;
+  }
+}
+</code></pre>
+<h4 id="requestscreate-connector-postgres-sinkjson"><a class="header" href="#requestscreate-connector-postgres-sinkjson">requests/create-connector-postgres-sink.json:</a></h4>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;postgres-sink&quot;,
+  &quot;config&quot;: {
+    &quot;tasks.max&quot;: &quot;1&quot;,
+    &quot;connector.class&quot;: &quot;io.confluent.connect.jdbc.JdbcSinkConnector&quot;,
+    &quot;connection.url&quot;: &quot;jdbc:postgresql://postgres:5432/sandbox&quot;,
+    &quot;connection.user&quot;: &quot;postgres&quot;,
+    &quot;connection.password&quot;: &quot;notasecret&quot;,
+    &quot;delete.enabled&quot;: false,
+    &quot;pk.mode&quot;: &quot;record_key&quot;,
+    &quot;pk.key&quot;: &quot;id&quot;,
+    &quot;insert.mode&quot;: &quot;upsert&quot;,
+    &quot;auto.create&quot;: true,
+    &quot;topics&quot;: &quot;kafka-connect.customers&quot;,
+    &quot;transforms&quot;: &quot;dropPrefix&quot;,
+    &quot;transforms.dropPrefix.type&quot;: &quot;org.apache.kafka.connect.transforms.RegexRouter&quot;,
+    &quot;transforms.dropPrefix.regex&quot;: &quot;kafka-connect\\.(.*)&quot;,
+    &quot;transforms.dropPrefix.replacement&quot;: &quot;$1&quot;
+  }
+}
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="kafka-connect-mqtt-example"><a class="header" href="#kafka-connect-mqtt-example">Kafka Connect MQTT Example</a></h1>
 <p>Subscribe to topics (for debugging purposes):</p>
 <pre><code class="language-bash">mqtt-cli sub -h mosquitto -t 'house/+/brightness'
@@ -847,6 +902,22 @@ mqtt-cli pub -h mosquitto -t 'house/kitchen/brightness' -m '1000LM'
 </code></pre>
 <p>For deleting the connector:</p>
 <pre><code class="language-bash">http DELETE :8083/connectors/mqtt-source
+</code></pre>
+<h2 id="requests-1"><a class="header" href="#requests-1">Requests</a></h2>
+<h4 id="requestscreate-connector-mqtt-sourcejson"><a class="header" href="#requestscreate-connector-mqtt-sourcejson">requests/create-connector-mqtt-source.json</a></h4>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;mqtt-source&quot;,
+  &quot;config&quot;: {
+      &quot;connector.class&quot;: &quot;io.confluent.connect.mqtt.MqttSourceConnector&quot;,
+      &quot;tasks.max&quot;: &quot;1&quot;,
+      &quot;mqtt.server.uri&quot;: &quot;tcp://mosquitto:1883&quot;,
+      &quot;mqtt.topics&quot;:&quot;house/+/brightness&quot;,
+      &quot;kafka.topic&quot;:&quot;kafka-connect.brightness&quot;,
+      &quot;mqtt.qos&quot;: &quot;2&quot;,
+      &quot;confluent.topic.bootstrap.servers&quot;: &quot;kafka1:9092&quot;,
+      &quot;confluent.topic.replication.factor&quot;: &quot;1&quot;
+  }
+}
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="kafka-ksqldb"><a class="header" href="#kafka-ksqldb">Kafka ksqlDB</a></h1>
 <p>ksqlDB is a database that's purpose-built for stream processing applications.</p>
@@ -924,6 +995,51 @@ networks:
   default:
     external: true
     name: kafka-sandbox_network
+</code></pre>
+<h2 id="statements"><a class="header" href="#statements">Statements</a></h2>
+<h4 id="statementscreate-ordersksql"><a class="header" href="#statementscreate-ordersksql">statements/create-orders.ksql</a></h4>
+<pre><code class="language-sql">CREATE STREAM orders (orderId INT KEY, orderUnits INT, totalAmount DOUBLE)
+  WITH (kafka_topic='kafka-ksqldb.orders', key_format='json', value_format='json', partitions=10, replicas=3);
+
+CREATE STREAM orderSizes 
+  WITH (kafka_topic='kafka-ksqldb.order_sizes', key_format='json', value_format='json', partitions=10, replicas=3)
+  AS SELECT
+    orderId,
+    orderUnits,
+    totalAmount,
+    CASE WHEN orderUnits &lt; 2 THEN 'small' WHEN orderUnits &lt; 4 THEN 'medium' ELSE 'large' END AS orderSize,
+    taxes(totalAmount) AS tax
+  FROM orders EMIT CHANGES;
+</code></pre>
+<h4 id="statementsinsert-ordersksql"><a class="header" href="#statementsinsert-ordersksql">statements/insert-orders.ksql</a></h4>
+<pre><code class="language-sql">INSERT INTO orders (orderId, orderUnits, totalAmount) VALUES (1000000, 2, 100.0);
+INSERT INTO orders (orderId, orderUnits, totalAmount) VALUES (1000001, 4, 200.0);
+INSERT INTO orders (orderId, orderUnits, totalAmount) VALUES (1000002, 6, 300.0);
+INSERT INTO orders (orderId, orderUnits, totalAmount) VALUES (1000003, 3, 150.0);
+INSERT INTO orders (orderId, orderUnits, totalAmount) VALUES (1000004, 1, 50.0);
+</code></pre>
+<h2 id="tests"><a class="header" href="#tests">Tests</a></h2>
+<h4 id="testsorders-inputjson"><a class="header" href="#testsorders-inputjson">tests/orders-input.json</a></h4>
+<pre><code class="language-json">{
+  &quot;inputs&quot;: [
+    {&quot;topic&quot;: &quot;kafka-ksqldb.orders&quot;, &quot;timestamp&quot;: 0, &quot;key&quot;: 1000000, &quot;value&quot;: {&quot;orderUnits&quot;: 2, &quot;totalAmount&quot;: 100.0}},
+    {&quot;topic&quot;: &quot;kafka-ksqldb.orders&quot;, &quot;timestamp&quot;: 0, &quot;key&quot;: 1000001, &quot;value&quot;: {&quot;orderUnits&quot;: 4, &quot;totalAmount&quot;: 200.0}},
+    {&quot;topic&quot;: &quot;kafka-ksqldb.orders&quot;, &quot;timestamp&quot;: 0, &quot;key&quot;: 1000002, &quot;value&quot;: {&quot;orderUnits&quot;: 6, &quot;totalAmount&quot;: 300.0}},
+    {&quot;topic&quot;: &quot;kafka-ksqldb.orders&quot;, &quot;timestamp&quot;: 0, &quot;key&quot;: 1000003, &quot;value&quot;: {&quot;orderUnits&quot;: 3, &quot;totalAmount&quot;: 150.0}},
+    {&quot;topic&quot;: &quot;kafka-ksqldb.orders&quot;, &quot;timestamp&quot;: 0, &quot;key&quot;: 1000004, &quot;value&quot;: {&quot;orderUnits&quot;: 1, &quot;totalAmount&quot;: 50.0}}
+  ]
+}
+</code></pre>
+<h4 id="testsorders-outputjson"><a class="header" href="#testsorders-outputjson">tests/orders-output.json</a></h4>
+<pre><code class="language-json">{
+  &quot;outputs&quot;: [
+    {&quot;topic&quot;: &quot;kafka-ksqldb.order_sizes&quot;, &quot;timestamp&quot;: 0, &quot;key&quot;: 1000000, &quot;value&quot;: {&quot;ORDERUNITS&quot;: 2, &quot;TOTALAMOUNT&quot;: 100.0, &quot;ORDERSIZE&quot;: &quot;medium&quot;, &quot;TAX&quot;: 12.0}},
+    {&quot;topic&quot;: &quot;kafka-ksqldb.order_sizes&quot;, &quot;timestamp&quot;: 0, &quot;key&quot;: 1000001, &quot;value&quot;: {&quot;ORDERUNITS&quot;: 4, &quot;TOTALAMOUNT&quot;: 200.0, &quot;ORDERSIZE&quot;: &quot;large&quot; , &quot;TAX&quot;: 24.0}},
+    {&quot;topic&quot;: &quot;kafka-ksqldb.order_sizes&quot;, &quot;timestamp&quot;: 0, &quot;key&quot;: 1000002, &quot;value&quot;: {&quot;ORDERUNITS&quot;: 6, &quot;TOTALAMOUNT&quot;: 300.0, &quot;ORDERSIZE&quot;: &quot;large&quot; , &quot;TAX&quot;: 36.0}},
+    {&quot;topic&quot;: &quot;kafka-ksqldb.order_sizes&quot;, &quot;timestamp&quot;: 0, &quot;key&quot;: 1000003, &quot;value&quot;: {&quot;ORDERUNITS&quot;: 3, &quot;TOTALAMOUNT&quot;: 150.0, &quot;ORDERSIZE&quot;: &quot;medium&quot;, &quot;TAX&quot;: 18.0}},
+    {&quot;topic&quot;: &quot;kafka-ksqldb.order_sizes&quot;, &quot;timestamp&quot;: 0, &quot;key&quot;: 1000004, &quot;value&quot;: {&quot;ORDERUNITS&quot;: 1, &quot;TOTALAMOUNT&quot;: 50.0, &quot;ORDERSIZE&quot;: &quot;small&quot; , &quot;TAX&quot;: 6.0}}
+  ]
+}
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ksqldb-extensions"><a class="header" href="#ksqldb-extensions">ksqlDB Extensions</a></h1>
 <p>ksqlDB extensions are pieces of logic for transforming or aggregating events that ksqlDB can't currently express.</p>
@@ -1098,6 +1214,19 @@ networks:
   default:
     external: true
     name: kafka-sandbox_network
+</code></pre>
+<h2 id="requests-2"><a class="header" href="#requests-2">Requests</a></h2>
+<h4 id="requestsproduce-avro-messagejson"><a class="header" href="#requestsproduce-avro-messagejson">requests/produce-avro-message.json</a></h4>
+<pre><code class="language-json">{
+  &quot;value_schema&quot;: &quot;{\&quot;type\&quot;: \&quot;record\&quot;, \&quot;name\&quot;: \&quot;User\&quot;, \&quot;fields\&quot;: [{\&quot;name\&quot;: \&quot;name\&quot;, \&quot;type\&quot;: \&quot;string\&quot;}]}&quot;,
+  &quot;records&quot;: [
+    {
+      &quot;value&quot;: {
+        &quot;name&quot;: &quot;John Doe&quot;
+      }
+    }
+  ]
+}
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="kafka-mqtt-proxy"><a class="header" href="#kafka-mqtt-proxy">Kafka MQTT Proxy</a></h1>
 <p>MQTT Proxy enables MQTT clients to use the MQTT 3.1.1 protocol to publish data directly to Apache Kafka.</p>

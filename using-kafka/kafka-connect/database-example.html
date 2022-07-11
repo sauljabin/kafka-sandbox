@@ -155,6 +155,61 @@ http :8083/connectors &lt; requests/create-connector-postgres-sink.json
 http DELETE :8083/connectors/mongo-sink
 http DELETE :8083/connectors/mysql-source
 </code></pre>
+<h2 id="requests"><a class="header" href="#requests">Requests</a></h2>
+<h4 id="requestscreate-connector-mysql-sourcejson"><a class="header" href="#requestscreate-connector-mysql-sourcejson">requests/create-connector-mysql-source.json</a></h4>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;mysql-source&quot;,
+  &quot;config&quot;: {
+    &quot;tasks.max&quot;: &quot;1&quot;,
+    &quot;table.whitelist&quot;: &quot;customers&quot;,
+    &quot;connector.class&quot;: &quot;io.confluent.connect.jdbc.JdbcSourceConnector&quot;,
+    &quot;connection.url&quot;: &quot;jdbc:mysql://mysql:3306/sandbox&quot;,
+    &quot;connection.user&quot;: &quot;root&quot;,
+    &quot;connection.password&quot;: &quot;notasecret&quot;,
+    &quot;mode&quot;: &quot;timestamp&quot;,
+    &quot;timestamp.column.name&quot;: &quot;created&quot;,
+    &quot;topic.prefix&quot;: &quot;kafka-connect.&quot;,
+    &quot;transforms&quot;: &quot;createKey&quot;,
+    &quot;transforms.createKey.type&quot;: &quot;org.apache.kafka.connect.transforms.ValueToKey&quot;,
+    &quot;transforms.createKey.fields&quot;: &quot;id&quot;
+  }
+}
+</code></pre>
+<h4 id="requestscreate-connector-mongo-sinkjson"><a class="header" href="#requestscreate-connector-mongo-sinkjson">requests/create-connector-mongo-sink.json:</a></h4>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;mongo-sink&quot;,
+  &quot;config&quot;: {
+    &quot;tasks.max&quot;: &quot;1&quot;,
+    &quot;topics&quot;: &quot;kafka-connect.customers&quot;,
+    &quot;collection&quot;: &quot;customers&quot;,
+    &quot;connector.class&quot;: &quot;com.mongodb.kafka.connect.MongoSinkConnector&quot;,
+    &quot;connection.uri&quot;: &quot;mongodb://root:notasecret@mongo:27017&quot;,
+    &quot;database&quot;: &quot;sandbox&quot;
+  }
+}
+</code></pre>
+<h4 id="requestscreate-connector-postgres-sinkjson"><a class="header" href="#requestscreate-connector-postgres-sinkjson">requests/create-connector-postgres-sink.json:</a></h4>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;postgres-sink&quot;,
+  &quot;config&quot;: {
+    &quot;tasks.max&quot;: &quot;1&quot;,
+    &quot;connector.class&quot;: &quot;io.confluent.connect.jdbc.JdbcSinkConnector&quot;,
+    &quot;connection.url&quot;: &quot;jdbc:postgresql://postgres:5432/sandbox&quot;,
+    &quot;connection.user&quot;: &quot;postgres&quot;,
+    &quot;connection.password&quot;: &quot;notasecret&quot;,
+    &quot;delete.enabled&quot;: false,
+    &quot;pk.mode&quot;: &quot;record_key&quot;,
+    &quot;pk.key&quot;: &quot;id&quot;,
+    &quot;insert.mode&quot;: &quot;upsert&quot;,
+    &quot;auto.create&quot;: true,
+    &quot;topics&quot;: &quot;kafka-connect.customers&quot;,
+    &quot;transforms&quot;: &quot;dropPrefix&quot;,
+    &quot;transforms.dropPrefix.type&quot;: &quot;org.apache.kafka.connect.transforms.RegexRouter&quot;,
+    &quot;transforms.dropPrefix.regex&quot;: &quot;kafka-connect\\.(.*)&quot;,
+    &quot;transforms.dropPrefix.replacement&quot;: &quot;$1&quot;
+  }
+}
+</code></pre>
 
                     </main>
 

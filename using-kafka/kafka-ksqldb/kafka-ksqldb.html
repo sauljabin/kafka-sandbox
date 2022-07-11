@@ -214,6 +214,51 @@ networks:
     external: true
     name: kafka-sandbox_network
 </code></pre>
+<h2 id="statements"><a class="header" href="#statements">Statements</a></h2>
+<h4 id="statementscreate-ordersksql"><a class="header" href="#statementscreate-ordersksql">statements/create-orders.ksql</a></h4>
+<pre><code class="language-sql">CREATE STREAM orders (orderId INT KEY, orderUnits INT, totalAmount DOUBLE)
+  WITH (kafka_topic='kafka-ksqldb.orders', key_format='json', value_format='json', partitions=10, replicas=3);
+
+CREATE STREAM orderSizes 
+  WITH (kafka_topic='kafka-ksqldb.order_sizes', key_format='json', value_format='json', partitions=10, replicas=3)
+  AS SELECT
+    orderId,
+    orderUnits,
+    totalAmount,
+    CASE WHEN orderUnits &lt; 2 THEN 'small' WHEN orderUnits &lt; 4 THEN 'medium' ELSE 'large' END AS orderSize,
+    taxes(totalAmount) AS tax
+  FROM orders EMIT CHANGES;
+</code></pre>
+<h4 id="statementsinsert-ordersksql"><a class="header" href="#statementsinsert-ordersksql">statements/insert-orders.ksql</a></h4>
+<pre><code class="language-sql">INSERT INTO orders (orderId, orderUnits, totalAmount) VALUES (1000000, 2, 100.0);
+INSERT INTO orders (orderId, orderUnits, totalAmount) VALUES (1000001, 4, 200.0);
+INSERT INTO orders (orderId, orderUnits, totalAmount) VALUES (1000002, 6, 300.0);
+INSERT INTO orders (orderId, orderUnits, totalAmount) VALUES (1000003, 3, 150.0);
+INSERT INTO orders (orderId, orderUnits, totalAmount) VALUES (1000004, 1, 50.0);
+</code></pre>
+<h2 id="tests"><a class="header" href="#tests">Tests</a></h2>
+<h4 id="testsorders-inputjson"><a class="header" href="#testsorders-inputjson">tests/orders-input.json</a></h4>
+<pre><code class="language-json">{
+  &quot;inputs&quot;: [
+    {&quot;topic&quot;: &quot;kafka-ksqldb.orders&quot;, &quot;timestamp&quot;: 0, &quot;key&quot;: 1000000, &quot;value&quot;: {&quot;orderUnits&quot;: 2, &quot;totalAmount&quot;: 100.0}},
+    {&quot;topic&quot;: &quot;kafka-ksqldb.orders&quot;, &quot;timestamp&quot;: 0, &quot;key&quot;: 1000001, &quot;value&quot;: {&quot;orderUnits&quot;: 4, &quot;totalAmount&quot;: 200.0}},
+    {&quot;topic&quot;: &quot;kafka-ksqldb.orders&quot;, &quot;timestamp&quot;: 0, &quot;key&quot;: 1000002, &quot;value&quot;: {&quot;orderUnits&quot;: 6, &quot;totalAmount&quot;: 300.0}},
+    {&quot;topic&quot;: &quot;kafka-ksqldb.orders&quot;, &quot;timestamp&quot;: 0, &quot;key&quot;: 1000003, &quot;value&quot;: {&quot;orderUnits&quot;: 3, &quot;totalAmount&quot;: 150.0}},
+    {&quot;topic&quot;: &quot;kafka-ksqldb.orders&quot;, &quot;timestamp&quot;: 0, &quot;key&quot;: 1000004, &quot;value&quot;: {&quot;orderUnits&quot;: 1, &quot;totalAmount&quot;: 50.0}}
+  ]
+}
+</code></pre>
+<h4 id="testsorders-outputjson"><a class="header" href="#testsorders-outputjson">tests/orders-output.json</a></h4>
+<pre><code class="language-json">{
+  &quot;outputs&quot;: [
+    {&quot;topic&quot;: &quot;kafka-ksqldb.order_sizes&quot;, &quot;timestamp&quot;: 0, &quot;key&quot;: 1000000, &quot;value&quot;: {&quot;ORDERUNITS&quot;: 2, &quot;TOTALAMOUNT&quot;: 100.0, &quot;ORDERSIZE&quot;: &quot;medium&quot;, &quot;TAX&quot;: 12.0}},
+    {&quot;topic&quot;: &quot;kafka-ksqldb.order_sizes&quot;, &quot;timestamp&quot;: 0, &quot;key&quot;: 1000001, &quot;value&quot;: {&quot;ORDERUNITS&quot;: 4, &quot;TOTALAMOUNT&quot;: 200.0, &quot;ORDERSIZE&quot;: &quot;large&quot; , &quot;TAX&quot;: 24.0}},
+    {&quot;topic&quot;: &quot;kafka-ksqldb.order_sizes&quot;, &quot;timestamp&quot;: 0, &quot;key&quot;: 1000002, &quot;value&quot;: {&quot;ORDERUNITS&quot;: 6, &quot;TOTALAMOUNT&quot;: 300.0, &quot;ORDERSIZE&quot;: &quot;large&quot; , &quot;TAX&quot;: 36.0}},
+    {&quot;topic&quot;: &quot;kafka-ksqldb.order_sizes&quot;, &quot;timestamp&quot;: 0, &quot;key&quot;: 1000003, &quot;value&quot;: {&quot;ORDERUNITS&quot;: 3, &quot;TOTALAMOUNT&quot;: 150.0, &quot;ORDERSIZE&quot;: &quot;medium&quot;, &quot;TAX&quot;: 18.0}},
+    {&quot;topic&quot;: &quot;kafka-ksqldb.order_sizes&quot;, &quot;timestamp&quot;: 0, &quot;key&quot;: 1000004, &quot;value&quot;: {&quot;ORDERUNITS&quot;: 1, &quot;TOTALAMOUNT&quot;: 50.0, &quot;ORDERSIZE&quot;: &quot;small&quot; , &quot;TAX&quot;: 6.0}}
+  ]
+}
+</code></pre>
 
                     </main>
 

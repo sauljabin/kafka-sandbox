@@ -158,6 +158,22 @@ mqtt-cli pub -h mosquitto -t 'house/kitchen/brightness' -m '1000LM'
 <p>For deleting the connector:</p>
 <pre><code class="language-bash">http DELETE :8083/connectors/mqtt-source
 </code></pre>
+<h2 id="requests"><a class="header" href="#requests">Requests</a></h2>
+<h4 id="requestscreate-connector-mqtt-sourcejson"><a class="header" href="#requestscreate-connector-mqtt-sourcejson">requests/create-connector-mqtt-source.json</a></h4>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;mqtt-source&quot;,
+  &quot;config&quot;: {
+      &quot;connector.class&quot;: &quot;io.confluent.connect.mqtt.MqttSourceConnector&quot;,
+      &quot;tasks.max&quot;: &quot;1&quot;,
+      &quot;mqtt.server.uri&quot;: &quot;tcp://mosquitto:1883&quot;,
+      &quot;mqtt.topics&quot;:&quot;house/+/brightness&quot;,
+      &quot;kafka.topic&quot;:&quot;kafka-connect.brightness&quot;,
+      &quot;mqtt.qos&quot;: &quot;2&quot;,
+      &quot;confluent.topic.bootstrap.servers&quot;: &quot;kafka1:9092&quot;,
+      &quot;confluent.topic.replication.factor&quot;: &quot;1&quot;
+  }
+}
+</code></pre>
 
                     </main>
 
