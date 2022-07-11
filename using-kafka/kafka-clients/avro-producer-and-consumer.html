@@ -171,6 +171,33 @@ kafka-clients consumer
 <p>For creating a AVRO schema, you can use the following command (development purposes):</p>
 <pre><code class="language-bash">./gradlew kafka-clients:generateAvro
 </code></pre>
+<h2 id="avro-schema"><a class="header" href="#avro-schema">Avro Schema</a></h2>
+<h4 id="suppliers-v1avsc"><a class="header" href="#suppliers-v1avsc">suppliers-v1.avsc</a></h4>
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;record&quot;,
+  &quot;name&quot;: &quot;Supplier&quot;,
+  &quot;namespace&quot;: &quot;kafka.sandbox.avro&quot;,
+  &quot;version&quot;: &quot;1&quot;,
+  &quot;fields&quot;: [
+    {
+      &quot;name&quot;: &quot;id&quot;,
+      &quot;type&quot;: &quot;string&quot;
+    },
+    {
+      &quot;name&quot;: &quot;name&quot;,
+      &quot;type&quot;: &quot;string&quot;
+    },
+    {
+      &quot;name&quot;: &quot;address&quot;,
+      &quot;type&quot;: &quot;string&quot;
+    },
+    {
+      &quot;name&quot;: &quot;country&quot;,
+      &quot;type&quot;: &quot;string&quot;
+    }
+  ]
+}
+</code></pre>
 
                     </main>
 
