@@ -1038,7 +1038,7 @@ public class TaxesUdf {
 
     public static final double TAXES = .12;
 
-    @Udf(description = &quot;Calculate the taxes.&quot;)
+    @Udf(description = &quot;Calculate taxes.&quot;)
     public double taxes(@UdfParameter double amount) {
         return amount * TAXES;
     }
