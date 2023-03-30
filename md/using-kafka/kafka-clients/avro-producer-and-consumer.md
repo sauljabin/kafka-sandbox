@@ -47,7 +47,13 @@ kafka-clients consumer
 For creating a AVRO schema, you can use the following command (development purposes):
 
 ```bash
-./gradlew kafka-clients:generateAvro
+./gradlew kafka-clients:generateAvroJava
+```
+
+or
+
+```bash
+./gradlew kafka-clients:build
 ```
 
 ## Avro Schema
