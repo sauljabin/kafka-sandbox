@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "kafka.sandbox.proto";
+option java_outer_classname = "SuppliersProto";
+
+package suppliers;
+
+service CounterService {
+  rpc GetCountByCountry (CountRequest) returns (CountReply) {}
+}
+
+message CountRequest {
+  string name = 1;
+}
+
+message CountReply {
+  string message = 1;
+}

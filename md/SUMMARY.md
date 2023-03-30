@@ -32,6 +32,7 @@
   - [Avro Producer and Consumer](./using-kafka/kafka-clients/avro-producer-and-consumer.md)
   - [Spring Boot](./using-kafka/kafka-clients/spring-boot.md)
 - [Kafka Streams](./using-kafka/kafka-streams/streams.md)
+  - [Interactive Queries](./using-kafka/kafka-streams/queries.md)
 - [Kafka Performance Tools](./using-kafka/kafka-performance-tools.md)
 
 # Proxies

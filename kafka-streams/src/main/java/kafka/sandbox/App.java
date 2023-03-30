@@ -2,6 +2,8 @@ package kafka.sandbox;
 
 import java.io.IOException;
 import java.util.Properties;
+
+import kafka.sandbox.cli.Count;
 import kafka.sandbox.cli.KafkaStreams;
 import kafka.sandbox.cli.Streams;
 import picocli.CommandLine;
@@ -12,7 +14,7 @@ public class App {
         Properties streamsProps = getProperties("streams.properties");
 
         CommandLine commandLine = new CommandLine(new KafkaStreams())
-            .addSubcommand(new Streams(streamsProps));
+                .addSubcommand(new Streams(streamsProps)).addSubcommand(new Count());
 
         System.exit(commandLine.execute(args));
     }
