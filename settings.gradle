@@ -1,4 +1,5 @@
 rootProject.name = "kafka-sandbox"
+include("kafka-avro")
 include("kafka-clients")
 include("kafka-spring-boot")
 include("kafka-ksqldb-extensions")

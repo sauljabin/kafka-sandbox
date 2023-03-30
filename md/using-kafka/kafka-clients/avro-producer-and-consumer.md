@@ -5,6 +5,7 @@ These examples produce and consume messages from the `supplier` topic. The produ
 - [kafka producer and consumer example](https://docs.confluent.io/platform/current/schema-registry/serdes-develop/serdes-avro.html)
 - [kafka consumer settings](https://docs.confluent.io/platform/current/installation/configuration/consumer-configs.html)
 - [kafka producer settings](https://docs.confluent.io/platform/current/installation/configuration/producer-configs.html)
+- avro project location: [kafka-avro](https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-avro)
 - project location: [kafka-clients](https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-clients)
 
 > ⚠️ Run these commands inside the root folder.
@@ -47,13 +48,7 @@ kafka-clients consumer
 For creating a AVRO schema, you can use the following command (development purposes):
 
 ```bash
-./gradlew kafka-clients:generateAvroJava
-```
-
-or
-
-```bash
-./gradlew kafka-clients:build
+./gradlew kafka-avro:build
 ```
 
 ## Avro Schema
@@ -61,5 +56,5 @@ or
 #### suppliers-v1.avsc
 
 ```json
-{{#include ../../../kafka-clients/src/main/avro/suppliers-v1.avsc}}
+{{#include ../../../kafka-avro/src/main/avro/suppliers-v1.avsc}}
 ```
