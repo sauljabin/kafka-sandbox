@@ -1061,6 +1061,7 @@ public class TaxesUdf {
 <li><a href="https://docs.confluent.io/platform/current/schema-registry/serdes-develop/serdes-avro.html">kafka producer and consumer example</a></li>
 <li><a href="https://docs.confluent.io/platform/current/installation/configuration/consumer-configs.html">kafka consumer settings</a></li>
 <li><a href="https://docs.confluent.io/platform/current/installation/configuration/producer-configs.html">kafka producer settings</a></li>
+<li>avro project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-avro">kafka-avro</a></li>
 <li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-clients">kafka-clients</a></li>
 </ul>
 <blockquote>
@@ -1087,10 +1088,7 @@ kafka-clients
 kafka-clients consumer
 </code></pre>
 <p>For creating a AVRO schema, you can use the following command (development purposes):</p>
-<pre><code class="language-bash">./gradlew kafka-clients:generateAvroJava
-</code></pre>
-<p>or</p>
-<pre><code class="language-bash">./gradlew kafka-clients:build
+<pre><code class="language-bash">./gradlew kafka-avro:build
 </code></pre>
 <h2 id="avro-schema"><a class="header" href="#avro-schema">Avro Schema</a></h2>
 <h4 id="suppliers-v1avsc"><a class="header" href="#suppliers-v1avsc">suppliers-v1.avsc</a></h4>
