@@ -2,20 +2,17 @@ package kafka.sandbox;
 
 import java.io.IOException;
 import java.util.Properties;
-import kafka.sandbox.cli.Consumer;
-import kafka.sandbox.cli.KafkaClients;
-import kafka.sandbox.cli.Producer;
+import kafka.sandbox.cli.KafkaStreams;
+import kafka.sandbox.cli.Streams;
 import picocli.CommandLine;
 
 public class App {
 
     public static void main(String[] args) throws IOException {
-        Properties producerProps = getProperties("producer.properties");
-        Properties consumerProps = getProperties("consumer.properties");
+        Properties streamsProps = getProperties("streams.properties");
 
-        CommandLine commandLine = new CommandLine(new KafkaClients())
-            .addSubcommand(new Producer(producerProps))
-            .addSubcommand(new Consumer(consumerProps));
+        CommandLine commandLine = new CommandLine(new KafkaStreams())
+            .addSubcommand(new Streams(streamsProps));
 
         System.exit(commandLine.execute(args));
     }

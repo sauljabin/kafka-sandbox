@@ -6,7 +6,7 @@ ksqlDB extensions are pieces of logic for transforming or aggregating events tha
 - project location: [kafka-ksqldb-extensions](https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-ksqldb-extensions)
 - extensions location: [kafka-ksqldb-extensions/extensions](https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-ksqldb-extensions/extensions)
 
-Check the [Kafka ksqlDB](#kafka-ksqldb) section.
+Check the [Kafka ksqlDB](./kafka-ksqldb.md) section.
 
 For creating the `jar` extension, you can use the following command (development purposes):
 

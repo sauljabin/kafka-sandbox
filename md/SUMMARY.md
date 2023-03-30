@@ -30,8 +30,8 @@
   - [Extensions](./using-kafka/kafka-ksqldb/extensions.md)
 - [Kafka Clients](./using-kafka/kafka-clients/kafka-clients.md)
   - [Avro Producer and Consumer](./using-kafka/kafka-clients/avro-producer-and-consumer.md)
-  - [Streams](./using-kafka/kafka-clients/streams.md)
   - [Spring Boot](./using-kafka/kafka-clients/spring-boot.md)
+- [Kafka Streams](./using-kafka/kafka-streams/streams.md)
 - [Kafka Performance Tools](./using-kafka/kafka-performance-tools.md)
 
 # Proxies
