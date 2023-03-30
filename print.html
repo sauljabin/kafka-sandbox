@@ -1170,18 +1170,18 @@ kafka-streams
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="interactive-queries"><a class="header" href="#interactive-queries">Interactive Queries</a></h1>
 <p>This example is using gRPC to request queries to the kafka stream server. </p>
-<p>Query the total count by a given country:</p>
+<p>Query the total supplier count by a given country:</p>
 <pre><code class="language-bash">kafka-streams count &lt;country&gt;
 </code></pre>
 <p>Example:</p>
 <pre><code class="language-bash">kafka-streams count Ecuador
 </code></pre>
 <p>Output:</p>
-<pre><code>Ecuador, Total Suppliers: 4
+<pre><code>Country: Ecuador, Total Suppliers: 4
 </code></pre>
 <p>Take into account that you have to run the stream firts. Check the <a href="using-kafka/kafka-streams/./streams.html">Kafka Streams</a> section.</p>
 <p>Check the stream topology and the gRPC server:</p>
-<pre><code class="language-yaml">package kafka.sandbox.cli;
+<pre><code class="language-java">package kafka.sandbox.cli;
 
 import java.util.Properties;
 import java.util.concurrent.Callable;
@@ -1277,7 +1277,7 @@ public class Streams implements Callable&lt;Integer&gt; {
 }
 </code></pre>
 <p>Check the gRPC clinet:</p>
-<pre><code class="language-yaml">package kafka.sandbox.cli;
+<pre><code class="language-java">package kafka.sandbox.cli;
 
 import java.util.concurrent.Callable;
 
