@@ -725,6 +725,12 @@ services:
     ports:
       - 8081:8081
     restart: on-failure
+    healthcheck:
+      test: curl http://localhost:8081
+      interval: 30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
 
 networks:
   default:
@@ -773,6 +779,12 @@ services:
     restart: on-failure
     volumes:
       - ./plugins:/usr/local/share/kafka/plugins
+    healthcheck:
+      test: curl http://localhost:8083
+      interval: 30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
 
 networks:
   default:
@@ -943,6 +955,12 @@ services:
     restart: on-failure
     volumes:
       - ../kafka-ksqldb-extensions/extensions:/ksqldb/extensions
+    healthcheck:
+      test: curl http://localhost:8088
+      interval: 30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
 
 networks:
   default:
@@ -1397,6 +1415,12 @@ services:
     ports:
       - 8082:8082
     restart: on-failure
+    healthcheck:
+      test: curl http://localhost:8082
+      interval: 30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
 
 networks:
   default:
