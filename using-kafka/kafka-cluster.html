@@ -4,8 +4,10 @@
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Kafka Cluster - Kafka Sandbox</title>
+
+
         <!-- Custom HTML head -->
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
@@ -16,25 +18,29 @@
         <link rel="stylesheet" href="../css/general.css">
         <link rel="stylesheet" href="../css/chrome.css">
         <link rel="stylesheet" href="../css/print.css" media="print">
+
         <!-- Fonts -->
         <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
         <link rel="stylesheet" href="../fonts/fonts.css">
+
         <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="../highlight.css">
         <link rel="stylesheet" href="../tomorrow-night.css">
         <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
-        <script type="text/javascript">
+        <script>
             var path_to_root = "../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
-        <script type="text/javascript">
+        <script>
             try {
                 var theme = localStorage.getItem('mdbook-theme');
                 var sidebar = localStorage.getItem('mdbook-sidebar');
@@ -50,7 +56,7 @@
         </script>
 
         <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
+        <script>
             var theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
@@ -62,12 +68,14 @@
         </script>
 
         <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
+        <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -83,7 +91,7 @@
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                <div id="menu-bar-hover-placeholder"></div>
+                                <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky bordered">
                     <div class="left-buttons">
                         <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
@@ -93,7 +101,7 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
@@ -113,6 +121,7 @@
                         <a href="https://github.com/sauljabin/kafka-sandbox" title="Git repository" aria-label="Git repository">
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
+
                     </div>
                 </div>
 
@@ -126,8 +135,9 @@
                         </ul>
                     </div>
                 </div>
+
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
-                <script type="text/javascript">
+                <script>
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
                     document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
                     Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
@@ -145,7 +155,7 @@
 <li><a href="https://zookeeper.apache.org/">zookeeper</a></li>
 <li><a href="https://docs.confluent.io/platform/current/zookeeper/deployment.html">zookeeper settings</a></li>
 <li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-cluster">kafka-cluster</a></li>
-<li>kafka version: <a href="https://docs.confluent.io/platform/current/installation/versions-interoperability.html">cp 7.2.0</a></li>
+<li>kafka version: <a href="https://docs.confluent.io/platform/current/installation/versions-interoperability.html">cp 7.3.2</a></li>
 <li>kafka ports: <code>19093</code>, <code>29093</code>, <code>39093</code></li>
 <li>kafka jmx ports: <code>19999</code>, <code>29999</code>, <code>39999</code></li>
 <li>zookeeper ports: <code>12181</code>, <code>22181</code>, <code>32181</code></li>
@@ -179,20 +189,20 @@ kafka-cli kafka-topics --bootstrap-server kafka1:9092 --list
 <pre><code class="language-bash">jconsole localhost:19999
 </code></pre>
 <h2 id="docker-compose"><a class="header" href="#docker-compose">Docker Compose</a></h2>
-<pre><code class="language-yaml">version: '3.9'
+<pre><code class="language-yaml">version: &quot;3.9&quot;
 
 services:
   kafka1:
-    image: confluentinc/cp-kafka:7.2.0
+    image: confluentinc/cp-kafka:${VERSION}
     environment:
       TZ: America/Guayaquil
       KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka1:9092,EXTERNAL://localhost:19093
-      KAFKA_BROKER_ID: '1'
+      KAFKA_BROKER_ID: &quot;1&quot;
       KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
       KAFKA_LISTENERS: INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:19093
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
       KAFKA_ZOOKEEPER_CONNECT: zookeeper1:2181,zookeeper2:2181,zookeeper3:2181
-      KAFKA_JMX_PORT: '19999'
+      KAFKA_JMX_PORT: &quot;19999&quot;
     ports:
       - 19093:19093
       - 19999:19999
@@ -201,14 +211,11 @@ services:
       - kafka1_data:/var/lib/kafka/data
     depends_on:
       zookeeper1:
-        condition:
-          service_healthy
+        condition: service_healthy
       zookeeper2:
-        condition:
-          service_healthy
+        condition: service_healthy
       zookeeper3:
-        condition:
-          service_healthy
+        condition: service_healthy
     healthcheck:
       test: kafka-topics --bootstrap-server localhost:9092 --list &gt; /dev/null 2&gt;&amp;1
       interval: 30s
@@ -217,16 +224,16 @@ services:
       start_period: 30s
 
   kafka2:
-    image: confluentinc/cp-kafka:7.2.0
+    image: confluentinc/cp-kafka:${VERSION}
     environment:
       TZ: America/Guayaquil
       KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka2:9092,EXTERNAL://localhost:29093
-      KAFKA_BROKER_ID: '2'
+      KAFKA_BROKER_ID: &quot;2&quot;
       KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
       KAFKA_LISTENERS: INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:29093
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
       KAFKA_ZOOKEEPER_CONNECT: zookeeper1:2181,zookeeper2:2181,zookeeper3:2181
-      KAFKA_JMX_PORT: '29999'
+      KAFKA_JMX_PORT: &quot;29999&quot;
     ports:
       - 29093:29093
       - 29999:29999
@@ -235,14 +242,11 @@ services:
       - kafka2_data:/var/lib/kafka/data
     depends_on:
       zookeeper1:
-        condition:
-          service_healthy
+        condition: service_healthy
       zookeeper2:
-        condition:
-          service_healthy
+        condition: service_healthy
       zookeeper3:
-        condition:
-          service_healthy
+        condition: service_healthy
     healthcheck:
       test: kafka-topics --bootstrap-server localhost:9092 --list &gt; /dev/null 2&gt;&amp;1
       interval: 30s
@@ -251,16 +255,16 @@ services:
       start_period: 30s
 
   kafka3:
-    image: confluentinc/cp-kafka:7.2.0
+    image: confluentinc/cp-kafka:${VERSION}
     environment:
       TZ: America/Guayaquil
       KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka3:9092,EXTERNAL://localhost:39093
-      KAFKA_BROKER_ID: '3'
+      KAFKA_BROKER_ID: &quot;3&quot;
       KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
       KAFKA_LISTENERS: INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:39093
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
       KAFKA_ZOOKEEPER_CONNECT: zookeeper1:2181,zookeeper2:2181,zookeeper3:2181
-      KAFKA_JMX_PORT: '39999'
+      KAFKA_JMX_PORT: &quot;39999&quot;
     ports:
       - 39093:39093
       - 39999:39999
@@ -269,14 +273,11 @@ services:
       - kafka3_data:/var/lib/kafka/data
     depends_on:
       zookeeper1:
-        condition:
-          service_healthy
+        condition: service_healthy
       zookeeper2:
-        condition:
-          service_healthy
+        condition: service_healthy
       zookeeper3:
-        condition:
-          service_healthy
+        condition: service_healthy
     healthcheck:
       test: kafka-topics --bootstrap-server localhost:9092 --list &gt; /dev/null 2&gt;&amp;1
       interval: 30s
@@ -285,14 +286,14 @@ services:
       start_period: 30s
 
   zookeeper1:
-    image: confluentinc/cp-zookeeper:7.2.0
+    image: confluentinc/cp-zookeeper:${VERSION}
     environment:
       TZ: America/Guayaquil
-      ZOOKEEPER_CLIENT_PORT: '2181'
+      ZOOKEEPER_CLIENT_PORT: &quot;2181&quot;
       ZOOKEEPER_SERVERS: zookeeper1:2888:3888;zookeeper2:2888:3888;zookeeper3:2888:3888
-      ZOOKEEPER_SERVER_ID: '1'
-      ZOOKEEPER_SYNC_LIMIT: '2'
-      ZOOKEEPER_TICK_TIME: '2000'
+      ZOOKEEPER_SERVER_ID: &quot;1&quot;
+      ZOOKEEPER_SYNC_LIMIT: &quot;2&quot;
+      ZOOKEEPER_TICK_TIME: &quot;2000&quot;
     ports:
       - 12181:2181
     restart: on-failure
@@ -307,14 +308,14 @@ services:
       start_period: 30s
 
   zookeeper2:
-    image: confluentinc/cp-zookeeper:7.2.0
+    image: confluentinc/cp-zookeeper:${VERSION}
     environment:
       TZ: America/Guayaquil
-      ZOOKEEPER_CLIENT_PORT: '2181'
+      ZOOKEEPER_CLIENT_PORT: &quot;2181&quot;
       ZOOKEEPER_SERVERS: zookeeper1:2888:3888;zookeeper2:2888:3888;zookeeper3:2888:3888
-      ZOOKEEPER_SERVER_ID: '2'
-      ZOOKEEPER_SYNC_LIMIT: '2'
-      ZOOKEEPER_TICK_TIME: '2000'
+      ZOOKEEPER_SERVER_ID: &quot;2&quot;
+      ZOOKEEPER_SYNC_LIMIT: &quot;2&quot;
+      ZOOKEEPER_TICK_TIME: &quot;2000&quot;
     ports:
       - 22181:2181
     restart: on-failure
@@ -329,14 +330,14 @@ services:
       start_period: 30s
 
   zookeeper3:
-    image: confluentinc/cp-zookeeper:7.2.0
+    image: confluentinc/cp-zookeeper:${VERSION}
     environment:
       TZ: America/Guayaquil
-      ZOOKEEPER_CLIENT_PORT: '2181'
+      ZOOKEEPER_CLIENT_PORT: &quot;2181&quot;
       ZOOKEEPER_SERVERS: zookeeper1:2888:3888;zookeeper2:2888:3888;zookeeper3:2888:3888
-      ZOOKEEPER_SERVER_ID: '3'
-      ZOOKEEPER_SYNC_LIMIT: '2'
-      ZOOKEEPER_TICK_TIME: '2000'
+      ZOOKEEPER_SERVER_ID: &quot;3&quot;
+      ZOOKEEPER_SYNC_LIMIT: &quot;2&quot;
+      ZOOKEEPER_TICK_TIME: &quot;2000&quot;
     ports:
       - 32181:2181
     restart: on-failure
@@ -374,9 +375,11 @@ networks:
                             <a rel="prev" href="../tools/mqtt-broker.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
+
                             <a rel="next" href="../using-kafka/kafka-akhq.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
+
                         <div style="clear: both"></div>
                     </nav>
                 </div>
@@ -386,6 +389,7 @@ networks:
                     <a rel="prev" href="../tools/mqtt-broker.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
+
                     <a rel="next" href="../using-kafka/kafka-akhq.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
@@ -393,16 +397,25 @@ networks:
 
         </div>
 
-        <script type="text/javascript">
+
+
+
+        <script>
             window.playground_copyable = true;
         </script>
-        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
 
         <!-- Custom JS scripts -->
+
+
+    </div>
     </body>
 </html>
