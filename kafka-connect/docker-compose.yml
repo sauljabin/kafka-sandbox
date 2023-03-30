@@ -21,6 +21,12 @@ services:
     restart: on-failure
     volumes:
       - ./plugins:/usr/local/share/kafka/plugins
+    healthcheck:
+      test: curl http://localhost:8083
+      interval: 30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
 
 networks:
   default:
