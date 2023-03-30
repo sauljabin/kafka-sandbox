@@ -1198,7 +1198,7 @@ kafka-streams
 <pre><code>Country: Ecuador, Total Suppliers: 4
 </code></pre>
 <p>Take into account that you have to run the stream firts. Check the <a href="using-kafka/kafka-streams/./streams.html">Kafka Streams</a> section.</p>
-<p>Check the stream topology and the gRPC server:</p>
+<p>Check the stream topology:</p>
 <pre><code class="language-java">package kafka.sandbox.cli;
 
 import java.util.Properties;
@@ -1291,6 +1291,41 @@ public class Streams implements Callable&lt;Integer&gt; {
         latch.await();
 
         return CommandLine.ExitCode.OK;
+    }
+}
+</code></pre>
+<p>Check the gRPC server:</p>
+<pre><code class="language-java">package kafka.sandbox.grpc;
+
+import org.apache.kafka.streams.KafkaStreams;
+import org.apache.kafka.streams.StoreQueryParameters;
+import org.apache.kafka.streams.state.QueryableStoreTypes;
+import org.apache.kafka.streams.state.ReadOnlyKeyValueStore;
+
+import io.grpc.stub.StreamObserver;
+import kafka.sandbox.proto.CounterServiceGrpc.CounterServiceImplBase;
+import kafka.sandbox.proto.CountReply;
+import kafka.sandbox.proto.CountRequest;
+
+public class CounterService extends CounterServiceImplBase {
+
+    private KafkaStreams streams;
+
+    public CounterService(KafkaStreams streams) {
+        this.streams = streams;
+    }
+
+    @Override
+    public void getCountByCountry(CountRequest request, StreamObserver&lt;CountReply&gt; responseObserver) {
+        ReadOnlyKeyValueStore&lt;String, Long&gt; keyValueStore = streams.store(
+                StoreQueryParameters.fromNameAndType(&quot;SupplierCountByCountry&quot;, QueryableStoreTypes.keyValueStore()));
+
+        String county = request.getName();
+        Long total = keyValueStore.get(county);
+        String value = String.format(&quot;Country: %s, Total Suppliers: %s&quot;, county, total != null ? total : 0);
+        CountReply reply = CountReply.newBuilder().setMessage(value).build();
+        responseObserver.onNext(reply);
+        responseObserver.onCompleted();
     }
 }
 </code></pre>
