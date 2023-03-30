@@ -1,17 +1,16 @@
 package kafka.sandbox.controller;
 
 import com.github.javafaker.Faker;
+import java.time.ZoneId;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.UUID;
 import kafka.sandbox.domain.Customer;
 import kafka.sandbox.service.ProducerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.time.ZoneId;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.UUID;
 
 @RestController
 public class ProducerController {
@@ -39,12 +38,19 @@ public class ProducerController {
     }
 
     private Customer newCustomer() {
-        return Customer.builder()
-                .id(UUID.randomUUID())
-                .name(faker.name().fullName())
-                .birthdate(faker.date().birthday(18, 80).toInstant().atZone(ZoneId.systemDefault()).toLocalDate())
-                .gender(faker.regexify("M|F"))
-                .build();
+        return Customer
+            .builder()
+            .id(UUID.randomUUID())
+            .name(faker.name().fullName())
+            .birthdate(
+                faker
+                    .date()
+                    .birthday(18, 80)
+                    .toInstant()
+                    .atZone(ZoneId.systemDefault())
+                    .toLocalDate()
+            )
+            .gender(faker.regexify("M|F"))
+            .build();
     }
-
 }

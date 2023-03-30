@@ -1,4 +1,4 @@
-version: '3.9'
+version: "3.9"
 
 services:
   mongo:
@@ -25,15 +25,14 @@ services:
       TZ: America/Guayaquil
       ME_CONFIG_MONGODB_ADMINPASSWORD: notasecret
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_PORT: '27017'
+      ME_CONFIG_MONGODB_PORT: "27017"
       ME_CONFIG_MONGODB_SERVER: mongo
     ports:
       - 7070:8081
     restart: on-failure
     depends_on:
       mongo:
-        condition:
-          service_healthy
+        condition: service_healthy
 
 volumes:
   mongo_data:

@@ -1,8 +1,8 @@
-version: '3.9'
+version: "3.9"
 
 services:
   kafka-connect:
-    image: confluentinc/cp-kafka-connect:7.2.0
+    image: confluentinc/cp-kafka-connect:${VERSION}
     environment:
       TZ: America/Guayaquil
       CONNECT_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092,kafka3:9092

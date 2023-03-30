@@ -11,5 +11,4 @@ public class AppConfig {
     public Faker getFaker() {
         return new Faker();
     }
-
 }

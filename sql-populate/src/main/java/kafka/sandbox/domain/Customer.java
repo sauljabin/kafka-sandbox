@@ -2,10 +2,9 @@ package kafka.sandbox.domain;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
-import lombok.*;
-
 import java.util.Date;
 import java.util.UUID;
+import lombok.*;
 
 @Data
 @Builder
@@ -26,5 +25,4 @@ public class Customer {
 
     @DatabaseField(canBeNull = false)
     private Date created;
-
 }

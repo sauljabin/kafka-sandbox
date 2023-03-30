@@ -17,7 +17,7 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
-        spring.json.trusted.packages: 'kafka.sandbox.domain'
+        spring.json.trusted.packages: "kafka.sandbox.domain"
     producer:
       bootstrap-servers: localhost:19093,localhost:29093,localhost:39093
       key-serializer: org.apache.kafka.common.serialization.StringSerializer

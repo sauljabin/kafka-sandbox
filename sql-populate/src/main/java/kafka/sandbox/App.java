@@ -9,5 +9,4 @@ public class App {
         CommandLine commandLine = new CommandLine(new SqlPopulate());
         System.exit(commandLine.execute(args));
     }
-
 }

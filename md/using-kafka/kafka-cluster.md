@@ -7,7 +7,7 @@ A three node kafka cluster.
 - [zookeeper](https://zookeeper.apache.org/)
 - [zookeeper settings](https://docs.confluent.io/platform/current/zookeeper/deployment.html)
 - project location: [kafka-cluster](https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-cluster)
-- kafka version: [cp 7.2.0](https://docs.confluent.io/platform/current/installation/versions-interoperability.html)
+- kafka version: [cp 7.3.2](https://docs.confluent.io/platform/current/installation/versions-interoperability.html)
 - kafka ports: `19093`, `29093`, `39093`
 - kafka jmx ports: `19999`, `29999`, `39999`
 - zookeeper ports: `12181`, `22181`, `32181`

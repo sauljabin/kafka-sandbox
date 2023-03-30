@@ -4,10 +4,12 @@ import io.confluent.ksql.function.udf.Udf;
 import io.confluent.ksql.function.udf.UdfDescription;
 import io.confluent.ksql.function.udf.UdfParameter;
 
-@UdfDescription(name = "taxes",
-        author = "kafka sandbox",
-        version = "1.0.0",
-        description = "A custom taxes formula for orders.")
+@UdfDescription(
+    name = "taxes",
+    author = "kafka sandbox",
+    version = "1.0.0",
+    description = "A custom taxes formula for orders."
+)
 public class TaxesUdf {
 
     public static final double TAXES = .12;
@@ -16,5 +18,4 @@ public class TaxesUdf {
     public double taxes(@UdfParameter double amount) {
         return amount * TAXES;
     }
-
 }

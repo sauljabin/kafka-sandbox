@@ -1,5 +1,8 @@
 package kafka.sandbox.cli;
 
+import java.util.Properties;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CountDownLatch;
 import kafka.sandbox.avro.Supplier;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.common.serialization.Serde;
@@ -12,10 +15,6 @@ import org.apache.kafka.streams.kstream.KTable;
 import org.apache.kafka.streams.kstream.Produced;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
-
-import java.util.Properties;
-import java.util.concurrent.Callable;
-import java.util.concurrent.CountDownLatch;
 
 @Slf4j
 @Command(name = "streams", description = "Creates and start kafka streams")
@@ -41,15 +40,17 @@ public class Streams implements Callable<Integer> {
 
         // aggregate the new supplier counts by country
         KTable<String, Long> aggregated = suppliers
-                // map the country as key
-                .map((key, value) -> new KeyValue<>(value.getCountry(), value))
-                .groupByKey()
-                .count();
+            // map the country as key
+            .map((key, value) -> new KeyValue<>(value.getCountry(), value))
+            .groupByKey()
+            .count();
 
         // print results
-        aggregated.toStream().foreach(
-                (key, value) -> log.info("Country = {}, Total supplier counts = {}", key, value)
-        );
+        aggregated
+            .toStream()
+            .foreach((key, value) ->
+                log.info("Country = {}, Total supplier counts = {}", key, value)
+            );
 
         // write the results to a topic
         aggregated.toStream().to(TOPIC_TO, Produced.with(stringSerde, longSerde));
@@ -59,13 +60,17 @@ public class Streams implements Callable<Integer> {
 
         // attach shutdown handler to catch control-c and creating a latch
         CountDownLatch latch = new CountDownLatch(1);
-        Runtime.getRuntime().addShutdownHook(new Thread("consumer-shutdown-hook") {
-            @Override
-            public void run() {
-                streams.close();
-                latch.countDown();
-            }
-        });
+        Runtime
+            .getRuntime()
+            .addShutdownHook(
+                new Thread("consumer-shutdown-hook") {
+                    @Override
+                    public void run() {
+                        streams.close();
+                        latch.countDown();
+                    }
+                }
+            );
 
         streams.start();
         latch.await();

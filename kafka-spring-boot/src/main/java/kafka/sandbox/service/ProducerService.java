@@ -21,5 +21,4 @@ public class ProducerService {
         log.info("Producing message: {}", customer);
         kafkaTemplate.send(topic, customer.getId().toString(), customer);
     }
-
 }

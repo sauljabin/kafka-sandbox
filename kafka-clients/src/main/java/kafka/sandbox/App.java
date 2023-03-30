@@ -1,13 +1,12 @@
 package kafka.sandbox;
 
+import java.io.IOException;
+import java.util.Properties;
 import kafka.sandbox.cli.Consumer;
 import kafka.sandbox.cli.KafkaClients;
 import kafka.sandbox.cli.Producer;
 import kafka.sandbox.cli.Streams;
 import picocli.CommandLine;
-
-import java.io.IOException;
-import java.util.Properties;
 
 public class App {
 
@@ -17,9 +16,9 @@ public class App {
         Properties streamsProps = getProperties("streams.properties");
 
         CommandLine commandLine = new CommandLine(new KafkaClients())
-                .addSubcommand(new Producer(producerProps))
-                .addSubcommand(new Consumer(consumerProps))
-                .addSubcommand(new Streams(streamsProps));
+            .addSubcommand(new Producer(producerProps))
+            .addSubcommand(new Consumer(consumerProps))
+            .addSubcommand(new Streams(streamsProps));
 
         System.exit(commandLine.execute(args));
     }
@@ -29,5 +28,4 @@ public class App {
         props.load(App.class.getClassLoader().getResourceAsStream(fileName));
         return props;
     }
-
 }

@@ -1,0 +1,39 @@
+plugins {
+    id "java"
+    id "com.github.johnrengelman.shadow" version "7.0.0"
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url = "https://packages.confluent.io/maven/"
+    }
+}
+
+dependencies {
+    testImplementation "org.junit.jupiter:junit-jupiter:5.7.1"
+
+    implementation "io.confluent.ksql:ksqldb-udf:7.3.2"
+    implementation "org.apache.kafka:connect-api:2.8.0"
+    implementation "org.apache.kafka:kafka_2.13:2.8.0"
+
+    compileOnly 'org.projectlombok:lombok:1.18.26'
+	annotationProcessor 'org.projectlombok:lombok:1.18.26'
+	
+	testCompileOnly 'org.projectlombok:lombok:1.18.26'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.26'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+compileJava {
+    options.compilerArgs << "-parameters"
+}
+
+shadowJar {
+    archiveBaseName = "orders-extensions"
+    archiveClassifier = ""
+    destinationDirectory = file("extensions")
+}

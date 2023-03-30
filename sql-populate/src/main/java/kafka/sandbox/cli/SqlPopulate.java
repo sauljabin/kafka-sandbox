@@ -6,6 +6,9 @@ import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
+import java.util.Date;
+import java.util.UUID;
+import java.util.concurrent.Callable;
 import kafka.sandbox.domain.Customer;
 import lombok.extern.slf4j.Slf4j;
 import picocli.CommandLine;
@@ -13,34 +16,35 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
-import java.util.Date;
-import java.util.UUID;
-import java.util.concurrent.Callable;
-
 @Slf4j
 @Command(name = "sql-populate", description = "Easy way of creating customers to a sql db")
 public class SqlPopulate implements Callable<Integer> {
 
     private final Faker faker = new Faker();
 
-    @Option(names = {"-u", "--user"}, description = "User name", required = true)
+    @Option(names = { "-u", "--user" }, description = "User name", required = true)
     private String user;
 
-    @Option(names = {"-p", "--password"}, description = "Passphrase", required = true)
+    @Option(names = { "-p", "--password" }, description = "Passphrase", required = true)
     private String password;
 
-    @Option(names = {"--url"}, description = "Connection URL", required = true)
+    @Option(names = { "--url" }, description = "Connection URL", required = true)
     private String url;
 
-    @Parameters(index = "0", description = "Total new costumer records to insert (default: ${DEFAULT-VALUE})", defaultValue = "100")
+    @Parameters(
+        index = "0",
+        description = "Total new costumer records to insert (default: ${DEFAULT-VALUE})",
+        defaultValue = "100"
+    )
     private int customers;
 
     private Customer createNewCustomer() {
-        return Customer.builder()
-                .name(faker.name().fullName())
-                .address(faker.address().streetAddress())
-                .created(new Date())
-                .build();
+        return Customer
+            .builder()
+            .name(faker.name().fullName())
+            .address(faker.address().streetAddress())
+            .created(new Date())
+            .build();
     }
 
     @Override
