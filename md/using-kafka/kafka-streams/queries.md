@@ -22,10 +22,16 @@ Country: Ecuador, Total Suppliers: 4
 
 Take into account that you have to run the stream firts. Check the [Kafka Streams](./streams.md) section.
 
-Check the stream topology and the gRPC server:
+Check the stream topology:
 
 ```java
 {{#include ../../../kafka-streams/src/main/java/kafka/sandbox/cli/Streams.java}}
+```
+
+Check the gRPC server:
+
+```java
+{{#include ../../../kafka-streams/src/main/java/kafka/sandbox/grpc/CounterService.java}}
 ```
 
 Check the gRPC client:
