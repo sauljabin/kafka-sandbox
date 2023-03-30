@@ -28,7 +28,7 @@ Check the stream topology and the gRPC server:
 {{#include ../../../kafka-streams/src/main/java/kafka/sandbox/cli/Streams.java}}
 ```
 
-Check the gRPC clinet:
+Check the gRPC client:
 
 ```java
 {{#include ../../../kafka-streams/src/main/java/kafka/sandbox/cli/Count.java}}
