@@ -47,3 +47,4 @@
 | ksqlDB | ksqldb | 8088 |
 | ksqlDB | localhost | 8088 |
 | Kafka Clients Spring Boot | localhost | 8585 |
+| Kafka Streams gRPC Server | localhost | 5050 |
