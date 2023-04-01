@@ -46,3 +46,5 @@ kafka-cli kafka-console-consumer --from-beginning --group kafka-streams.consumer
                                  --property print.key=true \
                                  --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
 ```
+
+More Kafka Streams examples [here](https://github.com/sauljabin/kafka-streams-sandbox).
