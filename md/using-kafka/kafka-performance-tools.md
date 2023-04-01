@@ -34,7 +34,7 @@ kafka-cli kafka-producer-perf-test --topic kafka-cluster.performance-test \
 ```
 
 - Throughput in MB/sec.
-- Latency in miliseconds.
+- Latency in milliseconds.
 
 Test consumer:
 
@@ -57,4 +57,4 @@ kafka-cli kafka-run-class kafka.tools.EndToEndLatency kafka1:9092,kafka2:9092,ka
 ```
 
 - This class records the average end to end latency for a single message to travel through Kafka.
-- Latency in miliseconds.
+- Latency in milliseconds.

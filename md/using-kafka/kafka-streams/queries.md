@@ -20,7 +20,7 @@ Output:
 Country: Ecuador, Total Suppliers: 4
 ```
 
-Take into account that you have to run the stream firts. Check the [Kafka Streams](./streams.md) section.
+Take into account that you have to run the stream first. Check the [Kafka Streams](./streams.md) section.
 
 Check the stream topology:
 

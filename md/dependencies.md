@@ -1,4 +1,4 @@
-# Intall Dependencies
+# Install Dependencies
 
 - [docker](https://www.docker.com/) - version 20 or higher
 - [docker compose](https://docs.docker.com/compose/cli-command/) - version 2 or higher
