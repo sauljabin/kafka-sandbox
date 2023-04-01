@@ -23,9 +23,9 @@ public class CounterService extends CounterServiceImplBase {
         ReadOnlyKeyValueStore<String, Long> keyValueStore = streams.store(
                 StoreQueryParameters.fromNameAndType("SupplierCountByCountry", QueryableStoreTypes.keyValueStore()));
 
-        String county = request.getName();
-        Long total = keyValueStore.get(county);
-        String value = String.format("Country: %s, Total Suppliers: %s", county, total != null ? total : 0);
+        String country = request.getName();
+        Long total = keyValueStore.get(country);
+        String value = String.format("Country: %s, Total Suppliers: %s", country, total != null ? total : 0);
         CountReply reply = CountReply.newBuilder().setMessage(value).build();
         responseObserver.onNext(reply);
         responseObserver.onCompleted();

@@ -66,7 +66,6 @@ public class Streams implements Callable<Integer> {
         streams.cleanUp();
 
         // GRPC Server
-
         Server server = Grpc.newServerBuilderForPort(5050, InsecureServerCredentials.create())
                 .addService(new CounterService(streams))
                 .build();

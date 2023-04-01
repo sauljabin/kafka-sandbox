@@ -8,6 +8,7 @@ Check the [Kafka Clients - Avro Producer and Consumer](../kafka-clients/avro-pro
 
 - [kafka streams](https://kafka.apache.org/documentation/streams/)
 - [kafka streams examples](https://github.com/confluentinc/kafka-streams-examples)
+- more kafka streams examples [here](https://github.com/sauljabin/kafka-streams-sandbox).
 - project location: [kafka-streams](https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-streams)
 
 > ⚠️ Run these commands inside the root folder.
@@ -46,5 +47,3 @@ kafka-cli kafka-console-consumer --from-beginning --group kafka-streams.consumer
                                  --property print.key=true \
                                  --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
 ```
-
-More Kafka Streams examples [here](https://github.com/sauljabin/kafka-streams-sandbox).
