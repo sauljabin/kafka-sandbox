@@ -15,7 +15,7 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
 @Slf4j
-@Command(name = "count", description = "Print the total supplier count by a given contry")
+@Command(name = "count", description = "Print the total supplier count by a given country")
 public class Count implements Callable<Integer> {
 
     @Parameters(index = "0", description = "Country (default: ${DEFAULT-VALUE})", defaultValue = "Ecuador")

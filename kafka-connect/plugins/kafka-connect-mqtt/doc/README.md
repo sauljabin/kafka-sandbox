@@ -71,7 +71,7 @@ are made to configuration options for the connector, be sure to generate the RST
 below) and open a PR against the docs repo to publish those changes!
 
 ## Configs
-Documentation on the configurations for each connector can be autotomatically generated via Maven.
+Documentation on the configurations for each connector can be automatically generated via Maven.
 
 To generate documentation for the sink connector:
 ```bash

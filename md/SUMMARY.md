@@ -4,7 +4,7 @@
 
 # Setup
 
-- [Intall Dependencies](./dependencies.md)
+- [Install Dependencies](./dependencies.md)
 - [Quick Start](./quick-start.md)
 
 # Setting Up Some Tools
