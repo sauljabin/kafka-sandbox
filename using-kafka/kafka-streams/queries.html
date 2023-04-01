@@ -148,6 +148,10 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="interactive-queries"><a class="header" href="#interactive-queries">Interactive Queries</a></h1>
+<p>Interactive Queries allow you to leverage the state of your application from outside your application. The Kafka Streams API enables your applications to be queryable.</p>
+<ul>
+<li><a href="https://docs.confluent.io/platform/current/streams/developer-guide/interactive-queries.html">interactive queries</a></li>
+</ul>
 <p>This example is using gRPC to request queries to the kafka stream server. </p>
 <p>Query the total supplier count by a given country:</p>
 <pre><code class="language-bash">kafka-streams count &lt;country&gt;
@@ -228,7 +232,6 @@ public class Streams implements Callable&lt;Integer&gt; {
         streams.cleanUp();
 
         // GRPC Server
-
         Server server = Grpc.newServerBuilderForPort(5050, InsecureServerCredentials.create())
                 .addService(new CounterService(streams))
                 .build();
@@ -281,9 +284,9 @@ public class CounterService extends CounterServiceImplBase {
         ReadOnlyKeyValueStore&lt;String, Long&gt; keyValueStore = streams.store(
                 StoreQueryParameters.fromNameAndType(&quot;SupplierCountByCountry&quot;, QueryableStoreTypes.keyValueStore()));
 
-        String county = request.getName();
-        Long total = keyValueStore.get(county);
-        String value = String.format(&quot;Country: %s, Total Suppliers: %s&quot;, county, total != null ? total : 0);
+        String country = request.getName();
+        Long total = keyValueStore.get(country);
+        String value = String.format(&quot;Country: %s, Total Suppliers: %s&quot;, country, total != null ? total : 0);
         CountReply reply = CountReply.newBuilder().setMessage(value).build();
         responseObserver.onNext(reply);
         responseObserver.onCompleted();
