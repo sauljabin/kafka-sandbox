@@ -181,6 +181,7 @@
 <p>Create a connector using the API:</p>
 <pre><code class="language-bash">cd kafka-connect
 http :8083/connectors &lt; requests/create-connector-mqtt-source.json
+cd ..
 </code></pre>
 <p>Publish messages:</p>
 <pre><code class="language-bash">mqtt-cli pub -h mosquitto -t 'house/room/brightness' -m '800LM'

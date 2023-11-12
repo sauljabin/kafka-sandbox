@@ -727,6 +727,7 @@ networks:
 http :8083/connectors &lt; requests/create-connector-mysql-source.json
 http :8083/connectors &lt; requests/create-connector-mongo-sink.json
 http :8083/connectors &lt; requests/create-connector-postgres-sink.json
+cd ..
 </code></pre>
 <p>For deleting the connectors:</p>
 <pre><code class="language-bash">http DELETE :8083/connectors/postgres-sink
@@ -795,6 +796,7 @@ http DELETE :8083/connectors/mysql-source
 <p>Create a connector using the API:</p>
 <pre><code class="language-bash">cd kafka-connect
 http :8083/connectors &lt; requests/create-connector-mqtt-source.json
+cd ..
 </code></pre>
 <p>Publish messages:</p>
 <pre><code class="language-bash">mqtt-cli pub -h mosquitto -t 'house/room/brightness' -m '800LM'
@@ -849,7 +851,10 @@ mqtt-cli pub -h mosquitto -t 'house/kitchen/brightness' -m '1000LM'
 <p>Run ksqlDB:</p>
 <pre><code class="language-bash">cd kafka-ksqldb
 docker compose up -d
-http :8088/info
+cd ..
+</code></pre>
+<p>After a few seconds:</p>
+<pre><code class="language-bash">http :8088/info
 </code></pre>
 <p>One line shell interaction:</p>
 <pre><code class="language-bash">ksqldb-cli ksql -e &quot;SHOW STREAMS;&quot; http://ksqldb:8088
@@ -968,6 +973,9 @@ INSERT INTO orders (orderId, orderUnits, totalAmount) VALUES (1000004, 1, 50.0);
 <p>For creating the <code>jar</code> extension, you can use the following command (development purposes):</p>
 <pre><code class="language-bash">./gradlew kafka-ksqldb-extensions:shadowJar
 </code></pre>
+<blockquote>
+<p>⚠️ Java 11 is needed here.</p>
+</blockquote>
 <h2 id="custom-udf"><a class="header" href="#custom-udf">Custom UDF</a></h2>
 <pre><code class="language-java">package kafka.sandbox.ksqldb;
 

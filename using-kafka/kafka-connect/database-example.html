@@ -186,6 +186,7 @@
 http :8083/connectors &lt; requests/create-connector-mysql-source.json
 http :8083/connectors &lt; requests/create-connector-mongo-sink.json
 http :8083/connectors &lt; requests/create-connector-postgres-sink.json
+cd ..
 </code></pre>
 <p>For deleting the connectors:</p>
 <pre><code class="language-bash">http DELETE :8083/connectors/postgres-sink

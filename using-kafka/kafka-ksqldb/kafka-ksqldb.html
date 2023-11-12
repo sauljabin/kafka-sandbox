@@ -198,7 +198,10 @@
 <p>Run ksqlDB:</p>
 <pre><code class="language-bash">cd kafka-ksqldb
 docker compose up -d
-http :8088/info
+cd ..
+</code></pre>
+<p>After a few seconds:</p>
+<pre><code class="language-bash">http :8088/info
 </code></pre>
 <p>One line shell interaction:</p>
 <pre><code class="language-bash">ksqldb-cli ksql -e &quot;SHOW STREAMS;&quot; http://ksqldb:8088
