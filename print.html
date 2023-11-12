@@ -264,7 +264,7 @@ cd ..
       MYSQL_DATABASE: sandbox
       MYSQL_ROOT_PASSWORD: notasecret
     ports:
-      - 3306:3306
+      - &quot;3306:3306&quot;
     restart: on-failure
     volumes:
       - mysql_data:/var/lib/mysql
@@ -275,16 +275,15 @@ cd ..
       POSTGRES_DB: sandbox
       POSTGRES_PASSWORD: notasecret
     ports:
-      - 5432:5432
+      - &quot;5432:5432&quot;
     restart: on-failure
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
   adminer:
     image: adminer:4
-    environment:
     ports:
-      - 9090:8080
+      - &quot;9090:8080&quot;
     restart: on-failure
 
 volumes:
