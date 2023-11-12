@@ -211,10 +211,12 @@ cd kafka-sandbox
 <p>Run the kafka cluster:</p>
 <pre><code class="language-bash">cd kafka-cluster
 docker compose up -d
+cd ..
 </code></pre>
 <p>Run AKHQ:</p>
 <pre><code class="language-bash">cd kafka-akhq
 docker compose up -d
+cd ..
 </code></pre>
 <p>Open AKHQ at <a href="http://localhost:8080/">http://localhost:8080/</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="kafka-cli-tools"><a class="header" href="#kafka-cli-tools">Kafka CLI Tools</a></h1>
@@ -252,6 +254,7 @@ kafka-cli
 <p>Run MySQL, PostgresSQL and Adminer:</p>
 <pre><code class="language-bash">cd sql-database
 docker compose up -d
+cd ..
 </code></pre>
 <h2 id="docker-compose"><a class="header" href="#docker-compose">Docker Compose</a></h2>
 <pre><code class="language-yaml">services:
@@ -328,6 +331,7 @@ sql-populate --url &quot;jdbc:postgresql://localhost:5432/sandbox&quot; --user &
 <p>Run MongoDB and Mongo Express:</p>
 <pre><code class="language-bash">cd nosql-database
 docker compose up -d
+cd ..
 </code></pre>
 <h2 id="docker-compose-1"><a class="header" href="#docker-compose-1">Docker Compose</a></h2>
 <pre><code class="language-yaml">services:
@@ -421,6 +425,7 @@ full servers.</p>
 <p>Run Mosquitto:</p>
 <pre><code class="language-bash">cd mqtt-broker
 docker compose up -d
+cd ..
 mqtt-cli test -h mosquitto
 </code></pre>
 <h2 id="docker-compose-2"><a class="header" href="#docker-compose-2">Docker Compose</a></h2>
@@ -448,20 +453,14 @@ networks:
 <ul>
 <li><a href="https://kafka.apache.org/">kafka</a></li>
 <li><a href="https://docs.confluent.io/platform/current/installation/configuration/broker-configs.html">kafka settings</a></li>
-<li><a href="https://zookeeper.apache.org/">zookeeper</a></li>
-<li><a href="https://docs.confluent.io/platform/current/zookeeper/deployment.html">zookeeper settings</a></li>
 <li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-cluster">kafka-cluster</a></li>
-<li>kafka version: <a href="https://docs.confluent.io/platform/current/installation/versions-interoperability.html">cp 7.3.2</a></li>
-<li>kafka ports: <code>19093</code>, <code>29093</code>, <code>39093</code></li>
+<li>kafka version: <a href="https://docs.confluent.io/platform/current/installation/versions-interoperability.html">cp 7.5.2</a></li>
+<li>kafka ports: <code>19092</code>, <code>29092</code>, <code>39092</code></li>
 <li>kafka jmx ports: <code>19999</code>, <code>29999</code>, <code>39999</code></li>
-<li>zookeeper ports: <code>12181</code>, <code>22181</code>, <code>32181</code></li>
 </ul>
-<p>Run zookeeper and kafka:</p>
+<p>Run kafka cluster:</p>
 <pre><code class="language-bash">cd kafka-cluster
 docker compose up -d
-</code></pre>
-<p>Test zookeeper and kafka (shows the broker ids):</p>
-<pre><code class="language-bash">kafka-cli zookeeper-shell zookeeper1:2181 ls /brokers/ids
 </code></pre>
 <p>Create a topic:</p>
 <pre><code class="language-bash">kafka-cli kafka-topics --create --bootstrap-server kafka1:9092 \
@@ -489,166 +488,85 @@ kafka-cli kafka-topics --bootstrap-server kafka1:9092 --list
   kafka1:
     image: confluentinc/cp-kafka:${VERSION}
     environment:
-      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka1:9092,EXTERNAL://localhost:19093
       KAFKA_BROKER_ID: &quot;1&quot;
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka1:9092,EXTERNAL://localhost:19092
       KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
-      KAFKA_LISTENERS: INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:19093
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper1:2181,zookeeper2:2181,zookeeper3:2181
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENERS: CONTROLLER://0.0.0.0:9093,INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:19092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
       KAFKA_JMX_PORT: &quot;19999&quot;
+      CLUSTER_ID: &quot;arN_n1N_QHqihZJPxv7URA&quot;
+      KAFKA_PROCESS_ROLES: &quot;broker,controller&quot;
+      KAFKA_CONTROLLER_QUORUM_VOTERS: &quot;1@kafka1:9093,2@kafka2:9093,3@kafka3:9093&quot;
     ports:
-      - 19093:19093
-      - 19999:19999
+      - &quot;19092:19092&quot;
+      - &quot;19999:19999&quot;
     restart: on-failure
     volumes:
       - kafka1_data:/var/lib/kafka/data
-    depends_on:
-      zookeeper1:
-        condition: service_healthy
-      zookeeper2:
-        condition: service_healthy
-      zookeeper3:
-        condition: service_healthy
     healthcheck:
       test: kafka-topics --bootstrap-server localhost:9092 --list &gt; /dev/null 2&gt;&amp;1
-      interval: 30s
-      timeout: 30s
+      interval: 10s
+      timeout: 10s
       retries: 5
-      start_period: 30s
+      start_period: 10s
 
   kafka2:
     image: confluentinc/cp-kafka:${VERSION}
     environment:
-      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka2:9092,EXTERNAL://localhost:29093
       KAFKA_BROKER_ID: &quot;2&quot;
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka2:9092,EXTERNAL://localhost:29092
       KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
-      KAFKA_LISTENERS: INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:29093
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper1:2181,zookeeper2:2181,zookeeper3:2181
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENERS: CONTROLLER://0.0.0.0:9093,INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
       KAFKA_JMX_PORT: &quot;29999&quot;
+      CLUSTER_ID: &quot;arN_n1N_QHqihZJPxv7URA&quot;
+      KAFKA_PROCESS_ROLES: &quot;broker,controller&quot;
+      KAFKA_CONTROLLER_QUORUM_VOTERS: &quot;1@kafka1:9093,2@kafka2:9093,3@kafka3:9093&quot;
     ports:
-      - 29093:29093
-      - 29999:29999
+      - &quot;29092:29092&quot;
+      - &quot;29999:29999&quot;
     restart: on-failure
     volumes:
       - kafka2_data:/var/lib/kafka/data
-    depends_on:
-      zookeeper1:
-        condition: service_healthy
-      zookeeper2:
-        condition: service_healthy
-      zookeeper3:
-        condition: service_healthy
     healthcheck:
       test: kafka-topics --bootstrap-server localhost:9092 --list &gt; /dev/null 2&gt;&amp;1
-      interval: 30s
-      timeout: 30s
+      interval: 10s
+      timeout: 10s
       retries: 5
-      start_period: 30s
+      start_period: 10s
 
   kafka3:
     image: confluentinc/cp-kafka:${VERSION}
     environment:
-      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka3:9092,EXTERNAL://localhost:39093
       KAFKA_BROKER_ID: &quot;3&quot;
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka3:9092,EXTERNAL://localhost:39092
       KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
-      KAFKA_LISTENERS: INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:39093
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper1:2181,zookeeper2:2181,zookeeper3:2181
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENERS: CONTROLLER://0.0.0.0:9093,INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:39092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
       KAFKA_JMX_PORT: &quot;39999&quot;
+      CLUSTER_ID: &quot;arN_n1N_QHqihZJPxv7URA&quot;
+      KAFKA_PROCESS_ROLES: &quot;broker,controller&quot;
+      KAFKA_CONTROLLER_QUORUM_VOTERS: &quot;1@kafka1:9093,2@kafka2:9093,3@kafka3:9093&quot;
     ports:
-      - 39093:39093
-      - 39999:39999
+      - &quot;39092:39092&quot;
+      - &quot;39999:39999&quot;
     restart: on-failure
     volumes:
       - kafka3_data:/var/lib/kafka/data
-    depends_on:
-      zookeeper1:
-        condition: service_healthy
-      zookeeper2:
-        condition: service_healthy
-      zookeeper3:
-        condition: service_healthy
     healthcheck:
       test: kafka-topics --bootstrap-server localhost:9092 --list &gt; /dev/null 2&gt;&amp;1
-      interval: 30s
-      timeout: 30s
+      interval: 10s
+      timeout: 10s
       retries: 5
-      start_period: 30s
-
-  zookeeper1:
-    image: confluentinc/cp-zookeeper:${VERSION}
-    environment:
-      ZOOKEEPER_CLIENT_PORT: &quot;2181&quot;
-      ZOOKEEPER_SERVERS: zookeeper1:2888:3888;zookeeper2:2888:3888;zookeeper3:2888:3888
-      ZOOKEEPER_SERVER_ID: &quot;1&quot;
-      ZOOKEEPER_SYNC_LIMIT: &quot;2&quot;
-      ZOOKEEPER_TICK_TIME: &quot;2000&quot;
-    ports:
-      - 12181:2181
-    restart: on-failure
-    volumes:
-      - zookeeper1_data:/var/lib/zookeeper/data
-      - zookeeper1_datalog:/var/lib/zookeeper/log
-    healthcheck:
-      test: nc -z localhost 2181
-      interval: 30s
-      timeout: 30s
-      retries: 5
-      start_period: 30s
-
-  zookeeper2:
-    image: confluentinc/cp-zookeeper:${VERSION}
-    environment:
-      ZOOKEEPER_CLIENT_PORT: &quot;2181&quot;
-      ZOOKEEPER_SERVERS: zookeeper1:2888:3888;zookeeper2:2888:3888;zookeeper3:2888:3888
-      ZOOKEEPER_SERVER_ID: &quot;2&quot;
-      ZOOKEEPER_SYNC_LIMIT: &quot;2&quot;
-      ZOOKEEPER_TICK_TIME: &quot;2000&quot;
-    ports:
-      - 22181:2181
-    restart: on-failure
-    volumes:
-      - zookeeper2_data:/var/lib/zookeeper/data
-      - zookeeper2_datalog:/var/lib/zookeeper/log
-    healthcheck:
-      test: nc -z localhost 2181
-      interval: 30s
-      timeout: 30s
-      retries: 5
-      start_period: 30s
-
-  zookeeper3:
-    image: confluentinc/cp-zookeeper:${VERSION}
-    environment:
-      ZOOKEEPER_CLIENT_PORT: &quot;2181&quot;
-      ZOOKEEPER_SERVERS: zookeeper1:2888:3888;zookeeper2:2888:3888;zookeeper3:2888:3888
-      ZOOKEEPER_SERVER_ID: &quot;3&quot;
-      ZOOKEEPER_SYNC_LIMIT: &quot;2&quot;
-      ZOOKEEPER_TICK_TIME: &quot;2000&quot;
-    ports:
-      - 32181:2181
-    restart: on-failure
-    volumes:
-      - zookeeper3_data:/var/lib/zookeeper/data
-      - zookeeper3_datalog:/var/lib/zookeeper/log
-    healthcheck:
-      test: nc -z localhost 2181
-      interval: 30s
-      timeout: 30s
-      retries: 5
-      start_period: 30s
+      start_period: 10s
 
 volumes:
   kafka1_data:
   kafka2_data:
   kafka3_data:
-  zookeeper1_data:
-  zookeeper1_datalog:
-  zookeeper2_data:
-  zookeeper2_datalog:
-  zookeeper3_data:
-  zookeeper3_datalog:
 
 networks:
   default:
@@ -1529,23 +1447,17 @@ networks:
 <tr><td>Mosquitto</td><td>mosquitto</td><td>1883</td></tr>
 <tr><td>Mosquitto</td><td>localhost</td><td>1883</td></tr>
 <tr><td>Kafka 1</td><td>kafka1</td><td>9092</td></tr>
-<tr><td>Kafka 1</td><td>localhost</td><td>19093</td></tr>
+<tr><td>Kafka 1</td><td>localhost</td><td>19092</td></tr>
 <tr><td>Kafka 2</td><td>kafka2</td><td>9092</td></tr>
-<tr><td>Kafka 2</td><td>localhost</td><td>29093</td></tr>
+<tr><td>Kafka 2</td><td>localhost</td><td>29092</td></tr>
 <tr><td>Kafka 3</td><td>kafka3</td><td>9092</td></tr>
-<tr><td>Kafka 3</td><td>localhost</td><td>39093</td></tr>
+<tr><td>Kafka 3</td><td>localhost</td><td>39092</td></tr>
 <tr><td>Kafka 1 JMX</td><td>kafka1</td><td>19999</td></tr>
 <tr><td>Kafka 1 JMX</td><td>localhost</td><td>19999</td></tr>
 <tr><td>Kafka 2 JMX</td><td>kafka2</td><td>29999</td></tr>
 <tr><td>Kafka 2 JMX</td><td>localhost</td><td>29999</td></tr>
 <tr><td>Kafka 3 JMX</td><td>kafka3</td><td>39999</td></tr>
 <tr><td>Kafka 3 JMX</td><td>localhost</td><td>39999</td></tr>
-<tr><td>Zookeeper 1</td><td>zookeeper1</td><td>2181</td></tr>
-<tr><td>Zookeeper 1</td><td>localhost</td><td>12181</td></tr>
-<tr><td>Zookeeper 2</td><td>zookeeper2</td><td>2181</td></tr>
-<tr><td>Zookeeper 2</td><td>localhost</td><td>22181</td></tr>
-<tr><td>Zookeeper 3</td><td>zookeeper3</td><td>2181</td></tr>
-<tr><td>Zookeeper 3</td><td>localhost</td><td>32181</td></tr>
 <tr><td>Schema Registry</td><td>schema-registry</td><td>8081</td></tr>
 <tr><td>Schema Registry</td><td>localhost</td><td>8081</td></tr>
 <tr><td>Kafka REST</td><td>kafka-rest</td><td>8082</td></tr>
