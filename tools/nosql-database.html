@@ -196,7 +196,7 @@ cd ..
       MONGO_INITDB_ROOT_PASSWORD: notasecret
       MONGO_INITDB_ROOT_USERNAME: root
     ports:
-      - 27017:27017
+      - &quot;27017:27017&quot;
     restart: on-failure
     volumes:
       - mongo_data:/data/db
@@ -214,8 +214,9 @@ cd ..
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_PORT: &quot;27017&quot;
       ME_CONFIG_MONGODB_SERVER: mongo
+      ME_CONFIG_MONGODB_ENABLE_ADMIN: &quot;true&quot;
     ports:
-      - 7070:8081
+      - &quot;7070:8081&quot;
     restart: on-failure
     depends_on:
       mongo:

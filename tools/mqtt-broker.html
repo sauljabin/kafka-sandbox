@@ -193,9 +193,8 @@ mqtt-cli test -h mosquitto
 <pre><code class="language-yaml">services:
   mosquitto:
     image: eclipse-mosquitto:2
-    environment:
     ports:
-      - 1883:1883
+      - &quot;1883:1883&quot;
     restart: on-failure
     volumes:
       - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
