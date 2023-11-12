@@ -1,12 +1,12 @@
 package kafka.sandbox.controller;
 
-import com.github.javafaker.Faker;
 import java.time.ZoneId;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 import kafka.sandbox.domain.Customer;
 import kafka.sandbox.service.ProducerService;
+import net.datafaker.Faker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

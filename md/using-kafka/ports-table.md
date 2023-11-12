@@ -19,23 +19,17 @@
 | Mosquitto | mosquitto | 1883 |
 | Mosquitto | localhost | 1883 |
 | Kafka 1 | kafka1 | 9092 |
-| Kafka 1 | localhost | 19093 |
+| Kafka 1 | localhost | 19092 |
 | Kafka 2 | kafka2 | 9092 |
-| Kafka 2 | localhost | 29093 |
+| Kafka 2 | localhost | 29092 |
 | Kafka 3 | kafka3 | 9092 |
-| Kafka 3 | localhost | 39093 |
+| Kafka 3 | localhost | 39092 |
 | Kafka 1 JMX | kafka1 | 19999 |
 | Kafka 1 JMX | localhost | 19999 |
 | Kafka 2 JMX | kafka2 | 29999 |
 | Kafka 2 JMX | localhost | 29999 |
 | Kafka 3 JMX | kafka3 | 39999 |
 | Kafka 3 JMX | localhost | 39999 |
-| Zookeeper 1 | zookeeper1 | 2181 |
-| Zookeeper 1 | localhost | 12181 |
-| Zookeeper 2 | zookeeper2 | 2181 |
-| Zookeeper 2 | localhost | 22181 |
-| Zookeeper 3 | zookeeper3 | 2181 |
-| Zookeeper 3 | localhost | 32181 |
 | Schema Registry | schema-registry | 8081 |
 | Schema Registry | localhost | 8081 |
 | Kafka REST | kafka-rest | 8082 |

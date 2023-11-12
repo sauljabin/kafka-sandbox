@@ -18,6 +18,7 @@ Run the kafka cluster:
 ```bash
 cd kafka-cluster
 docker compose up -d
+cd ..
 ```
 
 Run AKHQ:
@@ -25,6 +26,7 @@ Run AKHQ:
 ```bash
 cd kafka-akhq
 docker compose up -d
+cd ..
 ```
 
 Open AKHQ at [http://localhost:8080/](http://localhost:8080/)

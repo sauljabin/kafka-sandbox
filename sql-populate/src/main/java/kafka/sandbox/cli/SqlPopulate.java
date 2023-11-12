@@ -1,6 +1,5 @@
 package kafka.sandbox.cli;
 
-import com.github.javafaker.Faker;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
@@ -11,6 +10,7 @@ import java.util.UUID;
 import java.util.concurrent.Callable;
 import kafka.sandbox.domain.Customer;
 import lombok.extern.slf4j.Slf4j;
+import net.datafaker.Faker;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;

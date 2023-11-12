@@ -13,9 +13,9 @@ repositories {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.7.1'
 
-    implementation 'io.confluent.ksql:ksqldb-udf:7.3.2'
-    implementation 'org.apache.kafka:connect-api:2.8.0'
-    implementation 'org.apache.kafka:kafka_2.13:2.8.0'
+    implementation "io.confluent.ksql:ksqldb-udf:${confluentVersion}"
+    implementation "org.apache.kafka:connect-api:${kafkaVersion}"
+    implementation "org.apache.kafka:kafka_2.13:${kafkaVersion}"
 
     compileOnly 'org.projectlombok:lombok:1.18.26'
     annotationProcessor 'org.projectlombok:lombok:1.18.26'

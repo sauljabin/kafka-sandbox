@@ -13,6 +13,7 @@ Run Mosquitto:
 ```bash
 cd mqtt-broker
 docker compose up -d
+cd ..
 mqtt-cli test -h mosquitto
 ```
 

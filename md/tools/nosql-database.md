@@ -13,6 +13,7 @@ Run MongoDB and Mongo Express:
 ```bash
 cd nosql-database
 docker compose up -d
+cd ..
 ```
 
 ## Docker Compose

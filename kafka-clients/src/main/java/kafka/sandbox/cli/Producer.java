@@ -1,11 +1,11 @@
 package kafka.sandbox.cli;
 
-import com.github.javafaker.Faker;
 import java.util.Properties;
 import java.util.UUID;
 import java.util.concurrent.Callable;
 import kafka.sandbox.avro.Supplier;
 import lombok.extern.slf4j.Slf4j;
+import net.datafaker.Faker;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import picocli.CommandLine;

@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'java-library'
-    id 'com.github.davidmc24.gradle.plugin.avro' version '1.6.0'
+    id 'com.github.davidmc24.gradle.plugin.avro' version '1.9.1'
 }
 
 repositories {
@@ -11,7 +11,7 @@ repositories {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.7.1'
 
-    implementation 'org.apache.avro:avro:1.11.0'
+    implementation 'org.apache.avro:avro:1.11.+'
 }
 
 test {
