@@ -1,17 +1,17 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="light" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Kafka Sandbox</title>
-        <meta name="robots" content="noindex" />
+        <meta name="robots" content="noindex">
 
 
         <!-- Custom HTML head -->
         
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -32,7 +32,7 @@
         <!-- Custom theme stylesheets -->
 
     </head>
-    <body>
+    <body class="sidebar-visible no-js">
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
@@ -62,24 +62,29 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
+            var body = document.querySelector('body');
             var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
@@ -89,15 +94,37 @@
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
                                 <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
@@ -227,13 +254,10 @@ kafka-cli
 docker compose up -d
 </code></pre>
 <h2 id="docker-compose"><a class="header" href="#docker-compose">Docker Compose</a></h2>
-<pre><code class="language-yaml">version: &quot;3.9&quot;
-
-services:
+<pre><code class="language-yaml">services:
   mysql:
     image: mysql:8
     environment:
-      TZ: America/Guayaquil
       MYSQL_DATABASE: sandbox
       MYSQL_ROOT_PASSWORD: notasecret
     ports:
@@ -245,7 +269,6 @@ services:
   postgres:
     image: postgres:13
     environment:
-      TZ: America/Guayaquil
       POSTGRES_DB: sandbox
       POSTGRES_PASSWORD: notasecret
     ports:
@@ -257,7 +280,6 @@ services:
   adminer:
     image: adminer:4
     environment:
-      TZ: America/Guayaquil
     ports:
       - 9090:8080
     restart: on-failure
@@ -308,13 +330,10 @@ sql-populate --url &quot;jdbc:postgresql://localhost:5432/sandbox&quot; --user &
 docker compose up -d
 </code></pre>
 <h2 id="docker-compose-1"><a class="header" href="#docker-compose-1">Docker Compose</a></h2>
-<pre><code class="language-yaml">version: &quot;3.9&quot;
-
-services:
+<pre><code class="language-yaml">services:
   mongo:
     image: mongo:5
     environment:
-      TZ: America/Guayaquil
       MONGO_INITDB_ROOT_PASSWORD: notasecret
       MONGO_INITDB_ROOT_USERNAME: root
     ports:
@@ -332,7 +351,6 @@ services:
   mongo-express:
     image: mongo-express:latest
     environment:
-      TZ: America/Guayaquil
       ME_CONFIG_MONGODB_ADMINPASSWORD: notasecret
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_PORT: &quot;27017&quot;
@@ -406,13 +424,10 @@ docker compose up -d
 mqtt-cli test -h mosquitto
 </code></pre>
 <h2 id="docker-compose-2"><a class="header" href="#docker-compose-2">Docker Compose</a></h2>
-<pre><code class="language-yaml">version: &quot;3.9&quot;
-
-services:
+<pre><code class="language-yaml">services:
   mosquitto:
     image: eclipse-mosquitto:2
     environment:
-      TZ: America/Guayaquil
     ports:
       - 1883:1883
     restart: on-failure
@@ -470,13 +485,10 @@ kafka-cli kafka-topics --bootstrap-server kafka1:9092 --list
 <pre><code class="language-bash">jconsole localhost:19999
 </code></pre>
 <h2 id="docker-compose-3"><a class="header" href="#docker-compose-3">Docker Compose</a></h2>
-<pre><code class="language-yaml">version: &quot;3.9&quot;
-
-services:
+<pre><code class="language-yaml">services:
   kafka1:
     image: confluentinc/cp-kafka:${VERSION}
     environment:
-      TZ: America/Guayaquil
       KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka1:9092,EXTERNAL://localhost:19093
       KAFKA_BROKER_ID: &quot;1&quot;
       KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
@@ -507,7 +519,6 @@ services:
   kafka2:
     image: confluentinc/cp-kafka:${VERSION}
     environment:
-      TZ: America/Guayaquil
       KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka2:9092,EXTERNAL://localhost:29093
       KAFKA_BROKER_ID: &quot;2&quot;
       KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
@@ -538,7 +549,6 @@ services:
   kafka3:
     image: confluentinc/cp-kafka:${VERSION}
     environment:
-      TZ: America/Guayaquil
       KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka3:9092,EXTERNAL://localhost:39093
       KAFKA_BROKER_ID: &quot;3&quot;
       KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
@@ -569,7 +579,6 @@ services:
   zookeeper1:
     image: confluentinc/cp-zookeeper:${VERSION}
     environment:
-      TZ: America/Guayaquil
       ZOOKEEPER_CLIENT_PORT: &quot;2181&quot;
       ZOOKEEPER_SERVERS: zookeeper1:2888:3888;zookeeper2:2888:3888;zookeeper3:2888:3888
       ZOOKEEPER_SERVER_ID: &quot;1&quot;
@@ -591,7 +600,6 @@ services:
   zookeeper2:
     image: confluentinc/cp-zookeeper:${VERSION}
     environment:
-      TZ: America/Guayaquil
       ZOOKEEPER_CLIENT_PORT: &quot;2181&quot;
       ZOOKEEPER_SERVERS: zookeeper1:2888:3888;zookeeper2:2888:3888;zookeeper3:2888:3888
       ZOOKEEPER_SERVER_ID: &quot;2&quot;
@@ -613,7 +621,6 @@ services:
   zookeeper3:
     image: confluentinc/cp-zookeeper:${VERSION}
     environment:
-      TZ: America/Guayaquil
       ZOOKEEPER_CLIENT_PORT: &quot;2181&quot;
       ZOOKEEPER_SERVERS: zookeeper1:2888:3888;zookeeper2:2888:3888;zookeeper3:2888:3888
       ZOOKEEPER_SERVER_ID: &quot;3&quot;
@@ -661,9 +668,7 @@ networks:
 docker compose up -d
 </code></pre>
 <h2 id="docker-compose-4"><a class="header" href="#docker-compose-4">Docker Compose</a></h2>
-<pre><code class="language-yaml">version: &quot;3.9&quot;
-
-services:
+<pre><code class="language-yaml">services:
   akhq:
     image: tchiotludo/akhq:latest
     ports:
@@ -676,7 +681,6 @@ services:
       retries: 5
       start_period: 30s
     environment:
-      TZ: America/Guayaquil
       AKHQ_CONFIGURATION: |
         akhq:
           connections:
@@ -708,13 +712,10 @@ docker compose up -d
 http :8081/config
 </code></pre>
 <h2 id="docker-compose-5"><a class="header" href="#docker-compose-5">Docker Compose</a></h2>
-<pre><code class="language-yaml">version: &quot;3.9&quot;
-
-services:
+<pre><code class="language-yaml">services:
   schema-registry:
     image: confluentinc/cp-schema-registry:${VERSION}
     environment:
-      TZ: America/Guayaquil
       SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_METHODS: GET,POST,PUT,OPTIONS
       SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_ORIGIN: &quot;*&quot;
       SCHEMA_REGISTRY_DEBUG: &quot;true&quot;
@@ -755,13 +756,10 @@ docker compose up -d
 http :8083/connector-plugins
 </code></pre>
 <h2 id="docker-compose-6"><a class="header" href="#docker-compose-6">Docker Compose</a></h2>
-<pre><code class="language-yaml">version: &quot;3.9&quot;
-
-services:
+<pre><code class="language-yaml">services:
   kafka-connect:
     image: confluentinc/cp-kafka-connect:${VERSION}
     environment:
-      TZ: America/Guayaquil
       CONNECT_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092,kafka3:9092
       CONNECT_REST_ADVERTISED_HOST_NAME: localhost
       CONNECT_GROUP_ID: kafka-connect-sandbox
@@ -934,13 +932,10 @@ http :8088/info
 SHOW STREAMS;
 </code></pre>
 <h2 id="docker-compose-7"><a class="header" href="#docker-compose-7">Docker Compose</a></h2>
-<pre><code class="language-yaml">version: &quot;3.9&quot;
-
-services:
+<pre><code class="language-yaml">services:
   ksqldb:
     image: confluentinc/cp-ksqldb-server:${VERSION}
     environment:
-      TZ: America/Guayaquil
       KSQL_KSQL_SERVICE_ID: kafka-ksqldb.
       KSQL_LISTENERS: http://0.0.0.0:8088
       KSQL_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092,kafka3:9092
@@ -1441,13 +1436,10 @@ http :8082/topics/kafka-rest.test Content-Type:application/vnd.kafka.json.v2+jso
 http :8082/topics/kafka-rest.users Content-Type:application/vnd.kafka.avro.v2+json &lt; requests/produce-avro-message.json
 </code></pre>
 <h2 id="docker-compose-8"><a class="header" href="#docker-compose-8">Docker Compose</a></h2>
-<pre><code class="language-yaml">version: &quot;3.9&quot;
-
-services:
+<pre><code class="language-yaml">services:
   kafka-rest:
     image: confluentinc/cp-kafka-rest:${VERSION}
     environment:
-      TZ: America/Guayaquil
       KAFKA_REST_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092,kafka3:9092
       KAFKA_REST_SCHEMA_REGISTRY_URL: http://schema-registry:8081
     ports:
@@ -1503,13 +1495,10 @@ docker compose up -d
                                  --property print.key=true
 </code></pre>
 <h2 id="docker-compose-9"><a class="header" href="#docker-compose-9">Docker Compose</a></h2>
-<pre><code class="language-yaml">version: &quot;3.9&quot;
-
-services:
+<pre><code class="language-yaml">services:
   kafka-mqtt:
     image: confluentinc/cp-kafka-mqtt:${VERSION}
     environment:
-      TZ: America/Guayaquil
       KAFKA_MQTT_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092,kafka3:9092
       KAFKA_MQTT_TOPIC_REGEX_LIST: kafka-mqtt.temperature:.*temperature
       KAFKA_MQTT_LISTENERS: 0.0.0.0:1884
