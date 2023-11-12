@@ -1,10 +1,7 @@
-version: "3.9"
-
 services:
   kafka-mqtt:
     image: confluentinc/cp-kafka-mqtt:${VERSION}
     environment:
-      TZ: America/Guayaquil
       KAFKA_MQTT_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092,kafka3:9092
       KAFKA_MQTT_TOPIC_REGEX_LIST: kafka-mqtt.temperature:.*temperature
       KAFKA_MQTT_LISTENERS: 0.0.0.0:1884

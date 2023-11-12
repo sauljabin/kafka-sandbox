@@ -1,10 +1,7 @@
-version: "3.9"
-
 services:
   mysql:
     image: mysql:8
     environment:
-      TZ: America/Guayaquil
       MYSQL_DATABASE: sandbox
       MYSQL_ROOT_PASSWORD: notasecret
     ports:
@@ -16,7 +13,6 @@ services:
   postgres:
     image: postgres:13
     environment:
-      TZ: America/Guayaquil
       POSTGRES_DB: sandbox
       POSTGRES_PASSWORD: notasecret
     ports:
@@ -28,7 +24,6 @@ services:
   adminer:
     image: adminer:4
     environment:
-      TZ: America/Guayaquil
     ports:
       - 9090:8080
     restart: on-failure

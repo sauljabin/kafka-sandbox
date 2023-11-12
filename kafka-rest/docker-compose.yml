@@ -1,10 +1,7 @@
-version: "3.9"
-
 services:
   kafka-rest:
     image: confluentinc/cp-kafka-rest:${VERSION}
     environment:
-      TZ: America/Guayaquil
       KAFKA_REST_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092,kafka3:9092
       KAFKA_REST_SCHEMA_REGISTRY_URL: http://schema-registry:8081
     ports:

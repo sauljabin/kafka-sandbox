@@ -1,10 +1,7 @@
-version: "3.9"
-
 services:
   kafka1:
     image: confluentinc/cp-kafka:${VERSION}
     environment:
-      TZ: America/Guayaquil
       KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka1:9092,EXTERNAL://localhost:19093
       KAFKA_BROKER_ID: "1"
       KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
@@ -35,7 +32,6 @@ services:
   kafka2:
     image: confluentinc/cp-kafka:${VERSION}
     environment:
-      TZ: America/Guayaquil
       KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka2:9092,EXTERNAL://localhost:29093
       KAFKA_BROKER_ID: "2"
       KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
@@ -66,7 +62,6 @@ services:
   kafka3:
     image: confluentinc/cp-kafka:${VERSION}
     environment:
-      TZ: America/Guayaquil
       KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka3:9092,EXTERNAL://localhost:39093
       KAFKA_BROKER_ID: "3"
       KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
@@ -97,7 +92,6 @@ services:
   zookeeper1:
     image: confluentinc/cp-zookeeper:${VERSION}
     environment:
-      TZ: America/Guayaquil
       ZOOKEEPER_CLIENT_PORT: "2181"
       ZOOKEEPER_SERVERS: zookeeper1:2888:3888;zookeeper2:2888:3888;zookeeper3:2888:3888
       ZOOKEEPER_SERVER_ID: "1"
@@ -119,7 +113,6 @@ services:
   zookeeper2:
     image: confluentinc/cp-zookeeper:${VERSION}
     environment:
-      TZ: America/Guayaquil
       ZOOKEEPER_CLIENT_PORT: "2181"
       ZOOKEEPER_SERVERS: zookeeper1:2888:3888;zookeeper2:2888:3888;zookeeper3:2888:3888
       ZOOKEEPER_SERVER_ID: "2"
@@ -141,7 +134,6 @@ services:
   zookeeper3:
     image: confluentinc/cp-zookeeper:${VERSION}
     environment:
-      TZ: America/Guayaquil
       ZOOKEEPER_CLIENT_PORT: "2181"
       ZOOKEEPER_SERVERS: zookeeper1:2888:3888;zookeeper2:2888:3888;zookeeper3:2888:3888
       ZOOKEEPER_SERVER_ID: "3"

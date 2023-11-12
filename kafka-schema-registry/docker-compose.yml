@@ -1,10 +1,7 @@
-version: "3.9"
-
 services:
   schema-registry:
     image: confluentinc/cp-schema-registry:${VERSION}
     environment:
-      TZ: America/Guayaquil
       SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_METHODS: GET,POST,PUT,OPTIONS
       SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_ORIGIN: "*"
       SCHEMA_REGISTRY_DEBUG: "true"
