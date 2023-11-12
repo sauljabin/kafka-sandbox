@@ -2,7 +2,7 @@ services:
   akhq:
     image: tchiotludo/akhq:latest
     ports:
-      - 8080:8080
+      - "8080:8080"
     restart: on-failure
     healthcheck:
       test: curl http://localhost:8080

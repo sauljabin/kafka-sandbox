@@ -17,6 +17,12 @@ Run Kafka Connect:
 ```bash
 cd kafka-connect
 docker compose up -d
+cd ..
+```
+
+After a few seconds:
+
+```bash
 http :8083/connector-plugins
 ```
 

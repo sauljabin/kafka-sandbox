@@ -14,7 +14,7 @@ services:
       CONNECT_OFFSET_STORAGE_TOPIC: kafka-connect.offsets
       CONNECT_STATUS_STORAGE_TOPIC: kafka-connect.status
     ports:
-      - 8083:8083
+      - "8083:8083"
     restart: on-failure
     volumes:
       - ./plugins:/usr/local/share/kafka/plugins

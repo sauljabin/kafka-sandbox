@@ -12,6 +12,12 @@ Run Schema Registry:
 ```bash
 cd kafka-schema-registry
 docker compose up -d
+cd ..
+```
+
+After a few seconds:
+
+```bash
 http :8081/config
 ```
 

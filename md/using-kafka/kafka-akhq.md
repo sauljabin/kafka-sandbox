@@ -12,6 +12,7 @@ Run AKHQ:
 ```bash
 cd kafka-akhq
 docker compose up -d
+cd ..
 ```
 
 ## Docker Compose

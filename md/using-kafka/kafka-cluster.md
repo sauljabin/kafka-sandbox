@@ -14,6 +14,7 @@ Run kafka cluster:
 ```bash
 cd kafka-cluster
 docker compose up -d
+cd ..
 ```
 
 Create a topic:

@@ -6,7 +6,7 @@ services:
       KAFKA_MQTT_TOPIC_REGEX_LIST: kafka-mqtt.temperature:.*temperature
       KAFKA_MQTT_LISTENERS: 0.0.0.0:1884
     ports:
-      - 1884:1884
+      - "1884:1884"
     restart: on-failure
 
 networks:

@@ -9,7 +9,7 @@ services:
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092,kafka3:9092
       SCHEMA_REGISTRY_KAFKASTORE_TOPIC: kafka-schema-registry.schemas
     ports:
-      - 8081:8081
+      - "8081:8081"
     restart: on-failure
     healthcheck:
       test: curl http://localhost:8081

@@ -5,7 +5,7 @@ services:
       KAFKA_REST_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092,kafka3:9092
       KAFKA_REST_SCHEMA_REGISTRY_URL: http://schema-registry:8081
     ports:
-      - 8082:8082
+      - "8082:8082"
     restart: on-failure
     healthcheck:
       test: curl http://localhost:8082
