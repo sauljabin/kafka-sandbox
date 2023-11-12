@@ -426,7 +426,9 @@ full servers.</p>
 <pre><code class="language-bash">cd mqtt-broker
 docker compose up -d
 cd ..
-mqtt-cli test -h mosquitto
+</code></pre>
+<p>After a few seconds:</p>
+<pre><code class="language-bash">mqtt-cli test -h mosquitto
 </code></pre>
 <h2 id="docker-compose-2"><a class="header" href="#docker-compose-2">Docker Compose</a></h2>
 <pre><code class="language-yaml">services:
@@ -460,6 +462,7 @@ networks:
 <p>Run kafka cluster:</p>
 <pre><code class="language-bash">cd kafka-cluster
 docker compose up -d
+cd ..
 </code></pre>
 <p>Create a topic:</p>
 <pre><code class="language-bash">kafka-cli kafka-topics --create --bootstrap-server kafka1:9092 \
@@ -583,13 +586,14 @@ networks:
 <p>Run AKHQ:</p>
 <pre><code class="language-bash">cd kafka-akhq
 docker compose up -d
+cd ..
 </code></pre>
 <h2 id="docker-compose-4"><a class="header" href="#docker-compose-4">Docker Compose</a></h2>
 <pre><code class="language-yaml">services:
   akhq:
     image: tchiotludo/akhq:latest
     ports:
-      - 8080:8080
+      - &quot;8080:8080&quot;
     restart: on-failure
     healthcheck:
       test: curl http://localhost:8080
@@ -626,7 +630,10 @@ networks:
 <p>Run Schema Registry:</p>
 <pre><code class="language-bash">cd kafka-schema-registry
 docker compose up -d
-http :8081/config
+cd ..
+</code></pre>
+<p>After a few seconds:</p>
+<pre><code class="language-bash">http :8081/config
 </code></pre>
 <h2 id="docker-compose-5"><a class="header" href="#docker-compose-5">Docker Compose</a></h2>
 <pre><code class="language-yaml">services:
@@ -640,7 +647,7 @@ http :8081/config
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092,kafka3:9092
       SCHEMA_REGISTRY_KAFKASTORE_TOPIC: kafka-schema-registry.schemas
     ports:
-      - 8081:8081
+      - &quot;8081:8081&quot;
     restart: on-failure
     healthcheck:
       test: curl http://localhost:8081
@@ -670,7 +677,10 @@ networks:
 <p>Run Kafka Connect:</p>
 <pre><code class="language-bash">cd kafka-connect
 docker compose up -d
-http :8083/connector-plugins
+cd ..
+</code></pre>
+<p>After a few seconds:</p>
+<pre><code class="language-bash">http :8083/connector-plugins
 </code></pre>
 <h2 id="docker-compose-6"><a class="header" href="#docker-compose-6">Docker Compose</a></h2>
 <pre><code class="language-yaml">services:
@@ -689,7 +699,7 @@ http :8083/connector-plugins
       CONNECT_OFFSET_STORAGE_TOPIC: kafka-connect.offsets
       CONNECT_STATUS_STORAGE_TOPIC: kafka-connect.status
     ports:
-      - 8083:8083
+      - &quot;8083:8083&quot;
     restart: on-failure
     volumes:
       - ./plugins:/usr/local/share/kafka/plugins
@@ -862,7 +872,7 @@ SHOW STREAMS;
       KSQL_KSQL_CONNECT_URL: http://kafka-connect:8083
       KSQL_KSQL_EXTENSION_DIR: /ksqldb/extensions
     ports:
-      - 8088:8088
+      - &quot;8088:8088&quot;
     restart: on-failure
     volumes:
       - ../kafka-ksqldb-extensions/extensions:/ksqldb/extensions
@@ -1360,7 +1370,7 @@ http :8082/topics/kafka-rest.users Content-Type:application/vnd.kafka.avro.v2+js
       KAFKA_REST_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092,kafka3:9092
       KAFKA_REST_SCHEMA_REGISTRY_URL: http://schema-registry:8081
     ports:
-      - 8082:8082
+      - &quot;8082:8082&quot;
     restart: on-failure
     healthcheck:
       test: curl http://localhost:8082
@@ -1420,7 +1430,7 @@ docker compose up -d
       KAFKA_MQTT_TOPIC_REGEX_LIST: kafka-mqtt.temperature:.*temperature
       KAFKA_MQTT_LISTENERS: 0.0.0.0:1884
     ports:
-      - 1884:1884
+      - &quot;1884:1884&quot;
     restart: on-failure
 
 networks:

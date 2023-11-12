@@ -221,7 +221,7 @@ SHOW STREAMS;
       KSQL_KSQL_CONNECT_URL: http://kafka-connect:8083
       KSQL_KSQL_EXTENSION_DIR: /ksqldb/extensions
     ports:
-      - 8088:8088
+      - &quot;8088:8088&quot;
     restart: on-failure
     volumes:
       - ../kafka-ksqldb-extensions/extensions:/ksqldb/extensions

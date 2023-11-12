@@ -207,7 +207,7 @@ docker compose up -d
       KAFKA_MQTT_TOPIC_REGEX_LIST: kafka-mqtt.temperature:.*temperature
       KAFKA_MQTT_LISTENERS: 0.0.0.0:1884
     ports:
-      - 1884:1884
+      - &quot;1884:1884&quot;
     restart: on-failure
 
 networks:

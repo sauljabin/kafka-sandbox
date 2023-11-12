@@ -185,13 +185,14 @@
 <p>Run AKHQ:</p>
 <pre><code class="language-bash">cd kafka-akhq
 docker compose up -d
+cd ..
 </code></pre>
 <h2 id="docker-compose"><a class="header" href="#docker-compose">Docker Compose</a></h2>
 <pre><code class="language-yaml">services:
   akhq:
     image: tchiotludo/akhq:latest
     ports:
-      - 8080:8080
+      - &quot;8080:8080&quot;
     restart: on-failure
     healthcheck:
       test: curl http://localhost:8080

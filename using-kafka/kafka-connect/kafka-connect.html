@@ -190,7 +190,10 @@
 <p>Run Kafka Connect:</p>
 <pre><code class="language-bash">cd kafka-connect
 docker compose up -d
-http :8083/connector-plugins
+cd ..
+</code></pre>
+<p>After a few seconds:</p>
+<pre><code class="language-bash">http :8083/connector-plugins
 </code></pre>
 <h2 id="docker-compose"><a class="header" href="#docker-compose">Docker Compose</a></h2>
 <pre><code class="language-yaml">services:
@@ -209,7 +212,7 @@ http :8083/connector-plugins
       CONNECT_OFFSET_STORAGE_TOPIC: kafka-connect.offsets
       CONNECT_STATUS_STORAGE_TOPIC: kafka-connect.status
     ports:
-      - 8083:8083
+      - &quot;8083:8083&quot;
     restart: on-failure
     volumes:
       - ./plugins:/usr/local/share/kafka/plugins
