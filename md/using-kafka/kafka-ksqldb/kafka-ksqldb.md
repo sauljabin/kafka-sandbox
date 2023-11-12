@@ -29,6 +29,12 @@ Run ksqlDB:
 ```bash
 cd kafka-ksqldb
 docker compose up -d
+cd ..
+```
+
+After a few seconds:
+
+```bash
 http :8088/info
 ```
 

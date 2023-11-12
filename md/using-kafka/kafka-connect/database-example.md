@@ -15,6 +15,7 @@ cd kafka-connect
 http :8083/connectors < requests/create-connector-mysql-source.json
 http :8083/connectors < requests/create-connector-mongo-sink.json
 http :8083/connectors < requests/create-connector-postgres-sink.json
+cd ..
 ```
 
 For deleting the connectors:

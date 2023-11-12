@@ -14,6 +14,8 @@ For creating the `jar` extension, you can use the following command (development
 ./gradlew kafka-ksqldb-extensions:shadowJar
 ```
 
+> ⚠️ Java 11 is needed here.
+
 ## Custom UDF
 
 ```java

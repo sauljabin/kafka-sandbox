@@ -11,6 +11,7 @@ Create a connector using the API:
 ```bash
 cd kafka-connect
 http :8083/connectors < requests/create-connector-mqtt-source.json
+cd ..
 ```
 
 Publish messages:
