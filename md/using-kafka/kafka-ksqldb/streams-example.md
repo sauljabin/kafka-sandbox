@@ -12,10 +12,15 @@ ksqldb-cli ksql-test-runner -e extensions/ \
                             -o tests/orders-output.json | grep '>>>'
 ```
 
-Execute statement files:
+Execute statement files, create orders stream:
 
 ```bash
 ksqldb-cli ksql -f statements/create-orders.ksql http://ksqldb:8088
+```
+
+Insert orders:
+
+```
 ksqldb-cli ksql -f statements/insert-orders.ksql http://ksqldb:8088
 ```
 

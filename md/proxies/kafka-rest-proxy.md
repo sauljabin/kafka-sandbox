@@ -16,6 +16,12 @@ Run Kafka REST Proxy:
 ```bash
 cd kafka-rest
 docker compose up -d
+cd ..
+```
+
+After a few seconds:
+
+```bash
 http :8082/brokers
 ```
 
@@ -25,6 +31,7 @@ Create topics:
 cd kafka-rest
 http :8082/topics/kafka-rest.test Content-Type:application/vnd.kafka.json.v2+json records:='[{ "key": "test", "value": "test" }]'
 http :8082/topics/kafka-rest.users Content-Type:application/vnd.kafka.avro.v2+json < requests/produce-avro-message.json
+cd ..
 ```
 
 ## Docker Compose

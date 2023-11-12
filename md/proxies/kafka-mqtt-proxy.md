@@ -14,6 +14,7 @@ Run Kafka MQTT Proxy:
 ```bash
 cd kafka-mqtt
 docker compose up -d
+cd ..
 ```
 
 Publish a message:
