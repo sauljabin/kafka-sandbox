@@ -904,9 +904,11 @@ networks:
                             -i tests/orders-input.json \
                             -o tests/orders-output.json | grep '&gt;&gt;&gt;'
 </code></pre>
-<p>Execute statement files:</p>
+<p>Execute statement files, create orders stream:</p>
 <pre><code class="language-bash">ksqldb-cli ksql -f statements/create-orders.ksql http://ksqldb:8088
-ksqldb-cli ksql -f statements/insert-orders.ksql http://ksqldb:8088
+</code></pre>
+<p>Insert orders:</p>
+<pre><code>ksqldb-cli ksql -f statements/insert-orders.ksql http://ksqldb:8088
 </code></pre>
 <p>List of streams:</p>
 <pre><code class="language-bash">http :8088/ksql ksql=&quot;list streams;&quot; | jq '.[].streams[] | [{name: .name, topic: .topic}]'
@@ -1363,12 +1365,16 @@ kafka-cli kafka-consumer-perf-test --help
 <p>Run Kafka REST Proxy:</p>
 <pre><code class="language-bash">cd kafka-rest
 docker compose up -d
-http :8082/brokers
+cd ..
+</code></pre>
+<p>After a few seconds:</p>
+<pre><code class="language-bash">http :8082/brokers
 </code></pre>
 <p>Create topics:</p>
 <pre><code class="language-bash">cd kafka-rest
 http :8082/topics/kafka-rest.test Content-Type:application/vnd.kafka.json.v2+json records:='[{ &quot;key&quot;: &quot;test&quot;, &quot;value&quot;: &quot;test&quot; }]'
 http :8082/topics/kafka-rest.users Content-Type:application/vnd.kafka.avro.v2+json &lt; requests/produce-avro-message.json
+cd ..
 </code></pre>
 <h2 id="docker-compose-8"><a class="header" href="#docker-compose-8">Docker Compose</a></h2>
 <pre><code class="language-yaml">services:
@@ -1419,6 +1425,7 @@ networks:
 <p>Run Kafka MQTT Proxy:</p>
 <pre><code class="language-bash">cd kafka-mqtt
 docker compose up -d
+cd ..
 </code></pre>
 <p>Publish a message:</p>
 <pre><code class="language-bash">mqtt-cli pub -h kafka-mqtt -p 1884 -t 'house/room/temperature' -m '20C'

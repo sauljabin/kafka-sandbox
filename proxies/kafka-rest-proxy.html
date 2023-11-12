@@ -190,12 +190,16 @@
 <p>Run Kafka REST Proxy:</p>
 <pre><code class="language-bash">cd kafka-rest
 docker compose up -d
-http :8082/brokers
+cd ..
+</code></pre>
+<p>After a few seconds:</p>
+<pre><code class="language-bash">http :8082/brokers
 </code></pre>
 <p>Create topics:</p>
 <pre><code class="language-bash">cd kafka-rest
 http :8082/topics/kafka-rest.test Content-Type:application/vnd.kafka.json.v2+json records:='[{ &quot;key&quot;: &quot;test&quot;, &quot;value&quot;: &quot;test&quot; }]'
 http :8082/topics/kafka-rest.users Content-Type:application/vnd.kafka.avro.v2+json &lt; requests/produce-avro-message.json
+cd ..
 </code></pre>
 <h2 id="docker-compose"><a class="header" href="#docker-compose">Docker Compose</a></h2>
 <pre><code class="language-yaml">services:

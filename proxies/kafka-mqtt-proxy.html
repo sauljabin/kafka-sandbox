@@ -188,6 +188,7 @@
 <p>Run Kafka MQTT Proxy:</p>
 <pre><code class="language-bash">cd kafka-mqtt
 docker compose up -d
+cd ..
 </code></pre>
 <p>Publish a message:</p>
 <pre><code class="language-bash">mqtt-cli pub -h kafka-mqtt -p 1884 -t 'house/room/temperature' -m '20C'
