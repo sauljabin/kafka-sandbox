@@ -176,9 +176,21 @@ services:
       - "9090:8080"
     restart: on-failure
 
+  mosquitto:
+    image: eclipse-mosquitto:2
+    profiles:
+      - mqtt
+    ports:
+      - "1883:1883"
+    restart: on-failure
+    volumes:
+      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - mosquitto_data:/mosquitto/data
+
 volumes:
   kafka1_data:
   kafka2_data:
   kafka3_data:
   mysql_data:
   postgres_data:
+  mosquitto_data:

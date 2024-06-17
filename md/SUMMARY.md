@@ -9,6 +9,7 @@
 - [Message Schemas](message-schemas.md)
 - [What is Kafka Connect?](what-is-kafka-connect.md)
   - [Kafka Connect Database Example](kafka-connect-database-example.md)
+  - [Kafka Connect MQTT Example](kafka-connect-mqtt-example.md)
 - [Performance Tools](performance-tools.md)
 
 ---

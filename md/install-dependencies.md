@@ -10,9 +10,10 @@ Extras tools that you are going to use for some examples:
 - [helm](https://helm.sh/docs/intro/install/) - kubernetes charts manager
 - [kind](https://kind.sigs.k8s.io/) - local kubernetes cluster
 - [kubectl](https://kubernetes.io/docs/reference/kubectl/) - kubernetes client cli
+- [mqtt-cli](https://hivemq.github.io/mqtt-cli/docs/installation/) - MQTT client cli
 
 ```bash
-brew install httpie jq helm kind kubectl
+brew install httpie jq helm kind kubectl hivemq/mqtt-cli/mqtt-cli
 ```
 
 A collection of kafka client cli tools to manage kafka:
