@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded "><a href="install-dependencies.html"><strong aria-hidden="true">1.</strong> Install Dependencies</a></li><li class="chapter-item expanded "><a href="quick-start.html"><strong aria-hidden="true">2.</strong> Quick Start</a></li><li class="chapter-item expanded "><a href="what-is-kafka.html"><strong aria-hidden="true">3.</strong> What is Kafka?</a></li><li class="chapter-item expanded "><a href="consuming-and-producing.html"><strong aria-hidden="true">4.</strong> Consuming and Producing</a></li><li class="chapter-item expanded "><a href="message-schemas.html"><strong aria-hidden="true">5.</strong> Message Schemas</a></li><li class="chapter-item expanded "><a href="what-is-kafka-connect.html"><strong aria-hidden="true">6.</strong> What is Kafka Connect?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="kafka-connect-database-example.html"><strong aria-hidden="true">6.1.</strong> Kafka Connect Database Example</a></li></ol></li><li class="chapter-item expanded "><a href="performance-tools.html"><strong aria-hidden="true">7.</strong> Performance Tools</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><a href="ports-table.html">Ports Table</a></li><li class="chapter-item expanded affix "><a href="about-this-book.html">About this book</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded "><a href="install-dependencies.html"><strong aria-hidden="true">1.</strong> Install Dependencies</a></li><li class="chapter-item expanded "><a href="quick-start.html"><strong aria-hidden="true">2.</strong> Quick Start</a></li><li class="chapter-item expanded "><a href="what-is-kafka.html"><strong aria-hidden="true">3.</strong> What is Kafka?</a></li><li class="chapter-item expanded "><a href="consuming-and-producing.html"><strong aria-hidden="true">4.</strong> Consuming and Producing</a></li><li class="chapter-item expanded "><a href="message-schemas.html"><strong aria-hidden="true">5.</strong> Message Schemas</a></li><li class="chapter-item expanded "><a href="what-is-kafka-connect.html"><strong aria-hidden="true">6.</strong> What is Kafka Connect?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="kafka-connect-database-example.html"><strong aria-hidden="true">6.1.</strong> Kafka Connect Database Example</a></li><li class="chapter-item expanded "><a href="kafka-connect-mqtt-example.html"><strong aria-hidden="true">6.2.</strong> Kafka Connect MQTT Example</a></li></ol></li><li class="chapter-item expanded "><a href="performance-tools.html"><strong aria-hidden="true">7.</strong> Performance Tools</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><a href="ports-table.html">Ports Table</a></li><li class="chapter-item expanded affix "><a href="about-this-book.html">About this book</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -203,8 +203,9 @@ This is not intended to replace official courses.</p>
 <li><a href="https://helm.sh/docs/intro/install/">helm</a> - kubernetes charts manager</li>
 <li><a href="https://kind.sigs.k8s.io/">kind</a> - local kubernetes cluster</li>
 <li><a href="https://kubernetes.io/docs/reference/kubectl/">kubectl</a> - kubernetes client cli</li>
+<li><a href="https://hivemq.github.io/mqtt-cli/docs/installation/">mqtt-cli</a> - MQTT client cli</li>
 </ul>
-<pre><code class="language-bash">brew install httpie jq helm kind kubectl
+<pre><code class="language-bash">brew install httpie jq helm kind kubectl hivemq/mqtt-cli/mqtt-cli
 </code></pre>
 <p>A collection of kafka client cli tools to manage kafka:</p>
 <pre><code class="language-bash">brew install kafka
@@ -301,11 +302,11 @@ to multiple targets (<strong>postgres and mongo</strong>).</p>
 <p>Run MySQL and PostgreSQL:</p>
 <pre><code class="language-bash">docker compose --profile sql up -d
 </code></pre>
-<p>Populate:</p>
+<p>Populate it:</p>
 <pre><code class="language-bash">./gradlew sql-populate:run \
           --args='--url "jdbc:mysql://localhost:3306/sandbox" --user "root" --password "notasecret" 10'
 </code></pre>
-<p>That command should have created the table <code>customers</code> and inserted 100 records.</p>
+<p>That command should have created the table <code>customers</code> and inserted 10 records.</p>
 <p>Now you can open <a href="http://localhost:9090">Adminer</a> or run:</p>
 <pre><code class="language-bash">mysql --host=127.0.0.1 --port=3306 \
       --user=root --database=sandbox --password=notasecret \
@@ -376,6 +377,50 @@ to multiple targets (<strong>postgres and mongo</strong>).</p>
 <h3 id="deleting-connectors"><a class="header" href="#deleting-connectors">Deleting Connectors</a></h3>
 <pre><code class="language-bash">http DELETE :8083/connectors/postgres-sink
 http DELETE :8083/connectors/mysql-source
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="kafka-connect-mqtt-example"><a class="header" href="#kafka-connect-mqtt-example">Kafka Connect MQTT Example</a></h1>
+<h3 id="setup-broker"><a class="header" href="#setup-broker">Setup Broker</a></h3>
+<p>Start MQTT server:</p>
+<pre><code class="language-bash">docker compose --profile mqtt up -d
+</code></pre>
+<p>In one terminal, subscribe to mqtt topics:</p>
+<pre><code class="language-bash">mqtt sub -h localhost -t 'house/+/brightness'
+</code></pre>
+<p>In another terminal, publish messages:</p>
+<pre><code class="language-bash">mqtt pub -h localhost -t 'house/room/brightness' -m '800LM'
+mqtt pub -h localhost -t 'house/kitchen/brightness' -m '1000LM'
+</code></pre>
+<h3 id="create-source-connector-1"><a class="header" href="#create-source-connector-1">Create Source Connector</a></h3>
+<p>Payload:</p>
+<pre><code class="language-json">{
+  "name": "mqtt-source",
+  "config": {
+      "connector.class": "io.confluent.connect.mqtt.MqttSourceConnector",
+      "tasks.max": "1",
+      "mqtt.server.uri": "tcp://mosquitto:1883",
+      "mqtt.topics":"house/+/brightness",
+      "kafka.topic":"connect.brightness",
+      "mqtt.qos": "2",
+      "confluent.topic.bootstrap.servers": "kafka1:9092",
+      "confluent.topic.replication.factor": "1"
+  }
+}
+</code></pre>
+<p>Create a connector using the API:</p>
+<pre><code class="language-bash">http :8083/connectors &lt; kafka-connect/requests/create-connector-mqtt-source.json
+</code></pre>
+<p>In one terminal, consume from kafka:</p>
+<pre><code class="language-bash">kafka-console-consumer --from-beginning --group connect.mqtt \
+                       --topic connect.brightness  \
+                       --bootstrap-server localhost:19092 \
+                       --property print.key=true
+</code></pre>
+<p>In another terminal, publish new messages to the MQTT broker:</p>
+<pre><code class="language-bash">mqtt pub -h localhost -t 'house/room/brightness' -m '810LM'
+mqtt pub -h localhost -t 'house/kitchen/brightness' -m '1020LM'
+</code></pre>
+<p>Deleting the connector:</p>
+<pre><code class="language-bash">http DELETE :8083/connectors/mqtt-source
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="performance-tools"><a class="header" href="#performance-tools">Performance Tools</a></h1>
 <p>Performance tuning involves two important metrics:</p>

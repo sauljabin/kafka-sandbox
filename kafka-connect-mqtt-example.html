@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Introduction - Kafka Sandbox</title>
+        <title>Kafka Connect MQTT Example - Kafka Sandbox</title>
 
 
         <!-- Custom HTML head -->
@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html" class="active">Introduction</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded "><a href="install-dependencies.html"><strong aria-hidden="true">1.</strong> Install Dependencies</a></li><li class="chapter-item expanded "><a href="quick-start.html"><strong aria-hidden="true">2.</strong> Quick Start</a></li><li class="chapter-item expanded "><a href="what-is-kafka.html"><strong aria-hidden="true">3.</strong> What is Kafka?</a></li><li class="chapter-item expanded "><a href="consuming-and-producing.html"><strong aria-hidden="true">4.</strong> Consuming and Producing</a></li><li class="chapter-item expanded "><a href="message-schemas.html"><strong aria-hidden="true">5.</strong> Message Schemas</a></li><li class="chapter-item expanded "><a href="what-is-kafka-connect.html"><strong aria-hidden="true">6.</strong> What is Kafka Connect?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="kafka-connect-database-example.html"><strong aria-hidden="true">6.1.</strong> Kafka Connect Database Example</a></li><li class="chapter-item expanded "><a href="kafka-connect-mqtt-example.html"><strong aria-hidden="true">6.2.</strong> Kafka Connect MQTT Example</a></li></ol></li><li class="chapter-item expanded "><a href="performance-tools.html"><strong aria-hidden="true">7.</strong> Performance Tools</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><a href="ports-table.html">Ports Table</a></li><li class="chapter-item expanded affix "><a href="about-this-book.html">About this book</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded "><a href="install-dependencies.html"><strong aria-hidden="true">1.</strong> Install Dependencies</a></li><li class="chapter-item expanded "><a href="quick-start.html"><strong aria-hidden="true">2.</strong> Quick Start</a></li><li class="chapter-item expanded "><a href="what-is-kafka.html"><strong aria-hidden="true">3.</strong> What is Kafka?</a></li><li class="chapter-item expanded "><a href="consuming-and-producing.html"><strong aria-hidden="true">4.</strong> Consuming and Producing</a></li><li class="chapter-item expanded "><a href="message-schemas.html"><strong aria-hidden="true">5.</strong> Message Schemas</a></li><li class="chapter-item expanded "><a href="what-is-kafka-connect.html"><strong aria-hidden="true">6.</strong> What is Kafka Connect?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="kafka-connect-database-example.html"><strong aria-hidden="true">6.1.</strong> Kafka Connect Database Example</a></li><li class="chapter-item expanded "><a href="kafka-connect-mqtt-example.html" class="active"><strong aria-hidden="true">6.2.</strong> Kafka Connect MQTT Example</a></li></ol></li><li class="chapter-item expanded "><a href="performance-tools.html"><strong aria-hidden="true">7.</strong> Performance Tools</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><a href="ports-table.html">Ports Table</a></li><li class="chapter-item expanded affix "><a href="about-this-book.html">About this book</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -176,27 +176,60 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
-<p><strong>Kafka Sandbox</strong> helps you to deploy a kafka sandbox locally. It intends to be a simple way to get started with kafka and
-help you on your learning path. It provides you with a wide variety of tools from the kafka ecosystem and a simple way
-to run them all. It also includes a set of tools and tips to make it easier for you to use kafka.
-This is not intended to replace official courses.</p>
-<blockquote>
-<p>It does not include security since it is not a production system.</p>
-</blockquote>
-<h2 id="interesting-links"><a class="header" href="#interesting-links">Interesting Links</a></h2>
-<ul>
-<li><a href="https://developer.confluent.io/learn-kafka/">Confluent free courses</a></li>
-<li><a href="https://docs.confluent.io/platform/current/installation/docker/image-reference.html">Confluent docker images references</a></li>
-<li><a href="https://docs.confluent.io/platform/current/installation/versions-interoperability.html">Confluent versions interoperability</a></li>
-</ul>
+                        <h1 id="kafka-connect-mqtt-example"><a class="header" href="#kafka-connect-mqtt-example">Kafka Connect MQTT Example</a></h1>
+<h3 id="setup-broker"><a class="header" href="#setup-broker">Setup Broker</a></h3>
+<p>Start MQTT server:</p>
+<pre><code class="language-bash">docker compose --profile mqtt up -d
+</code></pre>
+<p>In one terminal, subscribe to mqtt topics:</p>
+<pre><code class="language-bash">mqtt sub -h localhost -t 'house/+/brightness'
+</code></pre>
+<p>In another terminal, publish messages:</p>
+<pre><code class="language-bash">mqtt pub -h localhost -t 'house/room/brightness' -m '800LM'
+mqtt pub -h localhost -t 'house/kitchen/brightness' -m '1000LM'
+</code></pre>
+<h3 id="create-source-connector"><a class="header" href="#create-source-connector">Create Source Connector</a></h3>
+<p>Payload:</p>
+<pre><code class="language-json">{
+  "name": "mqtt-source",
+  "config": {
+      "connector.class": "io.confluent.connect.mqtt.MqttSourceConnector",
+      "tasks.max": "1",
+      "mqtt.server.uri": "tcp://mosquitto:1883",
+      "mqtt.topics":"house/+/brightness",
+      "kafka.topic":"connect.brightness",
+      "mqtt.qos": "2",
+      "confluent.topic.bootstrap.servers": "kafka1:9092",
+      "confluent.topic.replication.factor": "1"
+  }
+}
+</code></pre>
+<p>Create a connector using the API:</p>
+<pre><code class="language-bash">http :8083/connectors &lt; kafka-connect/requests/create-connector-mqtt-source.json
+</code></pre>
+<p>In one terminal, consume from kafka:</p>
+<pre><code class="language-bash">kafka-console-consumer --from-beginning --group connect.mqtt \
+                       --topic connect.brightness  \
+                       --bootstrap-server localhost:19092 \
+                       --property print.key=true
+</code></pre>
+<p>In another terminal, publish new messages to the MQTT broker:</p>
+<pre><code class="language-bash">mqtt pub -h localhost -t 'house/room/brightness' -m '810LM'
+mqtt pub -h localhost -t 'house/kitchen/brightness' -m '1020LM'
+</code></pre>
+<p>Deleting the connector:</p>
+<pre><code class="language-bash">http DELETE :8083/connectors/mqtt-source
+</code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="kafka-connect-database-example.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
 
-                            <a rel="next prefetch" href="install-dependencies.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="performance-tools.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -206,8 +239,11 @@ This is not intended to replace official courses.</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="kafka-connect-database-example.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
-                    <a rel="next prefetch" href="install-dependencies.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="performance-tools.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
