@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Kafka Schema Registry - Kafka Sandbox</title>
+        <title>Message Schemas - Kafka Sandbox</title>
 
 
         <!-- Custom HTML head -->
@@ -12,21 +12,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="../favicon.svg">
-        <link rel="shortcut icon" href="../favicon.png">
-        <link rel="stylesheet" href="../css/variables.css">
-        <link rel="stylesheet" href="../css/general.css">
-        <link rel="stylesheet" href="../css/chrome.css">
-        <link rel="stylesheet" href="../css/print.css" media="print">
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="../fonts/fonts.css">
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="../highlight.css">
-        <link rel="stylesheet" href="../tomorrow-night.css">
-        <link rel="stylesheet" href="../ayu-highlight.css">
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
@@ -35,7 +35,7 @@
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
-            var path_to_root = "../";
+            var path_to_root = "";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
@@ -88,9 +88,11 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Setup</li><li class="chapter-item expanded "><a href="../dependencies.html"><strong aria-hidden="true">1.</strong> Install Dependencies</a></li><li class="chapter-item expanded "><a href="../quick-start.html"><strong aria-hidden="true">2.</strong> Quick Start</a></li><li class="chapter-item expanded affix "><li class="part-title">Setting Up Some Tools</li><li class="chapter-item expanded "><a href="../tools/kafka-cli-tools.html"><strong aria-hidden="true">3.</strong> Kafka CLI Tools</a></li><li class="chapter-item expanded "><a href="../tools/sql-database.html"><strong aria-hidden="true">4.</strong> SQL Database</a></li><li class="chapter-item expanded "><a href="../tools/sql-populate-database.html"><strong aria-hidden="true">5.</strong> SQL Populate Database</a></li><li class="chapter-item expanded "><a href="../tools/nosql-database.html"><strong aria-hidden="true">6.</strong> NoSQL Database</a></li><li class="chapter-item expanded "><a href="../tools/nosql-populate-database.html"><strong aria-hidden="true">7.</strong> NoSQL Populate Database</a></li><li class="chapter-item expanded "><a href="../tools/mqtt-cli-tools.html"><strong aria-hidden="true">8.</strong> MQTT CLI Tools</a></li><li class="chapter-item expanded "><a href="../tools/mqtt-broker.html"><strong aria-hidden="true">9.</strong> MQTT Broker</a></li><li class="chapter-item expanded affix "><li class="part-title">Using Kafka</li><li class="chapter-item expanded "><a href="../using-kafka/kafka-cluster.html"><strong aria-hidden="true">10.</strong> Kafka Cluster</a></li><li class="chapter-item expanded "><a href="../using-kafka/kafka-akhq.html"><strong aria-hidden="true">11.</strong> Kafka AKHQ</a></li><li class="chapter-item expanded "><a href="../using-kafka/kafka-schema-registry.html" class="active"><strong aria-hidden="true">12.</strong> Kafka Schema Registry</a></li><li class="chapter-item expanded "><a href="../using-kafka/kafka-connect/kafka-connect.html"><strong aria-hidden="true">13.</strong> Kafka Connect</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../using-kafka/kafka-connect/database-example.html"><strong aria-hidden="true">13.1.</strong> Database Example</a></li><li class="chapter-item expanded "><a href="../using-kafka/kafka-connect/mqtt-example.html"><strong aria-hidden="true">13.2.</strong> MQTT Example</a></li></ol></li><li class="chapter-item expanded "><a href="../using-kafka/kafka-ksqldb/kafka-ksqldb.html"><strong aria-hidden="true">14.</strong> Kafka ksqlDB</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../using-kafka/kafka-ksqldb/streams-example.html"><strong aria-hidden="true">14.1.</strong> ksqlDB Streams Example</a></li><li class="chapter-item expanded "><a href="../using-kafka/kafka-ksqldb/extensions.html"><strong aria-hidden="true">14.2.</strong> Extensions</a></li></ol></li><li class="chapter-item expanded "><a href="../using-kafka/kafka-clients/kafka-clients.html"><strong aria-hidden="true">15.</strong> Kafka Clients</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../using-kafka/kafka-clients/avro-producer-and-consumer.html"><strong aria-hidden="true">15.1.</strong> Avro Producer and Consumer</a></li><li class="chapter-item expanded "><a href="../using-kafka/kafka-clients/spring-boot.html"><strong aria-hidden="true">15.2.</strong> Spring Boot</a></li></ol></li><li class="chapter-item expanded "><a href="../using-kafka/kafka-streams/streams.html"><strong aria-hidden="true">16.</strong> Kafka Streams</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../using-kafka/kafka-streams/queries.html"><strong aria-hidden="true">16.1.</strong> Interactive Queries</a></li></ol></li><li class="chapter-item expanded "><a href="../using-kafka/kafka-performance-tools.html"><strong aria-hidden="true">17.</strong> Kafka Performance Tools</a></li><li class="chapter-item expanded affix "><li class="part-title">Proxies</li><li class="chapter-item expanded "><a href="../proxies/kafka-rest-proxy.html"><strong aria-hidden="true">18.</strong> Kafka REST Proxy</a></li><li class="chapter-item expanded "><a href="../proxies/kafka-mqtt-proxy.html"><strong aria-hidden="true">19.</strong> Kafka MQTT Proxy</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="../using-kafka/ports-table.html">Ports Table</a></li><li class="chapter-item expanded affix "><a href="../book.html">About this book</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded "><a href="install-dependencies.html"><strong aria-hidden="true">1.</strong> Install Dependencies</a></li><li class="chapter-item expanded "><a href="quick-start.html"><strong aria-hidden="true">2.</strong> Quick Start</a></li><li class="chapter-item expanded "><a href="what-is-kafka.html"><strong aria-hidden="true">3.</strong> What is Kafka?</a></li><li class="chapter-item expanded "><a href="consuming-and-producing.html"><strong aria-hidden="true">4.</strong> Consuming and Producing</a></li><li class="chapter-item expanded "><a href="message-schemas.html" class="active"><strong aria-hidden="true">5.</strong> Message Schemas</a></li><li class="chapter-item expanded "><a href="what-is-kafka-connect.html"><strong aria-hidden="true">6.</strong> What is Kafka Connect?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="kafka-connect-database-example.html"><strong aria-hidden="true">6.1.</strong> Kafka Connect Database Example</a></li></ol></li><li class="chapter-item expanded "><a href="performance-tools.html"><strong aria-hidden="true">7.</strong> Performance Tools</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><a href="ports-table.html">Ports Table</a></li><li class="chapter-item expanded affix "><a href="about-this-book.html">About this book</a></li></ol>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
         </nav>
 
         <!-- Track and set sidebar scroll position -->
@@ -142,7 +144,7 @@
                     <h1 class="menu-title">Kafka Sandbox</h1>
 
                     <div class="right-buttons">
-                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
                         <a href="https://github.com/sauljabin/kafka-sandbox" title="Git repository" aria-label="Git repository">
@@ -174,58 +176,29 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="kafka-schema-registry"><a class="header" href="#kafka-schema-registry">Kafka Schema Registry</a></h1>
-<p>It provides a RESTful interface for storing and retrieving your Avro, JSON Schema, and Protobuf schemas.</p>
-<ul>
-<li><a href="https://docs.confluent.io/platform/current/schema-registry/index.html">schema registry</a></li>
-<li><a href="https://docs.confluent.io/platform/current/schema-registry/installation/config.html">schema registry settings</a></li>
-<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-schema-registry">kafka-schema-registry</a></li>
-<li>schema registry port: <code>8081</code></li>
-</ul>
-<p>Run Schema Registry:</p>
-<pre><code class="language-bash">cd kafka-schema-registry
-docker compose up -d
-cd ..
-</code></pre>
-<p>After a few seconds:</p>
-<pre><code class="language-bash">http :8081/config
-</code></pre>
-<h2 id="docker-compose"><a class="header" href="#docker-compose">Docker Compose</a></h2>
-<pre><code class="language-yaml">services:
-  schema-registry:
-    image: confluentinc/cp-schema-registry:${VERSION}
-    environment:
-      SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_METHODS: GET,POST,PUT,OPTIONS
-      SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_ORIGIN: &quot;*&quot;
-      SCHEMA_REGISTRY_DEBUG: &quot;true&quot;
-      SCHEMA_REGISTRY_HOST_NAME: localhost
-      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092,kafka3:9092
-      SCHEMA_REGISTRY_KAFKASTORE_TOPIC: kafka-schema-registry.schemas
-    ports:
-      - &quot;8081:8081&quot;
-    restart: on-failure
-    healthcheck:
-      test: curl http://localhost:8081
-      interval: 30s
-      timeout: 30s
-      retries: 5
-      start_period: 30s
-
-networks:
-  default:
-    external: true
-    name: kafka-sandbox_network
-</code></pre>
+                        <h1 id="message-schemas"><a class="header" href="#message-schemas">Message Schemas</a></h1>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2bPx3hfKX04"></iframe>
+<p>In this sandbox Schema Registry is already running, we are going to use it in some examples.
+Schema Registry will allow you to create applications that share the same data structure when they communicate with each other.</p>
+<p>This service could be key for your productions services, especially in a microservices ecosystems.
+Although, you will find that evolving a schema could be a problem, particularly when
+in your firsts stages of a new services.</p>
+<p>It is important to know that Schema Registry is not a plugin or a kafka extension. It is a separated services running
+in its own machine.</p>
+<p>So, the concept Schema Evolution and Compatibility will become essential for you.
+Check this out: <a href="https://docs.confluent.io/platform/current/schema-registry/fundamentals/schema-evolution.html">Schema Evolution and Compatibility</a>,
+there you will find the <strong>compatibility strategies</strong> for multiple use cases.</p>
+<p>Additionally, here you will find a lot of information about Schema Registry: <a href="https://www.confluent.io/blog/schema-registry-for-beginners/">Getting Started with Schemas and Schema Registries</a>.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../using-kafka/kafka-akhq.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="consuming-and-producing.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../using-kafka/kafka-connect/kafka-connect.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="what-is-kafka-connect.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -235,11 +208,11 @@ networks:
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../using-kafka/kafka-akhq.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="consuming-and-producing.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../using-kafka/kafka-connect/kafka-connect.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="what-is-kafka-connect.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
@@ -254,13 +227,13 @@ networks:
         </script>
 
 
-        <script src="../elasticlunr.min.js"></script>
-        <script src="../mark.min.js"></script>
-        <script src="../searcher.js"></script>
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
 
-        <script src="../clipboard.min.js"></script>
-        <script src="../highlight.js"></script>
-        <script src="../book.js"></script>
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
 
         <!-- Custom JS scripts -->
 

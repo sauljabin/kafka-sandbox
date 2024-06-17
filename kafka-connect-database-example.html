@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>SQL Database - Kafka Sandbox</title>
+        <title>Kafka Connect Database Example - Kafka Sandbox</title>
 
 
         <!-- Custom HTML head -->
@@ -12,21 +12,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="../favicon.svg">
-        <link rel="shortcut icon" href="../favicon.png">
-        <link rel="stylesheet" href="../css/variables.css">
-        <link rel="stylesheet" href="../css/general.css">
-        <link rel="stylesheet" href="../css/chrome.css">
-        <link rel="stylesheet" href="../css/print.css" media="print">
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="../fonts/fonts.css">
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="../highlight.css">
-        <link rel="stylesheet" href="../tomorrow-night.css">
-        <link rel="stylesheet" href="../ayu-highlight.css">
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
@@ -35,7 +35,7 @@
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
-            var path_to_root = "../";
+            var path_to_root = "";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
@@ -88,9 +88,11 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Setup</li><li class="chapter-item expanded "><a href="../dependencies.html"><strong aria-hidden="true">1.</strong> Install Dependencies</a></li><li class="chapter-item expanded "><a href="../quick-start.html"><strong aria-hidden="true">2.</strong> Quick Start</a></li><li class="chapter-item expanded affix "><li class="part-title">Setting Up Some Tools</li><li class="chapter-item expanded "><a href="../tools/kafka-cli-tools.html"><strong aria-hidden="true">3.</strong> Kafka CLI Tools</a></li><li class="chapter-item expanded "><a href="../tools/sql-database.html" class="active"><strong aria-hidden="true">4.</strong> SQL Database</a></li><li class="chapter-item expanded "><a href="../tools/sql-populate-database.html"><strong aria-hidden="true">5.</strong> SQL Populate Database</a></li><li class="chapter-item expanded "><a href="../tools/nosql-database.html"><strong aria-hidden="true">6.</strong> NoSQL Database</a></li><li class="chapter-item expanded "><a href="../tools/nosql-populate-database.html"><strong aria-hidden="true">7.</strong> NoSQL Populate Database</a></li><li class="chapter-item expanded "><a href="../tools/mqtt-cli-tools.html"><strong aria-hidden="true">8.</strong> MQTT CLI Tools</a></li><li class="chapter-item expanded "><a href="../tools/mqtt-broker.html"><strong aria-hidden="true">9.</strong> MQTT Broker</a></li><li class="chapter-item expanded affix "><li class="part-title">Using Kafka</li><li class="chapter-item expanded "><a href="../using-kafka/kafka-cluster.html"><strong aria-hidden="true">10.</strong> Kafka Cluster</a></li><li class="chapter-item expanded "><a href="../using-kafka/kafka-akhq.html"><strong aria-hidden="true">11.</strong> Kafka AKHQ</a></li><li class="chapter-item expanded "><a href="../using-kafka/kafka-schema-registry.html"><strong aria-hidden="true">12.</strong> Kafka Schema Registry</a></li><li class="chapter-item expanded "><a href="../using-kafka/kafka-connect/kafka-connect.html"><strong aria-hidden="true">13.</strong> Kafka Connect</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../using-kafka/kafka-connect/database-example.html"><strong aria-hidden="true">13.1.</strong> Database Example</a></li><li class="chapter-item expanded "><a href="../using-kafka/kafka-connect/mqtt-example.html"><strong aria-hidden="true">13.2.</strong> MQTT Example</a></li></ol></li><li class="chapter-item expanded "><a href="../using-kafka/kafka-ksqldb/kafka-ksqldb.html"><strong aria-hidden="true">14.</strong> Kafka ksqlDB</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../using-kafka/kafka-ksqldb/streams-example.html"><strong aria-hidden="true">14.1.</strong> ksqlDB Streams Example</a></li><li class="chapter-item expanded "><a href="../using-kafka/kafka-ksqldb/extensions.html"><strong aria-hidden="true">14.2.</strong> Extensions</a></li></ol></li><li class="chapter-item expanded "><a href="../using-kafka/kafka-clients/kafka-clients.html"><strong aria-hidden="true">15.</strong> Kafka Clients</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../using-kafka/kafka-clients/avro-producer-and-consumer.html"><strong aria-hidden="true">15.1.</strong> Avro Producer and Consumer</a></li><li class="chapter-item expanded "><a href="../using-kafka/kafka-clients/spring-boot.html"><strong aria-hidden="true">15.2.</strong> Spring Boot</a></li></ol></li><li class="chapter-item expanded "><a href="../using-kafka/kafka-streams/streams.html"><strong aria-hidden="true">16.</strong> Kafka Streams</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../using-kafka/kafka-streams/queries.html"><strong aria-hidden="true">16.1.</strong> Interactive Queries</a></li></ol></li><li class="chapter-item expanded "><a href="../using-kafka/kafka-performance-tools.html"><strong aria-hidden="true">17.</strong> Kafka Performance Tools</a></li><li class="chapter-item expanded affix "><li class="part-title">Proxies</li><li class="chapter-item expanded "><a href="../proxies/kafka-rest-proxy.html"><strong aria-hidden="true">18.</strong> Kafka REST Proxy</a></li><li class="chapter-item expanded "><a href="../proxies/kafka-mqtt-proxy.html"><strong aria-hidden="true">19.</strong> Kafka MQTT Proxy</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="../using-kafka/ports-table.html">Ports Table</a></li><li class="chapter-item expanded affix "><a href="../book.html">About this book</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded "><a href="install-dependencies.html"><strong aria-hidden="true">1.</strong> Install Dependencies</a></li><li class="chapter-item expanded "><a href="quick-start.html"><strong aria-hidden="true">2.</strong> Quick Start</a></li><li class="chapter-item expanded "><a href="what-is-kafka.html"><strong aria-hidden="true">3.</strong> What is Kafka?</a></li><li class="chapter-item expanded "><a href="consuming-and-producing.html"><strong aria-hidden="true">4.</strong> Consuming and Producing</a></li><li class="chapter-item expanded "><a href="message-schemas.html"><strong aria-hidden="true">5.</strong> Message Schemas</a></li><li class="chapter-item expanded "><a href="what-is-kafka-connect.html"><strong aria-hidden="true">6.</strong> What is Kafka Connect?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="kafka-connect-database-example.html" class="active"><strong aria-hidden="true">6.1.</strong> Kafka Connect Database Example</a></li></ol></li><li class="chapter-item expanded "><a href="performance-tools.html"><strong aria-hidden="true">7.</strong> Performance Tools</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><a href="ports-table.html">Ports Table</a></li><li class="chapter-item expanded affix "><a href="about-this-book.html">About this book</a></li></ol>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
         </nav>
 
         <!-- Track and set sidebar scroll position -->
@@ -142,7 +144,7 @@
                     <h1 class="menu-title">Kafka Sandbox</h1>
 
                     <div class="right-buttons">
-                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
                         <a href="https://github.com/sauljabin/kafka-sandbox" title="Git repository" aria-label="Git repository">
@@ -174,71 +176,102 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="sql-database"><a class="header" href="#sql-database">SQL Database</a></h1>
-<p>Create a MySQL and PostgresSQL instance and a database.</p>
-<ul>
-<li><a href="https://hub.docker.com/_/mysql">mysql</a></li>
-<li><a href="https://hub.docker.com/_/postgres">postgres</a></li>
-<li><a href="https://hub.docker.com/_/adminer">adminer</a></li>
-<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/sql-database">sql-database</a></li>
-<li>postgres port: <code>5432</code></li>
-<li>mysql port: <code>3306</code></li>
-<li>adminer port: <code>9090</code> (<a href="http://localhost:9090/">open it in the web browser</a>)</li>
-</ul>
-<p>Run MySQL, PostgresSQL and Adminer:</p>
-<pre><code class="language-bash">cd sql-database
-docker compose up -d
-cd ..
+                        <h1 id="kafka-connect-database-example"><a class="header" href="#kafka-connect-database-example">Kafka Connect Database Example</a></h1>
+<p>In this example you are going to learn how to move data from a source (<strong>mysql</strong>),
+to multiple targets (<strong>postgres and mongo</strong>).</p>
+<blockquote>
+<p>This example does not support deletion, for that you have to implement tombstone events at the <a href="https://debezium.io/documentation/reference/connectors/postgresql.html#postgresql-tombstone-events">source</a> and <a href="https://docs.confluent.io/kafka-connect-jdbc/current/sink-connector/index.html#jdbc-sink-delete-mode">sink</a>.</p>
+</blockquote>
+<h3 id="populate-database"><a class="header" href="#populate-database">Populate Database</a></h3>
+<p>Run MySQL and PostgreSQL:</p>
+<pre><code class="language-bash">docker compose --profile sql up -d
 </code></pre>
-<h2 id="docker-compose"><a class="header" href="#docker-compose">Docker Compose</a></h2>
-<pre><code class="language-yaml">services:
-  mysql:
-    image: mysql:8
-    environment:
-      MYSQL_DATABASE: sandbox
-      MYSQL_ROOT_PASSWORD: notasecret
-    ports:
-      - &quot;3306:3306&quot;
-    restart: on-failure
-    volumes:
-      - mysql_data:/var/lib/mysql
-
-  postgres:
-    image: postgres:13
-    environment:
-      POSTGRES_DB: sandbox
-      POSTGRES_PASSWORD: notasecret
-    ports:
-      - &quot;5432:5432&quot;
-    restart: on-failure
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-  adminer:
-    image: adminer:4
-    ports:
-      - &quot;9090:8080&quot;
-    restart: on-failure
-
-volumes:
-  mysql_data:
-  postgres_data:
-
-networks:
-  default:
-    external: true
-    name: kafka-sandbox_network
+<p>Populate:</p>
+<pre><code class="language-bash">./gradlew sql-populate:run \
+          --args='--url "jdbc:mysql://localhost:3306/sandbox" --user "root" --password "notasecret" 10'
+</code></pre>
+<p>That command should have created the table <code>customers</code> and inserted 100 records.</p>
+<p>Now you can open <a href="http://localhost:9090">Adminer</a> or run:</p>
+<pre><code class="language-bash">mysql --host=127.0.0.1 --port=3306 \
+      --user=root --database=sandbox --password=notasecret \
+      -e "select * from customers"
+</code></pre>
+<h3 id="create-source-connector"><a class="header" href="#create-source-connector">Create Source Connector</a></h3>
+<p>Check the installed plugins:</p>
+<pre><code class="language-bash">http :8083/connector-plugins
+</code></pre>
+<p>Now you have to hit the kafka connect rest service to create a new source, next you have the rest payload:</p>
+<pre><code class="language-json">{
+  "name": "mysql-source",
+  "config": {
+    "tasks.max": "1",
+    "table.whitelist": "customers",
+    "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+    "connection.url": "jdbc:mysql://mysql:3306/sandbox",
+    "connection.user": "root",
+    "connection.password": "notasecret",
+    "mode": "timestamp",
+    "timestamp.column.name": "created",
+    "topic.prefix": "connect.",
+    "transforms": "createKey",
+    "transforms.createKey.type": "org.apache.kafka.connect.transforms.ValueToKey",
+    "transforms.createKey.fields": "id"
+  }
+}
+</code></pre>
+<p>Create the connector using the API:</p>
+<pre><code class="language-bash">http :8083/connectors &lt; kafka-connect/requests/create-connector-mysql-source.json
+</code></pre>
+<p>If you open <a href="http://localhost:8080">AKHQ</a> you should see a new topic: <code>connect.customers</code>.</p>
+<h3 id="create-sink-connector"><a class="header" href="#create-sink-connector">Create Sink Connector</a></h3>
+<p>Payload:</p>
+<pre><code class="language-json">{
+  "name": "postgres-sink",
+  "config": {
+    "tasks.max": "1",
+    "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+    "connection.url": "jdbc:postgresql://postgres:5432/sandbox",
+    "connection.user": "postgres",
+    "connection.password": "notasecret",
+    "delete.enabled": false,
+    "pk.mode": "record_key",
+    "pk.key": "id",
+    "insert.mode": "upsert",
+    "auto.create": true,
+    "topics": "connect.customers",
+    "transforms": "dropPrefix",
+    "transforms.dropPrefix.type": "org.apache.kafka.connect.transforms.RegexRouter",
+    "transforms.dropPrefix.regex": "connect\\.(.*)",
+    "transforms.dropPrefix.replacement": "$1"
+  }
+}
+</code></pre>
+<p>Create sink connector:</p>
+<pre><code class="language-bash">http :8083/connectors &lt; kafka-connect/requests/create-connector-postgres-sink.json
+</code></pre>
+<p>This sink connector is going to create a table <code>customers</code> on postgres and insert all records.</p>
+<p>Now you can open <a href="http://localhost:9090">Adminer</a> or run:</p>
+<pre><code class="language-bash">PGPASSWORD=notasecret psql --host=127.0.0.1 --port=5432 \
+      --user=postgres --dbname=sandbox\
+      -c "select * from customers"
+</code></pre>
+<p>List connector:</p>
+<pre><code class="language-bash">http :8083/connectors
+</code></pre>
+<h3 id="deleting-connectors"><a class="header" href="#deleting-connectors">Deleting Connectors</a></h3>
+<pre><code class="language-bash">http DELETE :8083/connectors/postgres-sink
+http DELETE :8083/connectors/mysql-source
 </code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../tools/kafka-cli-tools.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="what-is-kafka-connect.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../tools/sql-populate-database.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="performance-tools.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -248,11 +281,11 @@ networks:
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../tools/kafka-cli-tools.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="what-is-kafka-connect.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../tools/sql-populate-database.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="performance-tools.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
@@ -267,13 +300,13 @@ networks:
         </script>
 
 
-        <script src="../elasticlunr.min.js"></script>
-        <script src="../mark.min.js"></script>
-        <script src="../searcher.js"></script>
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
 
-        <script src="../clipboard.min.js"></script>
-        <script src="../highlight.js"></script>
-        <script src="../book.js"></script>
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
 
         <!-- Custom JS scripts -->
 

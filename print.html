@@ -89,9 +89,11 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Setup</li><li class="chapter-item expanded "><a href="dependencies.html"><strong aria-hidden="true">1.</strong> Install Dependencies</a></li><li class="chapter-item expanded "><a href="quick-start.html"><strong aria-hidden="true">2.</strong> Quick Start</a></li><li class="chapter-item expanded affix "><li class="part-title">Setting Up Some Tools</li><li class="chapter-item expanded "><a href="tools/kafka-cli-tools.html"><strong aria-hidden="true">3.</strong> Kafka CLI Tools</a></li><li class="chapter-item expanded "><a href="tools/sql-database.html"><strong aria-hidden="true">4.</strong> SQL Database</a></li><li class="chapter-item expanded "><a href="tools/sql-populate-database.html"><strong aria-hidden="true">5.</strong> SQL Populate Database</a></li><li class="chapter-item expanded "><a href="tools/nosql-database.html"><strong aria-hidden="true">6.</strong> NoSQL Database</a></li><li class="chapter-item expanded "><a href="tools/nosql-populate-database.html"><strong aria-hidden="true">7.</strong> NoSQL Populate Database</a></li><li class="chapter-item expanded "><a href="tools/mqtt-cli-tools.html"><strong aria-hidden="true">8.</strong> MQTT CLI Tools</a></li><li class="chapter-item expanded "><a href="tools/mqtt-broker.html"><strong aria-hidden="true">9.</strong> MQTT Broker</a></li><li class="chapter-item expanded affix "><li class="part-title">Using Kafka</li><li class="chapter-item expanded "><a href="using-kafka/kafka-cluster.html"><strong aria-hidden="true">10.</strong> Kafka Cluster</a></li><li class="chapter-item expanded "><a href="using-kafka/kafka-akhq.html"><strong aria-hidden="true">11.</strong> Kafka AKHQ</a></li><li class="chapter-item expanded "><a href="using-kafka/kafka-schema-registry.html"><strong aria-hidden="true">12.</strong> Kafka Schema Registry</a></li><li class="chapter-item expanded "><a href="using-kafka/kafka-connect/kafka-connect.html"><strong aria-hidden="true">13.</strong> Kafka Connect</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="using-kafka/kafka-connect/database-example.html"><strong aria-hidden="true">13.1.</strong> Database Example</a></li><li class="chapter-item expanded "><a href="using-kafka/kafka-connect/mqtt-example.html"><strong aria-hidden="true">13.2.</strong> MQTT Example</a></li></ol></li><li class="chapter-item expanded "><a href="using-kafka/kafka-ksqldb/kafka-ksqldb.html"><strong aria-hidden="true">14.</strong> Kafka ksqlDB</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="using-kafka/kafka-ksqldb/streams-example.html"><strong aria-hidden="true">14.1.</strong> ksqlDB Streams Example</a></li><li class="chapter-item expanded "><a href="using-kafka/kafka-ksqldb/extensions.html"><strong aria-hidden="true">14.2.</strong> Extensions</a></li></ol></li><li class="chapter-item expanded "><a href="using-kafka/kafka-clients/kafka-clients.html"><strong aria-hidden="true">15.</strong> Kafka Clients</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="using-kafka/kafka-clients/avro-producer-and-consumer.html"><strong aria-hidden="true">15.1.</strong> Avro Producer and Consumer</a></li><li class="chapter-item expanded "><a href="using-kafka/kafka-clients/spring-boot.html"><strong aria-hidden="true">15.2.</strong> Spring Boot</a></li></ol></li><li class="chapter-item expanded "><a href="using-kafka/kafka-streams/streams.html"><strong aria-hidden="true">16.</strong> Kafka Streams</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="using-kafka/kafka-streams/queries.html"><strong aria-hidden="true">16.1.</strong> Interactive Queries</a></li></ol></li><li class="chapter-item expanded "><a href="using-kafka/kafka-performance-tools.html"><strong aria-hidden="true">17.</strong> Kafka Performance Tools</a></li><li class="chapter-item expanded affix "><li class="part-title">Proxies</li><li class="chapter-item expanded "><a href="proxies/kafka-rest-proxy.html"><strong aria-hidden="true">18.</strong> Kafka REST Proxy</a></li><li class="chapter-item expanded "><a href="proxies/kafka-mqtt-proxy.html"><strong aria-hidden="true">19.</strong> Kafka MQTT Proxy</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="using-kafka/ports-table.html">Ports Table</a></li><li class="chapter-item expanded affix "><a href="book.html">About this book</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded "><a href="install-dependencies.html"><strong aria-hidden="true">1.</strong> Install Dependencies</a></li><li class="chapter-item expanded "><a href="quick-start.html"><strong aria-hidden="true">2.</strong> Quick Start</a></li><li class="chapter-item expanded "><a href="what-is-kafka.html"><strong aria-hidden="true">3.</strong> What is Kafka?</a></li><li class="chapter-item expanded "><a href="consuming-and-producing.html"><strong aria-hidden="true">4.</strong> Consuming and Producing</a></li><li class="chapter-item expanded "><a href="message-schemas.html"><strong aria-hidden="true">5.</strong> Message Schemas</a></li><li class="chapter-item expanded "><a href="what-is-kafka-connect.html"><strong aria-hidden="true">6.</strong> What is Kafka Connect?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="kafka-connect-database-example.html"><strong aria-hidden="true">6.1.</strong> Kafka Connect Database Example</a></li></ol></li><li class="chapter-item expanded "><a href="performance-tools.html"><strong aria-hidden="true">7.</strong> Performance Tools</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><a href="ports-table.html">Ports Table</a></li><li class="chapter-item expanded affix "><a href="about-this-book.html">About this book</a></li></ol>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
         </nav>
 
         <!-- Track and set sidebar scroll position -->
@@ -178,8 +180,11 @@
                         <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
 <p><strong>Kafka Sandbox</strong> helps you to deploy a kafka sandbox locally. It intends to be a simple way to get started with kafka and
 help you on your learning path. It provides you with a wide variety of tools from the kafka ecosystem and a simple way
-to run them all. It also includes a set of tools and tips to make it easier for you to use kafka. It does not include
-security since it is not a production system.</p>
+to run them all. It also includes a set of tools and tips to make it easier for you to use kafka.
+This is not intended to replace official courses.</p>
+<blockquote>
+<p>It does not include security since it is not a production system.</p>
+</blockquote>
 <h2 id="interesting-links"><a class="header" href="#interesting-links">Interesting Links</a></h2>
 <ul>
 <li><a href="https://developer.confluent.io/learn-kafka/">Confluent free courses</a></li>
@@ -188,1152 +193,225 @@ security since it is not a production system.</p>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="install-dependencies"><a class="header" href="#install-dependencies">Install Dependencies</a></h1>
 <ul>
-<li><a href="https://www.docker.com/">docker</a> - version 20 or higher</li>
-<li><a href="https://docs.docker.com/compose/cli-command/">docker compose</a> - version 2 or higher</li>
-<li><a href="https://www.java.com/en/download/">java</a> - version 11 or higher</li>
+<li><a href="https://docs.docker.com/engine/install/">docker</a></li>
+<li><a href="https://sdkman.io/jdks">java</a></li>
+</ul>
+<p>Extras tools that you are going to use for some examples:</p>
+<ul>
 <li><a href="https://httpie.io/">httpie</a> - rest client</li>
 <li><a href="https://stedolan.github.io/jq/">jq</a> - json parser</li>
+<li><a href="https://helm.sh/docs/intro/install/">helm</a> - kubernetes charts manager</li>
+<li><a href="https://kind.sigs.k8s.io/">kind</a> - local kubernetes cluster</li>
+<li><a href="https://kubernetes.io/docs/reference/kubectl/">kubectl</a> - kubernetes client cli</li>
 </ul>
-<h2 id="other-useful-utilities"><a class="header" href="#other-useful-utilities">Other Useful Utilities</a></h2>
-<ul>
-<li><a href="https://curl.se/">curl</a> - command line http client</li>
-<li><a href="https://github.com/jesseduffield/lazydocker#installation">lazydocker</a> - docker text user interface</li>
-<li><a href="https://github.com/sauljabin/kaskade#installation-and-usage">kaskade</a> - kafka text user interface</li>
-</ul>
+<pre><code class="language-bash">brew install httpie jq helm kind kubectl
+</code></pre>
+<p>A collection of kafka client cli tools to manage kafka:</p>
+<pre><code class="language-bash">brew install kafka
+kafka-topics --version
+</code></pre>
+<p>SQL clients:</p>
+<pre><code class="language-bash">sudo apt install postgresql-client mysql-client
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="quick-start"><a class="header" href="#quick-start">Quick Start</a></h1>
 <p>Clone the repo:</p>
 <pre><code class="language-bash">git clone https://github.com/sauljabin/kafka-sandbox.git
 cd kafka-sandbox
 </code></pre>
-<p>Create a docker network:</p>
-<pre><code class="language-bash">docker network create kafka-sandbox_network
-</code></pre>
 <p>Run the kafka cluster:</p>
-<pre><code class="language-bash">cd kafka-cluster
-docker compose up -d
-cd ..
+<pre><code class="language-bash">docker compose up -d
 </code></pre>
-<p>Run AKHQ:</p>
-<pre><code class="language-bash">cd kafka-akhq
-docker compose up -d
-cd ..
+<p>Check running services:</p>
+<pre><code class="language-bash">docker compose ps
 </code></pre>
-<p>Open AKHQ at <a href="http://localhost:8080/">http://localhost:8080/</a></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="kafka-cli-tools"><a class="header" href="#kafka-cli-tools">Kafka CLI Tools</a></h1>
-<p>It is a collection of tools to interact with kafka cluster through the terminal.</p>
-<ul>
-<li><a href="https://github.com/edenhill/kafkacat">kafkacat</a></li>
-<li><a href="https://docs.confluent.io/platform/current/installation/installing_cp/zip-tar.html">confluent community tools</a></li>
-<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-cli">kafka-cli</a></li>
-</ul>
-<blockquote>
-<p>⚠️ Run these commands inside the root folder.</p>
-</blockquote>
-<p>Create an alias for <code>kafka-cli</code>:</p>
-<pre><code class="language-bash">alias kafka-cli='docker run --rm -it --network kafka-sandbox_network kafka-cli:latest '
-</code></pre>
-<p>To permanently add the alias to your shell (<code>~/.bashrc</code> or <code>~/.zshrc</code> file):</p>
-<pre><code class="language-bash">echo &quot;alias kafka-cli='docker run --rm -it --network kafka-sandbox_network kafka-cli:latest '&quot; &gt;&gt; ~/.zshrc
-</code></pre>
-<p>Create the docker image:</p>
-<pre><code class="language-bash">cd kafka-cli
-docker build -t kafka-cli:latest .
-kafka-cli
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="sql-database"><a class="header" href="#sql-database">SQL Database</a></h1>
-<p>Create a MySQL and PostgresSQL instance and a database.</p>
-<ul>
-<li><a href="https://hub.docker.com/_/mysql">mysql</a></li>
-<li><a href="https://hub.docker.com/_/postgres">postgres</a></li>
-<li><a href="https://hub.docker.com/_/adminer">adminer</a></li>
-<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/sql-database">sql-database</a></li>
-<li>postgres port: <code>5432</code></li>
-<li>mysql port: <code>3306</code></li>
-<li>adminer port: <code>9090</code> (<a href="http://localhost:9090/">open it in the web browser</a>)</li>
-</ul>
-<p>Run MySQL, PostgresSQL and Adminer:</p>
-<pre><code class="language-bash">cd sql-database
-docker compose up -d
-cd ..
-</code></pre>
-<h2 id="docker-compose"><a class="header" href="#docker-compose">Docker Compose</a></h2>
-<pre><code class="language-yaml">services:
-  mysql:
-    image: mysql:8
-    environment:
-      MYSQL_DATABASE: sandbox
-      MYSQL_ROOT_PASSWORD: notasecret
-    ports:
-      - &quot;3306:3306&quot;
-    restart: on-failure
-    volumes:
-      - mysql_data:/var/lib/mysql
-
-  postgres:
-    image: postgres:13
-    environment:
-      POSTGRES_DB: sandbox
-      POSTGRES_PASSWORD: notasecret
-    ports:
-      - &quot;5432:5432&quot;
-    restart: on-failure
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-  adminer:
-    image: adminer:4
-    ports:
-      - &quot;9090:8080&quot;
-    restart: on-failure
-
-volumes:
-  mysql_data:
-  postgres_data:
-
-networks:
-  default:
-    external: true
-    name: kafka-sandbox_network
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="sql-populate-database"><a class="header" href="#sql-populate-database">SQL Populate Database</a></h1>
-<p>This tool helps to populate either a MySQL or PostgresSQL database with random customers. This is an ancillary project
-that can help us to set different scenarios.</p>
-<ul>
-<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/sql-populate">sql-populate</a></li>
-</ul>
-<blockquote>
-<p>⚠️ Run these commands inside the root folder.</p>
-</blockquote>
-<p>Create an alias for <code>sql-populate</code>:</p>
-<pre><code class="language-bash">alias sql-populate=&quot;$PWD/sql-populate/build/install/sql-populate/bin/sql-populate &quot;
-</code></pre>
-<p>To permanently add the alias to your shell (<code>~/.bashrc</code> or <code>~/.zshrc</code> file):</p>
-<pre><code class="language-bash">echo &quot;alias sql-populate='$PWD/sql-populate/build/install/sql-populate/bin/sql-populate '&quot; &gt;&gt; ~/.zshrc
-</code></pre>
-<p>Install the app:</p>
-<pre><code class="language-bash">./gradlew sql-populate:install
-sql-populate
-</code></pre>
-<p>Examples:</p>
-<pre><code class="language-bash">sql-populate --url &quot;jdbc:mysql://localhost:3306/sandbox&quot; --user &quot;root&quot; --password &quot;notasecret&quot; 100
-sql-populate --url &quot;jdbc:postgresql://localhost:5432/sandbox&quot; --user &quot;postgres&quot; --password &quot;notasecret&quot; 100
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="nosql-database"><a class="header" href="#nosql-database">NoSQL Database</a></h1>
-<p>Create a MongoDB instance and a database.</p>
-<ul>
-<li><a href="https://hub.docker.com/_/mongo">mongo</a></li>
-<li><a href="https://hub.docker.com/_/mongo-express">mongo express</a></li>
-<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/nosql-database">nosql-database</a></li>
-<li>mongo port: <code>27017</code></li>
-<li>mongo express port: <code>7070</code> (<a href="http://localhost:7070/">open it in the web browser</a>)</li>
-</ul>
-<p>Run MongoDB and Mongo Express:</p>
-<pre><code class="language-bash">cd nosql-database
-docker compose up -d
-cd ..
-</code></pre>
-<h2 id="docker-compose-1"><a class="header" href="#docker-compose-1">Docker Compose</a></h2>
-<pre><code class="language-yaml">services:
-  mongo:
-    image: mongo:5
-    environment:
-      MONGO_INITDB_ROOT_PASSWORD: notasecret
-      MONGO_INITDB_ROOT_USERNAME: root
-    ports:
-      - &quot;27017:27017&quot;
-    restart: on-failure
-    volumes:
-      - mongo_data:/data/db
-    healthcheck:
-      test: echo 'db.runCommand(&quot;ping&quot;).ok' | mongo mongo:27017/test --quiet
-      interval: 10s
-      timeout: 10s
-      retries: 5
-      start_period: 40s
-
-  mongo-express:
-    image: mongo-express:latest
-    environment:
-      ME_CONFIG_MONGODB_ADMINPASSWORD: notasecret
-      ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_PORT: &quot;27017&quot;
-      ME_CONFIG_MONGODB_SERVER: mongo
-      ME_CONFIG_MONGODB_ENABLE_ADMIN: &quot;true&quot;
-    ports:
-      - &quot;7070:8081&quot;
-    restart: on-failure
-    depends_on:
-      mongo:
-        condition: service_healthy
-
-volumes:
-  mongo_data:
-
-networks:
-  default:
-    external: true
-    name: kafka-sandbox_network
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="nosql-populate-database"><a class="header" href="#nosql-populate-database">NoSQL Populate Database</a></h1>
-<p>This tool helps to populate MongoDB with random customers. This is an ancillary project that can help us to set
-different scenarios.</p>
-<ul>
-<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/nosql-populate">nosql-populate</a></li>
-</ul>
-<blockquote>
-<p>⚠️ Run these commands inside the root folder.</p>
-</blockquote>
-<p>Create an alias for <code>nosql-populate</code>:</p>
-<pre><code class="language-bash">alias nosql-populate=&quot;$PWD/nosql-populate/build/install/nosql-populate/bin/nosql-populate &quot;
-</code></pre>
-<p>To permanently add the alias to your shell (<code>~/.bashrc</code> or <code>~/.zshrc</code> file):</p>
-<pre><code class="language-bash">echo &quot;alias nosql-populate='$PWD/nosql-populate/build/install/nosql-populate/bin/nosql-populate '&quot; &gt;&gt; ~/.zshrc
-</code></pre>
-<p>Install the app:</p>
-<pre><code class="language-bash">./gradlew nosql-populate:install
-nosql-populate
-</code></pre>
-<p>Example:</p>
-<pre><code class="language-bash">nosql-populate --url &quot;mongodb://root:notasecret@localhost:27017&quot; -d &quot;sandbox&quot; 100
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="mqtt-cli-tools"><a class="header" href="#mqtt-cli-tools">MQTT CLI Tools</a></h1>
-<p>MQTT collection of tools to interact with a MQTT broker.</p>
-<ul>
-<li><a href="https://hivemq.github.io/mqtt-cli/">mqtt-cli</a></li>
-</ul>
-<blockquote>
-<p>⚠️ Run these commands inside the root folder.</p>
-</blockquote>
-<p>Create an alias for <code>mqtt-cli</code>:</p>
-<pre><code class="language-bash">alias mqtt-cli='docker run --rm -it --network kafka-sandbox_network hivemq/mqtt-cli:latest '
-</code></pre>
-<p>To permanently add the alias to your shell (<code>~/.bashrc</code> or <code>~/.zshrc</code> file):</p>
-<pre><code class="language-bash">echo &quot;alias mqtt-cli='docker run --rm -it --network kafka-sandbox_network hivemq/mqtt-cli:latest '&quot; &gt;&gt; ~/.zshrc
-</code></pre>
-<p>Test the cli:</p>
-<pre><code class="language-bash">mqtt-cli
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="mqtt-broker"><a class="header" href="#mqtt-broker">MQTT Broker</a></h1>
-<p>Eclipse Mosquitto is an open source (EPL/EDL licensed) message broker that implements the MQTT protocol versions 5.0,
-3.1.1 and 3.1. Mosquitto is lightweight and is suitable for use on all devices from low power single board computers to
-full servers.</p>
-<ul>
-<li><a href="https://mosquitto.org/">mosquitto</a></li>
-<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/mqtt-broker">mqtt-broker</a></li>
-<li>mosquitto port: <code>1883</code></li>
-</ul>
-<p>Run Mosquitto:</p>
-<pre><code class="language-bash">cd mqtt-broker
-docker compose up -d
-cd ..
-</code></pre>
-<p>After a few seconds:</p>
-<pre><code class="language-bash">mqtt-cli test -h mosquitto
-</code></pre>
-<h2 id="docker-compose-2"><a class="header" href="#docker-compose-2">Docker Compose</a></h2>
-<pre><code class="language-yaml">services:
-  mosquitto:
-    image: eclipse-mosquitto:2
-    ports:
-      - &quot;1883:1883&quot;
-    restart: on-failure
-    volumes:
-      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
-      - mosquitto_data:/mosquitto/data
-
-volumes:
-  mosquitto_data:
-
-networks:
-  default:
-    external: true
-    name: kafka-sandbox_network
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="kafka-cluster"><a class="header" href="#kafka-cluster">Kafka Cluster</a></h1>
-<p>A three node kafka cluster.</p>
-<ul>
-<li><a href="https://kafka.apache.org/">kafka</a></li>
-<li><a href="https://docs.confluent.io/platform/current/installation/configuration/broker-configs.html">kafka settings</a></li>
-<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-cluster">kafka-cluster</a></li>
-<li>kafka version: <a href="https://docs.confluent.io/platform/current/installation/versions-interoperability.html">cp 7.5.2</a></li>
-<li>kafka ports: <code>19092</code>, <code>29092</code>, <code>39092</code></li>
-<li>kafka jmx ports: <code>19999</code>, <code>29999</code>, <code>39999</code></li>
-</ul>
-<p>Run kafka cluster:</p>
-<pre><code class="language-bash">cd kafka-cluster
-docker compose up -d
-cd ..
+<p>Open <a href="https://akhq.io/">AKHQ</a> (a web UI for kafka) at <a href="http://localhost:8080/">http://localhost:8080/</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="what-is-kafka"><a class="header" href="#what-is-kafka">What is Kafka?</a></h1>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/06iRM1Ghr1k"></iframe>
+<p>Let's deploy a three node kafka cluster on the ports: <code>19092</code>, <code>29092</code>, <code>39092</code>:</p>
+<pre><code class="language-bash">docker compose up -d
 </code></pre>
 <p>Create a topic:</p>
-<pre><code class="language-bash">kafka-cli kafka-topics --create --bootstrap-server kafka1:9092 \
-                       --replication-factor 3 \
-                       --partitions 3 \
-                       --topic kafka-cluster.test
-kafka-cli kafka-topics --bootstrap-server kafka1:9092 --list
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kj9JH3ZdsBQ"></iframe>
+<pre><code class="language-bash">kafka-topics --create \
+             --bootstrap-server localhost:19092 \
+             --replication-factor 3 \
+             --partitions 3 \
+             --topic sandbox.test
 </code></pre>
-<p>Produce a message:</p>
-<pre><code class="language-bash">kafka-cli kafka-console-producer --broker-list kafka1:9092 --topic kafka-cluster.test
+<p>List topics:</p>
+<pre><code class="language-bash">kafka-topics --list \
+             --bootstrap-server localhost:19092
 </code></pre>
-<p>Consume messages:</p>
-<pre><code class="language-bash">kafka-cli kafka-console-consumer --from-beginning --group kafka-cluster.test \
-                                 --topic kafka-cluster.test  \
-                                 --bootstrap-server kafka1:9092
+<p>At this point you must understand that the most important concept for you is the partition.
+You will be tempted to focus on the topic concept, but you should focus on the partition.
+This is due to the very nature of a distributed system.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/y9BStKvVzSs"></iframe>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="consuming-and-producing"><a class="header" href="#consuming-and-producing">Consuming and Producing</a></h1>
+<h3 id="produce-messages"><a class="header" href="#produce-messages">Produce Messages</a></h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/I7zm3on_cQQ"></iframe>
+<pre><code class="language-bash">kafka-console-producer --bootstrap-server localhost:19092 \
+                       --topic sandbox.test
 </code></pre>
-<blockquote>
-<p>⚠️ The <code>JMX</code> ports were opened to monitor kafka using <code>jconsole</code>.</p>
-</blockquote>
-<p>Run <code>jconsole</code>:</p>
-<pre><code class="language-bash">jconsole localhost:19999
+<h3 id="consume-messages"><a class="header" href="#consume-messages">Consume Messages</a></h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Z9g4jMQwog0"></iframe>
+<pre><code class="language-bash">kafka-console-consumer --from-beginning \
+                       --bootstrap-server localhost:19092 \
+                       --group sandbox.test \
+                       --topic sandbox.test
 </code></pre>
-<h2 id="docker-compose-3"><a class="header" href="#docker-compose-3">Docker Compose</a></h2>
-<pre><code class="language-yaml">services:
-  kafka1:
-    image: confluentinc/cp-kafka:${VERSION}
-    environment:
-      KAFKA_BROKER_ID: &quot;1&quot;
-      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka1:9092,EXTERNAL://localhost:19092
-      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
-      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
-      KAFKA_LISTENERS: CONTROLLER://0.0.0.0:9093,INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:19092
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
-      KAFKA_JMX_PORT: &quot;19999&quot;
-      CLUSTER_ID: &quot;arN_n1N_QHqihZJPxv7URA&quot;
-      KAFKA_PROCESS_ROLES: &quot;broker,controller&quot;
-      KAFKA_CONTROLLER_QUORUM_VOTERS: &quot;1@kafka1:9093,2@kafka2:9093,3@kafka3:9093&quot;
-    ports:
-      - &quot;19092:19092&quot;
-      - &quot;19999:19999&quot;
-    restart: on-failure
-    volumes:
-      - kafka1_data:/var/lib/kafka/data
-    healthcheck:
-      test: kafka-topics --bootstrap-server localhost:9092 --list &gt; /dev/null 2&gt;&amp;1
-      interval: 10s
-      timeout: 10s
-      retries: 5
-      start_period: 10s
-
-  kafka2:
-    image: confluentinc/cp-kafka:${VERSION}
-    environment:
-      KAFKA_BROKER_ID: &quot;2&quot;
-      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka2:9092,EXTERNAL://localhost:29092
-      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
-      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
-      KAFKA_LISTENERS: CONTROLLER://0.0.0.0:9093,INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:29092
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
-      KAFKA_JMX_PORT: &quot;29999&quot;
-      CLUSTER_ID: &quot;arN_n1N_QHqihZJPxv7URA&quot;
-      KAFKA_PROCESS_ROLES: &quot;broker,controller&quot;
-      KAFKA_CONTROLLER_QUORUM_VOTERS: &quot;1@kafka1:9093,2@kafka2:9093,3@kafka3:9093&quot;
-    ports:
-      - &quot;29092:29092&quot;
-      - &quot;29999:29999&quot;
-    restart: on-failure
-    volumes:
-      - kafka2_data:/var/lib/kafka/data
-    healthcheck:
-      test: kafka-topics --bootstrap-server localhost:9092 --list &gt; /dev/null 2&gt;&amp;1
-      interval: 10s
-      timeout: 10s
-      retries: 5
-      start_period: 10s
-
-  kafka3:
-    image: confluentinc/cp-kafka:${VERSION}
-    environment:
-      KAFKA_BROKER_ID: &quot;3&quot;
-      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka3:9092,EXTERNAL://localhost:39092
-      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
-      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
-      KAFKA_LISTENERS: CONTROLLER://0.0.0.0:9093,INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:39092
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
-      KAFKA_JMX_PORT: &quot;39999&quot;
-      CLUSTER_ID: &quot;arN_n1N_QHqihZJPxv7URA&quot;
-      KAFKA_PROCESS_ROLES: &quot;broker,controller&quot;
-      KAFKA_CONTROLLER_QUORUM_VOTERS: &quot;1@kafka1:9093,2@kafka2:9093,3@kafka3:9093&quot;
-    ports:
-      - &quot;39092:39092&quot;
-      - &quot;39999:39999&quot;
-    restart: on-failure
-    volumes:
-      - kafka3_data:/var/lib/kafka/data
-    healthcheck:
-      test: kafka-topics --bootstrap-server localhost:9092 --list &gt; /dev/null 2&gt;&amp;1
-      interval: 10s
-      timeout: 10s
-      retries: 5
-      start_period: 10s
-
-volumes:
-  kafka1_data:
-  kafka2_data:
-  kafka3_data:
-
-networks:
-  default:
-    external: true
-    name: kafka-sandbox_network
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="kafka-akhq"><a class="header" href="#kafka-akhq">Kafka AKHQ</a></h1>
-<p>UI for managing kafka cluster.</p>
+<p>It is key to know that kafka stores binary data, it does not care if
+the internal serialization of the data represents a character string,
+image, number, or even if the data is encrypted or plain.</p>
+<p>All the serialization/deserialization process occurs on the client side,
+when producing or consuming.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="message-schemas"><a class="header" href="#message-schemas">Message Schemas</a></h1>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2bPx3hfKX04"></iframe>
+<p>In this sandbox Schema Registry is already running, we are going to use it in some examples.
+Schema Registry will allow you to create applications that share the same data structure when they communicate with each other.</p>
+<p>This service could be key for your productions services, especially in a microservices ecosystems.
+Although, you will find that evolving a schema could be a problem, particularly when
+in your firsts stages of a new services.</p>
+<p>It is important to know that Schema Registry is not a plugin or a kafka extension. It is a separated services running
+in its own machine.</p>
+<p>So, the concept Schema Evolution and Compatibility will become essential for you.
+Check this out: <a href="https://docs.confluent.io/platform/current/schema-registry/fundamentals/schema-evolution.html">Schema Evolution and Compatibility</a>,
+there you will find the <strong>compatibility strategies</strong> for multiple use cases.</p>
+<p>Additionally, here you will find a lot of information about Schema Registry: <a href="https://www.confluent.io/blog/schema-registry-for-beginners/">Getting Started with Schemas and Schema Registries</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="what-is-kafka-connect"><a class="header" href="#what-is-kafka-connect">What is Kafka Connect?</a></h1>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/mdsNGujpsF8"></iframe>
+<p>It is worth mentioning that just like Schema Registry, Kafka Connect is an external and independent service to Kafka.</p>
+<p>Kafka Connect will be very useful when you want to have constant flow of data from a data store (<strong>source</strong>)
+to another (<strong>sink</strong>).</p>
+<p>Kafka Connect works with plugin, you can find several connector on <a href="https://www.confluent.io/hub/">Confluent Hub</a>.
+In this sandbox we have installed 3 plugins:</p>
 <ul>
-<li><a href="https://akhq.io/">akhq</a></li>
-<li><a href="https://github.com/tchiotludo/akhq#kafka-cluster-configuration">akhq settings</a></li>
-<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-akhq">kafka-akhq</a></li>
-<li>akhq port: <code>8080</code> (<a href="http://localhost:8080/">open it in the web browser</a>)</li>
-</ul>
-<p>Run AKHQ:</p>
-<pre><code class="language-bash">cd kafka-akhq
-docker compose up -d
-cd ..
-</code></pre>
-<h2 id="docker-compose-4"><a class="header" href="#docker-compose-4">Docker Compose</a></h2>
-<pre><code class="language-yaml">services:
-  akhq:
-    image: tchiotludo/akhq:latest
-    ports:
-      - &quot;8080:8080&quot;
-    restart: on-failure
-    healthcheck:
-      test: curl http://localhost:8080
-      interval: 30s
-      timeout: 30s
-      retries: 5
-      start_period: 30s
-    environment:
-      AKHQ_CONFIGURATION: |
-        akhq:
-          connections:
-            docker-kafka-server:
-              properties:
-                bootstrap.servers: kafka1:9092,kafka2:9092,kafka3:9092
-              schema-registry:
-                url: http://schema-registry:8081
-              connect:
-                - name: kafka-connect
-                  url: http://kafka-connect:8083
-
-networks:
-  default:
-    external: true
-    name: kafka-sandbox_network
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="kafka-schema-registry"><a class="header" href="#kafka-schema-registry">Kafka Schema Registry</a></h1>
-<p>It provides a RESTful interface for storing and retrieving your Avro, JSON Schema, and Protobuf schemas.</p>
-<ul>
-<li><a href="https://docs.confluent.io/platform/current/schema-registry/index.html">schema registry</a></li>
-<li><a href="https://docs.confluent.io/platform/current/schema-registry/installation/config.html">schema registry settings</a></li>
-<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-schema-registry">kafka-schema-registry</a></li>
-<li>schema registry port: <code>8081</code></li>
-</ul>
-<p>Run Schema Registry:</p>
-<pre><code class="language-bash">cd kafka-schema-registry
-docker compose up -d
-cd ..
-</code></pre>
-<p>After a few seconds:</p>
-<pre><code class="language-bash">http :8081/config
-</code></pre>
-<h2 id="docker-compose-5"><a class="header" href="#docker-compose-5">Docker Compose</a></h2>
-<pre><code class="language-yaml">services:
-  schema-registry:
-    image: confluentinc/cp-schema-registry:${VERSION}
-    environment:
-      SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_METHODS: GET,POST,PUT,OPTIONS
-      SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_ORIGIN: &quot;*&quot;
-      SCHEMA_REGISTRY_DEBUG: &quot;true&quot;
-      SCHEMA_REGISTRY_HOST_NAME: localhost
-      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092,kafka3:9092
-      SCHEMA_REGISTRY_KAFKASTORE_TOPIC: kafka-schema-registry.schemas
-    ports:
-      - &quot;8081:8081&quot;
-    restart: on-failure
-    healthcheck:
-      test: curl http://localhost:8081
-      interval: 30s
-      timeout: 30s
-      retries: 5
-      start_period: 30s
-
-networks:
-  default:
-    external: true
-    name: kafka-sandbox_network
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="kafka-connect"><a class="header" href="#kafka-connect">Kafka Connect</a></h1>
-<p>It makes it simple to quickly define connectors that move large data sets into and out of Kafka.</p>
-<ul>
-<li><a href="https://docs.confluent.io/current/connect/index.html">connect</a></li>
-<li><a href="https://docs.confluent.io/platform/current/installation/configuration/connect/index.html">connect settings</a></li>
-<li><a href="https://docs.confluent.io/platform/current/connect/references/restapi.html">connect api reference</a></li>
 <li><a href="https://www.confluent.io/hub/confluentinc/kafka-connect-jdbc">jdbc connector plugin</a></li>
-<li><a href="https://www.confluent.io/hub/mongodb/kafka-connect-mongodb">mongo connector plugin</a></li>
-<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-connect">kafka-connect</a></li>
-<li>plugins location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-connect/plugins">kafka-connect/plugins</a></li>
-<li>requests location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-connect/requests">kafka-connect/requests</a></li>
-<li>connect port: <code>8083</code></li>
+<li><a href="https://www.confluent.io/hub/confluentinc/kafka-connect-mqtt">mqtt connector plugin</a></li>
 </ul>
-<p>Run Kafka Connect:</p>
-<pre><code class="language-bash">cd kafka-connect
-docker compose up -d
-cd ..
-</code></pre>
-<p>After a few seconds:</p>
-<pre><code class="language-bash">http :8083/connector-plugins
-</code></pre>
-<h2 id="docker-compose-6"><a class="header" href="#docker-compose-6">Docker Compose</a></h2>
-<pre><code class="language-yaml">services:
-  kafka-connect:
-    image: confluentinc/cp-kafka-connect:${VERSION}
-    environment:
-      CONNECT_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092,kafka3:9092
-      CONNECT_REST_ADVERTISED_HOST_NAME: localhost
-      CONNECT_GROUP_ID: kafka-connect-sandbox
-      CONNECT_PLUGIN_PATH: /usr/local/share/kafka/plugins
-      CONNECT_KEY_CONVERTER: io.confluent.connect.avro.AvroConverter
-      CONNECT_VALUE_CONVERTER: io.confluent.connect.avro.AvroConverter
-      CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
-      CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
-      CONNECT_CONFIG_STORAGE_TOPIC: kafka-connect.config
-      CONNECT_OFFSET_STORAGE_TOPIC: kafka-connect.offsets
-      CONNECT_STATUS_STORAGE_TOPIC: kafka-connect.status
-    ports:
-      - &quot;8083:8083&quot;
-    restart: on-failure
-    volumes:
-      - ./plugins:/usr/local/share/kafka/plugins
-    healthcheck:
-      test: curl http://localhost:8083
-      interval: 30s
-      timeout: 30s
-      retries: 5
-      start_period: 30s
-
-networks:
-  default:
-    external: true
-    name: kafka-sandbox_network
+<p>Plugins above can be found at:</p>
+<pre><code class="language-bash">ls kafka-connect/plugins
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="kafka-connect-database-example"><a class="header" href="#kafka-connect-database-example">Kafka Connect Database Example</a></h1>
+<p>In this example you are going to learn how to move data from a source (<strong>mysql</strong>),
+to multiple targets (<strong>postgres and mongo</strong>).</p>
 <blockquote>
-<p>⚠️ This example does not support deletion, for that you have to implement tombstone events at the <a href="https://debezium.io/documentation/reference/connectors/postgresql.html#postgresql-tombstone-events">source</a> and <a href="https://docs.confluent.io/kafka-connect-jdbc/current/sink-connector/index.html#jdbc-sink-delete-mode">sink</a>.</p>
+<p>This example does not support deletion, for that you have to implement tombstone events at the <a href="https://debezium.io/documentation/reference/connectors/postgresql.html#postgresql-tombstone-events">source</a> and <a href="https://docs.confluent.io/kafka-connect-jdbc/current/sink-connector/index.html#jdbc-sink-delete-mode">sink</a>.</p>
 </blockquote>
-<p>Populate the databases:</p>
-<pre><code class="language-bash">sql-populate --url &quot;jdbc:mysql://localhost:3306/sandbox&quot; --user &quot;root&quot; --password &quot;notasecret&quot; 100
+<h3 id="populate-database"><a class="header" href="#populate-database">Populate Database</a></h3>
+<p>Run MySQL and PostgreSQL:</p>
+<pre><code class="language-bash">docker compose --profile sql up -d
 </code></pre>
-<p>Create the connectors using the API:</p>
-<pre><code class="language-bash">cd kafka-connect
-http :8083/connectors &lt; requests/create-connector-mysql-source.json
-http :8083/connectors &lt; requests/create-connector-mongo-sink.json
-http :8083/connectors &lt; requests/create-connector-postgres-sink.json
-cd ..
+<p>Populate:</p>
+<pre><code class="language-bash">./gradlew sql-populate:run \
+          --args='--url "jdbc:mysql://localhost:3306/sandbox" --user "root" --password "notasecret" 10'
 </code></pre>
-<p>For deleting the connectors:</p>
+<p>That command should have created the table <code>customers</code> and inserted 100 records.</p>
+<p>Now you can open <a href="http://localhost:9090">Adminer</a> or run:</p>
+<pre><code class="language-bash">mysql --host=127.0.0.1 --port=3306 \
+      --user=root --database=sandbox --password=notasecret \
+      -e "select * from customers"
+</code></pre>
+<h3 id="create-source-connector"><a class="header" href="#create-source-connector">Create Source Connector</a></h3>
+<p>Check the installed plugins:</p>
+<pre><code class="language-bash">http :8083/connector-plugins
+</code></pre>
+<p>Now you have to hit the kafka connect rest service to create a new source, next you have the rest payload:</p>
+<pre><code class="language-json">{
+  "name": "mysql-source",
+  "config": {
+    "tasks.max": "1",
+    "table.whitelist": "customers",
+    "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+    "connection.url": "jdbc:mysql://mysql:3306/sandbox",
+    "connection.user": "root",
+    "connection.password": "notasecret",
+    "mode": "timestamp",
+    "timestamp.column.name": "created",
+    "topic.prefix": "connect.",
+    "transforms": "createKey",
+    "transforms.createKey.type": "org.apache.kafka.connect.transforms.ValueToKey",
+    "transforms.createKey.fields": "id"
+  }
+}
+</code></pre>
+<p>Create the connector using the API:</p>
+<pre><code class="language-bash">http :8083/connectors &lt; kafka-connect/requests/create-connector-mysql-source.json
+</code></pre>
+<p>If you open <a href="http://localhost:8080">AKHQ</a> you should see a new topic: <code>connect.customers</code>.</p>
+<h3 id="create-sink-connector"><a class="header" href="#create-sink-connector">Create Sink Connector</a></h3>
+<p>Payload:</p>
+<pre><code class="language-json">{
+  "name": "postgres-sink",
+  "config": {
+    "tasks.max": "1",
+    "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+    "connection.url": "jdbc:postgresql://postgres:5432/sandbox",
+    "connection.user": "postgres",
+    "connection.password": "notasecret",
+    "delete.enabled": false,
+    "pk.mode": "record_key",
+    "pk.key": "id",
+    "insert.mode": "upsert",
+    "auto.create": true,
+    "topics": "connect.customers",
+    "transforms": "dropPrefix",
+    "transforms.dropPrefix.type": "org.apache.kafka.connect.transforms.RegexRouter",
+    "transforms.dropPrefix.regex": "connect\\.(.*)",
+    "transforms.dropPrefix.replacement": "$1"
+  }
+}
+</code></pre>
+<p>Create sink connector:</p>
+<pre><code class="language-bash">http :8083/connectors &lt; kafka-connect/requests/create-connector-postgres-sink.json
+</code></pre>
+<p>This sink connector is going to create a table <code>customers</code> on postgres and insert all records.</p>
+<p>Now you can open <a href="http://localhost:9090">Adminer</a> or run:</p>
+<pre><code class="language-bash">PGPASSWORD=notasecret psql --host=127.0.0.1 --port=5432 \
+      --user=postgres --dbname=sandbox\
+      -c "select * from customers"
+</code></pre>
+<p>List connector:</p>
+<pre><code class="language-bash">http :8083/connectors
+</code></pre>
+<h3 id="deleting-connectors"><a class="header" href="#deleting-connectors">Deleting Connectors</a></h3>
 <pre><code class="language-bash">http DELETE :8083/connectors/postgres-sink
-http DELETE :8083/connectors/mongo-sink
 http DELETE :8083/connectors/mysql-source
 </code></pre>
-<h2 id="requests"><a class="header" href="#requests">Requests</a></h2>
-<h4 id="requestscreate-connector-mysql-sourcejson"><a class="header" href="#requestscreate-connector-mysql-sourcejson">requests/create-connector-mysql-source.json</a></h4>
-<pre><code class="language-json">{
-  &quot;name&quot;: &quot;mysql-source&quot;,
-  &quot;config&quot;: {
-    &quot;tasks.max&quot;: &quot;1&quot;,
-    &quot;table.whitelist&quot;: &quot;customers&quot;,
-    &quot;connector.class&quot;: &quot;io.confluent.connect.jdbc.JdbcSourceConnector&quot;,
-    &quot;connection.url&quot;: &quot;jdbc:mysql://mysql:3306/sandbox&quot;,
-    &quot;connection.user&quot;: &quot;root&quot;,
-    &quot;connection.password&quot;: &quot;notasecret&quot;,
-    &quot;mode&quot;: &quot;timestamp&quot;,
-    &quot;timestamp.column.name&quot;: &quot;created&quot;,
-    &quot;topic.prefix&quot;: &quot;kafka-connect.&quot;,
-    &quot;transforms&quot;: &quot;createKey&quot;,
-    &quot;transforms.createKey.type&quot;: &quot;org.apache.kafka.connect.transforms.ValueToKey&quot;,
-    &quot;transforms.createKey.fields&quot;: &quot;id&quot;
-  }
-}
-</code></pre>
-<h4 id="requestscreate-connector-mongo-sinkjson"><a class="header" href="#requestscreate-connector-mongo-sinkjson">requests/create-connector-mongo-sink.json</a></h4>
-<pre><code class="language-json">{
-  &quot;name&quot;: &quot;mongo-sink&quot;,
-  &quot;config&quot;: {
-    &quot;tasks.max&quot;: &quot;1&quot;,
-    &quot;topics&quot;: &quot;kafka-connect.customers&quot;,
-    &quot;collection&quot;: &quot;customers&quot;,
-    &quot;connector.class&quot;: &quot;com.mongodb.kafka.connect.MongoSinkConnector&quot;,
-    &quot;connection.uri&quot;: &quot;mongodb://root:notasecret@mongo:27017&quot;,
-    &quot;database&quot;: &quot;sandbox&quot;
-  }
-}
-</code></pre>
-<h4 id="requestscreate-connector-postgres-sinkjson"><a class="header" href="#requestscreate-connector-postgres-sinkjson">requests/create-connector-postgres-sink.json</a></h4>
-<pre><code class="language-json">{
-  &quot;name&quot;: &quot;postgres-sink&quot;,
-  &quot;config&quot;: {
-    &quot;tasks.max&quot;: &quot;1&quot;,
-    &quot;connector.class&quot;: &quot;io.confluent.connect.jdbc.JdbcSinkConnector&quot;,
-    &quot;connection.url&quot;: &quot;jdbc:postgresql://postgres:5432/sandbox&quot;,
-    &quot;connection.user&quot;: &quot;postgres&quot;,
-    &quot;connection.password&quot;: &quot;notasecret&quot;,
-    &quot;delete.enabled&quot;: false,
-    &quot;pk.mode&quot;: &quot;record_key&quot;,
-    &quot;pk.key&quot;: &quot;id&quot;,
-    &quot;insert.mode&quot;: &quot;upsert&quot;,
-    &quot;auto.create&quot;: true,
-    &quot;topics&quot;: &quot;kafka-connect.customers&quot;,
-    &quot;transforms&quot;: &quot;dropPrefix&quot;,
-    &quot;transforms.dropPrefix.type&quot;: &quot;org.apache.kafka.connect.transforms.RegexRouter&quot;,
-    &quot;transforms.dropPrefix.regex&quot;: &quot;kafka-connect\\.(.*)&quot;,
-    &quot;transforms.dropPrefix.replacement&quot;: &quot;$1&quot;
-  }
-}
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="kafka-connect-mqtt-example"><a class="header" href="#kafka-connect-mqtt-example">Kafka Connect MQTT Example</a></h1>
-<p>Subscribe to topics (for debugging purposes):</p>
-<pre><code class="language-bash">mqtt-cli sub -h mosquitto -t 'house/+/brightness'
-</code></pre>
-<p>Create a connector using the API:</p>
-<pre><code class="language-bash">cd kafka-connect
-http :8083/connectors &lt; requests/create-connector-mqtt-source.json
-cd ..
-</code></pre>
-<p>Publish messages:</p>
-<pre><code class="language-bash">mqtt-cli pub -h mosquitto -t 'house/room/brightness' -m '800LM'
-mqtt-cli pub -h mosquitto -t 'house/kitchen/brightness' -m '1000LM'
-</code></pre>
-<p>Consuming the data:</p>
-<pre><code class="language-bash">kafka-cli kafka-console-consumer --from-beginning --group kafka-connect.brightness_consumer \
-                                 --topic kafka-connect.brightness  \
-                                 --bootstrap-server kafka1:9092 \
-                                 --property print.key=true
-</code></pre>
-<p>For deleting the connector:</p>
-<pre><code class="language-bash">http DELETE :8083/connectors/mqtt-source
-</code></pre>
-<h2 id="requests-1"><a class="header" href="#requests-1">Requests</a></h2>
-<h4 id="requestscreate-connector-mqtt-sourcejson"><a class="header" href="#requestscreate-connector-mqtt-sourcejson">requests/create-connector-mqtt-source.json</a></h4>
-<pre><code class="language-json">{
-  &quot;name&quot;: &quot;mqtt-source&quot;,
-  &quot;config&quot;: {
-      &quot;connector.class&quot;: &quot;io.confluent.connect.mqtt.MqttSourceConnector&quot;,
-      &quot;tasks.max&quot;: &quot;1&quot;,
-      &quot;mqtt.server.uri&quot;: &quot;tcp://mosquitto:1883&quot;,
-      &quot;mqtt.topics&quot;:&quot;house/+/brightness&quot;,
-      &quot;kafka.topic&quot;:&quot;kafka-connect.brightness&quot;,
-      &quot;mqtt.qos&quot;: &quot;2&quot;,
-      &quot;confluent.topic.bootstrap.servers&quot;: &quot;kafka1:9092&quot;,
-      &quot;confluent.topic.replication.factor&quot;: &quot;1&quot;
-  }
-}
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="kafka-ksqldb"><a class="header" href="#kafka-ksqldb">Kafka ksqlDB</a></h1>
-<p>ksqlDB is a database that's purpose-built for stream processing applications.</p>
-<blockquote>
-<p>⚠️ ksqlDB it is not a SQL database, it provides an extra layer for implementing kstream, ktable and connectors through a language (ksql) based on sql.</p>
-</blockquote>
-<ul>
-<li><a href="https://ksqldb.io/">ksqldb</a></li>
-<li><a href="https://docs.ksqldb.io/en/latest/reference/server-configuration/">ksqldb settings</a></li>
-<li><a href="https://docs.ksqldb.io/en/latest/how-to-guides/test-an-app/">ksqldb test runner</a></li>
-<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-ksqldb">kafka-ksqldb</a></li>
-<li>ksqldb port: <code>8088</code></li>
-</ul>
-<p>Create an alias for <code>ksqldb-cli</code>:</p>
-<blockquote>
-<p>⚠️ Run alias commands inside the root folder.</p>
-</blockquote>
-<pre><code class="language-bash">alias ksqldb-cli=&quot;docker run --rm -it --network kafka-sandbox_network --workdir /ksqldb -v $PWD/kafka-ksqldb/tests:/ksqldb/tests -v $PWD/kafka-ksqldb/statements:/ksqldb/statements -v $PWD/kafka-ksqldb-extensions/extensions:/ksqldb/extensions kafka-cli:latest &quot;
-</code></pre>
-<p>To permanently add the alias to your shell (<code>~/.bashrc</code> or <code>~/.zshrc</code> file):</p>
-<pre><code class="language-bash">echo &quot;alias ksqldb-cli='docker run --rm -it --network kafka-sandbox_network --workdir /ksqldb -v $PWD/kafka-ksqldb/tests:/ksqldb/tests -v $PWD/kafka-ksqldb/statements:/ksqldb/statements -v $PWD/kafka-ksqldb-extensions/extensions:/ksqldb/extensions kafka-cli:latest '&quot; &gt;&gt; ~/.zshrc
-</code></pre>
-<p>Run ksqlDB:</p>
-<pre><code class="language-bash">cd kafka-ksqldb
-docker compose up -d
-cd ..
-</code></pre>
-<p>After a few seconds:</p>
-<pre><code class="language-bash">http :8088/info
-</code></pre>
-<p>One line shell interaction:</p>
-<pre><code class="language-bash">ksqldb-cli ksql -e &quot;SHOW STREAMS;&quot; http://ksqldb:8088
-</code></pre>
-<p>Interactive ksqlDB shell:</p>
-<pre><code class="language-bash">ksqldb-cli ksql http://ksqldb:8088
-SHOW STREAMS;
-</code></pre>
-<h2 id="docker-compose-7"><a class="header" href="#docker-compose-7">Docker Compose</a></h2>
-<pre><code class="language-yaml">services:
-  ksqldb:
-    image: confluentinc/cp-ksqldb-server:${VERSION}
-    environment:
-      KSQL_KSQL_SERVICE_ID: kafka-ksqldb.
-      KSQL_LISTENERS: http://0.0.0.0:8088
-      KSQL_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092,kafka3:9092
-      KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE: &quot;true&quot;
-      KSQL_KSQL_LOGGING_PROCESSING_TOPIC_AUTO_CREATE: &quot;true&quot;
-      KSQL_KSQL_SCHEMA_REGISTRY_URL: http://schema-registry:8081
-      KSQL_KSQL_CONNECT_URL: http://kafka-connect:8083
-      KSQL_KSQL_EXTENSION_DIR: /ksqldb/extensions
-    ports:
-      - &quot;8088:8088&quot;
-    restart: on-failure
-    volumes:
-      - ../kafka-ksqldb-extensions/extensions:/ksqldb/extensions
-    healthcheck:
-      test: curl http://localhost:8088
-      interval: 30s
-      timeout: 30s
-      retries: 5
-      start_period: 30s
-
-networks:
-  default:
-    external: true
-    name: kafka-sandbox_network
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="ksqldb-streams-example"><a class="header" href="#ksqldb-streams-example">ksqlDB Streams Example</a></h1>
-<ul>
-<li>statements location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-ksqldb/statements">kafka-ksqldb/statements</a></li>
-<li>test location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-ksqldb/tests">kafka-ksqldb/tests</a></li>
-</ul>
-<p>Test runner:</p>
-<pre><code class="language-bash">ksqldb-cli ksql-test-runner -e extensions/ \
-                            -s statements/create-orders.ksql \
-                            -i tests/orders-input.json \
-                            -o tests/orders-output.json | grep '&gt;&gt;&gt;'
-</code></pre>
-<p>Execute statement files, create orders stream:</p>
-<pre><code class="language-bash">ksqldb-cli ksql -f statements/create-orders.ksql http://ksqldb:8088
-</code></pre>
-<p>Insert orders:</p>
-<pre><code>ksqldb-cli ksql -f statements/insert-orders.ksql http://ksqldb:8088
-</code></pre>
-<p>List of streams:</p>
-<pre><code class="language-bash">http :8088/ksql ksql=&quot;list streams;&quot; | jq '.[].streams[] | [{name: .name, topic: .topic}]'
-</code></pre>
-<p>Show content:</p>
-<pre><code class="language-bash">ksqldb-cli ksql -e &quot;PRINT 'kafka-ksqldb.order_sizes' FROM BEGINNING;&quot; http://ksqldb:8088
-</code></pre>
-<p>Deleting all orders:</p>
-<pre><code class="language-bash">ksqldb-cli ksql -e &quot;DROP STREAM ORDERSIZES DELETE TOPIC; DROP STREAM ORDERS DELETE TOPIC;&quot; http://ksqldb:8088
-</code></pre>
-<h2 id="statements"><a class="header" href="#statements">Statements</a></h2>
-<h4 id="statementscreate-ordersksql"><a class="header" href="#statementscreate-ordersksql">statements/create-orders.ksql</a></h4>
-<pre><code class="language-sql">CREATE STREAM orders (orderId INT KEY, orderUnits INT, totalAmount DOUBLE)
-  WITH (kafka_topic='kafka-ksqldb.orders', key_format='json', value_format='json', partitions=10, replicas=3);
-
-CREATE STREAM orderSizes 
-  WITH (kafka_topic='kafka-ksqldb.order_sizes', key_format='json', value_format='json', partitions=10, replicas=3)
-  AS SELECT
-    orderId,
-    orderUnits,
-    totalAmount,
-    CASE WHEN orderUnits &lt; 2 THEN 'small' WHEN orderUnits &lt; 4 THEN 'medium' ELSE 'large' END AS orderSize,
-    taxes(totalAmount) AS tax
-  FROM orders EMIT CHANGES;
-</code></pre>
-<h4 id="statementsinsert-ordersksql"><a class="header" href="#statementsinsert-ordersksql">statements/insert-orders.ksql</a></h4>
-<pre><code class="language-sql">INSERT INTO orders (orderId, orderUnits, totalAmount) VALUES (1000000, 2, 100.0);
-INSERT INTO orders (orderId, orderUnits, totalAmount) VALUES (1000001, 4, 200.0);
-INSERT INTO orders (orderId, orderUnits, totalAmount) VALUES (1000002, 6, 300.0);
-INSERT INTO orders (orderId, orderUnits, totalAmount) VALUES (1000003, 3, 150.0);
-INSERT INTO orders (orderId, orderUnits, totalAmount) VALUES (1000004, 1, 50.0);
-</code></pre>
-<h2 id="tests"><a class="header" href="#tests">Tests</a></h2>
-<h4 id="testsorders-inputjson"><a class="header" href="#testsorders-inputjson">tests/orders-input.json</a></h4>
-<pre><code class="language-json">{
-  &quot;inputs&quot;: [
-    {&quot;topic&quot;: &quot;kafka-ksqldb.orders&quot;, &quot;timestamp&quot;: 0, &quot;key&quot;: 1000000, &quot;value&quot;: {&quot;orderUnits&quot;: 2, &quot;totalAmount&quot;: 100.0}},
-    {&quot;topic&quot;: &quot;kafka-ksqldb.orders&quot;, &quot;timestamp&quot;: 0, &quot;key&quot;: 1000001, &quot;value&quot;: {&quot;orderUnits&quot;: 4, &quot;totalAmount&quot;: 200.0}},
-    {&quot;topic&quot;: &quot;kafka-ksqldb.orders&quot;, &quot;timestamp&quot;: 0, &quot;key&quot;: 1000002, &quot;value&quot;: {&quot;orderUnits&quot;: 6, &quot;totalAmount&quot;: 300.0}},
-    {&quot;topic&quot;: &quot;kafka-ksqldb.orders&quot;, &quot;timestamp&quot;: 0, &quot;key&quot;: 1000003, &quot;value&quot;: {&quot;orderUnits&quot;: 3, &quot;totalAmount&quot;: 150.0}},
-    {&quot;topic&quot;: &quot;kafka-ksqldb.orders&quot;, &quot;timestamp&quot;: 0, &quot;key&quot;: 1000004, &quot;value&quot;: {&quot;orderUnits&quot;: 1, &quot;totalAmount&quot;: 50.0}}
-  ]
-}
-</code></pre>
-<h4 id="testsorders-outputjson"><a class="header" href="#testsorders-outputjson">tests/orders-output.json</a></h4>
-<pre><code class="language-json">{
-  &quot;outputs&quot;: [
-    {&quot;topic&quot;: &quot;kafka-ksqldb.order_sizes&quot;, &quot;timestamp&quot;: 0, &quot;key&quot;: 1000000, &quot;value&quot;: {&quot;ORDERUNITS&quot;: 2, &quot;TOTALAMOUNT&quot;: 100.0, &quot;ORDERSIZE&quot;: &quot;medium&quot;, &quot;TAX&quot;: 12.0}},
-    {&quot;topic&quot;: &quot;kafka-ksqldb.order_sizes&quot;, &quot;timestamp&quot;: 0, &quot;key&quot;: 1000001, &quot;value&quot;: {&quot;ORDERUNITS&quot;: 4, &quot;TOTALAMOUNT&quot;: 200.0, &quot;ORDERSIZE&quot;: &quot;large&quot; , &quot;TAX&quot;: 24.0}},
-    {&quot;topic&quot;: &quot;kafka-ksqldb.order_sizes&quot;, &quot;timestamp&quot;: 0, &quot;key&quot;: 1000002, &quot;value&quot;: {&quot;ORDERUNITS&quot;: 6, &quot;TOTALAMOUNT&quot;: 300.0, &quot;ORDERSIZE&quot;: &quot;large&quot; , &quot;TAX&quot;: 36.0}},
-    {&quot;topic&quot;: &quot;kafka-ksqldb.order_sizes&quot;, &quot;timestamp&quot;: 0, &quot;key&quot;: 1000003, &quot;value&quot;: {&quot;ORDERUNITS&quot;: 3, &quot;TOTALAMOUNT&quot;: 150.0, &quot;ORDERSIZE&quot;: &quot;medium&quot;, &quot;TAX&quot;: 18.0}},
-    {&quot;topic&quot;: &quot;kafka-ksqldb.order_sizes&quot;, &quot;timestamp&quot;: 0, &quot;key&quot;: 1000004, &quot;value&quot;: {&quot;ORDERUNITS&quot;: 1, &quot;TOTALAMOUNT&quot;: 50.0, &quot;ORDERSIZE&quot;: &quot;small&quot; , &quot;TAX&quot;: 6.0}}
-  ]
-}
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="ksqldb-extensions"><a class="header" href="#ksqldb-extensions">ksqlDB Extensions</a></h1>
-<p>ksqlDB extensions are pieces of logic for transforming or aggregating events that ksqlDB can't currently express.</p>
-<ul>
-<li><a href="https://docs.ksqldb.io/en/latest/how-to-guides/create-a-user-defined-function">ksqldb extensions (udf, udtf, udaf)</a></li>
-<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-ksqldb-extensions">kafka-ksqldb-extensions</a></li>
-<li>extensions location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-ksqldb-extensions/extensions">kafka-ksqldb-extensions/extensions</a></li>
-</ul>
-<p>Check the <a href="using-kafka/kafka-ksqldb/./kafka-ksqldb.html">Kafka ksqlDB</a> section.</p>
-<p>For creating the <code>jar</code> extension, you can use the following command (development purposes):</p>
-<pre><code class="language-bash">./gradlew kafka-ksqldb-extensions:shadowJar
-</code></pre>
-<blockquote>
-<p>⚠️ Java 11 is needed here.</p>
-</blockquote>
-<h2 id="custom-udf"><a class="header" href="#custom-udf">Custom UDF</a></h2>
-<pre><code class="language-java">package kafka.sandbox.ksqldb;
-
-import io.confluent.ksql.function.udf.Udf;
-import io.confluent.ksql.function.udf.UdfDescription;
-import io.confluent.ksql.function.udf.UdfParameter;
-
-@UdfDescription(
-    name = &quot;taxes&quot;,
-    author = &quot;kafka sandbox&quot;,
-    version = &quot;1.0.0&quot;,
-    description = &quot;A custom taxes formula for orders.&quot;
-)
-public class TaxesUdf {
-
-    public static final double TAXES = .12;
-
-    @Udf(description = &quot;Calculate taxes.&quot;)
-    public double taxes(@UdfParameter double amount) {
-        return amount * TAXES;
-    }
-}
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="kafka-clients"><a class="header" href="#kafka-clients">Kafka Clients</a></h1>
-<p>Java examples for producing and consuming messages from Kafka using the
-<a href="https://docs.confluent.io/clients-kafka-java/current/overview.html">java kafka client</a> lib.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="avro-producer-and-consumer"><a class="header" href="#avro-producer-and-consumer">Avro Producer and Consumer</a></h1>
-<p>These examples produce and consume messages from the <code>supplier</code> topic. The producer example produces random suppliers.</p>
-<ul>
-<li><a href="https://docs.confluent.io/platform/current/schema-registry/serdes-develop/serdes-avro.html">kafka producer and consumer example</a></li>
-<li><a href="https://docs.confluent.io/platform/current/installation/configuration/consumer-configs.html">kafka consumer settings</a></li>
-<li><a href="https://docs.confluent.io/platform/current/installation/configuration/producer-configs.html">kafka producer settings</a></li>
-<li>avro project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-avro">kafka-avro</a></li>
-<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-clients">kafka-clients</a></li>
-</ul>
-<blockquote>
-<p>⚠️ Run these commands inside the root folder.</p>
-</blockquote>
-<p>Create an alias for <code>kafka-clients</code>:</p>
-<pre><code class="language-bash">alias kafka-clients=&quot;$PWD/kafka-clients/build/install/kafka-clients/bin/kafka-clients &quot;
-</code></pre>
-<p>To permanently add the alias to your shell (<code>~/.bashrc</code> or <code>~/.zshrc</code> file):</p>
-<pre><code class="language-bash">echo &quot;alias kafka-clients='$PWD/kafka-clients/build/install/kafka-clients/bin/kafka-clients '&quot; &gt;&gt; ~/.zshrc
-</code></pre>
-<p>Create a topic:</p>
-<pre><code class="language-bash">kafka-cli kafka-topics --create --bootstrap-server kafka1:9092 \
-                       --replication-factor 3 \
-                       --partitions 3 \
-                       --topic kafka-clients.suppliers
-</code></pre>
-<p>Install the app:</p>
-<pre><code class="language-bash">./gradlew kafka-clients:install
-kafka-clients
-</code></pre>
-<p>Run clients:</p>
-<pre><code class="language-bash">kafka-clients producer 100
-kafka-clients consumer
-</code></pre>
-<p>For creating a AVRO schema, you can use the following command (development purposes):</p>
-<pre><code class="language-bash">./gradlew kafka-avro:build
-</code></pre>
-<h2 id="avro-schema"><a class="header" href="#avro-schema">Avro Schema</a></h2>
-<h4 id="suppliers-v1avsc"><a class="header" href="#suppliers-v1avsc">suppliers-v1.avsc</a></h4>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;record&quot;,
-  &quot;name&quot;: &quot;Supplier&quot;,
-  &quot;namespace&quot;: &quot;kafka.sandbox.avro&quot;,
-  &quot;version&quot;: &quot;1&quot;,
-  &quot;fields&quot;: [
-    {
-      &quot;name&quot;: &quot;id&quot;,
-      &quot;type&quot;: &quot;string&quot;
-    },
-    {
-      &quot;name&quot;: &quot;name&quot;,
-      &quot;type&quot;: &quot;string&quot;
-    },
-    {
-      &quot;name&quot;: &quot;address&quot;,
-      &quot;type&quot;: &quot;string&quot;
-    },
-    {
-      &quot;name&quot;: &quot;country&quot;,
-      &quot;type&quot;: &quot;string&quot;
-    }
-  ]
-}
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="spring-boot"><a class="header" href="#spring-boot">Spring Boot</a></h1>
-<p>Spring Boot + Spring Kafka producer and consumer examples.</p>
-<ul>
-<li><a href="https://www.confluent.io/blog/apache-kafka-spring-boot-application/">confluent spring kafka examples</a></li>
-<li><a href="https://docs.spring.io/spring-kafka/reference/html/">spring kafka settings</a></li>
-<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-spring-boot">kafka-spring-boot</a></li>
-<li>spring port: <code>8585</code></li>
-</ul>
-<blockquote>
-<p>⚠️ Run these commands inside the root folder.</p>
-</blockquote>
-<p>Run spring boot:</p>
-<pre><code class="language-bash">./gradlew kafka-spring-boot:bootRun
-</code></pre>
-<p>In another terminal:</p>
-<pre><code class="language-bash">http :8585/actuator/health
-http :8585/produce messages==10
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="streams"><a class="header" href="#streams">Streams</a></h1>
-<p>Kafka Streams is a client library providing organizations with a particularly efficient framework for processing
-streaming data. It offers a streamlined method for creating applications and microservices that must process data in
-real-time to be effective.</p>
-<p>Check the <a href="using-kafka/kafka-streams/../kafka-clients/avro-producer-and-consumer.html">Kafka Clients - Avro Producer and Consumer</a> section.</p>
-<ul>
-<li><a href="https://kafka.apache.org/documentation/streams/">kafka streams</a></li>
-<li><a href="https://github.com/confluentinc/kafka-streams-examples">kafka streams examples</a></li>
-<li>more kafka streams examples <a href="https://github.com/sauljabin/kafka-streams-sandbox">here</a>.</li>
-<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-streams">kafka-streams</a></li>
-</ul>
-<blockquote>
-<p>⚠️ Run these commands inside the root folder.</p>
-</blockquote>
-<p>Create an alias for <code>kafka-streams</code>:</p>
-<pre><code class="language-bash">alias kafka-streams=&quot;$PWD/kafka-streams/build/install/kafka-streams/bin/kafka-streams &quot;
-</code></pre>
-<p>To permanently add the alias to your shell (<code>~/.bashrc</code> or <code>~/.zshrc</code> file):</p>
-<pre><code class="language-bash">echo &quot;alias kafka-streams='$PWD/kafka-streams/build/install/kafka-streams/bin/kafka-streams '&quot; &gt;&gt; ~/.zshrc
-</code></pre>
-<p>Install the app:</p>
-<pre><code class="language-bash">./gradlew kafka-streams:install
-kafka-streams
-</code></pre>
-<p>Run streams:</p>
-<pre><code class="language-bash">kafka-streams streams
-</code></pre>
-<p>Print results:</p>
-<pre><code class="language-bash">kafka-cli kafka-console-consumer --from-beginning --group kafka-streams.consumer \
-                                 --topic kafka-streams.supplier_counts_by_country  \
-                                 --bootstrap-server kafka1:9092 \
-                                 --property print.key=true \
-                                 --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="interactive-queries"><a class="header" href="#interactive-queries">Interactive Queries</a></h1>
-<p>Interactive Queries allow you to leverage the state of your application from outside your application. The Kafka Streams API enables your applications to be queryable.</p>
-<ul>
-<li><a href="https://docs.confluent.io/platform/current/streams/developer-guide/interactive-queries.html">interactive queries</a></li>
-</ul>
-<p>This example is using <a href="https://grpc.io/">gRPC</a> to request queries to the kafka stream server.</p>
-<p>Query the total supplier count by a given country:</p>
-<pre><code class="language-bash">kafka-streams count &lt;country&gt;
-</code></pre>
-<p>Example:</p>
-<pre><code class="language-bash">kafka-streams count Ecuador
-</code></pre>
-<p>Output:</p>
-<pre><code>Country: Ecuador, Total Suppliers: 4
-</code></pre>
-<p>Take into account that you have to run the stream first. Check the <a href="using-kafka/kafka-streams/./streams.html">Kafka Streams</a> section.</p>
-<p>Check the stream topology:</p>
-<pre><code class="language-java">package kafka.sandbox.cli;
-
-import java.util.Properties;
-import java.util.concurrent.Callable;
-import java.util.concurrent.CountDownLatch;
-import kafka.sandbox.avro.Supplier;
-import kafka.sandbox.grpc.CounterService;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.common.serialization.Serde;
-import org.apache.kafka.common.serialization.Serdes;
-import org.apache.kafka.common.utils.Bytes;
-import org.apache.kafka.streams.KafkaStreams;
-import org.apache.kafka.streams.KeyValue;
-import org.apache.kafka.streams.StreamsBuilder;
-import org.apache.kafka.streams.kstream.KStream;
-import org.apache.kafka.streams.kstream.KTable;
-import org.apache.kafka.streams.kstream.Materialized;
-import org.apache.kafka.streams.kstream.Produced;
-import org.apache.kafka.streams.state.KeyValueStore;
-
-import io.grpc.Grpc;
-import io.grpc.InsecureServerCredentials;
-import io.grpc.Server;
-import picocli.CommandLine;
-import picocli.CommandLine.Command;
-
-@Slf4j
-@Command(name = &quot;streams&quot;, description = &quot;Creates and start kafka streams&quot;)
-public class Streams implements Callable&lt;Integer&gt; {
-
-    public static final String TOPIC_FROM = &quot;kafka-clients.suppliers&quot;;
-    public static final String TOPIC_TO = &quot;kafka-streams.supplier_counts_by_country&quot;;
-    private final Properties props;
-
-    public Streams(Properties props) {
-        this.props = props;
-    }
-
-    @Override
-    public Integer call() throws Exception {
-        Serde&lt;String&gt; stringSerde = Serdes.String();
-        Serde&lt;Long&gt; longSerde = Serdes.Long();
-
-        StreamsBuilder builder = new StreamsBuilder();
-
-        // read from suppliers topic
-        KStream&lt;String, Supplier&gt; suppliers = builder.stream(TOPIC_FROM);
-
-        // aggregate the new supplier counts by country
-        KTable&lt;String, Long&gt; aggregated = suppliers
-                // map the country as key
-                .map((key, value) -&gt; new KeyValue&lt;&gt;(value.getCountry(), value))
-                .groupByKey()
-                // aggregate and materialize the store
-                .count(Materialized.&lt;String, Long, KeyValueStore&lt;Bytes, byte[]&gt;&gt;as(&quot;SupplierCountByCountry&quot;));
-
-        // print results
-        aggregated
-                .toStream()
-                .foreach((key, value) -&gt; log.info(&quot;Country = {}, Total supplier counts = {}&quot;, key, value));
-
-        // write the results to a topic
-        aggregated.toStream().to(TOPIC_TO, Produced.with(stringSerde, longSerde));
-
-        KafkaStreams streams = new KafkaStreams(builder.build(), props);
-        streams.cleanUp();
-
-        // GRPC Server
-        Server server = Grpc.newServerBuilderForPort(5050, InsecureServerCredentials.create())
-                .addService(new CounterService(streams))
-                .build();
-
-        // attach shutdown handler to catch control-c and creating a latch
-        CountDownLatch latch = new CountDownLatch(1);
-        Runtime
-                .getRuntime()
-                .addShutdownHook(
-                        new Thread(&quot;consumer-shutdown-hook&quot;) {
-                            @Override
-                            public void run() {
-                                server.shutdownNow();
-                                streams.close();
-                                latch.countDown();
-                            }
-                        });
-
-        streams.start();
-        server.start();
-        latch.await();
-
-        return CommandLine.ExitCode.OK;
-    }
-}
-</code></pre>
-<p>Check the gRPC server:</p>
-<pre><code class="language-java">package kafka.sandbox.grpc;
-
-import org.apache.kafka.streams.KafkaStreams;
-import org.apache.kafka.streams.StoreQueryParameters;
-import org.apache.kafka.streams.state.QueryableStoreTypes;
-import org.apache.kafka.streams.state.ReadOnlyKeyValueStore;
-
-import io.grpc.stub.StreamObserver;
-import kafka.sandbox.proto.CounterServiceGrpc.CounterServiceImplBase;
-import kafka.sandbox.proto.CountReply;
-import kafka.sandbox.proto.CountRequest;
-
-public class CounterService extends CounterServiceImplBase {
-
-    private KafkaStreams streams;
-
-    public CounterService(KafkaStreams streams) {
-        this.streams = streams;
-    }
-
-    @Override
-    public void getCountByCountry(CountRequest request, StreamObserver&lt;CountReply&gt; responseObserver) {
-        ReadOnlyKeyValueStore&lt;String, Long&gt; keyValueStore = streams.store(
-                StoreQueryParameters.fromNameAndType(&quot;SupplierCountByCountry&quot;, QueryableStoreTypes.keyValueStore()));
-
-        String country = request.getName();
-        Long total = keyValueStore.get(country);
-        String value = String.format(&quot;Country: %s, Total Suppliers: %s&quot;, country, total != null ? total : 0);
-        CountReply reply = CountReply.newBuilder().setMessage(value).build();
-        responseObserver.onNext(reply);
-        responseObserver.onCompleted();
-    }
-}
-</code></pre>
-<p>Check the gRPC client:</p>
-<pre><code class="language-java">package kafka.sandbox.cli;
-
-import java.util.concurrent.Callable;
-
-import io.grpc.Grpc;
-import io.grpc.InsecureChannelCredentials;
-import io.grpc.ManagedChannel;
-import kafka.sandbox.proto.CountReply;
-import kafka.sandbox.proto.CountRequest;
-import kafka.sandbox.proto.CounterServiceGrpc;
-import kafka.sandbox.proto.CounterServiceGrpc.CounterServiceBlockingStub;
-import lombok.extern.slf4j.Slf4j;
-import picocli.CommandLine;
-import picocli.CommandLine.Command;
-import picocli.CommandLine.Parameters;
-
-@Slf4j
-@Command(name = &quot;count&quot;, description = &quot;Print the total supplier count by a given country&quot;)
-public class Count implements Callable&lt;Integer&gt; {
-
-    @Parameters(index = &quot;0&quot;, description = &quot;Country (default: ${DEFAULT-VALUE})&quot;, defaultValue = &quot;Ecuador&quot;)
-    private String country;
-
-    @Override
-    public Integer call() throws Exception {
-        ManagedChannel channel = Grpc.newChannelBuilder(&quot;localhost:5050&quot;, InsecureChannelCredentials.create())
-                .build();
-
-        CounterServiceBlockingStub blockingStub = CounterServiceGrpc.newBlockingStub(channel);
-        CountReply countByCountry = blockingStub.getCountByCountry(CountRequest.newBuilder().setName(country).build());
-        log.info(countByCountry.getMessage());
-
-        return CommandLine.ExitCode.OK;
-    }
-
-}
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="kafka-performance-tools"><a class="header" href="#kafka-performance-tools">Kafka Performance Tools</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="performance-tools"><a class="header" href="#performance-tools">Performance Tools</a></h1>
 <p>Performance tuning involves two important metrics:</p>
 <ul>
 <li>Latency measures how long it takes to process one event.</li>
 <li>Throughput measures how many events arrive within a specific amount of time.</li>
 </ul>
 <p>Run help:</p>
-<pre><code class="language-bash">kafka-cli kafka-producer-perf-test --help
-kafka-cli kafka-consumer-perf-test --help
+<pre><code class="language-bash">kafka-producer-perf-test --help
+kafka-consumer-perf-test --help
 </code></pre>
 <p>Create a topic:</p>
-<pre><code class="language-bash">kafka-cli kafka-topics --create --bootstrap-server kafka1:9092 \
-                       --replication-factor 3 \
-                       --partitions 3 \
-                       --topic kafka-cluster.performance-test
+<pre><code class="language-bash">kafka-topics --create \
+             --bootstrap-server localhost:19092 \
+             --replication-factor 3 \
+             --partitions 3 \
+             --topic sandbox.performance
 </code></pre>
-<h2 id="performance-tests"><a class="header" href="#performance-tests">Performance Tests</a></h2>
-<p>Test producer:</p>
-<pre><code class="language-bash">kafka-cli kafka-producer-perf-test --topic kafka-cluster.performance-test \
-                                   --throughput -1 \
-                                   --num-records 3000000 \
-                                   --record-size 1024 \
-                                   --producer-props acks=all bootstrap.servers=kafka1:9092,kafka2:9092,kafka3:9092
+<h3 id="performance-tests"><a class="header" href="#performance-tests">Performance Tests</a></h3>
+<p>Test
+producer (<a href="https://docs.confluent.io/kafka/operations-tools/kafka-tools.html#kafka-producer-perf-test-sh">confluent doc</a>):</p>
+<pre><code class="language-bash">kafka-producer-perf-test --topic sandbox.performance \
+                         --throughput -1 \
+                         --num-records 3000000 \
+                         --record-size 1024 \
+                         --producer-props acks=all bootstrap.servers=localhost:19092
 </code></pre>
 <ul>
 <li>Throughput in MB/sec.</li>
 <li>Latency in milliseconds.</li>
 </ul>
-<p>Test consumer:</p>
-<pre><code class="language-bash">kafka-cli kafka-consumer-perf-test --topic kafka-cluster.performance-test \
-                                   --broker-list kafka1:9092,kafka2:9092,kafka3:9092 \
-                                   --messages 3000000
+<p>Test
+consumer (<a href="https://docs.confluent.io/kafka/operations-tools/kafka-tools.html#kafka-consumer-perf-test-sh">confluent doc</a>):</p>
+<pre><code class="language-bash">kafka-consumer-perf-test --topic sandbox.performance \
+                         --bootstrap-server localhost:19092 \
+                         --messages 3000000
 </code></pre>
 <ul>
 <li><code>start.time, end.time</code>: shows test start and end time.</li>
@@ -1342,163 +420,40 @@ kafka-cli kafka-consumer-perf-test --help
 <li><code>data.consumed.in.nMsg</code>: shows the count of the total messages consumed during this test.</li>
 <li><code>nMsg.sec</code>: shows how many messages were consumed in a second (Throughput on the count of messages).</li>
 </ul>
-<p>Test end to end latency:</p>
-<pre><code class="language-bash">kafka-cli kafka-run-class kafka.tools.EndToEndLatency kafka1:9092,kafka2:9092,kafka3:9092 kafka-cluster.performance-test 10000 1 1024
+<p>Test end to end
+latency (<a href="https://docs.confluent.io/kafka/operations-tools/kafka-tools.html#kafka-e2e-latency-sh">confluent doc</a>):</p>
+<pre><code class="language-bash">kafka-e2e-latency localhost:19092 sandbox.performance 10000 all 1024
 </code></pre>
+<p>Following are the required arguments:</p>
 <ul>
-<li>This class records the average end to end latency for a single message to travel through Kafka.</li>
-<li>Latency in milliseconds.</li>
+<li><code>broker_list</code>: The location of the bootstrap broker for both the producer and the consumer.</li>
+<li><code>topic</code>: The topic name used by both the producer and the consumer to send/receive messages.</li>
+<li><code>num_messages</code>: The number of messages to send</li>
+<li><code>producer_acks</code>: The producer setting for acks.</li>
+<li><code>message_size_bytes</code>: size of each message in bytes.</li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="kafka-rest-proxy"><a class="header" href="#kafka-rest-proxy">Kafka REST Proxy</a></h1>
-<p>The Kafka REST Proxy provides a RESTful interface to a Kafka cluster.</p>
-<blockquote>
-<p>⚠️ Use this when you really need a rest interface since it is usually more complex than using conventional kafka clients.</p>
-</blockquote>
-<ul>
-<li><a href="https://docs.confluent.io/platform/current/kafka-rest/index.html">kafka rest</a></li>
-<li><a href="https://docs.confluent.io/platform/current/kafka-rest/production-deployment/rest-proxy/config.html">kafka rest settings</a></li>
-<li><a href="https://docs.confluent.io/platform/current/kafka-rest/api.html">kafka rest api reference</a></li>
-<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-rest">kafka-rest</a></li>
-<li>requests location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-rest/requests">kafka-rest/requests</a></li>
-<li>kafka rest port: <code>8082</code></li>
-</ul>
-<p>Run Kafka REST Proxy:</p>
-<pre><code class="language-bash">cd kafka-rest
-docker compose up -d
-cd ..
-</code></pre>
-<p>After a few seconds:</p>
-<pre><code class="language-bash">http :8082/brokers
-</code></pre>
-<p>Create topics:</p>
-<pre><code class="language-bash">cd kafka-rest
-http :8082/topics/kafka-rest.test Content-Type:application/vnd.kafka.json.v2+json records:='[{ &quot;key&quot;: &quot;test&quot;, &quot;value&quot;: &quot;test&quot; }]'
-http :8082/topics/kafka-rest.users Content-Type:application/vnd.kafka.avro.v2+json &lt; requests/produce-avro-message.json
-cd ..
-</code></pre>
-<h2 id="docker-compose-8"><a class="header" href="#docker-compose-8">Docker Compose</a></h2>
-<pre><code class="language-yaml">services:
-  kafka-rest:
-    image: confluentinc/cp-kafka-rest:${VERSION}
-    environment:
-      KAFKA_REST_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092,kafka3:9092
-      KAFKA_REST_SCHEMA_REGISTRY_URL: http://schema-registry:8081
-    ports:
-      - &quot;8082:8082&quot;
-    restart: on-failure
-    healthcheck:
-      test: curl http://localhost:8082
-      interval: 30s
-      timeout: 30s
-      retries: 5
-      start_period: 30s
-
-networks:
-  default:
-    external: true
-    name: kafka-sandbox_network
-</code></pre>
-<h2 id="requests-2"><a class="header" href="#requests-2">Requests</a></h2>
-<h4 id="requestsproduce-avro-messagejson"><a class="header" href="#requestsproduce-avro-messagejson">requests/produce-avro-message.json</a></h4>
-<pre><code class="language-json">{
-  &quot;value_schema&quot;: &quot;{\&quot;type\&quot;: \&quot;record\&quot;, \&quot;name\&quot;: \&quot;User\&quot;, \&quot;fields\&quot;: [{\&quot;name\&quot;: \&quot;name\&quot;, \&quot;type\&quot;: \&quot;string\&quot;}]}&quot;,
-  &quot;records&quot;: [
-    {
-      &quot;value&quot;: {
-        &quot;name&quot;: &quot;John Doe&quot;
-      }
-    }
-  ]
-}
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="kafka-mqtt-proxy"><a class="header" href="#kafka-mqtt-proxy">Kafka MQTT Proxy</a></h1>
-<p>MQTT Proxy enables MQTT clients to use the MQTT 3.1.1 protocol to publish data directly to Apache Kafka.</p>
-<blockquote>
-<p>⚠️ This does not convert kafka into a MQTT broker, this aims to provide a simple way to publish/persist IoT data to Kafka.</p>
-</blockquote>
-<ul>
-<li><a href="https://docs.confluent.io/platform/current/kafka-mqtt/intro.html">kafka mqtt</a></li>
-<li><a href="https://docs.confluent.io/platform/current/kafka-mqtt/configuration_options.html">kafka mqtt settings</a></li>
-<li>project location: <a href="https://github.com/sauljabin/kafka-sandbox/tree/main/kafka-mqtt">kafka-mqtt</a></li>
-<li>kafka mqtt tcp port: <code>1884</code></li>
-</ul>
-<p>Run Kafka MQTT Proxy:</p>
-<pre><code class="language-bash">cd kafka-mqtt
-docker compose up -d
-cd ..
-</code></pre>
-<p>Publish a message:</p>
-<pre><code class="language-bash">mqtt-cli pub -h kafka-mqtt -p 1884 -t 'house/room/temperature' -m '20C'
-</code></pre>
-<p>Consuming the data:</p>
-<pre><code class="language-bash">kafka-cli kafka-console-consumer --from-beginning --group kafka-mqtt.consumer \
-                                 --topic kafka-mqtt.temperature  \
-                                 --bootstrap-server kafka1:9092 \
-                                 --property print.key=true
-</code></pre>
-<h2 id="docker-compose-9"><a class="header" href="#docker-compose-9">Docker Compose</a></h2>
-<pre><code class="language-yaml">services:
-  kafka-mqtt:
-    image: confluentinc/cp-kafka-mqtt:${VERSION}
-    environment:
-      KAFKA_MQTT_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092,kafka3:9092
-      KAFKA_MQTT_TOPIC_REGEX_LIST: kafka-mqtt.temperature:.*temperature
-      KAFKA_MQTT_LISTENERS: 0.0.0.0:1884
-    ports:
-      - &quot;1884:1884&quot;
-    restart: on-failure
-
-networks:
-  default:
-    external: true
-    name: kafka-sandbox_network
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="ui-ports-table"><a class="header" href="#ui-ports-table">UI Ports Table</a></h1>
-<div class="table-wrapper"><table><thead><tr><th>Service</th><th>Host</th><th>Port</th></tr></thead><tbody>
-<tr><td>AKHQ</td><td>localhost</td><td><a href="http://localhost:8080/">8080</a></td></tr>
-<tr><td>Adminer</td><td>localhost</td><td><a href="http://localhost:9090/">9090</a></td></tr>
-<tr><td>Mongo Express</td><td>localhost</td><td><a href="http://localhost:7070/">7070</a></td></tr>
-</tbody></table>
-</div>
-<h1 id="component-ports-table"><a class="header" href="#component-ports-table">Component Ports Table</a></h1>
-<div class="table-wrapper"><table><thead><tr><th>Service</th><th>Host</th><th>Port</th></tr></thead><tbody>
-<tr><td>MySQL</td><td>mysql</td><td>3306</td></tr>
-<tr><td>MySQL</td><td>localhost</td><td>3306</td></tr>
-<tr><td>PostgreSQL</td><td>postgres</td><td>5432</td></tr>
-<tr><td>PostgreSQL</td><td>localhost</td><td>5432</td></tr>
-<tr><td>MongoDB</td><td>mongo</td><td>27017</td></tr>
-<tr><td>MongoDB</td><td>localhost</td><td>27017</td></tr>
-<tr><td>Mosquitto</td><td>mosquitto</td><td>1883</td></tr>
-<tr><td>Mosquitto</td><td>localhost</td><td>1883</td></tr>
-<tr><td>Kafka 1</td><td>kafka1</td><td>9092</td></tr>
-<tr><td>Kafka 1</td><td>localhost</td><td>19092</td></tr>
-<tr><td>Kafka 2</td><td>kafka2</td><td>9092</td></tr>
-<tr><td>Kafka 2</td><td>localhost</td><td>29092</td></tr>
-<tr><td>Kafka 3</td><td>kafka3</td><td>9092</td></tr>
-<tr><td>Kafka 3</td><td>localhost</td><td>39092</td></tr>
-<tr><td>Kafka 1 JMX</td><td>kafka1</td><td>19999</td></tr>
-<tr><td>Kafka 1 JMX</td><td>localhost</td><td>19999</td></tr>
-<tr><td>Kafka 2 JMX</td><td>kafka2</td><td>29999</td></tr>
-<tr><td>Kafka 2 JMX</td><td>localhost</td><td>29999</td></tr>
-<tr><td>Kafka 3 JMX</td><td>kafka3</td><td>39999</td></tr>
-<tr><td>Kafka 3 JMX</td><td>localhost</td><td>39999</td></tr>
-<tr><td>Schema Registry</td><td>schema-registry</td><td>8081</td></tr>
-<tr><td>Schema Registry</td><td>localhost</td><td>8081</td></tr>
-<tr><td>Kafka REST</td><td>kafka-rest</td><td>8082</td></tr>
-<tr><td>Kafka REST</td><td>localhost</td><td>8082</td></tr>
-<tr><td>Kafka Connect</td><td>kafka-connect</td><td>8083</td></tr>
-<tr><td>Kafka Connect</td><td>localhost</td><td>8083</td></tr>
-<tr><td>Kafka MQTT</td><td>kafka-mqtt</td><td>1884</td></tr>
-<tr><td>Kafka MQTT</td><td>localhost</td><td>1884</td></tr>
-<tr><td>ksqlDB</td><td>ksqldb</td><td>8088</td></tr>
-<tr><td>ksqlDB</td><td>localhost</td><td>8088</td></tr>
-<tr><td>Kafka Clients Spring Boot</td><td>localhost</td><td>8585</td></tr>
-<tr><td>Kafka Streams gRPC Server</td><td>localhost</td><td>5050</td></tr>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ports"><a class="header" href="#ports">Ports</a></h1>
+<div class="table-wrapper"><table><thead><tr><th>Service</th><th>Port</th></tr></thead><tbody>
+<tr><td><a href="http://localhost:8080/">AKHQ Kafka UI</a></td><td>8080</td></tr>
+<tr><td><a href="http://localhost:9090/">Adminer SQL UI</a></td><td>9090</td></tr>
+<tr><td>MySQL</td><td>3306</td></tr>
+<tr><td>PostgreSQL</td><td>5432</td></tr>
+<tr><td>Mosquitto</td><td>1883</td></tr>
+<tr><td>Kafka 1</td><td>19092</td></tr>
+<tr><td>Kafka 2</td><td>29092</td></tr>
+<tr><td>Kafka 3</td><td>39092</td></tr>
+<tr><td>Schema Registry</td><td>8081</td></tr>
+<tr><td>Kafka REST</td><td>8082</td></tr>
+<tr><td>Kafka Connect</td><td>8083</td></tr>
+<tr><td>Kafka MQTT</td><td>1884</td></tr>
+<tr><td>ksqlDB</td><td>8088</td></tr>
+<tr><td>Kafka Clients Spring Boot</td><td>8585</td></tr>
+<tr><td>Kafka Streams gRPC Server</td><td>5050</td></tr>
 </tbody></table>
 </div><div style="break-before: page; page-break-before: always;"></div><h1 id="about-this-book"><a class="header" href="#about-this-book">About This Book</a></h1>
 <p>This book is power by <a href="https://rust-lang.github.io/mdBook/index.html">mdBook</a>.</p>
 <p>GitHub <a href="https://github.com/sauljabin/kafka-sandbox">Repository</a>.</p>
-<h2 id="developing-commands"><a class="header" href="#developing-commands">Developing Commands</a></h2>
+<h3 id="developing-commands"><a class="header" href="#developing-commands">Developing Commands</a></h3>
 <blockquote>
 <p>You must install <a href="https://www.rust-lang.org/tools/install">rust</a> first.</p>
 </blockquote>
@@ -1510,13 +465,6 @@ networks:
 </code></pre>
 <p>Build statics:</p>
 <pre><code class="language-bash">mdbook build
-</code></pre>
-<h2 id="using-docker"><a class="header" href="#using-docker">Using Docker</a></h2>
-<p>Create docker image:</p>
-<pre><code class="language-bash">docker build -t sauljabin/kafka-sandbox-book:latest -f docker/Dockerfile .
-</code></pre>
-<p>Running the book (<a href="http://localhost">open it in the web browser</a>):</p>
-<pre><code class="language-bash">docker run --name kafka-sandbox-book -d -p 80:80 sauljabin/kafka-sandbox-book:latest
 </code></pre>
 
                     </main>
