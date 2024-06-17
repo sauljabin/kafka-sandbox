@@ -1,0 +1,149 @@
+services:
+  kafka1:
+    image: confluentinc/cp-kafka:${VERSION}
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka1:9092,EXTERNAL://localhost:19092
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENERS: CONTROLLER://0.0.0.0:9093,INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:19092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      CLUSTER_ID: MkU3OEVBNTcwNTJENDM2Qk
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka1:9093,2@kafka2:9093,3@kafka3:9093
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
+    ports:
+      - "19092:19092"
+    restart: on-failure
+    volumes:
+      - kafka1_data:/var/lib/kafka/data
+    healthcheck:
+      test: kafka-topics --bootstrap-server localhost:9092 --list > /dev/null 2>&1
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 10s
+
+  kafka2:
+    image: confluentinc/cp-kafka:${VERSION}
+    environment:
+      KAFKA_NODE_ID: 2
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka2:9092,EXTERNAL://localhost:29092
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENERS: CONTROLLER://0.0.0.0:9093,INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      CLUSTER_ID: MkU3OEVBNTcwNTJENDM2Qk
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka1:9093,2@kafka2:9093,3@kafka3:9093
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
+    ports:
+      - "29092:29092"
+    restart: on-failure
+    volumes:
+      - kafka2_data:/var/lib/kafka/data
+    healthcheck:
+      test: kafka-topics --bootstrap-server localhost:9092 --list > /dev/null 2>&1
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 10s
+
+  kafka3:
+    image: confluentinc/cp-kafka:${VERSION}
+    environment:
+      KAFKA_NODE_ID: 3
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka3:9092,EXTERNAL://localhost:39092
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENERS: CONTROLLER://0.0.0.0:9093,INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:39092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      CLUSTER_ID: MkU3OEVBNTcwNTJENDM2Qk
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka1:9093,2@kafka2:9093,3@kafka3:9093
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
+    ports:
+      - "39092:39092"
+    restart: on-failure
+    volumes:
+      - kafka3_data:/var/lib/kafka/data
+    healthcheck:
+      test: kafka-topics --bootstrap-server localhost:9092 --list > /dev/null 2>&1
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 10s
+
+  schema-registry:
+    image: confluentinc/cp-schema-registry:${VERSION}
+    environment:
+      SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_METHODS: GET,POST,PUT,OPTIONS
+      SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_ORIGIN: "*"
+      SCHEMA_REGISTRY_DEBUG: "true"
+      SCHEMA_REGISTRY_HOST_NAME: localhost
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092,kafka3:9092
+      SCHEMA_REGISTRY_KAFKASTORE_TOPIC: registry.schemas
+    ports:
+      - "8081:8081"
+    restart: on-failure
+    healthcheck:
+      test: curl http://localhost:8081
+      interval: 30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+
+  kafka-connect:
+    image: confluentinc/cp-kafka-connect:${VERSION}
+    environment:
+      CONNECT_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092,kafka3:9092
+      CONNECT_REST_ADVERTISED_HOST_NAME: localhost
+      CONNECT_GROUP_ID: kafka-connect-sandbox
+      CONNECT_PLUGIN_PATH: /usr/local/share/kafka/plugins
+      CONNECT_KEY_CONVERTER: io.confluent.connect.avro.AvroConverter
+      CONNECT_VALUE_CONVERTER: io.confluent.connect.avro.AvroConverter
+      CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+      CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+      CONNECT_CONFIG_STORAGE_TOPIC: connect.config
+      CONNECT_OFFSET_STORAGE_TOPIC: connect.offsets
+      CONNECT_STATUS_STORAGE_TOPIC: connect.status
+    ports:
+      - "8083:8083"
+    restart: on-failure
+    volumes:
+      - ./kafka-connect/plugins:/usr/local/share/kafka/plugins
+    healthcheck:
+      test: curl http://localhost:8083
+      interval: 30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+
+  akhq:
+    image: tchiotludo/akhq:latest
+    ports:
+      - "8080:8080"
+    restart: on-failure
+    healthcheck:
+      test: curl http://localhost:8080
+      interval: 30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+    environment:
+      AKHQ_CONFIGURATION: |
+        akhq:
+          connections:
+            docker-kafka-server:
+              properties:
+                bootstrap.servers: kafka1:9092,kafka2:9092,kafka3:9092
+              schema-registry:
+                url: http://schema-registry:8081
+              connect:
+                - name: kafka-connect
+                  url: http://kafka-connect:8083
+
+volumes:
+  kafka1_data:
+  kafka2_data:
+  kafka3_data:
