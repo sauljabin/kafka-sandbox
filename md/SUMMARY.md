@@ -8,6 +8,7 @@
 - [Consuming and Producing](consuming-and-producing.md)
 - [Message Schemas](message-schemas.md)
 - [What is Kafka Connect?](what-is-kafka-connect.md)
+  - [Kafka Connect Database Example](kafka-connect-database-example.md)
 - [Performance Tools](performance-tools.md)
 
 ---

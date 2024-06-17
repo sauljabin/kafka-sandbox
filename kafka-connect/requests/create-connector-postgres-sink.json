@@ -11,10 +11,10 @@
     "pk.key": "id",
     "insert.mode": "upsert",
     "auto.create": true,
-    "topics": "kafka-connect.customers",
+    "topics": "connect.customers",
     "transforms": "dropPrefix",
     "transforms.dropPrefix.type": "org.apache.kafka.connect.transforms.RegexRouter",
-    "transforms.dropPrefix.regex": "kafka-connect\\.(.*)",
+    "transforms.dropPrefix.regex": "connect\\.(.*)",
     "transforms.dropPrefix.replacement": "$1"
   }
 }

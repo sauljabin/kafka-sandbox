@@ -21,3 +21,9 @@ A collection of kafka client cli tools to manage kafka:
 brew install kafka
 kafka-topics --version
 ```
+
+SQL clients:
+
+```bash
+sudo apt install postgresql-client mysql-client
+```

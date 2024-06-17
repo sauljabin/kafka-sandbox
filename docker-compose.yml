@@ -134,7 +134,7 @@ services:
       AKHQ_CONFIGURATION: |
         akhq:
           connections:
-            docker-kafka-server:
+            kafka:
               properties:
                 bootstrap.servers: kafka1:9092,kafka2:9092,kafka3:9092
               schema-registry:
@@ -142,8 +142,43 @@ services:
               connect:
                 - name: kafka-connect
                   url: http://kafka-connect:8083
+  mysql:
+    image: mysql:8
+    profiles:
+      - sql
+    environment:
+      MYSQL_DATABASE: sandbox
+      MYSQL_ROOT_PASSWORD: notasecret
+    ports:
+      - "3306:3306"
+    restart: on-failure
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  postgres:
+    image: postgres:16
+    profiles:
+      - sql
+    environment:
+      POSTGRES_DB: sandbox
+      POSTGRES_PASSWORD: notasecret
+    ports:
+      - "5432:5432"
+    restart: on-failure
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer:latest
+    profiles:
+      - sql
+    ports:
+      - "9090:8080"
+    restart: on-failure
 
 volumes:
   kafka1_data:
   kafka2_data:
   kafka3_data:
+  mysql_data:
+  postgres_data:
