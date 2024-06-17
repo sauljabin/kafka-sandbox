@@ -16,17 +16,20 @@ docker compose --profile sql up -d
 Populate it:
 
 ```bash
-./gradlew sql-populate:run \
-          --args='--url "jdbc:mysql://localhost:3306/sandbox" --user "root" --password "notasecret" 10'
+mysql --host=127.0.0.1 --port=3306 \
+      --user=root --password=notasecret \
+      --database=sandbox \
+      < kafka-connect/sql/customers.sql
 ```
 
-That command should have created the table `customers` and inserted 10 records.
+That command should have created the table `customers` and inserted 200 records.
 
 Now you can open [Adminer](http://localhost:9090) or run:
 
 ```bash
 mysql --host=127.0.0.1 --port=3306 \
-      --user=root --database=sandbox --password=notasecret \
+      --user=root --password=notasecret \
+      --database=sandbox \
       -e "select * from customers"
 ```
 
