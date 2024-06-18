@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded "><a href="install-dependencies.html"><strong aria-hidden="true">1.</strong> Install Dependencies</a></li><li class="chapter-item expanded "><a href="quick-start.html"><strong aria-hidden="true">2.</strong> Quick Start</a></li><li class="chapter-item expanded "><a href="what-is-kafka.html"><strong aria-hidden="true">3.</strong> What is Kafka?</a></li><li class="chapter-item expanded "><a href="consuming-and-producing.html"><strong aria-hidden="true">4.</strong> Consuming and Producing</a></li><li class="chapter-item expanded "><a href="message-schemas.html"><strong aria-hidden="true">5.</strong> Message Schemas</a></li><li class="chapter-item expanded "><a href="what-is-kafka-connect.html"><strong aria-hidden="true">6.</strong> What is Kafka Connect?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="kafka-connect-database-example.html"><strong aria-hidden="true">6.1.</strong> Kafka Connect Database Example</a></li><li class="chapter-item expanded "><a href="kafka-connect-mqtt-example.html"><strong aria-hidden="true">6.2.</strong> Kafka Connect MQTT Example</a></li></ol></li><li class="chapter-item expanded "><a href="performance-tools.html"><strong aria-hidden="true">7.</strong> Performance Tools</a></li><li class="chapter-item expanded "><a href="kafka-proxies.html"><strong aria-hidden="true">8.</strong> Kafka Proxies</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="kafka-rest-proxy.html"><strong aria-hidden="true">8.1.</strong> Kafka Rest Proxy</a></li><li class="chapter-item expanded "><a href="kafka-mqtt-proxy.html"><strong aria-hidden="true">8.2.</strong> Kafka MQTT Proxy</a></li></ol></li><li class="chapter-item expanded "><a href="avro-producer-and-consumer.html"><strong aria-hidden="true">9.</strong> Avro Producer and Consumer</a></li><li class="chapter-item expanded "><a href="cleanup.html"><strong aria-hidden="true">10.</strong> Cleanup</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><a href="ports-table.html">Ports Table</a></li><li class="chapter-item expanded affix "><a href="about-this-book.html">About this book</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded "><a href="install-dependencies.html"><strong aria-hidden="true">1.</strong> Install Dependencies</a></li><li class="chapter-item expanded "><a href="quick-start.html"><strong aria-hidden="true">2.</strong> Quick Start</a></li><li class="chapter-item expanded "><a href="what-is-kafka.html"><strong aria-hidden="true">3.</strong> What is Kafka?</a></li><li class="chapter-item expanded "><a href="consuming-and-producing.html"><strong aria-hidden="true">4.</strong> Consuming and Producing</a></li><li class="chapter-item expanded "><a href="message-schemas.html"><strong aria-hidden="true">5.</strong> Message Schemas</a></li><li class="chapter-item expanded "><a href="what-is-kafka-connect.html"><strong aria-hidden="true">6.</strong> What is Kafka Connect?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="kafka-connect-database-example.html"><strong aria-hidden="true">6.1.</strong> Kafka Connect Database Example</a></li><li class="chapter-item expanded "><a href="kafka-connect-mqtt-example.html"><strong aria-hidden="true">6.2.</strong> Kafka Connect MQTT Example</a></li></ol></li><li class="chapter-item expanded "><a href="performance-tools.html"><strong aria-hidden="true">7.</strong> Performance Tools</a></li><li class="chapter-item expanded "><a href="kafka-proxies.html"><strong aria-hidden="true">8.</strong> Kafka Proxies</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="kafka-rest-proxy.html"><strong aria-hidden="true">8.1.</strong> Kafka Rest Proxy</a></li><li class="chapter-item expanded "><a href="kafka-mqtt-proxy.html"><strong aria-hidden="true">8.2.</strong> Kafka MQTT Proxy</a></li></ol></li><li class="chapter-item expanded "><a href="avro-producer-and-consumer.html"><strong aria-hidden="true">9.</strong> Avro Producer and Consumer</a></li><li class="chapter-item expanded "><a href="spring-boot.html"><strong aria-hidden="true">10.</strong> Spring Boot</a></li><li class="chapter-item expanded "><a href="cleanup.html"><strong aria-hidden="true">11.</strong> Cleanup</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><a href="ports-table.html">Ports Table</a></li><li class="chapter-item expanded affix "><a href="about-this-book.html">About this book</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -626,7 +626,7 @@ for (int i = 0; i &lt; messages; i++) {
     Supplier supplier = createNewCustomer();
     ProducerRecord&lt;String, Supplier&gt; record = new ProducerRecord&lt;&gt;(
         topic,
-        supplier.getId(),
+        supplier.getId().toString(),
         supplier
     );
     producer.send(
@@ -646,6 +646,41 @@ for (ConsumerRecord&lt;String, Supplier&gt; record : records) {
 }
 </code></pre>
 <pre><code class="language-bash">./gradlew kafka-clients:run --args="consume client.suppliers"
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="spring-boot"><a class="header" href="#spring-boot">Spring Boot</a></h1>
+<p>Spring Boot + Spring Kafka producer and consumer examples.</p>
+<h3 id="other-links-1"><a class="header" href="#other-links-1">Other LInks</a></h3>
+<ul>
+<li><a href="https://www.confluent.io/blog/apache-kafka-spring-boot-application/">confluent spring kafka examples</a></li>
+<li><a href="https://docs.spring.io/spring-kafka/reference/html/">spring kafka settings</a></li>
+</ul>
+<h3 id="setup-3"><a class="header" href="#setup-3">Setup</a></h3>
+<p>Run spring boot:</p>
+<pre><code class="language-bash">./gradlew kafka-spring-boot:bootRun
+http :8585/actuator/health
+</code></pre>
+<h3 id="produce-2"><a class="header" href="#produce-2">Produce</a></h3>
+<p>Spring has the class <code>KafkaTemplate</code> that allows you to produce messages.</p>
+<pre><code class="language-java">@Value("${spring.kafka.topic}")
+private String topic;
+
+@Autowired
+private KafkaTemplate&lt;String, Customer&gt; kafkaTemplate;
+
+public void sendCustomer(Customer customer) {
+    log.info("Producing message: {}", customer);
+    kafkaTemplate.send(topic, customer.getId().toString(), customer);
+}
+</code></pre>
+<p>In another terminal:</p>
+<pre><code class="language-bash">http :8585/produce messages==10
+</code></pre>
+<h3 id="consume-1"><a class="header" href="#consume-1">Consume</a></h3>
+<p>You can use the <code>KafkaListener</code> annotation.</p>
+<pre><code class="language-java">@KafkaListener(topics = { "${spring.kafka.topic}" })
+public void consume(ConsumerRecord&lt;String, Customer&gt; record) {
+    log.info("Customer ID: {}", record.value());
+}
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="cleanup"><a class="header" href="#cleanup">Cleanup</a></h1>
 <p>Shutting down all services:</p>
