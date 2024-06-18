@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded "><a href="install-dependencies.html"><strong aria-hidden="true">1.</strong> Install Dependencies</a></li><li class="chapter-item expanded "><a href="quick-start.html"><strong aria-hidden="true">2.</strong> Quick Start</a></li><li class="chapter-item expanded "><a href="what-is-kafka.html"><strong aria-hidden="true">3.</strong> What is Kafka?</a></li><li class="chapter-item expanded "><a href="consuming-and-producing.html"><strong aria-hidden="true">4.</strong> Consuming and Producing</a></li><li class="chapter-item expanded "><a href="message-schemas.html"><strong aria-hidden="true">5.</strong> Message Schemas</a></li><li class="chapter-item expanded "><a href="what-is-kafka-connect.html"><strong aria-hidden="true">6.</strong> What is Kafka Connect?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="kafka-connect-database-example.html"><strong aria-hidden="true">6.1.</strong> Kafka Connect Database Example</a></li><li class="chapter-item expanded "><a href="kafka-connect-mqtt-example.html"><strong aria-hidden="true">6.2.</strong> Kafka Connect MQTT Example</a></li></ol></li><li class="chapter-item expanded "><a href="performance-tools.html"><strong aria-hidden="true">7.</strong> Performance Tools</a></li><li class="chapter-item expanded "><a href="kafka-proxies.html"><strong aria-hidden="true">8.</strong> Kafka Proxies</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="kafka-rest-proxy.html"><strong aria-hidden="true">8.1.</strong> Kafka Rest Proxy</a></li><li class="chapter-item expanded "><a href="kafka-mqtt-proxy.html"><strong aria-hidden="true">8.2.</strong> Kafka MQTT Proxy</a></li></ol></li><li class="chapter-item expanded "><a href="avro-producer-and-consumer.html"><strong aria-hidden="true">9.</strong> Avro Producer and Consumer</a></li><li class="chapter-item expanded "><a href="spring-boot.html"><strong aria-hidden="true">10.</strong> Spring Boot</a></li><li class="chapter-item expanded "><a href="cleanup.html"><strong aria-hidden="true">11.</strong> Cleanup</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><a href="ports-table.html">Ports Table</a></li><li class="chapter-item expanded affix "><a href="about-this-book.html">About this book</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded "><a href="install-dependencies.html"><strong aria-hidden="true">1.</strong> Install Dependencies</a></li><li class="chapter-item expanded "><a href="quick-start.html"><strong aria-hidden="true">2.</strong> Quick Start</a></li><li class="chapter-item expanded "><a href="what-is-kafka.html"><strong aria-hidden="true">3.</strong> What is Kafka?</a></li><li class="chapter-item expanded "><a href="consuming-and-producing.html"><strong aria-hidden="true">4.</strong> Consuming and Producing</a></li><li class="chapter-item expanded "><a href="message-schemas.html"><strong aria-hidden="true">5.</strong> Message Schemas</a></li><li class="chapter-item expanded "><a href="what-is-kafka-connect.html"><strong aria-hidden="true">6.</strong> What is Kafka Connect?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="kafka-connect-database-example.html"><strong aria-hidden="true">6.1.</strong> Kafka Connect Database Example</a></li><li class="chapter-item expanded "><a href="kafka-connect-mqtt-example.html"><strong aria-hidden="true">6.2.</strong> Kafka Connect MQTT Example</a></li></ol></li><li class="chapter-item expanded "><a href="performance-tools.html"><strong aria-hidden="true">7.</strong> Performance Tools</a></li><li class="chapter-item expanded "><a href="kafka-proxies.html"><strong aria-hidden="true">8.</strong> Kafka Proxies</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="kafka-rest-proxy.html"><strong aria-hidden="true">8.1.</strong> Kafka Rest Proxy</a></li><li class="chapter-item expanded "><a href="kafka-mqtt-proxy.html"><strong aria-hidden="true">8.2.</strong> Kafka MQTT Proxy</a></li></ol></li><li class="chapter-item expanded "><a href="avro-producer-and-consumer.html"><strong aria-hidden="true">9.</strong> Avro Producer and Consumer</a></li><li class="chapter-item expanded "><a href="spring-boot.html"><strong aria-hidden="true">10.</strong> Spring Boot</a></li><li class="chapter-item expanded "><a href="kafka-streams.html"><strong aria-hidden="true">11.</strong> Kafka Streams</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="interactive-queries.html"><strong aria-hidden="true">11.1.</strong> Interactive Queries</a></li></ol></li><li class="chapter-item expanded "><a href="cleanup.html"><strong aria-hidden="true">12.</strong> Cleanup</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><a href="ports-table.html">Ports Table</a></li><li class="chapter-item expanded affix "><a href="about-this-book.html">About this book</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -681,6 +681,87 @@ public void sendCustomer(Customer customer) {
 public void consume(ConsumerRecord&lt;String, Customer&gt; record) {
     log.info("Customer ID: {}", record.value());
 }
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="kafka-streams"><a class="header" href="#kafka-streams">Kafka Streams</a></h1>
+<p>Kafka Streams is a client library providing organizations with a particularly efficient framework for processing
+streaming data. It offers a streamlined method for creating applications and microservices that must process data in
+real-time to be effective.</p>
+<ul>
+<li><a href="https://github.com/confluentinc/kafka-streams-examples">kafka streams examples</a></li>
+<li>more kafka streams examples <a href="https://github.com/sauljabin/kafka-streams-sandbox">here</a>.</li>
+<li><a href="https://docs.confluent.io/platform/current/streams/architecture.html">kafka stream architecture</a></li>
+</ul>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/y9a3fldlvnI"></iframe>
+<p>In this example we are going to create a data processing pipeline (topology), which
+is going to count the suppliers by country (check the <a href="avro-producer-and-consumer.html">Kafka Clients - Avro Producer and Consumer</a> section).
+So, kafka stream is going to consume form the <code>client.suppliers</code> topic, then is
+going to process the data and finally is going to publish the results in the
+topic <code>streams.results</code>.</p>
+<pre><code class="language-java">// read from suppliers topic
+KStream&lt;String, Supplier&gt; suppliers = builder.stream(source);
+
+// aggregate the new supplier counts by country
+KTable&lt;String, Long&gt; aggregated = suppliers
+        // map the country as key
+        .map((key, value) -&gt; new KeyValue&lt;&gt;(value.getCountry().toString(), value))
+        .groupByKey()
+        // aggregate and materialize the store
+        .count(Materialized.as("SupplierCountByCountry"));
+
+// write the results to a topic
+aggregated.toStream()
+        // print results
+        .peek((key, value) -&gt; log.info("Country = {}, Total supplier counts = {}", key, value))
+        // publish results
+        .to(sink, Produced.with(Serdes.String(), Serdes.Long()));
+
+// build the topology
+Topology topology = builder.build();
+</code></pre>
+<h3 id="run-topology"><a class="header" href="#run-topology">Run Topology</a></h3>
+<pre><code class="language-bash">./gradlew kafka-streams:run --args="streams client.suppliers streams.results"
+</code></pre>
+<p>Print results (in another terminal):</p>
+<pre><code class="language-bash">kafka-console-consumer --from-beginning --group kafka-streams.consumer \
+                       --topic streams.results  \
+                       -bootstrap-server localhost:19092 \
+                       --property print.key=true \
+                       --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
+</code></pre>
+<p>Send new suppliers (in another terminal):</p>
+<pre><code class="language-bash">./gradlew kafka-clients:run --args="produce client.suppliers 100"
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="interactive-queries"><a class="header" href="#interactive-queries">Interactive Queries</a></h1>
+<p>Interactive Queries allow you to leverage the state of your application from outside your application. The Kafka Streams API enables your applications to be queryable.</p>
+<ul>
+<li><a href="https://docs.confluent.io/platform/current/streams/developer-guide/interactive-queries.html">interactive queries</a></li>
+</ul>
+<p>This example is using <a href="https://grpc.io/">gRPC</a> to request queries to the kafka stream server.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/fVDdY36Wk3w"></iframe>
+<h3 id="query-results"><a class="header" href="#query-results">Query Results</a></h3>
+<p>Having kafka streams running (see <a href="kafka-streams.html">Kafka Streams</a>),
+you can query form the terminal a specific country, example:</p>
+<pre><code class="language-bash">./gradlew -q kafka-streams:run --args="count Ecuador"
+</code></pre>
+<p>This is possible because we have access to the kafka streams stores in runtime.
+This way we can query over the store a return and response.</p>
+<p>Check the gRPC server:</p>
+<pre><code class="language-java">ReadOnlyKeyValueStore&lt;String, Long&gt; keyValueStore = streams.store(
+        StoreQueryParameters.fromNameAndType("SupplierCountByCountry", QueryableStoreTypes.keyValueStore()));
+
+String country = request.getName();
+Long total = keyValueStore.get(country);
+String value = String.format("Country: %s, Total Suppliers: %s", country, total != null ? total : 0);
+CountReply reply = CountReply.newBuilder().setMessage(value).build();
+responseObserver.onNext(reply);
+</code></pre>
+<p>Check the gRPC client:</p>
+<pre><code class="language-java">ManagedChannel channel = Grpc.newChannelBuilder("localhost:5050", InsecureChannelCredentials.create())
+                .build();
+
+CounterServiceBlockingStub blockingStub = CounterServiceGrpc.newBlockingStub(channel);
+CountReply countByCountry = blockingStub.getCountByCountry(CountRequest.newBuilder().setName(country).build());
+System.out.println(countByCountry.getMessage());
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="cleanup"><a class="header" href="#cleanup">Cleanup</a></h1>
 <p>Shutting down all services:</p>
