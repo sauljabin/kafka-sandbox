@@ -11,6 +11,9 @@
   - [Kafka Connect Database Example](kafka-connect-database-example.md)
   - [Kafka Connect MQTT Example](kafka-connect-mqtt-example.md)
 - [Performance Tools](performance-tools.md)
+- [Kafka Proxies](kafka-proxies.md)
+  - [Kafka Rest Proxy](kafka-rest-proxy.md)
+  - [Kafka MQTT Proxy](kafka-mqtt-proxy.md)
 
 ---
 

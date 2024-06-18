@@ -1,10 +1,13 @@
 {
-  "value_schema": "{\"type\": \"record\", \"name\": \"User\", \"fields\": [{\"name\": \"name\", \"type\": \"string\"}]}",
-  "records": [
-    {
-      "value": {
-        "name": "John Doe"
-      }
+  "key": {
+    "type": "STRING",
+    "data": "ce59e9a6-aafd-44f4-bdc6-f285adfcc836"
+  },
+  "value": {
+    "type": "AVRO",
+    "schema": "{\"type\": \"record\", \"name\": \"User\", \"fields\": [{\"name\": \"name\", \"type\": \"string\"}]}",
+    "data": {
+      "name": "John Doe"
     }
-  ]
+  }
 }

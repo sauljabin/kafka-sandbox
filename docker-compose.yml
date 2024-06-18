@@ -1,6 +1,6 @@
 services:
   kafka1:
-    image: confluentinc/cp-kafka:${VERSION}
+    image: confluentinc/cp-kafka:${CP_VERSION}
     environment:
       KAFKA_NODE_ID: 1
       KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka1:9092,EXTERNAL://localhost:19092
@@ -8,7 +8,7 @@ services:
       KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
       KAFKA_LISTENERS: CONTROLLER://0.0.0.0:9093,INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:19092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
-      CLUSTER_ID: MkU3OEVBNTcwNTJENDM2Qk
+      CLUSTER_ID: ${CLUSTER_ID}
       KAFKA_PROCESS_ROLES: broker,controller
       KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka1:9093,2@kafka2:9093,3@kafka3:9093
       KAFKA_LOG_DIRS: /var/lib/kafka/data
@@ -25,7 +25,7 @@ services:
       start_period: 10s
 
   kafka2:
-    image: confluentinc/cp-kafka:${VERSION}
+    image: confluentinc/cp-kafka:${CP_VERSION}
     environment:
       KAFKA_NODE_ID: 2
       KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka2:9092,EXTERNAL://localhost:29092
@@ -33,7 +33,7 @@ services:
       KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
       KAFKA_LISTENERS: CONTROLLER://0.0.0.0:9093,INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:29092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
-      CLUSTER_ID: MkU3OEVBNTcwNTJENDM2Qk
+      CLUSTER_ID: ${CLUSTER_ID}
       KAFKA_PROCESS_ROLES: broker,controller
       KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka1:9093,2@kafka2:9093,3@kafka3:9093
       KAFKA_LOG_DIRS: /var/lib/kafka/data
@@ -50,7 +50,7 @@ services:
       start_period: 10s
 
   kafka3:
-    image: confluentinc/cp-kafka:${VERSION}
+    image: confluentinc/cp-kafka:${CP_VERSION}
     environment:
       KAFKA_NODE_ID: 3
       KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka3:9092,EXTERNAL://localhost:39092
@@ -58,7 +58,7 @@ services:
       KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
       KAFKA_LISTENERS: CONTROLLER://0.0.0.0:9093,INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:39092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
-      CLUSTER_ID: MkU3OEVBNTcwNTJENDM2Qk
+      CLUSTER_ID: ${CLUSTER_ID}
       KAFKA_PROCESS_ROLES: broker,controller
       KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka1:9093,2@kafka2:9093,3@kafka3:9093
       KAFKA_LOG_DIRS: /var/lib/kafka/data
@@ -75,7 +75,7 @@ services:
       start_period: 10s
 
   schema-registry:
-    image: confluentinc/cp-schema-registry:${VERSION}
+    image: confluentinc/cp-schema-registry:${CP_VERSION}
     environment:
       SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_METHODS: GET,POST,PUT,OPTIONS
       SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_ORIGIN: "*"
@@ -94,7 +94,7 @@ services:
       start_period: 30s
 
   kafka-connect:
-    image: confluentinc/cp-kafka-connect:${VERSION}
+    image: confluentinc/cp-kafka-connect:${CP_VERSION}
     environment:
       CONNECT_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092,kafka3:9092
       CONNECT_REST_ADVERTISED_HOST_NAME: localhost
@@ -143,7 +143,7 @@ services:
                 - name: kafka-connect
                   url: http://kafka-connect:8083
   mysql:
-    image: mysql:8
+    image: mysql:latest
     profiles:
       - sql
     environment:
@@ -156,7 +156,7 @@ services:
       - mysql_data:/var/lib/mysql
 
   postgres:
-    image: postgres:16
+    image: postgres:latest
     profiles:
       - sql
     environment:
@@ -177,7 +177,7 @@ services:
     restart: on-failure
 
   mosquitto:
-    image: eclipse-mosquitto:2
+    image: eclipse-mosquitto:latest
     profiles:
       - mqtt
     ports:
@@ -186,6 +186,35 @@ services:
     volumes:
       - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
       - mosquitto_data:/mosquitto/data
+
+  kafka-rest:
+    image: confluentinc/cp-kafka-rest:${CP_VERSION}
+    profiles:
+      - proxies
+    environment:
+      KAFKA_REST_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092,kafka3:9092
+      KAFKA_REST_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+    ports:
+      - "8082:8082"
+    restart: on-failure
+    healthcheck:
+      test: curl http://localhost:8082
+      interval: 30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+
+  kafka-mqtt:
+    image: confluentinc/cp-kafka-mqtt:${CP_VERSION}
+    profiles:
+      - proxies
+    environment:
+      KAFKA_MQTT_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092,kafka3:9092
+      KAFKA_MQTT_TOPIC_REGEX_LIST: proxy.mqtt:.*
+      KAFKA_MQTT_LISTENERS: 0.0.0.0:1884
+    ports:
+      - "1884:1884"
+    restart: on-failure
 
 volumes:
   kafka1_data:
