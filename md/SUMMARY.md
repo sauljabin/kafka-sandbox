@@ -18,6 +18,10 @@
 - [Spring Boot](spring-boot.md)
 - [Kafka Streams](kafka-streams.md)
   - [Interactive Queries](interactive-queries.md)
+- [What is ksqlDB](what-is-ksqldb.md)
+  - [ksqlDB Extensions](ksqldb-extensions.md)
+  - [ksqlDB Queries](ksqldb-queries.md)
+  - [ksqlDB Tests](ksqldb-tests.md)
 - [Cleanup](cleanup.md)
 
 ---

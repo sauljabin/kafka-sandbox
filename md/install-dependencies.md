@@ -41,6 +41,8 @@ kafka-topics --version
 
 ### AVRO tools
 
+- [avro](https://avro.apache.org/project/download/) - avro compiler
+
 ```bash
 brew install avro-tools
 ```

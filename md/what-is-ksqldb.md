@@ -1,0 +1,34 @@
+# What is ksqlDB?
+
+ksqlDB is a database that's purpose-built for stream processing applications.
+ksqlDB it is not a SQL database, it provides an extra layer for implementing kstream, ktable and connectors through a language (ksql) based on sql.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Ji7YMlJUqsA"></iframe>
+
+- [ksqldb](https://ksqldb.io/)
+- [ksqldb settings](https://docs.ksqldb.io/en/latest/reference/server-configuration/)
+
+### Run ksqlDB
+
+```bash
+docker compose --profile ksqldb up -d
+```
+
+After a few seconds check if it is up:
+
+```bash
+http :8088/info
+```
+
+One line shell interaction:
+
+```bash
+docker compose exec ksqldb-cli ksql -e "SHOW STREAMS;" http://ksqldb:8088
+```
+
+Interactive ksqlDB shell:
+
+```bash
+docker compose exec ksqldb-cli ksql http://ksqldb:8088
+SHOW STREAMS;
+```

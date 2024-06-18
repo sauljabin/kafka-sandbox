@@ -1,8 +1,8 @@
 CREATE STREAM orders (orderId INT KEY, orderUnits INT, totalAmount DOUBLE)
-  WITH (kafka_topic='kafka-ksqldb.orders', key_format='json', value_format='json', partitions=10, replicas=3);
+  WITH (kafka_topic='ksqldb.orders', key_format='json', value_format='json', partitions=10, replicas=3);
 
 CREATE STREAM orderSizes 
-  WITH (kafka_topic='kafka-ksqldb.order_sizes', key_format='json', value_format='json', partitions=10, replicas=3)
+  WITH (kafka_topic='ksqldb.order_sizes', key_format='json', value_format='json', partitions=10, replicas=3)
   AS SELECT
     orderId,
     orderUnits,

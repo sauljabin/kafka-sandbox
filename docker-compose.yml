@@ -216,6 +216,41 @@ services:
       - "1884:1884"
     restart: on-failure
 
+  ksqldb:
+    image: confluentinc/cp-ksqldb-server:${CP_VERSION}
+    profiles:
+      - ksqldb
+    environment:
+      KSQL_KSQL_SERVICE_ID: ksqldb.
+      KSQL_LISTENERS: http://0.0.0.0:8088
+      KSQL_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092,kafka3:9092
+      KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE: "true"
+      KSQL_KSQL_LOGGING_PROCESSING_TOPIC_AUTO_CREATE: "true"
+      KSQL_KSQL_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+      KSQL_KSQL_CONNECT_URL: http://kafka-connect:8083
+      KSQL_KSQL_EXTENSION_DIR: /ksqldb/extensions
+    ports:
+      - "8088:8088"
+    restart: on-failure
+    volumes:
+      - ./kafka-ksqldb-extensions/extensions:/ksqldb/extensions
+    healthcheck:
+      test: curl http://localhost:8088
+      interval: 30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+
+  ksqldb-cli:
+    image: confluentinc/ksqldb-cli:latest
+    profiles:
+      - ksqldb
+    volumes:
+      - ./kafka-ksqldb:/sandbox
+      - ./kafka-ksqldb-extensions/extensions:/extensions
+    entrypoint: /bin/sh
+    tty: true
+
 volumes:
   kafka1_data:
   kafka2_data:
