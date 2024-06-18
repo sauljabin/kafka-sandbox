@@ -49,7 +49,7 @@ for (int i = 0; i < messages; i++) {
     Supplier supplier = createNewCustomer();
     ProducerRecord<String, Supplier> record = new ProducerRecord<>(
         topic,
-        supplier.getId(),
+        supplier.getId().toString(),
         supplier
     );
     producer.send(

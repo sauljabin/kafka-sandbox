@@ -15,6 +15,7 @@
   - [Kafka Rest Proxy](kafka-rest-proxy.md)
   - [Kafka MQTT Proxy](kafka-mqtt-proxy.md)
 - [Avro Producer and Consumer](avro-producer-and-consumer.md)
+- [Spring Boot](spring-boot.md)
 - [Cleanup](cleanup.md)
 
 ---

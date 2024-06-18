@@ -9,10 +9,10 @@ management:
 
 spring:
   kafka:
-    topic: kafka-spring-boot.customers
+    topic: spring.customers
     consumer:
       bootstrap-servers: localhost:19092,localhost:29092,localhost:39092
-      group-id: kafka-spring-boot.consumer
+      group-id: spring.consumer
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
