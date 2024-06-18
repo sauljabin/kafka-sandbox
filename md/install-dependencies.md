@@ -14,16 +14,6 @@
 brew install httpie jq
 ```
 
-### Kubernetes Tools
-
-- [helm](https://helm.sh/docs/intro/install/) - kubernetes charts manager
-- [kind](https://kind.sigs.k8s.io/) - local kubernetes cluster
-- [kubectl](https://kubernetes.io/docs/reference/kubectl/) - kubernetes client cli
-
-```bash
-brew install helm kind kubectl
-```
-
 ### MQTT tools
 
 - [mqtt-cli](https://hivemq.github.io/mqtt-cli/docs/installation/) - MQTT client cli
