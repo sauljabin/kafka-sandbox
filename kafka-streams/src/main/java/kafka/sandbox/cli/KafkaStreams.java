@@ -1,10 +1,10 @@
 package kafka.sandbox.cli;
 
-import static picocli.CommandLine.ParameterException;
-import static picocli.CommandLine.Spec;
-
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Model.CommandSpec;
+
+import static picocli.CommandLine.ParameterException;
+import static picocli.CommandLine.Spec;
 
 @Command(name = "kafka-streams", description = "Instantiate a kafka stream example", synopsisSubcommandLabel = "COMMAND")
 public class KafkaStreams implements Runnable {

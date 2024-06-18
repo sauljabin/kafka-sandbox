@@ -26,7 +26,7 @@ dependencies {
     runtimeOnly "io.grpc:grpc-netty-shaded:${grpcVersion}"
 
     implementation 'info.picocli:picocli:4.6.1'
-    implementation 'ch.qos.logback:logback-classic:1.4.6'
+    implementation 'ch.qos.logback:logback-classic:1.5.6'
 
     compileOnly "org.projectlombok:lombok:${lombokVersion}"
     annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
@@ -43,7 +43,7 @@ protobuf {
         grpc { artifact = "io.grpc:protoc-gen-grpc-java:${grpcVersion}" }
     }
     generateProtoTasks {
-        all()*.plugins { grpc { } }
+        all()*.plugins { grpc {} }
     }
 }
 

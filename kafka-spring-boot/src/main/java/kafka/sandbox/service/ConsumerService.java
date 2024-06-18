@@ -11,14 +11,14 @@ import org.springframework.stereotype.Service;
 public class ConsumerService {
 
     // in can receive either a ConsumerRecord or Customer class
-    @KafkaListener(topics = { "${spring.kafka.topic}" })
+    @KafkaListener(topics = {"${spring.kafka.topic}"})
     public void consume(ConsumerRecord<String, Customer> record) {
         log.info(
-            "Consumed message: partition = {}, offset = {}, key = {}, value = {}",
-            record.partition(),
-            record.offset(),
-            record.key(),
-            record.value()
+                "Consumed message: partition = {}, offset = {}, key = {}, value = {}",
+                record.partition(),
+                record.offset(),
+                record.key(),
+                record.value()
         );
     }
 }

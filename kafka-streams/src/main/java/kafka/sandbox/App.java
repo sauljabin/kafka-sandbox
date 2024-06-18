@@ -1,12 +1,12 @@
 package kafka.sandbox;
 
-import java.io.IOException;
-import java.util.Properties;
-
 import kafka.sandbox.cli.Count;
 import kafka.sandbox.cli.KafkaStreams;
 import kafka.sandbox.cli.Streams;
 import picocli.CommandLine;
+
+import java.io.IOException;
+import java.util.Properties;
 
 public class App {
 

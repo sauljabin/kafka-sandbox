@@ -1,12 +1,13 @@
 package kafka.sandbox.domain;
 
-import java.time.LocalDate;
-import java.time.Period;
-import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.UUID;
 
 @Data
 @Builder

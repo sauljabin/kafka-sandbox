@@ -1,14 +1,13 @@
 package kafka.sandbox.grpc;
 
+import io.grpc.stub.StreamObserver;
+import kafka.sandbox.proto.CountReply;
+import kafka.sandbox.proto.CountRequest;
+import kafka.sandbox.proto.CounterServiceGrpc.CounterServiceImplBase;
 import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.StoreQueryParameters;
 import org.apache.kafka.streams.state.QueryableStoreTypes;
 import org.apache.kafka.streams.state.ReadOnlyKeyValueStore;
-
-import io.grpc.stub.StreamObserver;
-import kafka.sandbox.proto.CounterServiceGrpc.CounterServiceImplBase;
-import kafka.sandbox.proto.CountReply;
-import kafka.sandbox.proto.CountRequest;
 
 public class CounterService extends CounterServiceImplBase {
 

@@ -16,6 +16,8 @@
   - [Kafka MQTT Proxy](kafka-mqtt-proxy.md)
 - [Avro Producer and Consumer](avro-producer-and-consumer.md)
 - [Spring Boot](spring-boot.md)
+- [Kafka Streams](kafka-streams.md)
+  - [Interactive Queries](interactive-queries.md)
 - [Cleanup](cleanup.md)
 
 ---

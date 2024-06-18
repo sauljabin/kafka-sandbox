@@ -1,7 +1,5 @@
 package kafka.sandbox.cli;
 
-import java.util.concurrent.Callable;
-
 import io.grpc.Grpc;
 import io.grpc.InsecureChannelCredentials;
 import io.grpc.ManagedChannel;
@@ -13,6 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
+
+import java.util.concurrent.Callable;
 
 @Slf4j
 @Command(name = "count", description = "Print the total supplier count by a given country")
@@ -28,7 +28,7 @@ public class Count implements Callable<Integer> {
 
         CounterServiceBlockingStub blockingStub = CounterServiceGrpc.newBlockingStub(channel);
         CountReply countByCountry = blockingStub.getCountByCountry(CountRequest.newBuilder().setName(country).build());
-        log.info(countByCountry.getMessage());
+        System.out.println(countByCountry.getMessage());
 
         return CommandLine.ExitCode.OK;
     }
