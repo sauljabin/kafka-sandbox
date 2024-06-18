@@ -14,6 +14,7 @@
 - [Kafka Proxies](kafka-proxies.md)
   - [Kafka Rest Proxy](kafka-rest-proxy.md)
   - [Kafka MQTT Proxy](kafka-mqtt-proxy.md)
+- [Cleanup](cleanup.md)
 
 ---
 
