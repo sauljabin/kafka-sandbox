@@ -1,15 +1,15 @@
 package kafka.sandbox.cli;
 
-import static picocli.CommandLine.ParameterException;
-import static picocli.CommandLine.Spec;
-
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Model.CommandSpec;
 
+import static picocli.CommandLine.ParameterException;
+import static picocli.CommandLine.Spec;
+
 @Command(
-    name = "kafka-clients",
-    description = "Allows you either to producer or consume form the supplier topic",
-    synopsisSubcommandLabel = "COMMAND"
+        name = "kafka-clients",
+        description = "Allows you either to produce or consume form the supplier topic",
+        synopsisSubcommandLabel = "COMMAND"
 )
 public class KafkaClients implements Runnable {
 

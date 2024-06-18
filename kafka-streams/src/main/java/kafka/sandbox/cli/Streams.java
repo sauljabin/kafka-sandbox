@@ -3,7 +3,7 @@ package kafka.sandbox.cli;
 import java.util.Properties;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
-import kafka.sandbox.avro.Supplier;
+
 import kafka.sandbox.grpc.CounterService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.common.serialization.Serde;

@@ -1,11 +1,12 @@
 package kafka.sandbox;
 
-import java.io.IOException;
-import java.util.Properties;
 import kafka.sandbox.cli.Consumer;
 import kafka.sandbox.cli.KafkaClients;
 import kafka.sandbox.cli.Producer;
 import picocli.CommandLine;
+
+import java.io.IOException;
+import java.util.Properties;
 
 public class App {
 
@@ -14,8 +15,8 @@ public class App {
         Properties consumerProps = getProperties("consumer.properties");
 
         CommandLine commandLine = new CommandLine(new KafkaClients())
-            .addSubcommand(new Producer(producerProps))
-            .addSubcommand(new Consumer(consumerProps));
+                .addSubcommand(new Producer(producerProps))
+                .addSubcommand(new Consumer(consumerProps));
 
         System.exit(commandLine.execute(args));
     }

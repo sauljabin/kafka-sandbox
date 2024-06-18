@@ -4,7 +4,7 @@ Kafka Streams is a client library providing organizations with a particularly ef
 streaming data. It offers a streamlined method for creating applications and microservices that must process data in
 real-time to be effective.
 
-Check the [Kafka Clients - Avro Producer and Consumer](../kafka-clients/avro-producer-and-consumer.md) section.
+Check the [Kafka Clients - Avro Producer and Consumer](../../avro-producer-and-consumer.md) section.
 
 - [kafka streams](https://kafka.apache.org/documentation/streams/)
 - [kafka streams examples](https://github.com/confluentinc/kafka-streams-examples)
