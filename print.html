@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded "><a href="install-dependencies.html"><strong aria-hidden="true">1.</strong> Install Dependencies</a></li><li class="chapter-item expanded "><a href="quick-start.html"><strong aria-hidden="true">2.</strong> Quick Start</a></li><li class="chapter-item expanded "><a href="what-is-kafka.html"><strong aria-hidden="true">3.</strong> What is Kafka?</a></li><li class="chapter-item expanded "><a href="consuming-and-producing.html"><strong aria-hidden="true">4.</strong> Consuming and Producing</a></li><li class="chapter-item expanded "><a href="message-schemas.html"><strong aria-hidden="true">5.</strong> Message Schemas</a></li><li class="chapter-item expanded "><a href="what-is-kafka-connect.html"><strong aria-hidden="true">6.</strong> What is Kafka Connect?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="kafka-connect-database-example.html"><strong aria-hidden="true">6.1.</strong> Kafka Connect Database Example</a></li><li class="chapter-item expanded "><a href="kafka-connect-mqtt-example.html"><strong aria-hidden="true">6.2.</strong> Kafka Connect MQTT Example</a></li></ol></li><li class="chapter-item expanded "><a href="performance-tools.html"><strong aria-hidden="true">7.</strong> Performance Tools</a></li><li class="chapter-item expanded "><a href="kafka-proxies.html"><strong aria-hidden="true">8.</strong> Kafka Proxies</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="kafka-rest-proxy.html"><strong aria-hidden="true">8.1.</strong> Kafka Rest Proxy</a></li><li class="chapter-item expanded "><a href="kafka-mqtt-proxy.html"><strong aria-hidden="true">8.2.</strong> Kafka MQTT Proxy</a></li></ol></li><li class="chapter-item expanded "><a href="cleanup.html"><strong aria-hidden="true">9.</strong> Cleanup</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><a href="ports-table.html">Ports Table</a></li><li class="chapter-item expanded affix "><a href="about-this-book.html">About this book</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded "><a href="install-dependencies.html"><strong aria-hidden="true">1.</strong> Install Dependencies</a></li><li class="chapter-item expanded "><a href="quick-start.html"><strong aria-hidden="true">2.</strong> Quick Start</a></li><li class="chapter-item expanded "><a href="what-is-kafka.html"><strong aria-hidden="true">3.</strong> What is Kafka?</a></li><li class="chapter-item expanded "><a href="consuming-and-producing.html"><strong aria-hidden="true">4.</strong> Consuming and Producing</a></li><li class="chapter-item expanded "><a href="message-schemas.html"><strong aria-hidden="true">5.</strong> Message Schemas</a></li><li class="chapter-item expanded "><a href="what-is-kafka-connect.html"><strong aria-hidden="true">6.</strong> What is Kafka Connect?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="kafka-connect-database-example.html"><strong aria-hidden="true">6.1.</strong> Kafka Connect Database Example</a></li><li class="chapter-item expanded "><a href="kafka-connect-mqtt-example.html"><strong aria-hidden="true">6.2.</strong> Kafka Connect MQTT Example</a></li></ol></li><li class="chapter-item expanded "><a href="performance-tools.html"><strong aria-hidden="true">7.</strong> Performance Tools</a></li><li class="chapter-item expanded "><a href="kafka-proxies.html"><strong aria-hidden="true">8.</strong> Kafka Proxies</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="kafka-rest-proxy.html"><strong aria-hidden="true">8.1.</strong> Kafka Rest Proxy</a></li><li class="chapter-item expanded "><a href="kafka-mqtt-proxy.html"><strong aria-hidden="true">8.2.</strong> Kafka MQTT Proxy</a></li></ol></li><li class="chapter-item expanded "><a href="avro-producer-and-consumer.html"><strong aria-hidden="true">9.</strong> Avro Producer and Consumer</a></li><li class="chapter-item expanded "><a href="cleanup.html"><strong aria-hidden="true">10.</strong> Cleanup</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><a href="ports-table.html">Ports Table</a></li><li class="chapter-item expanded affix "><a href="about-this-book.html">About this book</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -192,26 +192,40 @@ This is not intended to replace official courses.</p>
 <li><a href="https://docs.confluent.io/platform/current/installation/versions-interoperability.html">Confluent versions interoperability</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="install-dependencies"><a class="header" href="#install-dependencies">Install Dependencies</a></h1>
+<h3 id="install-java-and-docker"><a class="header" href="#install-java-and-docker">Install Java and Docker</a></h3>
 <ul>
 <li><a href="https://docs.docker.com/engine/install/">docker</a></li>
 <li><a href="https://sdkman.io/jdks">java</a></li>
 </ul>
-<p>Extras tools that you are going to use for some examples:</p>
+<h3 id="rest-and-json-tools"><a class="header" href="#rest-and-json-tools">REST and JSON tools</a></h3>
 <ul>
 <li><a href="https://httpie.io/">httpie</a> - rest client</li>
 <li><a href="https://stedolan.github.io/jq/">jq</a> - json parser</li>
+</ul>
+<pre><code class="language-bash">brew install httpie jq
+</code></pre>
+<h3 id="kubernetes-tools"><a class="header" href="#kubernetes-tools">Kubernetes Tools</a></h3>
+<ul>
 <li><a href="https://helm.sh/docs/intro/install/">helm</a> - kubernetes charts manager</li>
 <li><a href="https://kind.sigs.k8s.io/">kind</a> - local kubernetes cluster</li>
 <li><a href="https://kubernetes.io/docs/reference/kubectl/">kubectl</a> - kubernetes client cli</li>
+</ul>
+<pre><code class="language-bash">brew install helm kind kubectl
+</code></pre>
+<h3 id="mqtt-tools"><a class="header" href="#mqtt-tools">MQTT tools</a></h3>
+<ul>
 <li><a href="https://hivemq.github.io/mqtt-cli/docs/installation/">mqtt-cli</a> - MQTT client cli</li>
 </ul>
-<pre><code class="language-bash">brew install httpie jq helm kind kubectl hivemq/mqtt-cli/mqtt-cli
+<pre><code class="language-bash">brew install hivemq/mqtt-cli/mqtt-cli
 </code></pre>
-<p>A collection of kafka client cli tools to manage kafka:</p>
+<h3 id="kafka-cli"><a class="header" href="#kafka-cli">Kafka CLI</a></h3>
 <pre><code class="language-bash">brew install kafka
 kafka-topics --version
 </code></pre>
-<p>SQL clients:</p>
+<h3 id="avro-tools"><a class="header" href="#avro-tools">AVRO tools</a></h3>
+<pre><code class="language-bash">brew install avro-tools
+</code></pre>
+<h3 id="sql-clients"><a class="header" href="#sql-clients">SQL clients</a></h3>
 <pre><code class="language-bash">sudo apt install postgresql-client mysql-client
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="quick-start"><a class="header" href="#quick-start">Quick Start</a></h1>
@@ -555,6 +569,83 @@ This does not convert kafka into a MQTT broker, this aims to provide a simple wa
                        --group proxy.mqtt \
                        --topic proxy.mqtt  \
                        --property print.key=true
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="avro-producer-and-consumer"><a class="header" href="#avro-producer-and-consumer">Avro Producer and Consumer</a></h1>
+<p>These examples produce and consume messages from the <code>supplier</code> topic. The producer example produces random suppliers.</p>
+<p>The goal is to communicate producers and consumers with avro serialized messages.</p>
+<h3 id="other-links"><a class="header" href="#other-links">Other Links</a></h3>
+<ul>
+<li><a href="https://docs.confluent.io/platform/current/schema-registry/serdes-develop/serdes-avro.html">confluent avro producer and consumer examples</a></li>
+<li><a href="https://docs.confluent.io/platform/current/installation/configuration/consumer-configs.html">kafka consumer settings</a></li>
+<li><a href="https://docs.confluent.io/platform/current/installation/configuration/producer-configs.html">kafka producer settings</a></li>
+</ul>
+<h2 id="avro-schema"><a class="header" href="#avro-schema">Avro Schema</a></h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/SZX9DM_gyOE"></iframe>
+<p>Avro allows us to serialize/deserialize messages. Here it is our example
+avro schema:</p>
+<pre><code class="language-json">{
+  "type": "record",
+  "name": "Supplier",
+  "namespace": "kafka.sandbox.avro",
+  "version": "1",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string"
+    },
+    {
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "name": "address",
+      "type": "string"
+    },
+    {
+      "name": "country",
+      "type": "string"
+    }
+  ]
+}
+</code></pre>
+<p>For compiling the AVRO schema into java classes you should use the following command:</p>
+<pre><code class="language-bash">avro-tools compile schema kafka-avro/src/main/avro/suppliers-v1.avsc kafka-avro/src/main/java/
+</code></pre>
+<h3 id="setup-2"><a class="header" href="#setup-2">Setup</a></h3>
+<p>Create a topic:</p>
+<pre><code class="language-bash">kafka-topics --create --bootstrap-server localhost:19092 \
+             --replication-factor 3 \
+             --partitions 3 \
+             --topic client.suppliers
+</code></pre>
+<h3 id="produce-1"><a class="header" href="#produce-1">Produce</a></h3>
+<p>As you can see now we are using the autogenerated class <code>Supplier</code>.</p>
+<pre><code class="language-java">KafkaProducer&lt;String, Supplier&gt; producer = new KafkaProducer&lt;&gt;(props);
+
+for (int i = 0; i &lt; messages; i++) {
+    Supplier supplier = createNewCustomer();
+    ProducerRecord&lt;String, Supplier&gt; record = new ProducerRecord&lt;&gt;(
+        topic,
+        supplier.getId(),
+        supplier
+    );
+    producer.send(
+        record,
+        (metadata, exception) -&gt; log.info("Producing message: {}", supplier)
+    );
+}
+</code></pre>
+<pre><code class="language-bash">./gradlew kafka-clients:run --args="produce client.suppliers 100"
+</code></pre>
+<h3 id="consume"><a class="header" href="#consume">Consume</a></h3>
+<p>It is the same for the consumer, we are using the avro class <code>Supplier</code>.</p>
+<pre><code class="language-java">ConsumerRecords&lt;String, Supplier&gt; records = consumer.poll(Duration.ofMillis(500));
+
+for (ConsumerRecord&lt;String, Supplier&gt; record : records) {
+    log.info("Supplier ID: {}", record.key());
+}
+</code></pre>
+<pre><code class="language-bash">./gradlew kafka-clients:run --args="consume client.suppliers"
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="cleanup"><a class="header" href="#cleanup">Cleanup</a></h1>
 <p>Shutting down all services:</p>
