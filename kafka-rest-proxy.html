@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Kafka Connect MQTT Example - Kafka Sandbox</title>
+        <title>Kafka Rest Proxy - Kafka Sandbox</title>
 
 
         <!-- Custom HTML head -->
@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded "><a href="install-dependencies.html"><strong aria-hidden="true">1.</strong> Install Dependencies</a></li><li class="chapter-item expanded "><a href="quick-start.html"><strong aria-hidden="true">2.</strong> Quick Start</a></li><li class="chapter-item expanded "><a href="what-is-kafka.html"><strong aria-hidden="true">3.</strong> What is Kafka?</a></li><li class="chapter-item expanded "><a href="consuming-and-producing.html"><strong aria-hidden="true">4.</strong> Consuming and Producing</a></li><li class="chapter-item expanded "><a href="message-schemas.html"><strong aria-hidden="true">5.</strong> Message Schemas</a></li><li class="chapter-item expanded "><a href="what-is-kafka-connect.html"><strong aria-hidden="true">6.</strong> What is Kafka Connect?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="kafka-connect-database-example.html"><strong aria-hidden="true">6.1.</strong> Kafka Connect Database Example</a></li><li class="chapter-item expanded "><a href="kafka-connect-mqtt-example.html" class="active"><strong aria-hidden="true">6.2.</strong> Kafka Connect MQTT Example</a></li></ol></li><li class="chapter-item expanded "><a href="performance-tools.html"><strong aria-hidden="true">7.</strong> Performance Tools</a></li><li class="chapter-item expanded "><a href="kafka-proxies.html"><strong aria-hidden="true">8.</strong> Kafka Proxies</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="kafka-rest-proxy.html"><strong aria-hidden="true">8.1.</strong> Kafka Rest Proxy</a></li><li class="chapter-item expanded "><a href="kafka-mqtt-proxy.html"><strong aria-hidden="true">8.2.</strong> Kafka MQTT Proxy</a></li></ol></li><li class="chapter-item expanded "><li class="spacer"></li><li class="chapter-item expanded affix "><a href="ports-table.html">Ports Table</a></li><li class="chapter-item expanded affix "><a href="about-this-book.html">About this book</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded "><a href="install-dependencies.html"><strong aria-hidden="true">1.</strong> Install Dependencies</a></li><li class="chapter-item expanded "><a href="quick-start.html"><strong aria-hidden="true">2.</strong> Quick Start</a></li><li class="chapter-item expanded "><a href="what-is-kafka.html"><strong aria-hidden="true">3.</strong> What is Kafka?</a></li><li class="chapter-item expanded "><a href="consuming-and-producing.html"><strong aria-hidden="true">4.</strong> Consuming and Producing</a></li><li class="chapter-item expanded "><a href="message-schemas.html"><strong aria-hidden="true">5.</strong> Message Schemas</a></li><li class="chapter-item expanded "><a href="what-is-kafka-connect.html"><strong aria-hidden="true">6.</strong> What is Kafka Connect?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="kafka-connect-database-example.html"><strong aria-hidden="true">6.1.</strong> Kafka Connect Database Example</a></li><li class="chapter-item expanded "><a href="kafka-connect-mqtt-example.html"><strong aria-hidden="true">6.2.</strong> Kafka Connect MQTT Example</a></li></ol></li><li class="chapter-item expanded "><a href="performance-tools.html"><strong aria-hidden="true">7.</strong> Performance Tools</a></li><li class="chapter-item expanded "><a href="kafka-proxies.html"><strong aria-hidden="true">8.</strong> Kafka Proxies</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="kafka-rest-proxy.html" class="active"><strong aria-hidden="true">8.1.</strong> Kafka Rest Proxy</a></li><li class="chapter-item expanded "><a href="kafka-mqtt-proxy.html"><strong aria-hidden="true">8.2.</strong> Kafka MQTT Proxy</a></li></ol></li><li class="chapter-item expanded "><li class="spacer"></li><li class="chapter-item expanded affix "><a href="ports-table.html">Ports Table</a></li><li class="chapter-item expanded affix "><a href="about-this-book.html">About this book</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -176,60 +176,63 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="kafka-connect-mqtt-example"><a class="header" href="#kafka-connect-mqtt-example">Kafka Connect MQTT Example</a></h1>
-<h3 id="setup-broker"><a class="header" href="#setup-broker">Setup Broker</a></h3>
-<p>Start MQTT server:</p>
-<pre><code class="language-bash">docker compose --profile mqtt up -d
+                        <h1 id="kafka-rest-proxy"><a class="header" href="#kafka-rest-proxy">Kafka REST Proxy</a></h1>
+<p>The Kafka REST Proxy provides a RESTful interface to a Kafka cluster.
+Use this when you really need a rest interface since it is usually more complex than using conventional kafka clients.
+You can check the API reference <a href="https://docs.confluent.io/platform/current/kafka-rest/api.html">here</a>.</p>
+<h3 id="setup"><a class="header" href="#setup">Setup</a></h3>
+<p>Run Kafka REST Proxy:</p>
+<pre><code class="language-bash">docker compose --profile proxies up -d
 </code></pre>
-<p>In one terminal, subscribe to mqtt topics:</p>
-<pre><code class="language-bash">mqtt sub -h localhost -t 'house/+/brightness'
+<p>Check the cluster information:</p>
+<pre><code class="language-bash">http :8082/v3/clusters
 </code></pre>
-<p>In another terminal, publish messages:</p>
-<pre><code class="language-bash">mqtt pub -h localhost -t 'house/room/brightness' -m '800LM'
-mqtt pub -h localhost -t 'house/kitchen/brightness' -m '1000LM'
+<p>Expose the cluster id into an env:</p>
+<pre><code class="language-bash">export CLUSTER_ID=$(http :8082/v3/clusters | jq -r '.data[].cluster_id')
 </code></pre>
-<h3 id="create-source-connector"><a class="header" href="#create-source-connector">Create Source Connector</a></h3>
+<h3 id="create-topic"><a class="header" href="#create-topic">Create Topic</a></h3>
 <p>Payload:</p>
 <pre><code class="language-json">{
-  "name": "mqtt-source",
-  "config": {
-      "connector.class": "io.confluent.connect.mqtt.MqttSourceConnector",
-      "tasks.max": "1",
-      "mqtt.server.uri": "tcp://mosquitto:1883",
-      "mqtt.topics":"house/+/brightness",
-      "kafka.topic":"connect.brightness",
-      "mqtt.qos": "2",
-      "confluent.topic.bootstrap.servers": "kafka1:9092",
-      "confluent.topic.replication.factor": "1"
+  "topic_name": "proxy.rest",
+  "partitions_count": 3,
+  "replication_factor": 3
+}
+</code></pre>
+<p>Hit rest proxy:</p>
+<pre><code class="language-bash">http :8082/v3/clusters/${CLUSTER_ID}/topics &lt; kafka-rest/requests/create-topic.json
+</code></pre>
+<p>List topics:</p>
+<pre><code class="language-bash">http :8082/v3/clusters/${CLUSTER_ID}/topics | jq -r '.data[].topic_name'
+</code></pre>
+<h3 id="produce"><a class="header" href="#produce">Produce</a></h3>
+<p>Payload:</p>
+<pre><code class="language-json">{
+  "key": {
+    "type": "STRING",
+    "data": "ce59e9a6-aafd-44f4-bdc6-f285adfcc836"
+  },
+  "value": {
+    "type": "AVRO",
+    "schema": "{\"type\": \"record\", \"name\": \"User\", \"fields\": [{\"name\": \"name\", \"type\": \"string\"}]}",
+    "data": {
+      "name": "John Doe"
+    }
   }
 }
 </code></pre>
-<p>Create a connector using the API:</p>
-<pre><code class="language-bash">http :8083/connectors &lt; kafka-connect/requests/create-connector-mqtt-source.json
-</code></pre>
-<p>In one terminal, consume from kafka:</p>
-<pre><code class="language-bash">kafka-console-consumer --from-beginning --group connect.mqtt \
-                       --topic connect.brightness  \
-                       --bootstrap-server localhost:19092 \
-                       --property print.key=true
-</code></pre>
-<p>In another terminal, publish new messages to the MQTT broker:</p>
-<pre><code class="language-bash">mqtt pub -h localhost -t 'house/room/brightness' -m '810LM'
-mqtt pub -h localhost -t 'house/kitchen/brightness' -m '1020LM'
-</code></pre>
-<p>Deleting the connector:</p>
-<pre><code class="language-bash">http DELETE :8083/connectors/mqtt-source
+<p>Send payload:</p>
+<pre><code class="language-bash">http :8082/v3/clusters/${CLUSTER_ID}/topics/proxy.rest/records &lt; kafka-rest/requests/produce-avro-message.json
 </code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="kafka-connect-database-example.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="kafka-proxies.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="performance-tools.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="kafka-mqtt-proxy.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -239,11 +242,11 @@ mqtt pub -h localhost -t 'house/kitchen/brightness' -m '1020LM'
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="kafka-connect-database-example.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="kafka-proxies.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="performance-tools.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="kafka-mqtt-proxy.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

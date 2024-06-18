@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded "><a href="install-dependencies.html"><strong aria-hidden="true">1.</strong> Install Dependencies</a></li><li class="chapter-item expanded "><a href="quick-start.html"><strong aria-hidden="true">2.</strong> Quick Start</a></li><li class="chapter-item expanded "><a href="what-is-kafka.html"><strong aria-hidden="true">3.</strong> What is Kafka?</a></li><li class="chapter-item expanded "><a href="consuming-and-producing.html"><strong aria-hidden="true">4.</strong> Consuming and Producing</a></li><li class="chapter-item expanded "><a href="message-schemas.html"><strong aria-hidden="true">5.</strong> Message Schemas</a></li><li class="chapter-item expanded "><a href="what-is-kafka-connect.html"><strong aria-hidden="true">6.</strong> What is Kafka Connect?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="kafka-connect-database-example.html"><strong aria-hidden="true">6.1.</strong> Kafka Connect Database Example</a></li><li class="chapter-item expanded "><a href="kafka-connect-mqtt-example.html"><strong aria-hidden="true">6.2.</strong> Kafka Connect MQTT Example</a></li></ol></li><li class="chapter-item expanded "><a href="performance-tools.html"><strong aria-hidden="true">7.</strong> Performance Tools</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><a href="ports-table.html">Ports Table</a></li><li class="chapter-item expanded affix "><a href="about-this-book.html">About this book</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded "><a href="install-dependencies.html"><strong aria-hidden="true">1.</strong> Install Dependencies</a></li><li class="chapter-item expanded "><a href="quick-start.html"><strong aria-hidden="true">2.</strong> Quick Start</a></li><li class="chapter-item expanded "><a href="what-is-kafka.html"><strong aria-hidden="true">3.</strong> What is Kafka?</a></li><li class="chapter-item expanded "><a href="consuming-and-producing.html"><strong aria-hidden="true">4.</strong> Consuming and Producing</a></li><li class="chapter-item expanded "><a href="message-schemas.html"><strong aria-hidden="true">5.</strong> Message Schemas</a></li><li class="chapter-item expanded "><a href="what-is-kafka-connect.html"><strong aria-hidden="true">6.</strong> What is Kafka Connect?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="kafka-connect-database-example.html"><strong aria-hidden="true">6.1.</strong> Kafka Connect Database Example</a></li><li class="chapter-item expanded "><a href="kafka-connect-mqtt-example.html"><strong aria-hidden="true">6.2.</strong> Kafka Connect MQTT Example</a></li></ol></li><li class="chapter-item expanded "><a href="performance-tools.html"><strong aria-hidden="true">7.</strong> Performance Tools</a></li><li class="chapter-item expanded "><a href="kafka-proxies.html"><strong aria-hidden="true">8.</strong> Kafka Proxies</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="kafka-rest-proxy.html"><strong aria-hidden="true">8.1.</strong> Kafka Rest Proxy</a></li><li class="chapter-item expanded "><a href="kafka-mqtt-proxy.html"><strong aria-hidden="true">8.2.</strong> Kafka MQTT Proxy</a></li></ol></li><li class="chapter-item expanded "><li class="spacer"></li><li class="chapter-item expanded affix "><a href="ports-table.html">Ports Table</a></li><li class="chapter-item expanded affix "><a href="about-this-book.html">About this book</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -480,6 +480,82 @@ latency (<a href="https://docs.confluent.io/kafka/operations-tools/kafka-tools.h
 <li><code>producer_acks</code>: The producer setting for acks.</li>
 <li><code>message_size_bytes</code>: size of each message in bytes.</li>
 </ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="kafka-proxies"><a class="header" href="#kafka-proxies">Kafka Proxies</a></h1>
+<p>The kafka proxies are tools that simplify the communication between a component and kafka through a non-kafka protocol.</p>
+<p>Confluent provides a couple of proxies. It is important to mention that these tools are used when the use case is simple
+enough. Generally when you need a lot of control over clients, using proxies is not recommended.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="kafka-rest-proxy"><a class="header" href="#kafka-rest-proxy">Kafka REST Proxy</a></h1>
+<p>The Kafka REST Proxy provides a RESTful interface to a Kafka cluster.
+Use this when you really need a rest interface since it is usually more complex than using conventional kafka clients.
+You can check the API reference <a href="https://docs.confluent.io/platform/current/kafka-rest/api.html">here</a>.</p>
+<h3 id="setup"><a class="header" href="#setup">Setup</a></h3>
+<p>Run Kafka REST Proxy:</p>
+<pre><code class="language-bash">docker compose --profile proxies up -d
+</code></pre>
+<p>Check the cluster information:</p>
+<pre><code class="language-bash">http :8082/v3/clusters
+</code></pre>
+<p>Expose the cluster id into an env:</p>
+<pre><code class="language-bash">export CLUSTER_ID=$(http :8082/v3/clusters | jq -r '.data[].cluster_id')
+</code></pre>
+<h3 id="create-topic"><a class="header" href="#create-topic">Create Topic</a></h3>
+<p>Payload:</p>
+<pre><code class="language-json">{
+  "topic_name": "proxy.rest",
+  "partitions_count": 3,
+  "replication_factor": 3
+}
+</code></pre>
+<p>Hit rest proxy:</p>
+<pre><code class="language-bash">http :8082/v3/clusters/${CLUSTER_ID}/topics &lt; kafka-rest/requests/create-topic.json
+</code></pre>
+<p>List topics:</p>
+<pre><code class="language-bash">http :8082/v3/clusters/${CLUSTER_ID}/topics | jq -r '.data[].topic_name'
+</code></pre>
+<h3 id="produce"><a class="header" href="#produce">Produce</a></h3>
+<p>Payload:</p>
+<pre><code class="language-json">{
+  "key": {
+    "type": "STRING",
+    "data": "ce59e9a6-aafd-44f4-bdc6-f285adfcc836"
+  },
+  "value": {
+    "type": "AVRO",
+    "schema": "{\"type\": \"record\", \"name\": \"User\", \"fields\": [{\"name\": \"name\", \"type\": \"string\"}]}",
+    "data": {
+      "name": "John Doe"
+    }
+  }
+}
+</code></pre>
+<p>Send payload:</p>
+<pre><code class="language-bash">http :8082/v3/clusters/${CLUSTER_ID}/topics/proxy.rest/records &lt; kafka-rest/requests/produce-avro-message.json
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="kafka-mqtt-proxy"><a class="header" href="#kafka-mqtt-proxy">Kafka MQTT Proxy</a></h1>
+<p>MQTT Proxy enables MQTT clients to use the MQTT protocol to publish data directly to Apache Kafka.
+This does not convert kafka into a MQTT broker, this aims to provide a simple way to publish/persist IoT data to Kafka.</p>
+<h3 id="setup-1"><a class="header" href="#setup-1">Setup</a></h3>
+<p>Run Kafka REST Proxy:</p>
+<pre><code class="language-bash">docker compose --profile proxies up -d
+</code></pre>
+<h3 id="publish-messages"><a class="header" href="#publish-messages">Publish Messages</a></h3>
+<p>Create topic:</p>
+<pre><code class="language-bash">kafka-topics --create \
+             --bootstrap-server localhost:19092 \
+             --replication-factor 3 \
+             --partitions 3 \
+             --topic proxy.mqtt
+</code></pre>
+<p>Publish using mqtt proxy:</p>
+<pre><code class="language-bash">mqtt pub -h localhost -p 1884 -t 'house/room/temperature' -m '20C'
+</code></pre>
+<p>Check the data:</p>
+<pre><code class="language-bash">kafka-console-consumer --from-beginning \
+                       --bootstrap-server localhost:19092 \
+                       --group proxy.mqtt \
+                       --topic proxy.mqtt  \
+                       --property print.key=true
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ports"><a class="header" href="#ports">Ports</a></h1>
 <div class="table-wrapper"><table><thead><tr><th>Service</th><th>Port</th></tr></thead><tbody>
 <tr><td><a href="http://localhost:8080/">AKHQ Kafka UI</a></td><td>8080</td></tr>
