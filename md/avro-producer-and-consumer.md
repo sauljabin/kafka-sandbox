@@ -6,7 +6,7 @@ The goal is to communicate producers and consumers with avro serialized messages
 
 ### Other Links
 
-- [confluent avro producer and consumer examples](https://docs.confluent.io/platform/current/schema-registry/serdes-develop/serdes-avro.html)
+- [confluent avro producer and consumer examples](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/serdes-avro.html)
 - [kafka consumer settings](https://docs.confluent.io/platform/current/installation/configuration/consumer-configs.html)
 - [kafka producer settings](https://docs.confluent.io/platform/current/installation/configuration/producer-configs.html)
 

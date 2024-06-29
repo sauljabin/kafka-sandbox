@@ -14,6 +14,7 @@
 - [Kafka Proxies](kafka-proxies.md)
   - [Kafka Rest Proxy](kafka-rest-proxy.md)
   - [Kafka MQTT Proxy](kafka-mqtt-proxy.md)
+- [JSON Producer and Consumer](json-producer-and-consumer.md)
 - [Avro Producer and Consumer](avro-producer-and-consumer.md)
   - [Avro Union](avro-union.md)
 - [Spring Boot](spring-boot.md)
