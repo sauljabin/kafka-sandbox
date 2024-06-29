@@ -25,6 +25,7 @@ public abstract class Producer<V> {
             V value = newMessage();
             ProducerRecord<String, V> record = new ProducerRecord<>(
                     topic,
+                    String.valueOf(value),
                     value
             );
             producer.send(
