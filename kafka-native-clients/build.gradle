@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url = 'https://packages.confluent.io/maven/'
+    }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+
+    implementation "org.apache.kafka:kafka-clients:${kafkaVersion}"
+
+    implementation 'info.picocli:picocli:4.6.1'
+    implementation 'net.datafaker:datafaker:2.0.2'
+    implementation 'org.slf4j:slf4j-simple:1.7.30'
+
+    compileOnly 'org.projectlombok:lombok:1.18.26'
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.26'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.26'
+}
+
+application {
+    mainClass = 'kafka.sandbox.App'
+}
+
+test {
+    useJUnitPlatform()
+}

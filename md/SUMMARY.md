@@ -6,6 +6,7 @@
 - [Quick Start](quick-start.md)
 - [What is Kafka?](what-is-kafka.md)
 - [Consuming and Producing](consuming-and-producing.md)
+  - [Native Consumer and Producer](producing-and-consuming-natives.md)
 - [Message Schemas](message-schemas.md)
 - [What is Kafka Connect?](what-is-kafka-connect.md)
   - [Kafka Connect Database Example](kafka-connect-database-example.md)

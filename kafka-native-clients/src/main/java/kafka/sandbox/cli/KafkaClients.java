@@ -7,7 +7,7 @@ import static picocli.CommandLine.ParameterException;
 import static picocli.CommandLine.Spec;
 
 @Command(
-        name = "kafka-json-clients",
+        name = "kafka-native-clients",
         description = "Allows you either to produce or consume topic",
         synopsisSubcommandLabel = "COMMAND"
 )
