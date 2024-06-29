@@ -7,8 +7,8 @@ import static picocli.CommandLine.ParameterException;
 import static picocli.CommandLine.Spec;
 
 @Command(
-        name = "kafka-clients",
-        description = "Allows you either to produce or consume form the supplier topic",
+        name = "kafka-avro-clients",
+        description = "Allows you either to produce or consume topic",
         synopsisSubcommandLabel = "COMMAND"
 )
 public class KafkaClients implements Runnable {

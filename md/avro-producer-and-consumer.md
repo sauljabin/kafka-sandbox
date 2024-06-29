@@ -18,13 +18,13 @@ Avro allows us to serialize/deserialize messages. Here it is our example
 avro schema:
 
 ```json
-{{#include ../kafka-avro/src/main/avro/suppliers-v1.avsc}}
+{{#include ../kafka-avro/src/main/avro/Suppliers.avsc}}
 ```
 
 For compiling the AVRO schema into java classes you should use the following command:
 
 ```bash
-avro-tools compile schema kafka-avro/src/main/avro/suppliers-v1.avsc kafka-avro/src/main/java/
+avro-tools compile schema kafka-avro/src/main/avro/ kafka-avro/src/main/java/
 ```
 
 ### Setup
@@ -60,7 +60,7 @@ for (int i = 0; i < messages; i++) {
 ```
 
 ```bash
-./gradlew kafka-clients:run --args="produce client.suppliers 100"
+./gradlew kafka-avro-clients:run --args="produce client.suppliers 100"
 ```
 
 ### Consume
@@ -76,5 +76,5 @@ for (ConsumerRecord<String, Supplier> record : records) {
 ```
 
 ```bash
-./gradlew kafka-clients:run --args="consume client.suppliers"
+./gradlew kafka-avro-clients:run --args="consume client.suppliers"
 ```

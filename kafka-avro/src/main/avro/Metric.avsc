@@ -1,0 +1,53 @@
+{
+  "type": "record",
+  "name": "Metric",
+  "namespace": "kafka.sandbox.avro",
+  "version": "1",
+  "fields": [
+    {
+      "name": "metricId",
+      "type": "string"
+    },
+    {
+      "name": "metricType",
+      "type": {
+        "type": "enum",
+        "name": "MetricType",
+        "symbols": [
+          "TIMER",
+          "COUNTER"
+        ],
+        "default": "TIMER"
+      }
+    },
+    {
+      "name": "metric",
+      "type": [
+        {
+          "type": "record",
+          "name": "TimerMetric",
+          "namespace": "kafka.sandbox.avro",
+          "version": "1",
+          "fields": [
+            {
+              "name": "avg",
+              "type": "double"
+            }
+          ]
+        },
+        {
+          "type": "record",
+          "name": "CounterMetric",
+          "namespace": "kafka.sandbox.avro",
+          "version": "1",
+          "fields": [
+            {
+              "name": "count",
+              "type": "long"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

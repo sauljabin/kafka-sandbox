@@ -16,7 +16,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
 
 @Slf4j
-@Command(name = "consume", description = "Consumes supplier messages from the topic")
+@Command(name = "consume", description = "Consumes messages from topic")
 public class Consumer implements Callable<Integer> {
 
     private final Properties props;

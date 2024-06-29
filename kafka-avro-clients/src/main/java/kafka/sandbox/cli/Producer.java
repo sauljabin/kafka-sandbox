@@ -14,7 +14,7 @@ import java.util.UUID;
 import java.util.concurrent.Callable;
 
 @Slf4j
-@Command(name = "produce", description = "Produces supplier messages to the topic")
+@Command(name = "produce", description = "Produces messages to topic")
 public class Producer implements Callable<Integer> {
 
     private final Properties props;
@@ -22,7 +22,7 @@ public class Producer implements Callable<Integer> {
 
     @Parameters(
             index = "1",
-            description = "Total new supplier messages to produce"
+            description = "Total new messages to produce"
     )
     private int messages;
 
@@ -41,7 +41,7 @@ public class Producer implements Callable<Integer> {
         KafkaProducer<String, Supplier> producer = new KafkaProducer<>(props);
 
         for (int i = 0; i < messages; i++) {
-            Supplier supplier = createNewCustomer();
+            Supplier supplier = newMessage();
             ProducerRecord<String, Supplier> record = new ProducerRecord<>(
                     topic,
                     supplier.getId().toString(),
@@ -49,7 +49,13 @@ public class Producer implements Callable<Integer> {
             );
             producer.send(
                     record,
-                    (metadata, exception) -> log.info("Producing message: {}", supplier)
+                    (metadata, exception) -> {
+                        if (exception != null) {
+                            log.error("Error producing {}", supplier, exception);
+                            return;
+                        }
+                        log.info("Producing message: {}", supplier);
+                    }
             );
         }
 
@@ -59,7 +65,7 @@ public class Producer implements Callable<Integer> {
         return CommandLine.ExitCode.OK;
     }
 
-    private Supplier createNewCustomer() {
+    private Supplier newMessage() {
         return Supplier
                 .newBuilder()
                 .setId(UUID.randomUUID().toString())

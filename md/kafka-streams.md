@@ -58,5 +58,5 @@ kafka-console-consumer --from-beginning --group kafka-streams.consumer \
 Send new suppliers (in another terminal):
 
 ```bash
-./gradlew kafka-clients:run --args="produce client.suppliers 100"
+./gradlew kafka-avro-clients:run --args="produce client.suppliers 100"
 ```
