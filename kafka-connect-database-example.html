@@ -190,17 +190,11 @@ to multiple targets (<strong>postgres and mongo</strong>).</p>
 <pre><code class="language-bash">docker compose exec cli bash
 </code></pre>
 <p>Populate it:</p>
-<pre><code class="language-bash">mysql --host=mysql --port=3306 \
-      --user=root --password=notasecret \
-      --database=sandbox \
-      &lt; kafka-connect/sql/customers.sql
+<pre><code class="language-bash">mysql --host=mysql --database=sandbox &lt; kafka-connect/sql/customers.sql
 </code></pre>
 <p>That command should have created the table <code>customers</code> and inserted 200 records.</p>
 <p>Now you can open <a href="http://localhost:9090">Adminer</a> or run:</p>
-<pre><code class="language-bash">mysql --host=mysql --port=3306 \
-      --user=root --password=notasecret \
-      --database=sandbox \
-      -e "select * from customers"
+<pre><code class="language-bash">mysql --host=mysql --database=sandbox -e "select * from customers"
 </code></pre>
 <h3 id="create-source-connector"><a class="header" href="#create-source-connector">Create Source Connector</a></h3>
 <p>Check the installed plugins:</p>
@@ -257,9 +251,7 @@ to multiple targets (<strong>postgres and mongo</strong>).</p>
 </code></pre>
 <p>This sink connector is going to create a table <code>customers</code> on postgres and insert all records.</p>
 <p>Now you can open <a href="http://localhost:9090">Adminer</a> or run:</p>
-<pre><code class="language-bash">psql --host=postgres --port=5432 \
-     --user=postgres --dbname=sandbox\
-     -c "select * from customers"
+<pre><code class="language-bash">psql --host=postgres --user=postgres --dbname=sandbox -c "select * from customers"
 </code></pre>
 <p>List connector:</p>
 <pre><code class="language-bash">http kafka-connect:8083/connectors
