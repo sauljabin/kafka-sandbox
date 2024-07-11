@@ -12,15 +12,17 @@ jobs:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - uses: actions/checkout@v4
-      - name: Setup mdBook
-        uses: peaceiris/actions-mdbook@v2
-        with:
-          mdbook-version: "latest"
+#      - name: Setup mdBook
+#        uses: peaceiris/actions-mdbook@v2
+#        with:
+#          mdbook-version: "latest"
+      - name: Install Dependencies
+        run: cargo install mdbook mdbook-alerts
       - name: Generating Statics Files
         run: mdbook build
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v4
-        if: ${{ github.ref == 'refs/heads/main' }}
-        with:
-          github_token: ${{ secrets.RELEASE_ACCESS_TOKEN }}
-          publish_dir: ./book
+#      - name: Deploy
+#        uses: peaceiris/actions-gh-pages@v4
+#        if: ${{ github.ref == 'refs/heads/main' }}
+#        with:
+#          github_token: ${{ secrets.RELEASE_ACCESS_TOKEN }}
+#          publish_dir: ./book
