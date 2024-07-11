@@ -47,7 +47,7 @@ public class Producer implements Callable<Integer> {
             Metric metric = newMetric();
             ProducerRecord<String, Metric> record = new ProducerRecord<>(
                     topic,
-                    metric.getMetricId().toString(),
+                    metric.getMetricId(),
                     metric
             );
             producer.send(

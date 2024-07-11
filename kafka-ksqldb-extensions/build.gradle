@@ -10,10 +10,21 @@ repositories {
     }
 }
 
+java {
+    sourceCompatibility = 11
+    targetCompatibility = 11
+}
+
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
 
-    implementation "io.confluent.ksql:ksqldb-udf:${confluentVersion}"
+    implementation("io.confluent.ksql:ksqldb-udf:${confluentVersion}") {
+        exclude group: 'io.confluent.observability', module: 'telemetry-client'
+        exclude group: 'io.confluent.observability', module: 'telemetry-api'
+        exclude group: 'io.confluent', module: 'auth-metadata'
+        exclude group: 'io.confluent.cloud', module: 'events-schema'
+    }
+
     implementation "org.apache.kafka:connect-api:${kafkaVersion}"
     implementation "org.apache.kafka:kafka_2.13:${kafkaVersion}"
 
