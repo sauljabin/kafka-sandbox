@@ -289,12 +289,8 @@ for (int i = 0; i &lt; messages; i++) {
 }
 </code></pre>
 <p>Then, produce for each type:</p>
-<pre><code class="language-bash">gradle kafka-native-clients:run --args="produce client.string string 100"
-gradle kafka-native-clients:run --args="produce client.integer integer 100"
-gradle kafka-native-clients:run --args="produce client.long long 100"
-gradle kafka-native-clients:run --args="produce client.float float 100"
-gradle kafka-native-clients:run --args="produce client.double double 100"
-gradle kafka-native-clients:run --args="produce client.boolean boolean 100"
+<pre><code class="language-bash">for type in "string" "integer" "long" "float" "double" "boolean" ; do \
+  gradle kafka-native-clients:run --args="produce client.$type $type 100" ; done
 </code></pre>
 <h3 id="consume"><a class="header" href="#consume">Consume</a></h3>
 <p>It's going to be the same for the consumer, but in this case you have to use the <strong>deserializer</strong>: <code>ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG</code>.</p>
