@@ -1,8 +1,8 @@
 package kafka.sandbox.cli;
 
 import io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig;
-import io.confluent.kafka.serializers.KafkaJsonDeserializer;
-import io.confluent.kafka.serializers.json.KafkaJsonSchemaDeserializer;
+import io.confluent.kafka.serializers.protobuf.KafkaProtobufDeserializer;
+import kafka.sandbox.proto.Invoice;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -10,6 +10,7 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.errors.RecordDeserializationException;
 import org.apache.kafka.common.errors.WakeupException;
+import org.apache.kafka.common.serialization.BytesDeserializer;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 
@@ -41,13 +42,13 @@ public class Consumer implements Callable<Integer> {
     @Override
     public Integer call() throws Exception {
         if (useSchemaRegistry) {
-            props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaJsonSchemaDeserializer.class);
+            props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaProtobufDeserializer.class);
             props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://schema-registry:8081");
         } else {
-            props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaJsonDeserializer.class);
+            props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, BytesDeserializer.class);
         }
 
-        KafkaConsumer<String, User> consumer = new KafkaConsumer<>(props);
+        KafkaConsumer<String, Invoice> consumer = new KafkaConsumer<>(props);
         consumer.subscribe(Collections.singleton(topic));
 
         // attach shutdown handler to catch control-c and creating a latch
@@ -69,10 +70,10 @@ public class Consumer implements Callable<Integer> {
                 () -> {
                     try {
                         while (true) {
-                            ConsumerRecords<String, User> records = consumer.poll(
+                            ConsumerRecords<String, Invoice> records = consumer.poll(
                                     Duration.ofMillis(500)
                             );
-                            for (ConsumerRecord<String, User> record : records) {
+                            for (ConsumerRecord<String, Invoice> record : records) {
                                 log.info(
                                         "Consumed message: topic = {}, partition = {}, offset = {}, key = {}, value = {}",
                                         record.topic(),

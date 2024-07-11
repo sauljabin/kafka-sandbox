@@ -1,22 +1,21 @@
 package kafka.sandbox.cli;
 
+import com.google.protobuf.util.Timestamps;
 import io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig;
-import io.confluent.kafka.serializers.KafkaJsonSerializer;
-import io.confluent.kafka.serializers.json.KafkaJsonSchemaSerializer;
 import io.confluent.kafka.serializers.protobuf.KafkaProtobufSerializer;
+import kafka.sandbox.proto.Invoice;
 import lombok.extern.slf4j.Slf4j;
 import net.datafaker.Faker;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.common.serialization.ByteArraySerializer;
+import org.apache.kafka.common.serialization.BytesSerializer;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
 import java.util.Properties;
-import java.util.UUID;
 import java.util.concurrent.Callable;
 
 @Slf4j
@@ -52,26 +51,26 @@ public class Producer implements Callable<Integer> {
             props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaProtobufSerializer.class);
             props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://schema-registry:8081");
         } else {
-            props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, ByteArraySerializer.class);
+            props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, BytesSerializer.class);
         }
 
-        KafkaProducer<String, User> producer = new KafkaProducer<>(props);
+        KafkaProducer<String, Invoice> producer = new KafkaProducer<>(props);
 
         for (int i = 0; i < messages; i++) {
-            User user = newMessage();
-            ProducerRecord<String, User> record = new ProducerRecord<>(
+            Invoice invoice = newMessage();
+            ProducerRecord<String, Invoice> record = new ProducerRecord<>(
                     topic,
-                    user.getId(),
-                    user
+                    invoice.getId(),
+                    invoice
             );
             producer.send(
                     record,
                     (metadata, exception) -> {
                         if (exception != null) {
-                            log.error("Error producing {}", user, exception);
+                            log.error("Error producing {}", invoice, exception);
                             return;
                         }
-                        log.info("Producing message: {}", user);
+                        log.info("Producing message: {}", invoice);
                     }
             );
         }
@@ -82,13 +81,10 @@ public class Producer implements Callable<Integer> {
         return CommandLine.ExitCode.OK;
     }
 
-    private User newMessage() {
-        return User.builder()
-                .id(UUID.randomUUID().toString())
-                .firstName(faker.name().firstName())
-                .lastName(faker.name().lastName())
-                .address(faker.address().streetAddress())
-                .age(faker.number().numberBetween(20, 40))
+    private Invoice newMessage() {
+        return Invoice.newBuilder()
+                .setId(faker.internet().uuid())
+                .setCreatedAt(Timestamps.now())
                 .build();
     }
 }
