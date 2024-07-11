@@ -60,7 +60,7 @@ Print results (in another terminal):
 ```bash
 kafka-console-consumer --from-beginning --group kafka-streams.consumer \
                        --topic streams.results  \
-                       -bootstrap-server kafka1:9092 \
+                       --bootstrap-server kafka1:9092 \
                        --property print.key=true \
                        --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
 ```
