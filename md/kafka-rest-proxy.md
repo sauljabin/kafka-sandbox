@@ -12,16 +12,16 @@ Run Kafka REST Proxy:
 docker compose --profile proxies up -d
 ```
 
+Then open a terminal inside the sandbox environment:
+
+```bash
+docker compose exec cli bash
+```
+
 Check the cluster information:
 
 ```bash
-http :8082/v3/clusters
-```
-
-Expose the cluster id into an env:
-
-```bash
-export CLUSTER_ID=$(http :8082/v3/clusters | jq -r '.data[].cluster_id')
+http kafka-rest:8082/v3/clusters
 ```
 
 ### Create Topic
@@ -35,13 +35,13 @@ Payload:
 Hit rest proxy:
 
 ```bash
-http :8082/v3/clusters/${CLUSTER_ID}/topics < kafka-rest/requests/create-topic.json
+http kafka-rest:8082/v3/clusters/${CLUSTER_ID}/topics < kafka-rest/requests/create-topic.json
 ```
 
 List topics:
 
 ```bash
-http :8082/v3/clusters/${CLUSTER_ID}/topics | jq -r '.data[].topic_name'
+http kafka-rest:8082/v3/clusters/${CLUSTER_ID}/topics
 ```
 
 ### Produce
@@ -55,5 +55,14 @@ Payload:
 Send payload:
 
 ```bash
-http :8082/v3/clusters/${CLUSTER_ID}/topics/proxy.rest/records < kafka-rest/requests/produce-avro-message.json
+http kafka-rest:8082/v3/clusters/${CLUSTER_ID}/topics/proxy.rest/records < kafka-rest/requests/produce-avro-message.json
+```
+
+### Consume
+
+```bash
+kafka-avro-console-consumer --bootstrap-server kafka1:9092 \
+        --topic proxy.rest \
+        --from-beginning \
+        --property schema.registry.url=http://schema-registry:8081
 ```

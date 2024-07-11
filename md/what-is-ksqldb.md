@@ -10,25 +10,34 @@ ksqlDB it is not a SQL database, it provides an extra layer for implementing kst
 
 ### Run ksqlDB
 
+Start ksqldb:
+
 ```bash
 docker compose --profile ksqldb up -d
+```
+
+Open a terminal inside the sandbox environment:
+
+```bash
+docker compose exec cli bash
 ```
 
 After a few seconds check if it is up:
 
 ```bash
-http :8088/info
+http ksqldb:8088/info
 ```
 
 One line shell interaction:
 
 ```bash
-docker compose exec ksqldb-cli ksql -e "SHOW STREAMS;" http://ksqldb:8088
+ksql -e "SHOW STREAMS;" http://ksqldb:8088
 ```
 
 Interactive ksqlDB shell:
 
 ```bash
-docker compose exec ksqldb-cli ksql http://ksqldb:8088
-SHOW STREAMS;
+ksql http://ksqldb:8088
 ```
+
+Then enter `SHOW STREAMS;`.

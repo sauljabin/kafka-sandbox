@@ -1,13 +1,23 @@
 # JSON Producer and Consumer
 
-This example shows you how to use json and schema registry for producing and consuming. 
+This example shows you how to use json and schema registry for producing and consuming.
+
+<div class="warning">
+
+Open a terminal inside the sandbox environment:
+
+```bash
+docker compose exec cli bash
+```
+
+</div>
 
 ### Other Links
 
 - [json schema](https://json-schema.org/)
 - [confluent example](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/serdes-json.html)
 
-## POJO
+### POJO
 
 The first step is to create the structure:
 
@@ -17,7 +27,7 @@ The first step is to create the structure:
 
 Confluent java library uses [jackson annotations](https://github.com/FasterXML/jackson-annotations?tab=readme-ov-file#usage-simple).
 
-## Configurations
+### Configurations
 
 It is possible to produce with or without Schema Registry. It'll depend on the configurations.
 
@@ -26,7 +36,7 @@ Producer:
 ```java
 if (useSchemaRegistry) {
     props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaJsonSchemaSerializer.class);
-    props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://localhost:8081");
+    props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://schema-registry:8081");
 } else {
     props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaJsonSerializer.class);
 }
@@ -37,7 +47,7 @@ Consumer:
 ```java
 if (useSchemaRegistry) {
     props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaJsonSchemaDeserializer.class);
-    props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://localhost:8081");
+    props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://schema-registry:8081");
 } else {
     props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaJsonDeserializer.class);
 }
@@ -48,7 +58,7 @@ if (useSchemaRegistry) {
 Create a topic to produce json **without** Schema Registry:
 
 ```bash
-kafka-topics --create --bootstrap-server localhost:19092 \
+kafka-topics --create --bootstrap-server kafka1:9092 \
              --replication-factor 3 \
              --partitions 3 \
              --topic client.users
@@ -57,7 +67,7 @@ kafka-topics --create --bootstrap-server localhost:19092 \
 Create a topic to produce json **with** Schema Registry:
 
 ```bash
-kafka-topics --create --bootstrap-server localhost:19092 \
+kafka-topics --create --bootstrap-server kafka1:9092 \
              --replication-factor 3 \
              --partitions 3 \
              --topic client.schema.users
@@ -68,13 +78,13 @@ kafka-topics --create --bootstrap-server localhost:19092 \
 Produce **without** Schema Registry:
 
 ```bash
-./gradlew kafka-json-clients:run --args="produce client.users 100"
+gradle kafka-json-clients:run --args="produce client.users 100"
 ```
 
 Produce **with** Schema Registry:
 
 ```bash
-./gradlew kafka-json-clients:run --args="produce -s client.schema.users 100"
+gradle kafka-json-clients:run --args="produce -s client.schema.users 100"
 ```
 
 ### Consume
@@ -82,11 +92,11 @@ Produce **with** Schema Registry:
 Consume **without** Schema Registry:
 
 ```bash
-./gradlew kafka-json-clients:run --args="consume client.users"
+gradle kafka-json-clients:run --args="consume client.users"
 ```
 
 Consume **with** Schema Registry:
 
 ```bash
-./gradlew kafka-json-clients:run --args="consume -s client.schema.users"
+gradle kafka-json-clients:run --args="consume -s client.schema.users"
 ```

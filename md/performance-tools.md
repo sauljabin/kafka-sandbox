@@ -5,6 +5,16 @@ Performance tuning involves two important metrics:
 - Latency measures how long it takes to process one event.
 - Throughput measures how many events arrive within a specific amount of time.
 
+<div class="warning">
+
+Open a terminal inside the sandbox environment:
+
+```bash
+docker compose exec cli bash
+```
+
+</div>
+
 Run help:
 
 ```bash
@@ -16,7 +26,7 @@ Create a topic:
 
 ```bash
 kafka-topics --create \
-             --bootstrap-server localhost:19092 \
+             --bootstrap-server kafka1:9092 \
              --replication-factor 3 \
              --partitions 3 \
              --topic sandbox.performance
@@ -32,7 +42,7 @@ kafka-producer-perf-test --topic sandbox.performance \
                          --throughput -1 \
                          --num-records 3000000 \
                          --record-size 1024 \
-                         --producer-props acks=all bootstrap.servers=localhost:19092
+                         --producer-props acks=all bootstrap.servers=kafka1:9092
 ```
 
 - Throughput in MB/sec.
@@ -43,7 +53,7 @@ consumer ([confluent doc](https://docs.confluent.io/kafka/operations-tools/kafka
 
 ```bash
 kafka-consumer-perf-test --topic sandbox.performance \
-                         --bootstrap-server localhost:19092 \
+                         --bootstrap-server kafka1:9092 \
                          --messages 3000000
 ```
 
@@ -57,7 +67,7 @@ Test end to end
 latency ([confluent doc](https://docs.confluent.io/kafka/operations-tools/kafka-tools.html#kafka-e2e-latency-sh)):
 
 ```bash
-kafka-e2e-latency localhost:19092 sandbox.performance 10000 all 1024
+kafka-e2e-latency kafka1:9092 sandbox.performance 10000 all 1024
 ```
 
 Following are the required arguments:

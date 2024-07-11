@@ -6,8 +6,8 @@ Shutting down all services:
 docker compose --profile proxies --profile sql --profile mqtt --profile ksqldb down
 ```
 
-Remove with data:
+<div class="warning">
 
-```bash
-docker compose --profile proxies --profile sql --profile mqtt --profile ksqldb down -v
-```
+If you want to remove the data pass `-v` at the end of the previous command.
+
+</div>

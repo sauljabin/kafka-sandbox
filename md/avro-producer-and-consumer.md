@@ -4,13 +4,23 @@ These examples produce and consume messages from the `supplier` topic. The produ
 
 The goal is to communicate producers and consumers with avro serialized messages.
 
+<div class="warning">
+
+Open a terminal inside the sandbox environment:
+
+```bash
+docker compose exec cli bash
+```
+
+</div>
+
 ### Other Links
 
 - [confluent avro producer and consumer examples](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/serdes-avro.html)
 - [kafka consumer settings](https://docs.confluent.io/platform/current/installation/configuration/consumer-configs.html)
 - [kafka producer settings](https://docs.confluent.io/platform/current/installation/configuration/producer-configs.html)
 
-## Avro Schema
+### Avro Schema
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/SZX9DM_gyOE"></iframe>
 
@@ -21,18 +31,12 @@ avro schema:
 {{#include ../kafka-avro/src/main/avro/Suppliers.avsc}}
 ```
 
-For compiling the AVRO schema into java classes you should use the following command:
-
-```bash
-avro-tools compile schema kafka-avro/src/main/avro/ kafka-avro/src/main/java/
-```
-
 ### Setup
 
 Create a topic:
 
 ```bash
-kafka-topics --create --bootstrap-server localhost:19092 \
+kafka-topics --create --bootstrap-server kafka1:9092 \
              --replication-factor 3 \
              --partitions 3 \
              --topic client.suppliers
@@ -60,7 +64,7 @@ for (int i = 0; i < messages; i++) {
 ```
 
 ```bash
-./gradlew kafka-avro-clients:run --args="produce client.suppliers 100"
+gradle kafka-avro-clients:run --args="produce client.suppliers 100"
 ```
 
 ### Consume
@@ -76,5 +80,5 @@ for (ConsumerRecord<String, Supplier> record : records) {
 ```
 
 ```bash
-./gradlew kafka-avro-clients:run --args="consume client.suppliers"
+gradle kafka-avro-clients:run --args="consume client.suppliers"
 ```

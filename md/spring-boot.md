@@ -2,6 +2,16 @@
 
 Spring Boot + Spring Kafka producer and consumer examples.
 
+<div class="warning">
+
+Open a terminal inside the sandbox environment:
+
+```bash
+docker compose exec cli bash
+```
+
+</div>
+
 ### Other LInks
 
 - [confluent spring kafka examples](https://www.confluent.io/blog/apache-kafka-spring-boot-application/)
@@ -12,8 +22,7 @@ Spring Boot + Spring Kafka producer and consumer examples.
 Run spring boot:
 
 ```bash
-./gradlew kafka-spring-boot:bootRun
-http :8585/actuator/health
+gradle kafka-spring-boot:bootRun
 ```
 
 ### Produce

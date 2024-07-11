@@ -5,10 +5,16 @@ This does not convert kafka into a MQTT broker, this aims to provide a simple wa
 
 ### Setup
 
-Run Kafka REST Proxy:
+Run Kafka MQTT Proxy:
 
 ```bash
 docker compose --profile proxies up -d
+```
+
+Then open a terminal inside the sandbox environment:
+
+```bash
+docker compose exec cli bash
 ```
 
 ### Publish Messages
@@ -17,7 +23,7 @@ Create topic:
 
 ```bash
 kafka-topics --create \
-             --bootstrap-server localhost:19092 \
+             --bootstrap-server kafka1:9092 \
              --replication-factor 3 \
              --partitions 3 \
              --topic proxy.mqtt
@@ -26,14 +32,14 @@ kafka-topics --create \
 Publish using mqtt proxy:
 
 ```bash
-mqtt pub -h localhost -p 1884 -t 'house/room/temperature' -m '20C'
+mosquitto_pub -h kafka-mqtt -p 1884 -t 'house/room/temperature' -m '20C'
 ```
 
 Check the data:
 
 ```bash
 kafka-console-consumer --from-beginning \
-                       --bootstrap-server localhost:19092 \
+                       --bootstrap-server kafka1:9092 \
                        --group proxy.mqtt \
                        --topic proxy.mqtt  \
                        --property print.key=true

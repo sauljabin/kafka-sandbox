@@ -11,7 +11,7 @@ spring:
   kafka:
     topic: spring.customers
     consumer:
-      bootstrap-servers: localhost:19092,localhost:29092,localhost:39092
+      bootstrap-servers: kafka1:9092
       group-id: spring.consumer
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
@@ -19,6 +19,6 @@ spring:
       properties:
         spring.json.trusted.packages: "kafka.sandbox.domain"
     producer:
-      bootstrap-servers: localhost:19092,localhost:29092,localhost:39092
+      bootstrap-servers: kafka1:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer

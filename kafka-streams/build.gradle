@@ -13,7 +13,6 @@ repositories {
 
 String grpcVersion = '1.54.0'
 String protoVersion = '3.22.2'
-String lombokVersion = '1.18.26'
 
 dependencies {
     implementation "io.grpc:grpc-protobuf:${grpcVersion}"

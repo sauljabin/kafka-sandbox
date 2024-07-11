@@ -13,15 +13,15 @@ repositories {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
 
-    implementation "io.confluent.ksql:ksqldb-udf:7.4.0"
+    implementation "io.confluent.ksql:ksqldb-udf:${confluentVersion}"
     implementation "org.apache.kafka:connect-api:${kafkaVersion}"
     implementation "org.apache.kafka:kafka_2.13:${kafkaVersion}"
 
-    compileOnly 'org.projectlombok:lombok:1.18.26'
-    annotationProcessor 'org.projectlombok:lombok:1.18.26'
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 
-    testCompileOnly 'org.projectlombok:lombok:1.18.26'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.26'
+    testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+    testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 }
 
 test {

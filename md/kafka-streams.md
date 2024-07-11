@@ -41,8 +41,18 @@ Topology topology = builder.build();
 
 ### Run Topology
 
+<div class="warning">
+
+Open a terminal inside the sandbox environment:
+
 ```bash
-./gradlew kafka-streams:run --args="streams client.suppliers streams.results"
+docker compose exec cli bash
+```
+
+</div>
+
+```bash
+gradle kafka-streams:run --args="streams client.suppliers streams.results"
 ```
 
 Print results (in another terminal):
@@ -50,7 +60,7 @@ Print results (in another terminal):
 ```bash
 kafka-console-consumer --from-beginning --group kafka-streams.consumer \
                        --topic streams.results  \
-                       -bootstrap-server localhost:19092 \
+                       -bootstrap-server kafka1:9092 \
                        --property print.key=true \
                        --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
 ```
@@ -58,5 +68,5 @@ kafka-console-consumer --from-beginning --group kafka-streams.consumer \
 Send new suppliers (in another terminal):
 
 ```bash
-./gradlew kafka-avro-clients:run --args="produce client.suppliers 100"
+gradle kafka-avro-clients:run --args="produce client.suppliers 100"
 ```

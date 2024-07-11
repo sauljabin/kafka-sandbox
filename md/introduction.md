@@ -5,11 +5,21 @@ help you on your learning path. It provides you with a wide variety of tools fro
 to run them all. It also includes a set of tools and tips to make it easier for you to use kafka.
 This is not intended to replace official courses.
 
-> It does not include security since it is not a production system.
+<div class="warning">
 
-## Interesting Links
+This repository was set up for development and learning purposes.
+
+It does not include security since it is not a production system.
+
+</div>
+
+### Interesting Links
 
 - [Confluent free courses](https://developer.confluent.io/learn-kafka/)
 - [Confluent docker images references](https://docs.confluent.io/platform/current/installation/docker/image-reference.html)
 - [Confluent versions interoperability](https://docs.confluent.io/platform/current/installation/versions-interoperability.html)
 
+### Dependencies
+
+- [docker](https://docs.docker.com/engine/install/)
+- [java](https://sdkman.io/jdks)

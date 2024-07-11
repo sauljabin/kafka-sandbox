@@ -1,6 +1,6 @@
 services:
   kafka1:
-    image: confluentinc/cp-kafka:${CP_VERSION}
+    image: confluentinc/cp-kafka:${CONFLUENT_VERSION}
     environment:
       KAFKA_NODE_ID: 1
       KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka1:9092,EXTERNAL://localhost:19092
@@ -17,15 +17,9 @@ services:
     restart: on-failure
     volumes:
       - kafka1_data:/var/lib/kafka/data
-    healthcheck:
-      test: kafka-topics --bootstrap-server localhost:9092 --list > /dev/null 2>&1
-      interval: 10s
-      timeout: 10s
-      retries: 5
-      start_period: 10s
 
   kafka2:
-    image: confluentinc/cp-kafka:${CP_VERSION}
+    image: confluentinc/cp-kafka:${CONFLUENT_VERSION}
     environment:
       KAFKA_NODE_ID: 2
       KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka2:9092,EXTERNAL://localhost:29092
@@ -42,15 +36,9 @@ services:
     restart: on-failure
     volumes:
       - kafka2_data:/var/lib/kafka/data
-    healthcheck:
-      test: kafka-topics --bootstrap-server localhost:9092 --list > /dev/null 2>&1
-      interval: 10s
-      timeout: 10s
-      retries: 5
-      start_period: 10s
 
   kafka3:
-    image: confluentinc/cp-kafka:${CP_VERSION}
+    image: confluentinc/cp-kafka:${CONFLUENT_VERSION}
     environment:
       KAFKA_NODE_ID: 3
       KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka3:9092,EXTERNAL://localhost:39092
@@ -67,15 +55,9 @@ services:
     restart: on-failure
     volumes:
       - kafka3_data:/var/lib/kafka/data
-    healthcheck:
-      test: kafka-topics --bootstrap-server localhost:9092 --list > /dev/null 2>&1
-      interval: 10s
-      timeout: 10s
-      retries: 5
-      start_period: 10s
 
   schema-registry:
-    image: confluentinc/cp-schema-registry:${CP_VERSION}
+    image: confluentinc/cp-schema-registry:${CONFLUENT_VERSION}
     environment:
       SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_METHODS: GET,POST,PUT,OPTIONS
       SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_ORIGIN: "*"
@@ -86,15 +68,9 @@ services:
     ports:
       - "8081:8081"
     restart: on-failure
-    healthcheck:
-      test: curl http://localhost:8081
-      interval: 30s
-      timeout: 30s
-      retries: 5
-      start_period: 30s
 
   kafka-connect:
-    image: confluentinc/cp-kafka-connect:${CP_VERSION}
+    image: confluentinc/cp-kafka-connect:${CONFLUENT_VERSION}
     environment:
       CONNECT_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092,kafka3:9092
       CONNECT_REST_ADVERTISED_HOST_NAME: localhost
@@ -112,24 +88,12 @@ services:
     restart: on-failure
     volumes:
       - ./kafka-connect/plugins:/usr/local/share/kafka/plugins
-    healthcheck:
-      test: curl http://localhost:8083
-      interval: 30s
-      timeout: 30s
-      retries: 5
-      start_period: 30s
 
   akhq:
     image: tchiotludo/akhq:latest
     ports:
       - "8080:8080"
     restart: on-failure
-    healthcheck:
-      test: curl http://localhost:8080
-      interval: 30s
-      timeout: 30s
-      retries: 5
-      start_period: 30s
     environment:
       AKHQ_CONFIGURATION: |
         akhq:
@@ -142,6 +106,7 @@ services:
               connect:
                 - name: kafka-connect
                   url: http://kafka-connect:8083
+
   mysql:
     image: mysql:latest
     profiles:
@@ -188,7 +153,7 @@ services:
       - mosquitto_data:/mosquitto/data
 
   kafka-rest:
-    image: confluentinc/cp-kafka-rest:${CP_VERSION}
+    image: confluentinc/cp-kafka-rest:${CONFLUENT_VERSION}
     profiles:
       - proxies
     environment:
@@ -197,15 +162,9 @@ services:
     ports:
       - "8082:8082"
     restart: on-failure
-    healthcheck:
-      test: curl http://localhost:8082
-      interval: 30s
-      timeout: 30s
-      retries: 5
-      start_period: 30s
 
   kafka-mqtt:
-    image: confluentinc/cp-kafka-mqtt:${CP_VERSION}
+    image: confluentinc/cp-kafka-mqtt:${CONFLUENT_VERSION}
     profiles:
       - proxies
     environment:
@@ -217,7 +176,7 @@ services:
     restart: on-failure
 
   ksqldb:
-    image: confluentinc/cp-ksqldb-server:${CP_VERSION}
+    image: confluentinc/cp-ksqldb-server:${CONFLUENT_VERSION}
     profiles:
       - ksqldb
     environment:
@@ -234,21 +193,18 @@ services:
     restart: on-failure
     volumes:
       - ./kafka-ksqldb-extensions/extensions:/ksqldb/extensions
-    healthcheck:
-      test: curl http://localhost:8088
-      interval: 30s
-      timeout: 30s
-      retries: 5
-      start_period: 30s
 
-  ksqldb-cli:
-    image: confluentinc/ksqldb-cli:latest
-    profiles:
-      - ksqldb
+  cli:
+    build:
+      context: .
+      args:
+        CONFLUENT_VERSION: ${CONFLUENT_VERSION}
+    environment:
+      PGPASSWORD: notasecret
+      CLUSTER_ID: ${CLUSTER_ID}
     volumes:
-      - ./kafka-ksqldb:/sandbox
-      - ./kafka-ksqldb-extensions/extensions:/extensions
-    entrypoint: /bin/sh
+      - .:/kafka-sandbox
+    entrypoint: /bin/bash
     tty: true
 
 volumes:

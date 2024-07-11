@@ -9,7 +9,7 @@ Check the [Kafka ksqlDB](what-is-ksqldb.md) section.
 For creating the `jar` extension, you can use the following command (development purposes):
 
 ```bash
-./gradlew kafka-ksqldb-extensions:shadowJar
+gradle kafka-ksqldb-extensions:shadowJar
 ```
 
 ## Custom UDF

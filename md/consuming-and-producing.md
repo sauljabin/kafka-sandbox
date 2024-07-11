@@ -1,11 +1,21 @@
 # Consuming and Producing
 
+<div class="warning">
+
+Open a terminal inside the sandbox environment:
+
+```bash
+docker compose exec cli bash
+```
+
+</div>
+
 ### Produce Messages
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/I7zm3on_cQQ"></iframe>
 
 ```bash
-kafka-console-producer --bootstrap-server localhost:19092 \
+kafka-console-producer --bootstrap-server kafka1:9092 \
                        --topic sandbox.test
 ```
 
@@ -15,7 +25,7 @@ kafka-console-producer --bootstrap-server localhost:19092 \
 
 ```bash
 kafka-console-consumer --from-beginning \
-                       --bootstrap-server localhost:19092 \
+                       --bootstrap-server kafka1:9092 \
                        --group sandbox.test \
                        --topic sandbox.test
 ```

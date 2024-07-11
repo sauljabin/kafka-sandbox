@@ -4,13 +4,23 @@
 
 One interesting feature that ksqlDB has is the test runner, it allows you to test a query before deploying it.
 
+<div class="warning">
+
+Open a terminal inside the sandbox environment:
+
+```bash
+docker compose exec cli bash
+```
+
+</div>
+
 ### Run a Test
 
 ```bash
-docker compose exec ksqldb-cli ksql-test-runner -e /extensions/ \
-                            -s /sandbox/ksql/create-orders.ksql \
-                            -i /sandbox/tests/orders-input.json \
-                            -o /sandbox/tests/orders-output.json | grep '>>>'
+ksql-test-runner -e kafka-ksqldb-extensions/extensions/ \
+        -s kafka-ksqldb/ksql/create-orders.ksql \
+        -i kafka-ksqldb/tests/orders-input.json \
+        -o kafka-ksqldb/tests/orders-output.json | grep '>>>'
 ```
 
 

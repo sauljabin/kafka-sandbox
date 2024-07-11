@@ -2,7 +2,6 @@
 
 ---
 
-- [Install Dependencies](install-dependencies.md)
 - [Quick Start](quick-start.md)
 - [What is Kafka?](what-is-kafka.md)
 - [Consuming and Producing](consuming-and-producing.md)

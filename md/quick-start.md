@@ -19,4 +19,10 @@ Check running services:
 docker compose ps
 ```
 
+Open the sandbox cli:
+
+```bash
+docker compose exec cli bash
+```
+
 Open [AKHQ](https://akhq.io/) (a web UI for kafka) at [http://localhost:8080/](http://localhost:8080/).

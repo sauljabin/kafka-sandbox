@@ -8,17 +8,27 @@ Start MQTT server:
 docker compose --profile mqtt up -d
 ```
 
+<div class="warning">
+
+Open a terminal inside the sandbox environment:
+
+```bash
+docker compose exec cli bash
+```
+
+</div>
+
 In one terminal, subscribe to mqtt topics:
 
 ```bash
-mqtt sub -h localhost -t 'house/+/brightness'
+mosquitto_sub -h mosquitto -t 'house/+/brightness'
 ```
 
 In another terminal, publish messages:
 
 ```bash
-mqtt pub -h localhost -t 'house/room/brightness' -m '800LM'
-mqtt pub -h localhost -t 'house/kitchen/brightness' -m '1000LM'
+mosquitto_pub -h mosquitto -t 'house/room/brightness' -m '800LM'
+mosquitto_pub -h mosquitto -t 'house/kitchen/brightness' -m '1000LM'
 ```
 
 ### Create Source Connector
@@ -32,7 +42,7 @@ Payload:
 Create a connector using the API:
 
 ```bash
-http :8083/connectors < kafka-connect/requests/create-connector-mqtt-source.json
+http kafka-connect:8083/connectors < kafka-connect/requests/create-connector-mqtt-source.json
 ```
 
 In one terminal, consume from kafka:
@@ -40,19 +50,19 @@ In one terminal, consume from kafka:
 ```bash
 kafka-console-consumer --from-beginning --group connect.mqtt \
                        --topic connect.brightness  \
-                       --bootstrap-server localhost:19092 \
+                       --bootstrap-server kafka1:9092 \
                        --property print.key=true
 ```
 
 In another terminal, publish new messages to the MQTT broker:
 
 ```bash
-mqtt pub -h localhost -t 'house/room/brightness' -m '810LM'
-mqtt pub -h localhost -t 'house/kitchen/brightness' -m '1020LM'
+mosquitto_pub -h mosquitto -t 'house/room/brightness' -m '810LM'
+mosquitto_pub -h mosquitto -t 'house/kitchen/brightness' -m '1020LM'
 ```
 
 Deleting the connector:
 
 ```bash
-http DELETE :8083/connectors/mqtt-source
+http DELETE kafka-connect:8083/connectors/mqtt-source
 ```

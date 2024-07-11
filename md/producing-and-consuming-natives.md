@@ -2,43 +2,30 @@
 
 Now we are going to develop consumers and producer with java.
 
-## Setup
+<div class="warning">
 
-Create a topic:
+Open a terminal inside the sandbox environment:
 
 ```bash
-kafka-topics --create --bootstrap-server localhost:19092 \
-             --replication-factor 3 \
-             --partitions 3 \
-             --topic client.string
-             
-kafka-topics --create --bootstrap-server localhost:19092 \
-             --replication-factor 3 \
-             --partitions 3 \
-             --topic client.integer
+docker compose exec cli bash
+```
 
-kafka-topics --create --bootstrap-server localhost:19092 \
-             --replication-factor 3 \
-             --partitions 3 \
-             --topic client.long
+</div>
 
-kafka-topics --create --bootstrap-server localhost:19092 \
-             --replication-factor 3 \
-             --partitions 3 \
-             --topic client.float
+### Create All the Topics
 
-kafka-topics --create --bootstrap-server localhost:19092 \
+```bash
+for topic in "client.string" "client.integer" "client.long" "client.float" "client.double" "client.boolean" ; do \
+kafka-topics --create --bootstrap-server kafka1:9092 \
              --replication-factor 3 \
              --partitions 3 \
-             --topic client.double
-
-kafka-topics --create --bootstrap-server localhost:19092 \
-             --replication-factor 3 \
-             --partitions 3 \
-             --topic client.boolean
+             --topic $topic ; done
 ```
 
 ### Produce
+
+This code example shows you how to produce a message.
+The configuration `ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG` define what type are we using.
 
 ```java
 props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, getSerializer());
@@ -57,16 +44,20 @@ for (int i = 0; i < messages; i++) {
 }
 ```
 
+Then, produce for each type:
+
 ```bash
-./gradlew kafka-native-clients:run --args="produce client.string string 100"
-./gradlew kafka-native-clients:run --args="produce client.integer integer 100"
-./gradlew kafka-native-clients:run --args="produce client.long long 100"
-./gradlew kafka-native-clients:run --args="produce client.float float 100"
-./gradlew kafka-native-clients:run --args="produce client.double double 100"
-./gradlew kafka-native-clients:run --args="produce client.boolean boolean 100"
+gradle kafka-native-clients:run --args="produce client.string string 100"
+gradle kafka-native-clients:run --args="produce client.integer integer 100"
+gradle kafka-native-clients:run --args="produce client.long long 100"
+gradle kafka-native-clients:run --args="produce client.float float 100"
+gradle kafka-native-clients:run --args="produce client.double double 100"
+gradle kafka-native-clients:run --args="produce client.boolean boolean 100"
 ```
 
 ### Consume
+
+It's going to be the same for the consumer, but in this case you have to use the **deserializer**: `ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG`.
 
 ```java
 props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, getDeserializer());
@@ -79,6 +70,8 @@ for (ConsumerRecord<String, V> record : records) {
 }
 ```
 
+Consume a topic, for example `client.string`:
+
 ```bash
-./gradlew kafka-native-clients:run --args="consume client.<TYPE> <TYPE>"
+gradle kafka-native-clients:run --args="consume client.string string"
 ```

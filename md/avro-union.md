@@ -2,7 +2,17 @@
 
 These example show you how to use [Unions](https://avro.apache.org/docs/1.10.2/spec.html#Unions).
 
-## Avro Schema
+<div class="warning">
+
+Open a terminal inside the sandbox environment:
+
+```bash
+docker compose exec cli bash
+```
+
+</div>
+
+### Avro Schema
 
 In this schema we create a field `metric` that can be a `TimerMetric` or `CounterMetric`. 
 
@@ -21,7 +31,7 @@ private java.lang.Object metric;
 Create a topic:
 
 ```bash
-kafka-topics --create --bootstrap-server localhost:19092 \
+kafka-topics --create --bootstrap-server kafka1:9092 \
              --replication-factor 3 \
              --partitions 3 \
              --topic client.metrics
@@ -31,12 +41,12 @@ kafka-topics --create --bootstrap-server localhost:19092 \
 
 
 ```bash
-./gradlew kafka-avro-union-clients:run --args="produce client.metrics 100"
+gradle kafka-avro-union-clients:run --args="produce client.metrics 100"
 ```
 
 ### Consume
 
 
 ```bash
-./gradlew kafka-avro-union-clients:run --args="consume client.metrics"
+gradle kafka-avro-union-clients:run --args="consume client.metrics"
 ```
