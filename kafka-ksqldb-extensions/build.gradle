@@ -16,7 +16,7 @@ java {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+    testImplementation "org.junit.jupiter:junit-jupiter:${junitVersion}"
 
     implementation("io.confluent.ksql:ksqldb-udf:${confluentVersion}") {
         exclude group: 'io.confluent.observability', module: 'telemetry-client'

@@ -3,17 +3,17 @@ package kafka.sandbox.grpc;
 import io.grpc.stub.StreamObserver;
 import kafka.sandbox.proto.CountReply;
 import kafka.sandbox.proto.CountRequest;
-import kafka.sandbox.proto.CounterServiceGrpc.CounterServiceImplBase;
+import kafka.sandbox.proto.CountServiceGrpc.CountServiceImplBase;
 import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.StoreQueryParameters;
 import org.apache.kafka.streams.state.QueryableStoreTypes;
 import org.apache.kafka.streams.state.ReadOnlyKeyValueStore;
 
-public class CounterService extends CounterServiceImplBase {
+public class CountService extends CountServiceImplBase {
 
-    private KafkaStreams streams;
+    private final KafkaStreams streams;
 
-    public CounterService(KafkaStreams streams) {
+    public CountService(KafkaStreams streams) {
         this.streams = streams;
     }
 

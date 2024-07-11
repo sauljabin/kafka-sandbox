@@ -1,7 +1,6 @@
 plugins {
     id 'java'
     id 'application'
-    id 'com.google.protobuf' version '0.9.2'
 }
 
 repositories {
@@ -11,18 +10,13 @@ repositories {
     }
 }
 
-String grpcVersion = '1.54.0'
-String protoVersion = '3.22.2'
-
 dependencies {
-    implementation "io.grpc:grpc-protobuf:${grpcVersion}"
-    implementation "io.grpc:grpc-stub:${grpcVersion}"
+    implementation project(':kafka-protobuf')
+    runtimeOnly "io.grpc:grpc-netty:${grpcVersion}"
 
     implementation project(':kafka-avro')
     implementation "org.apache.kafka:kafka-streams:${kafkaVersion}"
     implementation "io.confluent:kafka-streams-avro-serde:${confluentVersion}"
-    compileOnly 'org.apache.tomcat:annotations-api:6.0.53'
-    runtimeOnly "io.grpc:grpc-netty-shaded:${grpcVersion}"
 
     implementation 'info.picocli:picocli:4.6.1'
     implementation 'ch.qos.logback:logback-classic:1.5.6'
@@ -32,18 +26,7 @@ dependencies {
 
     testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
     testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
-    testImplementation "io.grpc:grpc-testing:${grpcVersion}"
-}
-
-protobuf {
-    protoc { artifact = "com.google.protobuf:protoc:${protoVersion}" }
-    plugins {
-        grpc { artifact = "io.grpc:protoc-gen-grpc-java:${grpcVersion}" }
-    }
-    generateProtoTasks {
-        all()*.plugins { grpc {} }
-    }
+    testImplementation "org.junit.jupiter:junit-jupiter:${junitVersion}"
 }
 
 application {
@@ -52,13 +35,4 @@ application {
 
 test {
     useJUnitPlatform()
-}
-
-sourceSets {
-    main {
-        java {
-            srcDirs 'build/generated/source/proto/main/grpc'
-            srcDirs 'build/generated/source/proto/main/java'
-        }
-    }
 }

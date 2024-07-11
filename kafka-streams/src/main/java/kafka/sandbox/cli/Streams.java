@@ -4,7 +4,7 @@ import io.grpc.Grpc;
 import io.grpc.InsecureServerCredentials;
 import io.grpc.Server;
 import kafka.sandbox.avro.Supplier;
-import kafka.sandbox.grpc.CounterService;
+import kafka.sandbox.grpc.CountService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.KafkaStreams;
@@ -52,7 +52,7 @@ public class Streams implements Callable<Integer> {
         // aggregate the new supplier counts by country
         KTable<String, Long> aggregated = suppliers
                 // map the country as key
-                .map((key, value) -> new KeyValue<>(value.getCountry().toString(), value))
+                .map((key, value) -> new KeyValue<>(value.getCountry(), value))
                 .groupByKey()
                 // aggregate and materialize the store
                 .count(Materialized.as("SupplierCountByCountry"));
@@ -73,7 +73,7 @@ public class Streams implements Callable<Integer> {
 
         // GRPC Server
         Server server = Grpc.newServerBuilderForPort(5050, InsecureServerCredentials.create())
-                .addService(new CounterService(streams))
+                .addService(new CountService(streams))
                 .build();
 
         // attach shutdown handler to catch control-c and creating a latch
