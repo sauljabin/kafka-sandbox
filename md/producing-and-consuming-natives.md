@@ -47,12 +47,8 @@ for (int i = 0; i < messages; i++) {
 Then, produce for each type:
 
 ```bash
-gradle kafka-native-clients:run --args="produce client.string string 100"
-gradle kafka-native-clients:run --args="produce client.integer integer 100"
-gradle kafka-native-clients:run --args="produce client.long long 100"
-gradle kafka-native-clients:run --args="produce client.float float 100"
-gradle kafka-native-clients:run --args="produce client.double double 100"
-gradle kafka-native-clients:run --args="produce client.boolean boolean 100"
+for type in "string" "integer" "long" "float" "double" "boolean" ; do \
+  gradle kafka-native-clients:run --args="produce client.$type $type 100" ; done
 ```
 
 ### Consume
