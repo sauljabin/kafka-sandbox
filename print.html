@@ -940,7 +940,7 @@ Topology topology = builder.build();
 <p>Print results (in another terminal):</p>
 <pre><code class="language-bash">kafka-console-consumer --from-beginning --group kafka-streams.consumer \
                        --topic streams.results  \
-                       -bootstrap-server kafka1:9092 \
+                       --bootstrap-server kafka1:9092 \
                        --property print.key=true \
                        --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
 </code></pre>
