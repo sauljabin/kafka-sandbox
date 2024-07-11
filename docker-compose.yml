@@ -74,6 +74,7 @@ services:
     environment:
       CONNECT_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092,kafka3:9092
       CONNECT_REST_ADVERTISED_HOST_NAME: localhost
+      CONNECT_REST_PORT: 8083
       CONNECT_GROUP_ID: kafka-connect-sandbox
       CONNECT_PLUGIN_PATH: /usr/local/share/kafka/plugins
       CONNECT_KEY_CONVERTER: io.confluent.connect.avro.AvroConverter
@@ -112,8 +113,8 @@ services:
     profiles:
       - sql
     environment:
-      MYSQL_DATABASE: sandbox
-      MYSQL_ROOT_PASSWORD: notasecret
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
     ports:
       - "3306:3306"
     restart: on-failure
@@ -125,8 +126,8 @@ services:
     profiles:
       - sql
     environment:
-      POSTGRES_DB: sandbox
-      POSTGRES_PASSWORD: notasecret
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     ports:
       - "5432:5432"
     restart: on-failure
@@ -200,10 +201,12 @@ services:
       args:
         CONFLUENT_VERSION: ${CONFLUENT_VERSION}
     environment:
-      PGPASSWORD: notasecret
+      PGPASSWORD: ${DB_PASSWORD}
+      MYSQL_PWD: ${DB_PASSWORD}
       CLUSTER_ID: ${CLUSTER_ID}
     volumes:
       - .:/kafka-sandbox
+      - gradle_cache:/root/.gradle
     entrypoint: /bin/bash
     tty: true
 
@@ -214,3 +217,4 @@ volumes:
   mysql_data:
   postgres_data:
   mosquitto_data:
+  gradle_cache:

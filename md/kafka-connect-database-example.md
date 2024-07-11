@@ -27,10 +27,7 @@ docker compose exec cli bash
 Populate it:
 
 ```bash
-mysql --host=mysql --port=3306 \
-      --user=root --password=notasecret \
-      --database=sandbox \
-      < kafka-connect/sql/customers.sql
+mysql --host=mysql --database=sandbox < kafka-connect/sql/customers.sql
 ```
 
 That command should have created the table `customers` and inserted 200 records.
@@ -38,10 +35,7 @@ That command should have created the table `customers` and inserted 200 records.
 Now you can open [Adminer](http://localhost:9090) or run:
 
 ```bash
-mysql --host=mysql --port=3306 \
-      --user=root --password=notasecret \
-      --database=sandbox \
-      -e "select * from customers"
+mysql --host=mysql --database=sandbox -e "select * from customers"
 ```
 
 ### Create Source Connector
@@ -85,9 +79,7 @@ This sink connector is going to create a table `customers` on postgres and inser
 Now you can open [Adminer](http://localhost:9090) or run:
 
 ```bash
-psql --host=postgres --port=5432 \
-     --user=postgres --dbname=sandbox\
-     -c "select * from customers"
+psql --host=postgres --user=postgres --dbname=sandbox -c "select * from customers"
 ```
 
 List connector:
