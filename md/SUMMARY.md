@@ -3,6 +3,7 @@
 ---
 
 - [Quick Start](quick-start.md)
+- [Sandbox Environment](sandbox-environment.md)
 - [What is Kafka?](what-is-kafka.md)
 - [Consuming and Producing](consuming-and-producing.md)
   - [Native Consumer and Producer](producing-and-consuming-natives.md)

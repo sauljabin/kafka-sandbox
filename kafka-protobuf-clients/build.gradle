@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url = 'https://packages.confluent.io/maven/'
+    }
+}
+
+dependencies {
+    implementation project(':kafka-protobuf')
+
+    implementation "org.apache.kafka:kafka-clients:${kafkaVersion}"
+    implementation "io.confluent:kafka-protobuf-serializer:${confluentVersion}"
+
+    implementation 'info.picocli:picocli:4.6.1'
+    implementation 'net.datafaker:datafaker:2.0.2'
+    implementation 'org.slf4j:slf4j-simple:1.7.30'
+
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    testImplementation "org.junit.jupiter:junit-jupiter:${junitVersion}"
+    testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+    testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+}
+
+application {
+    mainClass = 'kafka.sandbox.App'
+}
+
+test {
+    useJUnitPlatform()
+}

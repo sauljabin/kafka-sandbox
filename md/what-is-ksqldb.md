@@ -16,12 +16,6 @@ Start ksqldb:
 docker compose --profile ksqldb up -d
 ```
 
-Open a terminal inside the sandbox environment:
-
-```bash
-docker compose exec cli bash
-```
-
 After a few seconds check if it is up:
 
 ```bash

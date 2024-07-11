@@ -3,12 +3,8 @@
 In this example you are going to learn how to move data from a source (**mysql**),
 to multiple targets (**postgres and mongo**).
 
-<div class="warning">
-
-This example does not support deletion, for that you have to implement tombstone events at the [source](https://debezium.io/documentation/reference/connectors/postgresql.html#postgresql-tombstone-events) and [sink](https://docs.confluent.io/kafka-connect-jdbc/current/sink-connector/index.html#jdbc-sink-delete-mode).
-
-</div>
-
+> [!IMPORTANT]
+> This example does not support deletion, for that you have to implement tombstone events at the [source](https://debezium.io/documentation/reference/connectors/postgresql.html#postgresql-tombstone-events) and [sink](https://docs.confluent.io/kafka-connect-jdbc/current/sink-connector/index.html#jdbc-sink-delete-mode).
 
 ### Populate Database
 
@@ -16,12 +12,6 @@ Run MySQL and PostgreSQL:
 
 ```bash
 docker compose --profile sql up -d
-```
-
-Then open a terminal inside the sandbox environment:
-
-```bash
-docker compose exec cli bash
 ```
 
 Populate it:

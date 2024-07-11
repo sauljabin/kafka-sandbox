@@ -1,27 +1,6 @@
-# About This Book
+# About this Book
 
-This book is power by [mdBook](https://rust-lang.github.io/mdBook/index.html).
+You can access this mdbook at:
 
-GitHub [Repository](https://github.com/sauljabin/kafka-sandbox).
-
-### Developing Commands
-
-> You must install [rust](https://www.rust-lang.org/tools/install) first.
-
-Install `mdbook`:
-
-```bash
-cargo install mdbook
-```
-
-Run local server:
-
-```bash
-mdbook serve --open
-```
-
-Build statics:
-
-```bash
-mdbook build
-```
+- [https://sauljabin.github.io/kafka-sandbox](https://sauljabin.github.io/kafka-sandbox)
+- [https://github.com/sauljabin/kafka-sandbox](https://github.com/sauljabin/kafka-sandbox)

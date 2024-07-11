@@ -12,12 +12,6 @@ Run Kafka REST Proxy:
 docker compose --profile proxies up -d
 ```
 
-Then open a terminal inside the sandbox environment:
-
-```bash
-docker compose exec cli bash
-```
-
 Check the cluster information:
 
 ```bash

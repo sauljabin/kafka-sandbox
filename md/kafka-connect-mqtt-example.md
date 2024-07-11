@@ -8,16 +8,6 @@ Start MQTT server:
 docker compose --profile mqtt up -d
 ```
 
-<div class="warning">
-
-Open a terminal inside the sandbox environment:
-
-```bash
-docker compose exec cli bash
-```
-
-</div>
-
 In one terminal, subscribe to mqtt topics:
 
 ```bash

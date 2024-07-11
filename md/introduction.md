@@ -5,13 +5,9 @@ help you on your learning path. It provides you with a wide variety of tools fro
 to run them all. It also includes a set of tools and tips to make it easier for you to use kafka.
 This is not intended to replace official courses.
 
-<div class="warning">
-
-This repository was set up for development and learning purposes.
-
-It does not include security since it is not a production system.
-
-</div>
+> [!NOTE] 
+> This repository was set up for development and learning purposes.
+> It does not include security since it is not a production system.
 
 ### Interesting Links
 

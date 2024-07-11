@@ -4,16 +4,6 @@ These examples produce and consume messages from the `supplier` topic. The produ
 
 The goal is to communicate producers and consumers with avro serialized messages.
 
-<div class="warning">
-
-Open a terminal inside the sandbox environment:
-
-```bash
-docker compose exec cli bash
-```
-
-</div>
-
 ### Other Links
 
 - [confluent avro producer and consumer examples](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/serdes-avro.html)

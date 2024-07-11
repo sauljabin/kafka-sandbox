@@ -2,16 +2,6 @@
 
 This example shows you how to use json and schema registry for producing and consuming.
 
-<div class="warning">
-
-Open a terminal inside the sandbox environment:
-
-```bash
-docker compose exec cli bash
-```
-
-</div>
-
 ### Other Links
 
 - [json schema](https://json-schema.org/)

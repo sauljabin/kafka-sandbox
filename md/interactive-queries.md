@@ -10,16 +10,6 @@ This example is using [gRPC](https://grpc.io/) to request queries to the kafka s
 
 ### Query Results
 
-<div class="warning">
-
-Open a terminal inside the sandbox environment:
-
-```bash
-docker compose exec cli bash
-```
-
-</div>
-
 Having kafka streams running (see [Kafka Streams](kafka-streams.md)),
 you can query form the terminal a specific country, example:
 

@@ -11,12 +11,6 @@ Run Kafka MQTT Proxy:
 docker compose --profile proxies up -d
 ```
 
-Then open a terminal inside the sandbox environment:
-
-```bash
-docker compose exec cli bash
-```
-
 ### Publish Messages
 
 Create topic:

@@ -5,16 +5,6 @@ Performance tuning involves two important metrics:
 - Latency measures how long it takes to process one event.
 - Throughput measures how many events arrive within a specific amount of time.
 
-<div class="warning">
-
-Open a terminal inside the sandbox environment:
-
-```bash
-docker compose exec cli bash
-```
-
-</div>
-
 Run help:
 
 ```bash

@@ -1,15 +1,5 @@
 # Consuming and Producing
 
-<div class="warning">
-
-Open a terminal inside the sandbox environment:
-
-```bash
-docker compose exec cli bash
-```
-
-</div>
-
 ### Produce Messages
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/I7zm3on_cQQ"></iframe>

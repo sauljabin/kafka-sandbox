@@ -6,8 +6,5 @@ Shutting down all services:
 docker compose --profile proxies --profile sql --profile mqtt --profile ksqldb down
 ```
 
-<div class="warning">
-
-If you want to remove the data pass `-v` at the end of the previous command.
-
-</div>
+> [!TIP]
+> If you want to remove the data pass `-v` at the end of the previous command.

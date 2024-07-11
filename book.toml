@@ -7,3 +7,5 @@ title = "Kafka Sandbox"
 
 [output.html]
 git-repository-url = "https://github.com/sauljabin/kafka-sandbox"
+
+[preprocessor.alerts]

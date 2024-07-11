@@ -2,16 +2,6 @@
 
 Now we are going to develop consumers and producer with java.
 
-<div class="warning">
-
-Open a terminal inside the sandbox environment:
-
-```bash
-docker compose exec cli bash
-```
-
-</div>
-
 ### Create All the Topics
 
 ```bash

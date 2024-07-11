@@ -2,16 +2,6 @@
 
 These example show you how to use [Unions](https://avro.apache.org/docs/1.10.2/spec.html#Unions).
 
-<div class="warning">
-
-Open a terminal inside the sandbox environment:
-
-```bash
-docker compose exec cli bash
-```
-
-</div>
-
 ### Avro Schema
 
 In this schema we create a field `metric` that can be a `TimerMetric` or `CounterMetric`. 

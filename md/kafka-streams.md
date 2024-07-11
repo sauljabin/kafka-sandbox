@@ -41,16 +41,6 @@ Topology topology = builder.build();
 
 ### Run Topology
 
-<div class="warning">
-
-Open a terminal inside the sandbox environment:
-
-```bash
-docker compose exec cli bash
-```
-
-</div>
-
 ```bash
 gradle kafka-streams:run --args="streams client.suppliers streams.results"
 ```

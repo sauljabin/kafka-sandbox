@@ -4,16 +4,6 @@
 
 One interesting feature that ksqlDB has is the test runner, it allows you to test a query before deploying it.
 
-<div class="warning">
-
-Open a terminal inside the sandbox environment:
-
-```bash
-docker compose exec cli bash
-```
-
-</div>
-
 ### Run a Test
 
 ```bash

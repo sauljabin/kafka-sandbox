@@ -1,15 +1,5 @@
 # ksqlDB Queries
 
-<div class="warning">
-
-Open a terminal inside the sandbox environment:
-
-```bash
-docker compose exec cli bash
-```
-
-</div>
-
 ### Create a Stream
 
 Create orders stream:
