@@ -416,7 +416,7 @@ cd kafka-sandbox
 </style>
 <h1 id="sandbox-environment"><a class="header" href="#sandbox-environment">Sandbox Environment</a></h1>
 <p>For opening the sandbox environment just run:</p>
-<pre><code class="language-bash">docker compose exec -u $(id -u):$(id -g) cli bash
+<pre><code class="language-bash">docker compose exec cli bash
 </code></pre>
 <div class="mdbook-alerts mdbook-alerts-important">
 <p class="mdbook-alerts-title">
@@ -1092,11 +1092,11 @@ http DELETE kafka-connect:8083/connectors/mysql-source
 <pre><code class="language-bash">docker compose --profile mqtt up -d
 </code></pre>
 <p>In one terminal, subscribe to mqtt topics:</p>
-<pre><code class="language-bash">mosquitto_sub -h mosquitto -t 'house/+/brightness'
+<pre><code class="language-bash">mosquitto_sub -h mosquitto -t "house/+/brightness"
 </code></pre>
 <p>In another terminal, publish messages:</p>
-<pre><code class="language-bash">mosquitto_pub -h mosquitto -t 'house/room/brightness' -m '800LM'
-mosquitto_pub -h mosquitto -t 'house/kitchen/brightness' -m '1000LM'
+<pre><code class="language-bash">mosquitto_pub -h mosquitto -t "house/room/brightness" -m "800LM"
+mosquitto_pub -h mosquitto -t "house/kitchen/brightness" -m "1000LM"
 </code></pre>
 <h3 id="create-source-connector-1"><a class="header" href="#create-source-connector-1">Create Source Connector</a></h3>
 <p>Payload:</p>
@@ -1124,8 +1124,8 @@ mosquitto_pub -h mosquitto -t 'house/kitchen/brightness' -m '1000LM'
                        --property print.key=true
 </code></pre>
 <p>In another terminal, publish new messages to the MQTT broker:</p>
-<pre><code class="language-bash">mosquitto_pub -h mosquitto -t 'house/room/brightness' -m '810LM'
-mosquitto_pub -h mosquitto -t 'house/kitchen/brightness' -m '1020LM'
+<pre><code class="language-bash">mosquitto_pub -h mosquitto -t "house/room/brightness" -m "810LM"
+mosquitto_pub -h mosquitto -t "house/kitchen/brightness" -m "1020LM"
 </code></pre>
 <p>Deleting the connector:</p>
 <pre><code class="language-bash">http DELETE kafka-connect:8083/connectors/mqtt-source
@@ -1523,7 +1523,7 @@ This does not convert kafka into a MQTT broker, this aims to provide a simple wa
              --topic proxy.mqtt
 </code></pre>
 <p>Publish using mqtt proxy:</p>
-<pre><code class="language-bash">mosquitto_pub -h kafka-mqtt -p 1884 -t 'house/room/temperature' -m '20C'
+<pre><code class="language-bash">mosquitto_pub -h kafka-mqtt -p 1884 -t "house/room/temperature" -m "20C"
 </code></pre>
 <p>Check the data:</p>
 <pre><code class="language-bash">kafka-console-consumer --from-beginning \
@@ -1639,7 +1639,7 @@ public class User {
 <p>Producer:</p>
 <pre><code class="language-java">if (useSchemaRegistry) {
     props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaJsonSchemaSerializer.class);
-    props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://schema-registry:8081");
+    props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, SCHEMA_REGISTRY_URL);
 } else {
     props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaJsonSerializer.class);
 }
@@ -1647,7 +1647,7 @@ public class User {
 <p>Consumer:</p>
 <pre><code class="language-java">if (useSchemaRegistry) {
     props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaJsonSchemaDeserializer.class);
-    props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://schema-registry:8081");
+    props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, SCHEMA_REGISTRY_URL);
 } else {
     props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaJsonDeserializer.class);
 }
@@ -1665,19 +1665,13 @@ public class User {
              --partitions 3 \
              --topic client.schema.users
 </code></pre>
-<h3 id="produce-2"><a class="header" href="#produce-2">Produce</a></h3>
-<p>Produce <strong>without</strong> Schema Registry:</p>
+<h3 id="produceconsume-without-schema-registry"><a class="header" href="#produceconsume-without-schema-registry">Produce/Consume without Schema Registry</a></h3>
 <pre><code class="language-bash">gradle kafka-json-clients:run --args="produce client.users 100"
+gradle kafka-json-clients:run --args="consume client.users"
 </code></pre>
-<p>Produce <strong>with</strong> Schema Registry:</p>
+<h3 id="produceconsume-with-schema-registry"><a class="header" href="#produceconsume-with-schema-registry">Produce/Consume with Schema Registry</a></h3>
 <pre><code class="language-bash">gradle kafka-json-clients:run --args="produce -s client.schema.users 100"
-</code></pre>
-<h3 id="consume-2"><a class="header" href="#consume-2">Consume</a></h3>
-<p>Consume <strong>without</strong> Schema Registry:</p>
-<pre><code class="language-bash">gradle kafka-json-clients:run --args="consume client.users"
-</code></pre>
-<p>Consume <strong>with</strong> Schema Registry:</p>
-<pre><code class="language-bash">gradle kafka-json-clients:run --args="consume -s client.schema.users"
+gradle kafka-json-clients:run --args="consume -s client.schema.users"
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><style>
 .mdbook-alerts {
@@ -1789,7 +1783,7 @@ avro schema:</p>
              --partitions 3 \
              --topic client.suppliers
 </code></pre>
-<h3 id="produce-3"><a class="header" href="#produce-3">Produce</a></h3>
+<h3 id="produce-2"><a class="header" href="#produce-2">Produce</a></h3>
 <p>As you can see now we are using the autogenerated class <code>Supplier</code>.</p>
 <pre><code class="language-java">KafkaProducer&lt;String, Supplier&gt; producer = new KafkaProducer&lt;&gt;(props);
 
@@ -1808,7 +1802,7 @@ for (int i = 0; i &lt; messages; i++) {
 </code></pre>
 <pre><code class="language-bash">gradle kafka-avro-clients:run --args="produce client.suppliers 100"
 </code></pre>
-<h3 id="consume-3"><a class="header" href="#consume-3">Consume</a></h3>
+<h3 id="consume-2"><a class="header" href="#consume-2">Consume</a></h3>
 <p>It is the same for the consumer, we are using the avro class <code>Supplier</code>.</p>
 <pre><code class="language-java">ConsumerRecords&lt;String, Supplier&gt; records = consumer.poll(Duration.ofMillis(500));
 
@@ -1953,10 +1947,10 @@ for (ConsumerRecord&lt;String, Supplier&gt; record : records) {
              --partitions 3 \
              --topic client.metrics
 </code></pre>
-<h3 id="produce-4"><a class="header" href="#produce-4">Produce</a></h3>
+<h3 id="produce-3"><a class="header" href="#produce-3">Produce</a></h3>
 <pre><code class="language-bash">gradle kafka-avro-union-clients:run --args="produce client.metrics 100"
 </code></pre>
-<h3 id="consume-4"><a class="header" href="#consume-4">Consume</a></h3>
+<h3 id="consume-3"><a class="header" href="#consume-3">Consume</a></h3>
 <pre><code class="language-bash">gradle kafka-avro-union-clients:run --args="consume client.metrics"
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><style>
@@ -2079,7 +2073,7 @@ message Address {
 <p>Producer:</p>
 <pre><code class="language-java">if (useSchemaRegistry) {
     props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaProtobufSerializer.class);
-    props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://schema-registry:8081");
+    props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, SCHEMA_REGISTRY_URL);
 } else {
     // ProtobufSerializer is a custom class
     props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, ProtobufSerializer.class);
@@ -2088,7 +2082,7 @@ message Address {
 <p>Consumer:</p>
 <pre><code class="language-java">if (useSchemaRegistry) {
     props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaProtobufDeserializer.class);
-    props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://schema-registry:8081");
+    props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, SCHEMA_REGISTRY_URL);
 } else {
     // ProtobufDeserializer is a custom class
     props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ProtobufDeserializer.class);
@@ -2109,19 +2103,13 @@ message Address {
              --partitions 3 \
              --topic client.schema.invoices
 </code></pre>
-<h3 id="produce-5"><a class="header" href="#produce-5">Produce</a></h3>
-<p>Produce <strong>without</strong> Schema Registry:</p>
+<h3 id="produceconsume-without-schema-registry-1"><a class="header" href="#produceconsume-without-schema-registry-1">Produce/Consume without Schema Registry</a></h3>
 <pre><code class="language-bash">gradle kafka-protobuf-clients:run --args="produce client.invoices 100"
+gradle kafka-protobuf-clients:run --args="consume client.invoices"
 </code></pre>
-<p>Produce <strong>with</strong> Schema Registry:</p>
+<h3 id="produceconsume-with-schema-registry-1"><a class="header" href="#produceconsume-with-schema-registry-1">Produce/Consume with Schema Registry</a></h3>
 <pre><code class="language-bash">gradle kafka-protobuf-clients:run --args="produce -s client.schema.invoices 100"
-</code></pre>
-<h3 id="consume-5"><a class="header" href="#consume-5">Consume</a></h3>
-<p>Consume <strong>without</strong> Schema Registry:</p>
-<pre><code class="language-bash">gradle kafka-protobuf-clients:run --args="consume client.invoices"
-</code></pre>
-<p>Consume <strong>with</strong> Schema Registry:</p>
-<pre><code class="language-bash">gradle kafka-protobuf-clients:run --args="consume -s client.schema.invoices"
+gradle kafka-protobuf-clients:run --args="consume -s client.schema.invoices"
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><style>
 .mdbook-alerts {
@@ -2201,7 +2189,7 @@ message Address {
 <p>Run spring boot:</p>
 <pre><code class="language-bash">gradle kafka-spring-boot:bootRun
 </code></pre>
-<h3 id="produce-6"><a class="header" href="#produce-6">Produce</a></h3>
+<h3 id="produce-4"><a class="header" href="#produce-4">Produce</a></h3>
 <p>Spring has the class <code>KafkaTemplate</code> that allows you to produce messages.</p>
 <pre><code class="language-java">@Value("${spring.kafka.topic}")
 private String topic;
@@ -2217,7 +2205,7 @@ public void sendCustomer(Customer customer) {
 <p>In another terminal:</p>
 <pre><code class="language-bash">http :8585/produce messages==10
 </code></pre>
-<h3 id="consume-6"><a class="header" href="#consume-6">Consume</a></h3>
+<h3 id="consume-4"><a class="header" href="#consume-4">Consume</a></h3>
 <p>You can use the <code>KafkaListener</code> annotation.</p>
 <pre><code class="language-java">@KafkaListener(topics = { "${spring.kafka.topic}" })
 public void consume(ConsumerRecord&lt;String, Customer&gt; record) {
@@ -2730,6 +2718,10 @@ INSERT INTO orders (orderId, orderUnits, totalAmount) VALUES (1000004, 1, 50.0);
 <h3 id="show"><a class="header" href="#show">Show</a></h3>
 <pre><code class="language-bash">ksql -e "PRINT 'ksqldb.order_sizes' FROM BEGINNING;" http://ksqldb:8088
 </code></pre>
+<h3 id="drop"><a class="header" href="#drop">Drop</a></h3>
+<pre><code class="language-bash">ksql -e "DROP STREAM ORDERSIZES;" http://ksqldb:8088
+ksql -e "DROP STREAM ORDERS;" http://ksqldb:8088
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><style>
 .mdbook-alerts {
   padding: 8px 16px;
@@ -2806,7 +2798,7 @@ INSERT INTO orders (orderId, orderUnits, totalAmount) VALUES (1000004, 1, 50.0);
 <pre><code class="language-bash">ksql-test-runner -e kafka-ksqldb-extensions/extensions/ \
         -s kafka-ksqldb/ksql/create-orders.ksql \
         -i kafka-ksqldb/tests/orders-input.json \
-        -o kafka-ksqldb/tests/orders-output.json | grep '&gt;&gt;&gt;'
+        -o kafka-ksqldb/tests/orders-output.json | grep "&gt;&gt;&gt;"
 </code></pre>
 <h2 id="tests"><a class="header" href="#tests">Tests</a></h2>
 <p>A test has 2 parts, inputs and outputs, the ksqldb test runner will compare then to define if

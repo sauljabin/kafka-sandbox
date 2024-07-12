@@ -249,11 +249,11 @@
 <pre><code class="language-bash">docker compose --profile mqtt up -d
 </code></pre>
 <p>In one terminal, subscribe to mqtt topics:</p>
-<pre><code class="language-bash">mosquitto_sub -h mosquitto -t 'house/+/brightness'
+<pre><code class="language-bash">mosquitto_sub -h mosquitto -t "house/+/brightness"
 </code></pre>
 <p>In another terminal, publish messages:</p>
-<pre><code class="language-bash">mosquitto_pub -h mosquitto -t 'house/room/brightness' -m '800LM'
-mosquitto_pub -h mosquitto -t 'house/kitchen/brightness' -m '1000LM'
+<pre><code class="language-bash">mosquitto_pub -h mosquitto -t "house/room/brightness" -m "800LM"
+mosquitto_pub -h mosquitto -t "house/kitchen/brightness" -m "1000LM"
 </code></pre>
 <h3 id="create-source-connector"><a class="header" href="#create-source-connector">Create Source Connector</a></h3>
 <p>Payload:</p>
@@ -281,8 +281,8 @@ mosquitto_pub -h mosquitto -t 'house/kitchen/brightness' -m '1000LM'
                        --property print.key=true
 </code></pre>
 <p>In another terminal, publish new messages to the MQTT broker:</p>
-<pre><code class="language-bash">mosquitto_pub -h mosquitto -t 'house/room/brightness' -m '810LM'
-mosquitto_pub -h mosquitto -t 'house/kitchen/brightness' -m '1020LM'
+<pre><code class="language-bash">mosquitto_pub -h mosquitto -t "house/room/brightness" -m "810LM"
+mosquitto_pub -h mosquitto -t "house/kitchen/brightness" -m "1020LM"
 </code></pre>
 <p>Deleting the connector:</p>
 <pre><code class="language-bash">http DELETE kafka-connect:8083/connectors/mqtt-source

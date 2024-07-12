@@ -279,6 +279,10 @@ INSERT INTO orders (orderId, orderUnits, totalAmount) VALUES (1000004, 1, 50.0);
 <h3 id="show"><a class="header" href="#show">Show</a></h3>
 <pre><code class="language-bash">ksql -e "PRINT 'ksqldb.order_sizes' FROM BEGINNING;" http://ksqldb:8088
 </code></pre>
+<h3 id="drop"><a class="header" href="#drop">Drop</a></h3>
+<pre><code class="language-bash">ksql -e "DROP STREAM ORDERSIZES;" http://ksqldb:8088
+ksql -e "DROP STREAM ORDERS;" http://ksqldb:8088
+</code></pre>
 
                     </main>
 
