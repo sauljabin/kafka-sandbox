@@ -266,7 +266,7 @@ You can check the API reference <a href="https://docs.confluent.io/platform/curr
 <pre><code class="language-bash">http kafka-rest:8082/v3/clusters/${CLUSTER_ID}/topics &lt; kafka-rest/requests/create-topic.json
 </code></pre>
 <p>List topics:</p>
-<pre><code class="language-bash">http kafka-rest:8082/v3/clusters/${CLUSTER_ID}/topics
+<pre><code class="language-bash">http kafka-rest:8082/v3/clusters/${CLUSTER_ID}/topics | jq -r '.data[].topic_name'
 </code></pre>
 <h3 id="produce"><a class="header" href="#produce">Produce</a></h3>
 <p>Payload:</p>
