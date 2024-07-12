@@ -9,7 +9,6 @@ import net.datafaker.Faker;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.common.serialization.BytesSerializer;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -24,22 +23,18 @@ public class Producer implements Callable<Integer> {
 
     private final Properties props;
     private final Faker faker = new Faker();
-
+    @Option(names = "-s", description = "Use Schema Registry")
+    boolean useSchemaRegistry;
     @Parameters(
             index = "1",
             description = "Total new messages to produce"
     )
     private int messages;
-
     @Parameters(
             index = "0",
             description = "Topic name"
     )
     private String topic;
-
-
-    @Option(names = "-s", description = "Use Schema Registry")
-    boolean useSchemaRegistry;
 
     public Producer(Properties props) {
         this.props = props;
@@ -51,7 +46,8 @@ public class Producer implements Callable<Integer> {
             props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaProtobufSerializer.class);
             props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://schema-registry:8081");
         } else {
-            props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, BytesSerializer.class);
+            // ProtobufSerializer is a custom class
+            props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, ProtobufSerializer.class);
         }
 
         KafkaProducer<String, Invoice> producer = new KafkaProducer<>(props);
@@ -85,7 +81,7 @@ public class Producer implements Callable<Integer> {
         return Invoice.newBuilder()
                 .setId(faker.internet().uuid())
                 .setCreatedAt(Timestamps.now())
-                .setStatus(InvoiceStatus.forNumber(faker.random().nextInt(InvoiceStatus.values().length-1)))
+                .setStatus(InvoiceStatus.forNumber(faker.random().nextInt(InvoiceStatus.values().length - 1)))
                 .setCustomer(
                         Customer.newBuilder()
                                 .setAddress(

@@ -16,6 +16,36 @@ Protobuf allows us to serialize/deserialize messages.
 {{#include ../kafka-protobuf/src/main/proto/Invoice.proto}}
 ```
 
+### Configurations
+
+It is possible to produce with or without Schema Registry. It'll depend on the configurations.
+
+Producer:
+
+```java
+if (useSchemaRegistry) {
+    props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaProtobufSerializer.class);
+    props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://schema-registry:8081");
+} else {
+    // ProtobufSerializer is a custom class
+    props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, ProtobufSerializer.class);
+}
+```
+
+Consumer:
+
+```java
+if (useSchemaRegistry) {
+    props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaProtobufDeserializer.class);
+    props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://schema-registry:8081");
+} else {
+    // ProtobufDeserializer is a custom class
+    props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ProtobufDeserializer.class);
+    // here we pass a custom configuration to the deserializer
+    props.put(ProtobufDeserializer.PROTOBUF_PARSER, Invoice.parser());
+}
+```
+
 ### Setup
 
 Create a topic to produce protobuf messages **without** Schema Registry:

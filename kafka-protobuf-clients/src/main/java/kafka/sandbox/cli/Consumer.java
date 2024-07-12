@@ -10,7 +10,6 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.errors.RecordDeserializationException;
 import org.apache.kafka.common.errors.WakeupException;
-import org.apache.kafka.common.serialization.BytesDeserializer;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 
@@ -25,15 +24,13 @@ import java.util.concurrent.CountDownLatch;
 public class Consumer implements Callable<Integer> {
 
     private final Properties props;
-
+    @CommandLine.Option(names = "-s", description = "Use Schema Registry")
+    boolean useSchemaRegistry;
     @CommandLine.Parameters(
             index = "0",
             description = "Topic name"
     )
     private String topic;
-
-    @CommandLine.Option(names = "-s", description = "Use Schema Registry")
-    boolean useSchemaRegistry;
 
     public Consumer(Properties props) {
         this.props = props;
@@ -45,7 +42,10 @@ public class Consumer implements Callable<Integer> {
             props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaProtobufDeserializer.class);
             props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://schema-registry:8081");
         } else {
-            props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, BytesDeserializer.class);
+            // ProtobufDeserializer is a custom class
+            props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ProtobufDeserializer.class);
+            // here we pass a custom configuration to the deserializer
+            props.put(ProtobufDeserializer.PROTOBUF_PARSER, Invoice.parser());
         }
 
         KafkaConsumer<String, Invoice> consumer = new KafkaConsumer<>(props);
