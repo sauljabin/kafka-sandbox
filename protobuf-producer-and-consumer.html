@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>What is ksqlDB - Kafka Sandbox</title>
+        <title>Protobuf Producer and Consumer - Kafka Sandbox</title>
 
 
         <!-- Custom HTML head -->
@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded "><a href="quick-start.html"><strong aria-hidden="true">1.</strong> Quick Start</a></li><li class="chapter-item expanded "><a href="sandbox-environment.html"><strong aria-hidden="true">2.</strong> Sandbox Environment</a></li><li class="chapter-item expanded "><a href="what-is-kafka.html"><strong aria-hidden="true">3.</strong> What is Kafka?</a></li><li class="chapter-item expanded "><a href="consuming-and-producing.html"><strong aria-hidden="true">4.</strong> Consuming and Producing</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="producing-and-consuming-natives.html"><strong aria-hidden="true">4.1.</strong> Native Consumer and Producer</a></li></ol></li><li class="chapter-item expanded "><a href="message-schemas.html"><strong aria-hidden="true">5.</strong> Message Schemas</a></li><li class="chapter-item expanded "><a href="what-is-kafka-connect.html"><strong aria-hidden="true">6.</strong> What is Kafka Connect?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="kafka-connect-database-example.html"><strong aria-hidden="true">6.1.</strong> Kafka Connect Database Example</a></li><li class="chapter-item expanded "><a href="kafka-connect-mqtt-example.html"><strong aria-hidden="true">6.2.</strong> Kafka Connect MQTT Example</a></li></ol></li><li class="chapter-item expanded "><a href="performance-tools.html"><strong aria-hidden="true">7.</strong> Performance Tools</a></li><li class="chapter-item expanded "><a href="kafka-proxies.html"><strong aria-hidden="true">8.</strong> Kafka Proxies</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="kafka-rest-proxy.html"><strong aria-hidden="true">8.1.</strong> Kafka Rest Proxy</a></li><li class="chapter-item expanded "><a href="kafka-mqtt-proxy.html"><strong aria-hidden="true">8.2.</strong> Kafka MQTT Proxy</a></li></ol></li><li class="chapter-item expanded "><a href="json-producer-and-consumer.html"><strong aria-hidden="true">9.</strong> JSON Producer and Consumer</a></li><li class="chapter-item expanded "><a href="avro-producer-and-consumer.html"><strong aria-hidden="true">10.</strong> Avro Producer and Consumer</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="avro-union.html"><strong aria-hidden="true">10.1.</strong> Avro Union</a></li></ol></li><li class="chapter-item expanded "><a href="protobuf-producer-and-consumer.html"><strong aria-hidden="true">11.</strong> Protobuf Producer and Consumer</a></li><li class="chapter-item expanded "><a href="spring-boot.html"><strong aria-hidden="true">12.</strong> Spring Boot</a></li><li class="chapter-item expanded "><a href="kafka-streams.html"><strong aria-hidden="true">13.</strong> Kafka Streams</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="interactive-queries.html"><strong aria-hidden="true">13.1.</strong> Interactive Queries</a></li></ol></li><li class="chapter-item expanded "><a href="what-is-ksqldb.html" class="active"><strong aria-hidden="true">14.</strong> What is ksqlDB</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ksqldb-extensions.html"><strong aria-hidden="true">14.1.</strong> ksqlDB Extensions</a></li><li class="chapter-item expanded "><a href="ksqldb-queries.html"><strong aria-hidden="true">14.2.</strong> ksqlDB Queries</a></li><li class="chapter-item expanded "><a href="ksqldb-tests.html"><strong aria-hidden="true">14.3.</strong> ksqlDB Tests</a></li></ol></li><li class="chapter-item expanded "><a href="cleanup.html"><strong aria-hidden="true">15.</strong> Cleanup</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><a href="ports-table.html">Ports Table</a></li><li class="chapter-item expanded affix "><a href="about-this-book.html">About this book</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded "><a href="quick-start.html"><strong aria-hidden="true">1.</strong> Quick Start</a></li><li class="chapter-item expanded "><a href="sandbox-environment.html"><strong aria-hidden="true">2.</strong> Sandbox Environment</a></li><li class="chapter-item expanded "><a href="what-is-kafka.html"><strong aria-hidden="true">3.</strong> What is Kafka?</a></li><li class="chapter-item expanded "><a href="consuming-and-producing.html"><strong aria-hidden="true">4.</strong> Consuming and Producing</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="producing-and-consuming-natives.html"><strong aria-hidden="true">4.1.</strong> Native Consumer and Producer</a></li></ol></li><li class="chapter-item expanded "><a href="message-schemas.html"><strong aria-hidden="true">5.</strong> Message Schemas</a></li><li class="chapter-item expanded "><a href="what-is-kafka-connect.html"><strong aria-hidden="true">6.</strong> What is Kafka Connect?</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="kafka-connect-database-example.html"><strong aria-hidden="true">6.1.</strong> Kafka Connect Database Example</a></li><li class="chapter-item expanded "><a href="kafka-connect-mqtt-example.html"><strong aria-hidden="true">6.2.</strong> Kafka Connect MQTT Example</a></li></ol></li><li class="chapter-item expanded "><a href="performance-tools.html"><strong aria-hidden="true">7.</strong> Performance Tools</a></li><li class="chapter-item expanded "><a href="kafka-proxies.html"><strong aria-hidden="true">8.</strong> Kafka Proxies</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="kafka-rest-proxy.html"><strong aria-hidden="true">8.1.</strong> Kafka Rest Proxy</a></li><li class="chapter-item expanded "><a href="kafka-mqtt-proxy.html"><strong aria-hidden="true">8.2.</strong> Kafka MQTT Proxy</a></li></ol></li><li class="chapter-item expanded "><a href="json-producer-and-consumer.html"><strong aria-hidden="true">9.</strong> JSON Producer and Consumer</a></li><li class="chapter-item expanded "><a href="avro-producer-and-consumer.html"><strong aria-hidden="true">10.</strong> Avro Producer and Consumer</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="avro-union.html"><strong aria-hidden="true">10.1.</strong> Avro Union</a></li></ol></li><li class="chapter-item expanded "><a href="protobuf-producer-and-consumer.html" class="active"><strong aria-hidden="true">11.</strong> Protobuf Producer and Consumer</a></li><li class="chapter-item expanded "><a href="spring-boot.html"><strong aria-hidden="true">12.</strong> Spring Boot</a></li><li class="chapter-item expanded "><a href="kafka-streams.html"><strong aria-hidden="true">13.</strong> Kafka Streams</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="interactive-queries.html"><strong aria-hidden="true">13.1.</strong> Interactive Queries</a></li></ol></li><li class="chapter-item expanded "><a href="what-is-ksqldb.html"><strong aria-hidden="true">14.</strong> What is ksqlDB</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ksqldb-extensions.html"><strong aria-hidden="true">14.1.</strong> ksqlDB Extensions</a></li><li class="chapter-item expanded "><a href="ksqldb-queries.html"><strong aria-hidden="true">14.2.</strong> ksqlDB Queries</a></li><li class="chapter-item expanded "><a href="ksqldb-tests.html"><strong aria-hidden="true">14.3.</strong> ksqlDB Tests</a></li></ol></li><li class="chapter-item expanded "><a href="cleanup.html"><strong aria-hidden="true">15.</strong> Cleanup</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><a href="ports-table.html">Ports Table</a></li><li class="chapter-item expanded affix "><a href="about-this-book.html">About this book</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -243,38 +243,91 @@
 }
 
 </style>
-<h1 id="what-is-ksqldb"><a class="header" href="#what-is-ksqldb">What is ksqlDB?</a></h1>
-<p>ksqlDB is a database that's purpose-built for stream processing applications.
-ksqlDB it is not a SQL database, it provides an extra layer for implementing kstream, ktable and connectors through a language (ksql) based on sql.</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Ji7YMlJUqsA"></iframe>
+<h1 id="protobuf-producer-and-consumer"><a class="header" href="#protobuf-producer-and-consumer">Protobuf Producer and Consumer</a></h1>
+<p>Next, you will see how to serialize/deserialize messages using protobuf.</p>
+<h3 id="other-links"><a class="header" href="#other-links">Other Links</a></h3>
 <ul>
-<li><a href="https://ksqldb.io/">ksqldb</a></li>
-<li><a href="https://docs.ksqldb.io/en/latest/reference/server-configuration/">ksqldb settings</a></li>
+<li><a href="https://docs.confluent.io/cloud/current/sr/fundamentals/serdes-develop/serdes-protobuf.html">confluent protobuf producer and consumer examples</a></li>
 </ul>
-<h3 id="run-ksqldb"><a class="header" href="#run-ksqldb">Run ksqlDB</a></h3>
-<p>Start ksqldb:</p>
-<pre><code class="language-bash">docker compose --profile ksqldb up -d
+<h3 id="protobuf-schema"><a class="header" href="#protobuf-schema">Protobuf Schema</a></h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BywIOD_Y3CE"></iframe>
+<p>Protobuf allows us to serialize/deserialize messages.</p>
+<pre><code class="language-protobuf">syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+
+option java_multiple_files = true;
+option java_package = "kafka.sandbox.proto";
+
+enum InvoiceStatus {
+  PAID = 0;
+  PENDING = 1;
+}
+
+message Invoice {
+  string id = 1;
+  google.protobuf.Timestamp created_at = 3;
+  Customer customer = 4;
+  repeated Product products = 5;
+  InvoiceStatus status = 6;
+}
+
+message Product {
+  string id = 1;
+  string name = 2;
+  string code = 3;
+  double price = 4;
+}
+
+message Customer {
+  string id = 1;
+  string firstName = 2;
+  string lastName = 3;
+  Address address = 4;
+}
+
+message Address {
+  string city = 1;
+  string zipCode = 2;
+  string street = 3;
+}
 </code></pre>
-<p>After a few seconds check if it is up:</p>
-<pre><code class="language-bash">http ksqldb:8088/info
+<h3 id="setup"><a class="header" href="#setup">Setup</a></h3>
+<p>Create a topic to produce protobuf messages <strong>without</strong> Schema Registry:</p>
+<pre><code class="language-bash">kafka-topics --create --bootstrap-server kafka1:9092 \
+             --replication-factor 3 \
+             --partitions 3 \
+             --topic client.invoices
 </code></pre>
-<p>One line shell interaction:</p>
-<pre><code class="language-bash">ksql -e "SHOW STREAMS;" http://ksqldb:8088
+<p>Create a topic to produce protobuf messages <strong>with</strong> Schema Registry:</p>
+<pre><code class="language-bash">kafka-topics --create --bootstrap-server kafka1:9092 \
+             --replication-factor 3 \
+             --partitions 3 \
+             --topic client.schema.invoices
 </code></pre>
-<p>Interactive ksqlDB shell:</p>
-<pre><code class="language-bash">ksql http://ksqldb:8088
+<h3 id="produce"><a class="header" href="#produce">Produce</a></h3>
+<p>Produce <strong>without</strong> Schema Registry:</p>
+<pre><code class="language-bash">gradle kafka-protobuf-clients:run --args="produce client.invoices 100"
 </code></pre>
-<p>Then enter <code>SHOW STREAMS;</code>.</p>
+<p>Produce <strong>with</strong> Schema Registry:</p>
+<pre><code class="language-bash">gradle kafka-protobuf-clients:run --args="produce -s client.schema.invoices 100"
+</code></pre>
+<h3 id="consume"><a class="header" href="#consume">Consume</a></h3>
+<p>Consume <strong>without</strong> Schema Registry:</p>
+<pre><code class="language-bash">gradle kafka-protobuf-clients:run --args="consume client.invoices"
+</code></pre>
+<p>Consume <strong>with</strong> Schema Registry:</p>
+<pre><code class="language-bash">gradle kafka-protobuf-clients:run --args="consume -s client.schema.invoices"
+</code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="interactive-queries.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="avro-union.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="ksqldb-extensions.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="spring-boot.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -284,11 +337,11 @@ ksqlDB it is not a SQL database, it provides an extra layer for implementing kst
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="interactive-queries.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="avro-union.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="ksqldb-extensions.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="spring-boot.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
