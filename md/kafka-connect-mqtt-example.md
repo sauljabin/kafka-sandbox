@@ -11,14 +11,14 @@ docker compose --profile mqtt up -d
 In one terminal, subscribe to mqtt topics:
 
 ```bash
-mosquitto_sub -h mosquitto -t 'house/+/brightness'
+mosquitto_sub -h mosquitto -t "house/+/brightness"
 ```
 
 In another terminal, publish messages:
 
 ```bash
-mosquitto_pub -h mosquitto -t 'house/room/brightness' -m '800LM'
-mosquitto_pub -h mosquitto -t 'house/kitchen/brightness' -m '1000LM'
+mosquitto_pub -h mosquitto -t "house/room/brightness" -m "800LM"
+mosquitto_pub -h mosquitto -t "house/kitchen/brightness" -m "1000LM"
 ```
 
 ### Create Source Connector
@@ -47,8 +47,8 @@ kafka-console-consumer --from-beginning --group connect.mqtt \
 In another terminal, publish new messages to the MQTT broker:
 
 ```bash
-mosquitto_pub -h mosquitto -t 'house/room/brightness' -m '810LM'
-mosquitto_pub -h mosquitto -t 'house/kitchen/brightness' -m '1020LM'
+mosquitto_pub -h mosquitto -t "house/room/brightness" -m "810LM"
+mosquitto_pub -h mosquitto -t "house/kitchen/brightness" -m "1020LM"
 ```
 
 Deleting the connector:

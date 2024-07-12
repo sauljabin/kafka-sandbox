@@ -38,3 +38,10 @@ ksql -f kafka-ksqldb/ksql/insert-orders.ksql http://ksqldb:8088
 ```bash
 ksql -e "PRINT 'ksqldb.order_sizes' FROM BEGINNING;" http://ksqldb:8088
 ```
+
+### Drop
+
+```bash
+ksql -e "DROP STREAM ORDERSIZES;" http://ksqldb:8088
+ksql -e "DROP STREAM ORDERS;" http://ksqldb:8088
+```

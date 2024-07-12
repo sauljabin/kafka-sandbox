@@ -26,7 +26,7 @@ kafka-topics --create \
 Publish using mqtt proxy:
 
 ```bash
-mosquitto_pub -h kafka-mqtt -p 1884 -t 'house/room/temperature' -m '20C'
+mosquitto_pub -h kafka-mqtt -p 1884 -t "house/room/temperature" -m "20C"
 ```
 
 Check the data:

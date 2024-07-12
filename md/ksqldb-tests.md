@@ -10,7 +10,7 @@ One interesting feature that ksqlDB has is the test runner, it allows you to tes
 ksql-test-runner -e kafka-ksqldb-extensions/extensions/ \
         -s kafka-ksqldb/ksql/create-orders.ksql \
         -i kafka-ksqldb/tests/orders-input.json \
-        -o kafka-ksqldb/tests/orders-output.json | grep '>>>'
+        -o kafka-ksqldb/tests/orders-output.json | grep ">>>"
 ```
 
 

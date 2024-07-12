@@ -3,7 +3,7 @@
 For opening the sandbox environment just run:
 
 ```bash
-docker compose exec -u $(id -u):$(id -g) cli bash
+docker compose exec cli bash
 ```
 
 > [!IMPORTANT]

@@ -26,7 +26,7 @@ Producer:
 ```java
 if (useSchemaRegistry) {
     props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaJsonSchemaSerializer.class);
-    props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://schema-registry:8081");
+    props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, SCHEMA_REGISTRY_URL);
 } else {
     props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaJsonSerializer.class);
 }
@@ -37,7 +37,7 @@ Consumer:
 ```java
 if (useSchemaRegistry) {
     props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaJsonSchemaDeserializer.class);
-    props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://schema-registry:8081");
+    props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, SCHEMA_REGISTRY_URL);
 } else {
     props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaJsonDeserializer.class);
 }
@@ -63,30 +63,16 @@ kafka-topics --create --bootstrap-server kafka1:9092 \
              --topic client.schema.users
 ```
 
-### Produce
-
-Produce **without** Schema Registry:
+### Produce/Consume without Schema Registry
 
 ```bash
 gradle kafka-json-clients:run --args="produce client.users 100"
-```
-
-Produce **with** Schema Registry:
-
-```bash
-gradle kafka-json-clients:run --args="produce -s client.schema.users 100"
-```
-
-### Consume
-
-Consume **without** Schema Registry:
-
-```bash
 gradle kafka-json-clients:run --args="consume client.users"
 ```
 
-Consume **with** Schema Registry:
+### Produce/Consume with Schema Registry
 
 ```bash
+gradle kafka-json-clients:run --args="produce -s client.schema.users 100"
 gradle kafka-json-clients:run --args="consume -s client.schema.users"
 ```

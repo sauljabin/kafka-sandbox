@@ -206,7 +206,7 @@ services:
       CLUSTER_ID: ${CLUSTER_ID}
     volumes:
       - .:/kafka-sandbox
-      - gradle_cache:/root/.gradle
+      - gradle_cache:/home/ubuntu/.gradle
     entrypoint: /bin/bash
     tty: true
 

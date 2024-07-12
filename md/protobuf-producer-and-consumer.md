@@ -25,7 +25,7 @@ Producer:
 ```java
 if (useSchemaRegistry) {
     props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaProtobufSerializer.class);
-    props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://schema-registry:8081");
+    props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, SCHEMA_REGISTRY_URL);
 } else {
     // ProtobufSerializer is a custom class
     props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, ProtobufSerializer.class);
@@ -37,7 +37,7 @@ Consumer:
 ```java
 if (useSchemaRegistry) {
     props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaProtobufDeserializer.class);
-    props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://schema-registry:8081");
+    props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, SCHEMA_REGISTRY_URL);
 } else {
     // ProtobufDeserializer is a custom class
     props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ProtobufDeserializer.class);
@@ -66,30 +66,16 @@ kafka-topics --create --bootstrap-server kafka1:9092 \
              --topic client.schema.invoices
 ```
 
-### Produce
-
-Produce **without** Schema Registry:
+### Produce/Consume without Schema Registry
 
 ```bash
 gradle kafka-protobuf-clients:run --args="produce client.invoices 100"
-```
-
-Produce **with** Schema Registry:
-
-```bash
-gradle kafka-protobuf-clients:run --args="produce -s client.schema.invoices 100"
-```
-
-### Consume
-
-Consume **without** Schema Registry:
-
-```bash
 gradle kafka-protobuf-clients:run --args="consume client.invoices"
 ```
 
-Consume **with** Schema Registry:
+### Produce/Consume with Schema Registry
 
 ```bash
+gradle kafka-protobuf-clients:run --args="produce -s client.schema.invoices 100"
 gradle kafka-protobuf-clients:run --args="consume -s client.schema.invoices"
 ```

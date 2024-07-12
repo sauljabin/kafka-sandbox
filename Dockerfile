@@ -9,7 +9,7 @@ ENV GRADLE_BIN "${GRADLE_HOME}/bin"
 ENV CONFLUENT_VERSION "$CONFLUENT_VERSION"
 ENV CONFLUENT_HOME "/opt/confluent"
 ENV CONFLUENT_BIN "${CONFLUENT_HOME}/bin"
-ENV PATH "${PATH}:${CONFLUENT_BIN}:${GRADLE_BIN}:/root/.local/bin"
+ENV PATH "${PATH}:${CONFLUENT_BIN}:${GRADLE_BIN}"
 ENV COLORTERM "truecolor"
 ENV TERM "xterm-256color"
 
@@ -26,11 +26,7 @@ RUN apt update \
         postgresql-client \
         mysql-client \
         mosquitto-clients \
-        python-is-python3 \
-        python3 \
-        pipx \
-    && rm -rf /var/lib/apt/lists/* \
-    && pipx install kaskade
+    && rm -rf /var/lib/apt/lists/*
 
 RUN wget -q "http://packages.confluent.io/archive/$(echo "${CONFLUENT_VERSION}" | cut -c 1-3)/confluent-community-${CONFLUENT_VERSION}.zip" -O /tmp/confluent.zip \
     && unzip /tmp/confluent.zip -d /tmp \
@@ -41,3 +37,11 @@ RUN wget -q "https://services.gradle.org/distributions/gradle-8.8-bin.zip" -O /t
     && unzip /tmp/gradle.zip -d /tmp \
     && mv "/tmp/gradle-${GRADLE_VERSION}" "${GRADLE_HOME}" \
     && rm /tmp/gradle.zip
+
+RUN mkdir -p "${CONFLUENT_HOME}/logs" \
+    && chmod 777 "${CONFLUENT_HOME}/logs"
+
+RUN mkdir -p "/home/ubuntu/.gradle" \
+    && chmod 777 "/home/ubuntu/.gradle"
+
+USER ubuntu
