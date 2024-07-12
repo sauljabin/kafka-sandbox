@@ -2074,6 +2074,28 @@ message Address {
   string street = 3;
 }
 </code></pre>
+<h3 id="configurations-1"><a class="header" href="#configurations-1">Configurations</a></h3>
+<p>It is possible to produce with or without Schema Registry. It'll depend on the configurations.</p>
+<p>Producer:</p>
+<pre><code class="language-java">if (useSchemaRegistry) {
+    props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaProtobufSerializer.class);
+    props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://schema-registry:8081");
+} else {
+    // ProtobufSerializer is a custom class
+    props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, ProtobufSerializer.class);
+}
+</code></pre>
+<p>Consumer:</p>
+<pre><code class="language-java">if (useSchemaRegistry) {
+    props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaProtobufDeserializer.class);
+    props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://schema-registry:8081");
+} else {
+    // ProtobufDeserializer is a custom class
+    props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ProtobufDeserializer.class);
+    // here we pass a custom configuration to the deserializer
+    props.put(ProtobufDeserializer.PROTOBUF_PARSER, Invoice.parser());
+}
+</code></pre>
 <h3 id="setup-4"><a class="header" href="#setup-4">Setup</a></h3>
 <p>Create a topic to produce protobuf messages <strong>without</strong> Schema Registry:</p>
 <pre><code class="language-bash">kafka-topics --create --bootstrap-server kafka1:9092 \
