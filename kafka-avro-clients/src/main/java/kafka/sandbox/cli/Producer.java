@@ -44,7 +44,7 @@ public class Producer implements Callable<Integer> {
             Supplier supplier = newMessage();
             ProducerRecord<String, Supplier> record = new ProducerRecord<>(
                     topic,
-                    supplier.getId().toString(),
+                    supplier.getId(),
                     supplier
             );
             producer.send(
