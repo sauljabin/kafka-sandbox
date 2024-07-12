@@ -5,34 +5,34 @@ option java_multiple_files = true;
 option java_package = "kafka.sandbox.proto";
 
 enum InvoiceStatus {
-  PAID=0;
-  PENDING=1;
+  PAID = 0;
+  PENDING = 1;
 }
 
 message Invoice {
   string id = 1;
   google.protobuf.Timestamp created_at = 3;
-  Customer customer=4;
-  repeated Product products=5;
-  InvoiceStatus status=6;
+  Customer customer = 4;
+  repeated Product products = 5;
+  InvoiceStatus status = 6;
 }
 
 message Product {
   string id = 1;
   string name = 2;
-  string sku = 3;
-  double price=4;
+  string code = 3;
+  double price = 4;
 }
 
 message Customer {
   string id = 1;
   string firstName = 2;
   string lastName = 3;
-  Address address=4;
+  Address address = 4;
 }
 
 message Address {
-  string city =1;
+  string city = 1;
   string zipCode = 2;
   string street = 3;
 }

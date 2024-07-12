@@ -18,6 +18,7 @@
 - [JSON Producer and Consumer](json-producer-and-consumer.md)
 - [Avro Producer and Consumer](avro-producer-and-consumer.md)
   - [Avro Union](avro-union.md)
+- [Protobuf Producer and Consumer](protobuf-producer-and-consumer.md)
 - [Spring Boot](spring-boot.md)
 - [Kafka Streams](kafka-streams.md)
   - [Interactive Queries](interactive-queries.md)

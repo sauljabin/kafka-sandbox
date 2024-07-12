@@ -3,7 +3,7 @@ package kafka.sandbox.cli;
 import com.google.protobuf.util.Timestamps;
 import io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig;
 import io.confluent.kafka.serializers.protobuf.KafkaProtobufSerializer;
-import kafka.sandbox.proto.Invoice;
+import kafka.sandbox.proto.*;
 import lombok.extern.slf4j.Slf4j;
 import net.datafaker.Faker;
 import org.apache.kafka.clients.producer.KafkaProducer;
@@ -85,6 +85,26 @@ public class Producer implements Callable<Integer> {
         return Invoice.newBuilder()
                 .setId(faker.internet().uuid())
                 .setCreatedAt(Timestamps.now())
+                .setStatus(InvoiceStatus.forNumber(faker.random().nextInt(InvoiceStatus.values().length-1)))
+                .setCustomer(
+                        Customer.newBuilder()
+                                .setAddress(
+                                        Address.newBuilder()
+                                                .setCity(faker.address().city())
+                                                .setStreet(faker.address().streetAddress())
+                                                .setZipCode(faker.address().zipCode())
+                                )
+                                .setId(faker.internet().uuid())
+                                .setFirstName(faker.name().firstName())
+                                .setLastName(faker.name().lastName())
+                )
+                .addProducts(
+                        Product.newBuilder()
+                                .setId(faker.internet().uuid())
+                                .setName(faker.commerce().productName())
+                                .setCode(faker.code().isbn10(true))
+                                .setPrice(faker.number().randomDouble(2, 10, 200))
+                )
                 .build();
     }
 }

@@ -45,7 +45,7 @@ if (useSchemaRegistry) {
 
 ### Setup
 
-Create a topic to produce json **without** Schema Registry:
+Create a topic to produce json messages **without** Schema Registry:
 
 ```bash
 kafka-topics --create --bootstrap-server kafka1:9092 \
@@ -54,7 +54,7 @@ kafka-topics --create --bootstrap-server kafka1:9092 \
              --topic client.users
 ```
 
-Create a topic to produce json **with** Schema Registry:
+Create a topic to produce json messages **with** Schema Registry:
 
 ```bash
 kafka-topics --create --bootstrap-server kafka1:9092 \

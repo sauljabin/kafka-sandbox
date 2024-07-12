@@ -1,8 +1,6 @@
 # Avro Producer and Consumer
 
-These examples produce and consume messages from the `supplier` topic. The producer example produces random suppliers.
-
-The goal is to communicate producers and consumers with avro serialized messages.
+Next, you will see how to serialize/deserialize messages using avro schemas.
 
 ### Other Links
 
@@ -14,16 +12,14 @@ The goal is to communicate producers and consumers with avro serialized messages
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/SZX9DM_gyOE"></iframe>
 
-Avro allows us to serialize/deserialize messages. Here it is our example
+Avro allows us to serialize/deserialize messages. Here it's our example
 avro schema:
 
 ```json
-{{#include ../kafka-avro/src/main/avro/Suppliers.avsc}}
+{{#include ../kafka-avro/src/main/avro/Supplier.avsc}}
 ```
 
-### Setup
-
-Create a topic:
+### Create Topic
 
 ```bash
 kafka-topics --create --bootstrap-server kafka1:9092 \
