@@ -17,7 +17,7 @@ docker compose --profile sql up -d
 Populate it:
 
 ```bash
-mysql --host=mysql --database=sandbox < kafka-connect/sql/customers.sql
+mysql --host=mysql --user=root --database=sandbox < kafka-connect/sql/customers.sql
 ```
 
 That command should have created the table `customers` and inserted 200 records.
@@ -25,7 +25,7 @@ That command should have created the table `customers` and inserted 200 records.
 Now you can open [Adminer](http://localhost:9090) or run:
 
 ```bash
-mysql --host=mysql --database=sandbox -e "select * from customers"
+mysql --host=mysql --user=root --database=sandbox -e "select * from customers"
 ```
 
 ### Create Source Connector

@@ -35,7 +35,7 @@ http kafka-rest:8082/v3/clusters/${CLUSTER_ID}/topics < kafka-rest/requests/crea
 List topics:
 
 ```bash
-http kafka-rest:8082/v3/clusters/${CLUSTER_ID}/topics
+http kafka-rest:8082/v3/clusters/${CLUSTER_ID}/topics | jq -r '.data[].topic_name'
 ```
 
 ### Produce
