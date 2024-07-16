@@ -107,6 +107,9 @@ services:
               connect:
                 - name: kafka-connect
                   url: http://kafka-connect:8083
+              ksqldb:
+                - name: "ksqldb"
+                  url: "http://ksqldb:8088"
 
   mysql:
     image: mysql:latest
@@ -178,8 +181,6 @@ services:
 
   ksqldb:
     image: confluentinc/cp-ksqldb-server:${CONFLUENT_VERSION}
-    profiles:
-      - ksqldb
     environment:
       KSQL_KSQL_SERVICE_ID: ksqldb.
       KSQL_LISTENERS: http://0.0.0.0:8088

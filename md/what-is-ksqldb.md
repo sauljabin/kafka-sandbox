@@ -10,13 +10,7 @@ ksqlDB it is not a SQL database, it provides an extra layer for implementing kst
 
 ### Run ksqlDB
 
-Start ksqldb:
-
-```bash
-docker compose --profile ksqldb up -d
-```
-
-After a few seconds check if it is up:
+Check if it's up:
 
 ```bash
 http ksqldb:8088/info
