@@ -4,7 +4,7 @@ More at [https://protobuf.dev/reference/java/java-generated/#oneof-fields](https
 
 ### Protobuf Schema
 
-Here you can see that the `Measurement` has a `oneof` field:
+Here you can see that the `Measurement` has an `oneof` field:
 
 ```protobuf
 {{#include ../kafka-protobuf/src/main/proto/Sensor.proto}}
