@@ -2072,8 +2072,8 @@ message Address {
 <p>It is possible to produce with or without Schema Registry. It'll depend on the configurations.</p>
 <p>Producer:</p>
 <pre><code class="language-java">if (useSchemaRegistry) {
-    props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaProtobufSerializer.class);
     props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, SCHEMA_REGISTRY_URL);
+    props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaProtobufSerializer.class);
 } else {
     // ProtobufSerializer is a custom class
     props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, ProtobufSerializer.class);
@@ -2081,12 +2081,15 @@ message Address {
 </code></pre>
 <p>Consumer:</p>
 <pre><code class="language-java">if (useSchemaRegistry) {
-    props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaProtobufDeserializer.class);
     props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, SCHEMA_REGISTRY_URL);
+    // pass the confluent protobuf deserializer
+    props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaProtobufDeserializer.class);
+    // you have to pass the protobuf class
+    props.put(KafkaProtobufDeserializerConfig.SPECIFIC_PROTOBUF_VALUE_TYPE, Invoice.class);
 } else {
     // ProtobufDeserializer is a custom class
     props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ProtobufDeserializer.class);
-    // here we pass a custom configuration to the deserializer
+    // here we pass a configuration to the custom deserializer
     props.put(ProtobufDeserializer.PROTOBUF_PARSER, Invoice.parser());
 }
 </code></pre>
