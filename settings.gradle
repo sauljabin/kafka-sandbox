@@ -2,6 +2,7 @@ rootProject.name = "kafka-sandbox"
 include("kafka-avro")
 include("kafka-protobuf")
 include("kafka-protobuf-clients")
+include("kafka-protobuf-oneof-clients")
 include("kafka-avro-clients")
 include("kafka-avro-union-clients")
 include("kafka-json-clients")

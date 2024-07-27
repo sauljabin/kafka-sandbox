@@ -81,7 +81,7 @@ public class Producer implements Callable<Integer> {
         return Invoice.newBuilder()
                 .setId(faker.internet().uuid())
                 .setCreatedAt(Timestamps.now())
-                .setStatus(InvoiceStatus.forNumber(faker.random().nextInt(InvoiceStatus.values().length - 1)))
+                .setStatus(faker.options().option(InvoiceStatus.PAID, InvoiceStatus.PENDING))
                 .setCustomer(
                         Customer.newBuilder()
                                 .setAddress(

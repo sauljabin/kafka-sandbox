@@ -14,6 +14,7 @@ public class ProtobufDeserializer<P extends Message> implements Deserializer<Mes
     private Parser<P> parser;
 
     @Override
+    @SuppressWarnings("unchecked")
     public void configure(Map<String, ?> configs, boolean isKey) {
         parser = (Parser<P>) configs.get(PROTOBUF_PARSER);
 
