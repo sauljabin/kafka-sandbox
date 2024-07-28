@@ -21,6 +21,7 @@
 - [Protobuf Producer and Consumer](protobuf-producer-and-consumer.md)
   - [Protobuf Oneof](protobuf-oneof.md)
 - [Spring Boot](spring-boot.md)
+- [Message Delivery Guarantees](message-delivery-guarantees.md)
 - [Kafka Streams](kafka-streams.md)
   - [Interactive Queries](interactive-queries.md)
 - [What is ksqlDB](what-is-ksqldb.md)
