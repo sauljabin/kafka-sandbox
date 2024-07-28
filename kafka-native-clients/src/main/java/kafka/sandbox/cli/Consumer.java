@@ -30,13 +30,10 @@ public abstract class Consumer<V> {
         Runtime
                 .getRuntime()
                 .addShutdownHook(
-                        new Thread("consumer-shutdown-hook") {
-                            @Override
-                            public void run() {
-                                consumer.wakeup();
-                                latch.countDown();
-                            }
-                        }
+                        new Thread(() -> {
+                            consumer.wakeup();
+                            latch.countDown();
+                        }, "consumer-shutdown-hook")
                 );
 
         Thread infiniteLoop = new Thread(
@@ -63,6 +60,7 @@ public abstract class Consumer<V> {
                         log.info("Shutdown gracefully");
                     } finally {
                         consumer.close();
+                        latch.countDown();
                     }
                 },
                 "consumer-thread"

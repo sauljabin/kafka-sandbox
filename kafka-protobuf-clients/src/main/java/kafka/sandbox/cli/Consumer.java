@@ -58,13 +58,10 @@ public class Consumer implements Callable<Integer> {
         Runtime
                 .getRuntime()
                 .addShutdownHook(
-                        new Thread("consumer-shutdown-hook") {
-                            @Override
-                            public void run() {
-                                consumer.wakeup();
-                                latch.countDown();
-                            }
-                        }
+                        new Thread(() -> {
+                            consumer.wakeup();
+                            latch.countDown();
+                        }, "consumer-shutdown-hook")
                 );
 
         // infinite loop
@@ -93,6 +90,7 @@ public class Consumer implements Callable<Integer> {
                         log.info("Shutdown gracefully");
                     } finally {
                         consumer.close();
+                        latch.countDown();
                     }
                 },
                 "consumer-thread"
