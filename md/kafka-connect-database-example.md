@@ -1,7 +1,7 @@
 # Kafka Connect Database Example
 
 In this example you are going to learn how to move data from a source (**mysql**),
-to multiple targets (**postgres and mongo**).
+to a synk (**postgres**).
 
 > [!IMPORTANT]
 > This example does not support deletion, for that you have to implement tombstone events at the [source](https://debezium.io/documentation/reference/connectors/postgresql.html#postgresql-tombstone-events) and [sink](https://docs.confluent.io/kafka-connect-jdbc/current/sink-connector/index.html#jdbc-sink-delete-mode).
